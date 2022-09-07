@@ -184,22 +184,6 @@ class Backdoor:
             if args.debug and i % 10 == 0:
                 print('Epoch {}, training loss: {}'.format(i, loss_train.item()))
                 print("acc_train_clean: {:.4f}, acc_train_attach: {:.4f}".format(acc_train_clean,acc_train_attach))
-
-    def test(self, features, edge_index, edge_weight, labels,idx_test):
-        """Evaluate GCN performance on test set.
-        Parameters
-        ----------
-        idx_test :
-            node testing indices
-        """
-        self.eval()
-        output = self.shadow_model.forward(features, edge_index, edge_weight)
-        acc_test = utils.accuracy(output[idx_test], labels[idx_test])
-        # print("Test set results:",
-        #       "loss= {:.4f}".format(loss_test.item()),
-        #       "accuracy= {:.4f}".format(acc_test.item()))
-        return float(acc_test)
-
     
     # def test_atk(self, features, edge_index, edge_weight, idx_atk):
     #     output = 
