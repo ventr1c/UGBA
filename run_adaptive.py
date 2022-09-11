@@ -44,7 +44,7 @@ parser.add_argument('--trojan_epochs', type=int,  default=200, help='Number of e
 
 parser.add_argument('--load_benign_model', action='store_true', default=True,
                     help='Loading benign model if exists.')
-# attack setting
+# backdoor setting
 parser.add_argument('--trigger_size', type=int, default=3,
                     help='tirgger_size')
 parser.add_argument('--vs_ratio', type=float, default=0.01,
@@ -54,18 +54,23 @@ parser.add_argument('--target_test_nodes_num', type=float, default=200,
 parser.add_argument('--clean_test_nodes_num', type=float, default=200,
                     help="ratio of poisoning nodes relative to the full graph")
 # defense setting
-parser.add_argument('--defense_mode', type=str, default="none",
+parser.add_argument('--defense_mode', type=str, default="isolate",
                     choices=['prune', 'isolate', 'none'],
                     help="Mode of defense")
 parser.add_argument('--prune_thr', type=float, default=0.1,
                     help="Threshold of prunning edges")
-parser.add_argument('--homo_loss_weight', type=float, default=0,
-                    help="Threshold of prunning edges")
+parser.add_argument('--homo_loss_weight', type=float, default=1,
+                    help="Weight of optimize similarity loss")
 parser.add_argument('--homo_boost_thrd', type=float, default=0.6,
                     help="Threshold of increase similarity")
-parser.add_argument('--test_model', type=str, default='GraphSage',
+# attack setting
+parser.add_argument('--selection_method', type=str, default='conf',
+                    choices=['loss','conf','cluster','none'],
+                    help='Method to select idx_attach for training trojan model (none means randomly select)')
+parser.add_argument('--test_model', type=str, default='GCN',
                     choices=['GCN','GAT','GraphSage','GIN'],
                     help='Model used to attack')
+
 # GPU setting
 parser.add_argument('--device_id', type=int, default=2,
                     help="Threshold of prunning edges")
@@ -109,7 +114,7 @@ from torch_geometric.utils import to_undirected
 data.edge_index = to_undirected(data.edge_index)
 
 
-# In[5]:
+# In[4]:
 
 
 #%%  mask the test nodes
@@ -126,7 +131,7 @@ idx_test = data.test_mask.nonzero().flatten()
 # features = data.x[torch.bitwise_not(data.test_mask)]
 
 
-# In[6]:
+# In[5]:
 
 
 from models.GCN import GCN
@@ -135,13 +140,7 @@ from models.GIN import GIN
 from models.SAGE import GraphSage
 def model_construct(args,model_name,data):
     if (model_name == 'GCN'):
-        model = GCN(nfeat=data.x.shape[1],                    
-                    nhid=args.hidden,                    
-                    nclass= int(data.y.max()+1),                    
-                    dropout=args.dropout,                    
-                    lr=args.lr,                    
-                    weight_decay=args.weight_decay,                    
-                    device=device)
+        model = GCN(nfeat=data.x.shape[1],                    nhid=args.hidden,                    nclass= int(data.y.max()+1),                    dropout=args.dropout,                    lr=args.lr,                    weight_decay=args.weight_decay,                    device=device)
     elif(model_name == 'GAT'):
         model = GAT(nfeat=data.x.shape[1], 
                     nhid=args.hidden, 
@@ -152,17 +151,11 @@ def model_construct(args,model_name,data):
                     weight_decay=args.weight_decay, 
                     device=device)
     elif(model_name == 'GraphSage'):
-        model = GraphSage(nfeat=data.x.shape[1],                    
-                        nhid=args.hidden,                    
-                        nclass= int(data.y.max()+1),                    
-                        dropout=args.dropout,                    
-                        lr=args.lr,                    
-                        weight_decay=args.weight_decay,                    
-                        device=device)
+        model = GraphSage(nfeat=data.x.shape[1],                    nhid=args.hidden,                    nclass= int(data.y.max()+1),                    dropout=args.dropout,                    lr=args.lr,                    weight_decay=args.weight_decay,                    device=device)
     return model
 
 
-# In[7]:
+# In[6]:
 
 
 '''
@@ -196,7 +189,7 @@ else:
     print("Benign model saved at {}".format(benign_modelpath))
 
 
-# In[8]:
+# In[7]:
 
 
 benign_output = benign_model(data.x, data.edge_index, edge_weights)
@@ -215,21 +208,24 @@ print("Benign CA on clean test nodes: {:.4f}".format(clean_test_ca))
 # In[9]:
 
 
-#%%
-from models.backdoor import obtain_attach_nodes,Backdoor
+from models.backdoor import obtain_attach_nodes,Backdoor,obtain_attach_nodes_by_influential
 # filter out the unlabeled nodes except from training nodes and testing nodes, nonzero() is to get index, flatten is to get 1-d tensor
 unlabeled_idx = (torch.bitwise_not(data.test_mask)&torch.bitwise_not(data.train_mask)).nonzero().flatten()
 # poison nodes' size
 size = int((len(data.test_mask)-data.test_mask.sum())*args.vs_ratio)
 print(len(data.test_mask))
 # here is randomly select poison nodes from unlabeled nodes
-idx_attach = obtain_attach_nodes(unlabeled_idx,size)
+if(args.selection_method == 'none'):
+    idx_attach = obtain_attach_nodes(unlabeled_idx,size)
+elif(args.selection_method == 'loss' or args.selection_method == 'conf'):
+    idx_attach = obtain_attach_nodes_by_influential(args,benign_model,unlabeled_idx.cpu().tolist(),data.x,data.edge_index,edge_weights,data.y,device,size,selected_way=args.selection_method)
+    idx_attach = torch.LongTensor(idx_attach).to(device)
 
 
 # In[10]:
 
 
-#%%
+# train trigger generator 
 model = Backdoor(args,device)
 print(args.epochs)
 model.fit(data.x, train_edge_index, None, data.y, idx_train,idx_attach)
@@ -269,18 +265,21 @@ print(len(model.poison_edge_index.data[0]),len(poison_edge_index[0]))
 print(set(bkd_tn_nodes.tolist()) & set(idx_attach.tolist()))
 
 
-# In[16]:
+# In[14]:
 
 
 #%%
+from models.GCN import GCN
+from models.GAT import GAT
+from models.GIN import GIN
 test_model = model_construct(args,args.test_model,data).to(device) 
-if(args.test_model == 'GraphSage'):
+if(args.test_model == 'GraphSage' or args.test_model == 'GAT'):
     poison_adj = to_dense_adj(poison_edge_index, edge_attr=poison_edge_weights)
     poison_edge_index, poison_edge_weights = dense_to_sparse(poison_adj)
 test_model.fit(poison_x, poison_edge_index, poison_edge_weights, poison_labels, bkd_tn_nodes, idx_val,train_iters=200,verbose=True)
 
 
-# In[17]:
+# In[15]:
 
 
 # gcn.eval()
@@ -300,12 +299,14 @@ induct_edge_weights = torch.cat([poison_edge_weights,torch.ones([mask_edge_index
 atk_labels = poison_labels.clone()
 atk_labels[atk_test_nodes] = args.target_class
 clean_acc = test_model.test(poison_x,induct_edge_index,induct_edge_weights,data.y,clean_test_nodes)
+'''clean accuracy of clean test nodes before injecting triggers to the attack test nodes'''
 print("accuracy on clean test nodes: {:.4f}".format(clean_acc))
-#%% inject trigger on attack test nodes (idx_atk)
+'''inject trigger on attack test nodes (idx_atk)'''
 induct_x, induct_edge_index,induct_edge_weights = model.inject_trigger(atk_test_nodes,poison_x,induct_edge_index,induct_edge_weights)
+'''do pruning in test datas'''
 if(args.defense_mode == 'prune' or args.defense_mode == 'isolate'):
     induct_edge_index,induct_edge_weights = prune_unrelated_edge(args,induct_edge_index,induct_edge_weights,induct_x,device)
-# attack evaluation:
+'''attack evaluation'''
 asr = test_model.test(induct_x,induct_edge_index,induct_edge_weights,atk_labels,atk_test_nodes)
 ca = test_model.test(induct_x,induct_edge_index,induct_edge_weights,data.y,clean_test_nodes)
 print("ASR: {:.4f}".format(asr))
@@ -313,4 +314,3 @@ print("CA: {:.4f}".format(ca))
 # output = test_model(induct_x,induct_edge_index,induct_edge_weights)
 # train_attach_rate = (output.argmax(dim=1)[atk_test_nodes]==args.target_class).float().mean()
 # print("ASR: {:.4f}".format(train_attach_rate))
-
