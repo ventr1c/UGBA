@@ -38,9 +38,12 @@ class GAT(nn.Module):
         self.edge_weight = None
         self.features = None
 
-    def forward(self, x, edge_index, edge_weight):
-        x = F.relu(self.gc1(x, edge_index))
+    def forward(self, x, edge_index, edge_weight=None): 
+        x = F.dropout(x, p=self.dropout, training=self.training)    # optional
+        # x = F.elu(self.gc1(x, edge_index, edge_weight))   # may apply later 
+        x = F.elu(self.gc1(x, edge_index))
         x = F.dropout(x, self.dropout, training=self.training)
+        # x = self.gc2(x, edge_index, edge_weight)
         x = self.gc2(x, edge_index)
         return F.log_softmax(x,dim=1)
 
@@ -51,7 +54,8 @@ class GAT(nn.Module):
         self.gc2.reset_parameters()
 
     def fit(self, features, edge_index, edge_weight, labels, idx_train, idx_val=None, train_iters=200, initialize=True, verbose=False):
-
+        if initialize:
+            self.initialize()
         self.edge_index, self.edge_weight = edge_index, edge_weight
         self.features = features
         self.labels = torch.tensor(labels, dtype=torch.long)
@@ -67,7 +71,7 @@ class GAT(nn.Module):
         optimizer = optim.Adam(self.parameters(), lr=self.lr, weight_decay=self.weight_decay)
         for i in range(train_iters):
             optimizer.zero_grad()
-            output = self.forward(self.features, self.edge_index)
+            output = self.forward(self.features, self.edge_index, self.edge_weight)
             loss_train = F.nll_loss(output[idx_train], labels[idx_train])
             loss_train.backward()
             optimizer.step()
@@ -75,7 +79,7 @@ class GAT(nn.Module):
                 print('Epoch {}, training loss: {}'.format(i, loss_train.item()))
 
         self.eval()
-        output = self.forward(self.features, self.edge_index)
+        output = self.forward(self.features, self.edge_index, self.edge_weight)
         self.output = output
 
     def _train_with_val(self, labels, idx_train, idx_val, train_iters, verbose):
@@ -89,7 +93,7 @@ class GAT(nn.Module):
         for i in range(train_iters):
             self.train()
             optimizer.zero_grad()
-            output = self.forward(self.features, self.edge_index)
+            output = self.forward(self.features, self.edge_index, self.edge_weight)
             loss_train = F.nll_loss(output[idx_train], labels[idx_train])
             loss_train.backward()
             optimizer.step()
@@ -97,7 +101,7 @@ class GAT(nn.Module):
 
 
             self.eval()
-            output = self.forward(self.features, self.edge_index)
+            output = self.forward(self.features, self.edge_index,self.edge_weight)
             loss_val = F.nll_loss(output[idx_val], labels[idx_val])
             acc_val = utils.accuracy(output[idx_val], labels[idx_val])
             
@@ -122,11 +126,16 @@ class GAT(nn.Module):
             node testing indices
         """
         self.eval()
-        output = self.forward(features, edge_index)
+        output = self.forward(features, edge_index, edge_weight)
         acc_test = utils.accuracy(output[idx_test], labels[idx_test])
         # print("Test set results:",
         #       "loss= {:.4f}".format(loss_test.item()),
         #       "accuracy= {:.4f}".format(acc_test.item()))
         return float(acc_test)
-
+    def test_with_correct_nodes(self, features, edge_index, edge_weight, labels,idx_test):
+        self.eval()
+        output = self.forward(features, edge_index, edge_weight)
+        correct_nids = (output.argmax(dim=1)[idx_test]==labels[idx_test]).nonzero().flatten()   # return a tensor
+        acc_test = utils.accuracy(output[idx_test], labels[idx_test])
+        return acc_test,correct_nids
 # %%

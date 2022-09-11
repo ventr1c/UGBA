@@ -1,0 +1,104 @@
+nohup: ignoring input
+Namespace(clean_test_nodes_num=200, cuda=True, dataset='citeseer', debug=True, defense_mode='isolate', device_id=5, dropout=0.5, epochs=200, hidden=32, homo_boost_thrd=0.6, homo_loss_weight=0.0, load_benign_model=True, lr=0.01, model='GCN', no_cuda=False, prune_thr=0.15, seed=10, target_class=0, target_test_nodes_num=200, test_model='GraphSage', thrd=0.5, trigger_size=3, trojan_epochs=200, vs_ratio=0.01, weight_decay=0.0005)
+Loading benign GCN model Finished!
+Benign CA: 0.7100
+Benign CA on clean test nodes: 0.6450
+3327
+200
+Epoch 0, training loss: 1.8009929656982422
+acc_train_clean: 0.1479, acc_train_attach: 0.1304
+Epoch 10, training loss: 0.2316441535949707
+acc_train_clean: 0.9437, acc_train_attach: 1.0000
+Epoch 20, training loss: 0.07828576862812042
+acc_train_clean: 0.9771, acc_train_attach: 1.0000
+Epoch 30, training loss: 0.052232526242733
+acc_train_clean: 0.9854, acc_train_attach: 1.0000
+Epoch 40, training loss: 0.04903392493724823
+acc_train_clean: 0.9833, acc_train_attach: 1.0000
+Epoch 50, training loss: 0.058110613375902176
+acc_train_clean: 0.9833, acc_train_attach: 1.0000
+Epoch 60, training loss: 0.049161285161972046
+acc_train_clean: 0.9896, acc_train_attach: 1.0000
+Epoch 70, training loss: 0.06511376798152924
+acc_train_clean: 0.9896, acc_train_attach: 0.9565
+Epoch 80, training loss: 0.054830193519592285
+acc_train_clean: 0.9833, acc_train_attach: 0.9565
+Epoch 90, training loss: 0.05030319094657898
+acc_train_clean: 0.9917, acc_train_attach: 1.0000
+Epoch 100, training loss: 0.04466237500309944
+acc_train_clean: 0.9896, acc_train_attach: 1.0000
+Epoch 110, training loss: 0.04587538540363312
+acc_train_clean: 0.9854, acc_train_attach: 1.0000
+Epoch 120, training loss: 0.04682027921080589
+acc_train_clean: 0.9854, acc_train_attach: 1.0000
+Epoch 130, training loss: 0.036821357905864716
+acc_train_clean: 0.9896, acc_train_attach: 1.0000
+Epoch 140, training loss: 0.03621301054954529
+acc_train_clean: 0.9917, acc_train_attach: 1.0000
+Epoch 150, training loss: 0.03303183615207672
+acc_train_clean: 0.9896, acc_train_attach: 1.0000
+Epoch 160, training loss: 0.0418584831058979
+acc_train_clean: 0.9896, acc_train_attach: 1.0000
+Epoch 170, training loss: 0.031118124723434448
+acc_train_clean: 0.9938, acc_train_attach: 1.0000
+Epoch 180, training loss: 0.03590898588299751
+acc_train_clean: 0.9854, acc_train_attach: 1.0000
+Epoch 190, training loss: 0.03750346973538399
+acc_train_clean: 0.9917, acc_train_attach: 1.0000
+tensor([[   0,  628],
+        [   1, 1097],
+        [   2, 3285],
+        ...,
+        [3387, 1152],
+        [3390, 1945],
+        [3393, 1366]])
+503
+274
+4454 2342
+set()
+=== training gcn model ===
+Epoch 0, training loss: 1.7918206453323364
+acc_val: 0.1500
+Epoch 10, training loss: 0.1549673080444336
+acc_val: 0.5575
+Epoch 20, training loss: 0.036119889467954636
+acc_val: 0.5450
+Epoch 30, training loss: 0.0219804085791111
+acc_val: 0.5600
+Epoch 40, training loss: 0.017078125849366188
+acc_val: 0.5850
+Epoch 50, training loss: 0.03593727573752403
+acc_val: 0.5750
+Epoch 60, training loss: 0.030376771464943886
+acc_val: 0.5800
+Epoch 70, training loss: 0.02835540473461151
+acc_val: 0.5750
+Epoch 80, training loss: 0.023044556379318237
+acc_val: 0.5750
+Epoch 90, training loss: 0.026527106761932373
+acc_val: 0.5850
+Epoch 100, training loss: 0.029252417385578156
+acc_val: 0.5775
+Epoch 110, training loss: 0.014572225511074066
+acc_val: 0.5900
+Epoch 120, training loss: 0.014581143856048584
+acc_val: 0.5925
+Epoch 130, training loss: 0.022895190864801407
+acc_val: 0.5950
+Epoch 140, training loss: 0.026858188211917877
+acc_val: 0.5925
+Epoch 150, training loss: 0.017348168417811394
+acc_val: 0.5850
+Epoch 160, training loss: 0.02065490186214447
+acc_val: 0.5800
+Epoch 170, training loss: 0.01944594644010067
+acc_val: 0.5825
+Epoch 180, training loss: 0.016493281349539757
+acc_val: 0.5825
+Epoch 190, training loss: 0.02499818056821823
+acc_val: 0.5750
+=== picking the best model according to the performance on validation ===
+target class rate on Vs: 0.2174
+accuracy on clean test nodes: 0.6650
+ASR: 0.1050
+CA: 0.6000

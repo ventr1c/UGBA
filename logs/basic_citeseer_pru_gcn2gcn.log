@@ -1,0 +1,142 @@
+nohup: ignoring input
+Namespace(clean_test_nodes_num=200, cuda=True, dataset='citeseer', debug=True, defense_mode='prune', device_id=5, dropout=0.5, epochs=200, hidden=32, homo_boost_thrd=0.6, homo_loss_weight=0, load_benign_model=True, lr=0.01, model='GCN', no_cuda=False, prune_thr=0.1, seed=10, target_class=0, target_test_nodes_num=200, test_model='GCN', thrd=0.5, trigger_size=3, trojan_epochs=200, vs_ratio=0.01, weight_decay=0.0005)
+Length of training set: 480
+=== training gcn model ===
+Epoch 0, training loss: 1.7960103750228882
+acc_val: 0.5950
+Epoch 10, training loss: 0.24076993763446808
+acc_val: 0.7175
+Epoch 20, training loss: 0.07505097985267639
+acc_val: 0.7075
+Epoch 30, training loss: 0.042961619794368744
+acc_val: 0.7100
+Epoch 40, training loss: 0.03865411505103111
+acc_val: 0.7100
+Epoch 50, training loss: 0.04979484900832176
+acc_val: 0.7075
+Epoch 60, training loss: 0.04481211677193642
+acc_val: 0.7050
+Epoch 70, training loss: 0.04562866687774658
+acc_val: 0.7075
+Epoch 80, training loss: 0.03736456111073494
+acc_val: 0.7100
+Epoch 90, training loss: 0.03885000944137573
+acc_val: 0.7125
+Epoch 100, training loss: 0.03580591827630997
+acc_val: 0.7100
+Epoch 110, training loss: 0.030317259952425957
+acc_val: 0.7150
+Epoch 120, training loss: 0.03426198661327362
+acc_val: 0.7075
+Epoch 130, training loss: 0.03937900438904762
+acc_val: 0.7050
+Epoch 140, training loss: 0.03158750757575035
+acc_val: 0.7025
+Epoch 150, training loss: 0.02819123864173889
+acc_val: 0.7025
+Epoch 160, training loss: 0.027762535959482193
+acc_val: 0.6950
+Epoch 170, training loss: 0.026770228520035744
+acc_val: 0.7050
+Epoch 180, training loss: 0.0287886131554842
+acc_val: 0.6900
+Epoch 190, training loss: 0.03241918981075287
+acc_val: 0.6950
+=== picking the best model according to the performance on validation ===
+Training benign model Finished!
+Total time elapsed: 4.6134s
+Benign model saved at ./modelpath/GCN_citeseer_benign.pth
+Benign CA: 0.7100
+Benign CA on clean test nodes: 0.6450
+3327
+200
+Epoch 0, training loss: 1.790500283241272
+acc_train_clean: 0.2146, acc_train_attach: 0.1304
+Epoch 10, training loss: 0.26244547963142395
+acc_train_clean: 0.9500, acc_train_attach: 0.9565
+Epoch 20, training loss: 0.0915336087346077
+acc_train_clean: 0.9792, acc_train_attach: 0.9565
+Epoch 30, training loss: 0.06203741207718849
+acc_train_clean: 0.9833, acc_train_attach: 1.0000
+Epoch 40, training loss: 0.0494314469397068
+acc_train_clean: 0.9896, acc_train_attach: 1.0000
+Epoch 50, training loss: 0.05754071846604347
+acc_train_clean: 0.9833, acc_train_attach: 0.9565
+Epoch 60, training loss: 0.06500137597322464
+acc_train_clean: 0.9917, acc_train_attach: 0.9130
+Epoch 70, training loss: 0.04825348034501076
+acc_train_clean: 0.9917, acc_train_attach: 1.0000
+Epoch 80, training loss: 0.049998749047517776
+acc_train_clean: 0.9917, acc_train_attach: 1.0000
+Epoch 90, training loss: 0.04560326039791107
+acc_train_clean: 0.9896, acc_train_attach: 1.0000
+Epoch 100, training loss: 0.04570300504565239
+acc_train_clean: 0.9875, acc_train_attach: 1.0000
+Epoch 110, training loss: 0.04842333868145943
+acc_train_clean: 0.9854, acc_train_attach: 1.0000
+Epoch 120, training loss: 0.04431089758872986
+acc_train_clean: 0.9875, acc_train_attach: 1.0000
+Epoch 130, training loss: 0.03455749899148941
+acc_train_clean: 0.9917, acc_train_attach: 1.0000
+Epoch 140, training loss: 0.043878331780433655
+acc_train_clean: 0.9854, acc_train_attach: 1.0000
+Epoch 150, training loss: 0.03794192522764206
+acc_train_clean: 0.9917, acc_train_attach: 1.0000
+Epoch 160, training loss: 0.03410102427005768
+acc_train_clean: 0.9917, acc_train_attach: 1.0000
+Epoch 170, training loss: 0.040953654795885086
+acc_train_clean: 0.9875, acc_train_attach: 1.0000
+Epoch 180, training loss: 0.03431881219148636
+acc_train_clean: 0.9917, acc_train_attach: 1.0000
+Epoch 190, training loss: 0.03237858787178993
+acc_train_clean: 0.9896, acc_train_attach: 1.0000
+503
+503
+4454 3126
+{1152, 2062, 1945, 3239, 1461, 57, 2371, 195, 2118, 1478, 1481, 2506, 1741, 1366, 3031, 1115, 3038, 3294, 350, 2537, 1778, 499, 1785}
+=== training gcn model ===
+Epoch 0, training loss: 1.7985737323760986
+acc_val: 0.3700
+Epoch 10, training loss: 0.2299773097038269
+acc_val: 0.6300
+Epoch 20, training loss: 0.08405937999486923
+acc_val: 0.6300
+Epoch 30, training loss: 0.0663805603981018
+acc_val: 0.6225
+Epoch 40, training loss: 0.050305482000112534
+acc_val: 0.6275
+Epoch 50, training loss: 0.05848930776119232
+acc_val: 0.6125
+Epoch 60, training loss: 0.06323298066854477
+acc_val: 0.6225
+Epoch 70, training loss: 0.04678637161850929
+acc_val: 0.6225
+Epoch 80, training loss: 0.05318601056933403
+acc_val: 0.6100
+Epoch 90, training loss: 0.04730495437979698
+acc_val: 0.6100
+Epoch 100, training loss: 0.054518189281225204
+acc_val: 0.6350
+Epoch 110, training loss: 0.04090823233127594
+acc_val: 0.6100
+Epoch 120, training loss: 0.05327227711677551
+acc_val: 0.6150
+Epoch 130, training loss: 0.04819842055439949
+acc_val: 0.6075
+Epoch 140, training loss: 0.04284779354929924
+acc_val: 0.6100
+Epoch 150, training loss: 0.04209500551223755
+acc_val: 0.6275
+Epoch 160, training loss: 0.04412399232387543
+acc_val: 0.6225
+Epoch 170, training loss: 0.03760978952050209
+acc_val: 0.6125
+Epoch 180, training loss: 0.041027721017599106
+acc_val: 0.6125
+Epoch 190, training loss: 0.04088212549686432
+acc_val: 0.6125
+=== picking the best model according to the performance on validation ===
+target class rate on Vs: 0.8261
+accuracy on clean test nodes: 0.6750
+ASR: 0.0400
+CA: 0.6550

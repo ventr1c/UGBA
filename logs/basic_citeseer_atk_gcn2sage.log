@@ -1,0 +1,97 @@
+nohup: ignoring input
+Namespace(clean_test_nodes_num=200, cuda=True, dataset='citeseer', debug=True, defense_mode='none', device_id=5, dropout=0.5, epochs=200, hidden=32, homo_boost_thrd=0.6, homo_loss_weight=0.0, load_benign_model=True, lr=0.01, model='GCN', no_cuda=False, prune_thr=0.1, seed=10, target_class=0, target_test_nodes_num=200, test_model='GraphSage', thrd=0.5, trigger_size=3, trojan_epochs=200, vs_ratio=0.01, weight_decay=0.0005)
+Loading benign GCN model Finished!
+Benign CA: 0.7100
+Benign CA on clean test nodes: 0.6450
+3327
+200
+Epoch 0, training loss: 1.8009929656982422
+acc_train_clean: 0.1479, acc_train_attach: 0.1304
+Epoch 10, training loss: 0.2316441535949707
+acc_train_clean: 0.9437, acc_train_attach: 1.0000
+Epoch 20, training loss: 0.07828576862812042
+acc_train_clean: 0.9771, acc_train_attach: 1.0000
+Epoch 30, training loss: 0.052232526242733
+acc_train_clean: 0.9854, acc_train_attach: 1.0000
+Epoch 40, training loss: 0.04903392866253853
+acc_train_clean: 0.9833, acc_train_attach: 1.0000
+Epoch 50, training loss: 0.058110613375902176
+acc_train_clean: 0.9833, acc_train_attach: 1.0000
+Epoch 60, training loss: 0.04916129633784294
+acc_train_clean: 0.9896, acc_train_attach: 1.0000
+Epoch 70, training loss: 0.06511377543210983
+acc_train_clean: 0.9896, acc_train_attach: 0.9565
+Epoch 80, training loss: 0.05483018606901169
+acc_train_clean: 0.9833, acc_train_attach: 0.9565
+Epoch 90, training loss: 0.050302986055612564
+acc_train_clean: 0.9917, acc_train_attach: 1.0000
+Epoch 100, training loss: 0.044708799570798874
+acc_train_clean: 0.9896, acc_train_attach: 1.0000
+Epoch 110, training loss: 0.045866988599300385
+acc_train_clean: 0.9854, acc_train_attach: 1.0000
+Epoch 120, training loss: 0.04641290009021759
+acc_train_clean: 0.9875, acc_train_attach: 1.0000
+Epoch 130, training loss: 0.037521861493587494
+acc_train_clean: 0.9896, acc_train_attach: 1.0000
+Epoch 140, training loss: 0.03886595740914345
+acc_train_clean: 0.9896, acc_train_attach: 1.0000
+Epoch 150, training loss: 0.03570767119526863
+acc_train_clean: 0.9875, acc_train_attach: 1.0000
+Epoch 160, training loss: 0.03964611142873764
+acc_train_clean: 0.9896, acc_train_attach: 1.0000
+Epoch 170, training loss: 0.03003770485520363
+acc_train_clean: 0.9938, acc_train_attach: 1.0000
+Epoch 180, training loss: 0.03948808088898659
+acc_train_clean: 0.9875, acc_train_attach: 1.0000
+Epoch 190, training loss: 0.03804796189069748
+acc_train_clean: 0.9917, acc_train_attach: 1.0000
+503
+503
+4454 4454
+{1152, 2062, 1945, 3239, 1461, 57, 2371, 195, 2118, 1478, 1481, 2506, 1741, 1366, 3031, 1115, 3038, 3294, 350, 2537, 1778, 499, 1785}
+=== training gcn model ===
+Epoch 0, training loss: 1.7826282978057861
+acc_val: 0.0875
+Epoch 10, training loss: 0.1845034509897232
+acc_val: 0.6775
+Epoch 20, training loss: 0.04824396222829819
+acc_val: 0.6750
+Epoch 30, training loss: 0.0256057046353817
+acc_val: 0.6725
+Epoch 40, training loss: 0.024354757741093636
+acc_val: 0.6875
+Epoch 50, training loss: 0.03403129428625107
+acc_val: 0.6800
+Epoch 60, training loss: 0.030259551480412483
+acc_val: 0.6825
+Epoch 70, training loss: 0.029651068150997162
+acc_val: 0.6675
+Epoch 80, training loss: 0.03036417067050934
+acc_val: 0.6900
+Epoch 90, training loss: 0.03300631046295166
+acc_val: 0.6700
+Epoch 100, training loss: 0.028324972838163376
+acc_val: 0.6800
+Epoch 110, training loss: 0.018440337851643562
+acc_val: 0.6700
+Epoch 120, training loss: 0.017987677827477455
+acc_val: 0.6775
+Epoch 130, training loss: 0.018200039863586426
+acc_val: 0.6900
+Epoch 140, training loss: 0.02285684458911419
+acc_val: 0.6625
+Epoch 150, training loss: 0.02442694641649723
+acc_val: 0.6725
+Epoch 160, training loss: 0.01818893849849701
+acc_val: 0.6750
+Epoch 170, training loss: 0.019741488620638847
+acc_val: 0.6875
+Epoch 180, training loss: 0.01807314343750477
+acc_val: 0.6850
+Epoch 190, training loss: 0.01880967617034912
+acc_val: 0.6750
+=== picking the best model according to the performance on validation ===
+target class rate on Vs: 1.0000
+accuracy on clean test nodes: 0.7400
+ASR: 1.0000
+CA: 0.7250

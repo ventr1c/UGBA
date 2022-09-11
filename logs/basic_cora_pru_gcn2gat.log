@@ -1,0 +1,99 @@
+nohup: ignoring input
+/home/project-graph-backdoor/Backdoor/models/GAT.py:59: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  self.labels = torch.tensor(labels, dtype=torch.long)
+Namespace(clean_test_nodes_num=200, cuda=True, dataset='cora', debug=True, defense_mode='prune', device_id=5, dropout=0.5, epochs=200, hidden=32, homo_boost_thrd=0.6, homo_loss_weight=0.0, load_benign_model=True, lr=0.01, model='GCN', no_cuda=False, prune_thr=0.1, seed=10, target_class=0, target_test_nodes_num=200, test_model='GAT', thrd=0.5, trigger_size=3, trojan_epochs=200, vs_ratio=0.01, weight_decay=0.0005)
+Loading benign GCN model Finished!
+Benign CA: 0.8360
+Benign CA on clean test nodes: 0.7800
+2708
+200
+Epoch 0, training loss: 1.9394763708114624
+acc_train_clean: 0.1768, acc_train_attach: 0.0000
+Epoch 10, training loss: 0.5679745674133301
+acc_train_clean: 0.9071, acc_train_attach: 1.0000
+Epoch 20, training loss: 0.20934630930423737
+acc_train_clean: 0.9411, acc_train_attach: 1.0000
+Epoch 30, training loss: 0.12698887288570404
+acc_train_clean: 0.9643, acc_train_attach: 1.0000
+Epoch 40, training loss: 0.09730814397335052
+acc_train_clean: 0.9750, acc_train_attach: 1.0000
+Epoch 50, training loss: 0.06966763734817505
+acc_train_clean: 0.9875, acc_train_attach: 1.0000
+Epoch 60, training loss: 0.09380031377077103
+acc_train_clean: 0.9857, acc_train_attach: 0.9412
+Epoch 70, training loss: 0.07424838840961456
+acc_train_clean: 0.9821, acc_train_attach: 1.0000
+Epoch 80, training loss: 0.07422427088022232
+acc_train_clean: 0.9857, acc_train_attach: 0.8824
+Epoch 90, training loss: 0.058609556406736374
+acc_train_clean: 0.9893, acc_train_attach: 1.0000
+Epoch 100, training loss: 0.06764666736125946
+acc_train_clean: 0.9875, acc_train_attach: 1.0000
+Epoch 110, training loss: 0.05955521762371063
+acc_train_clean: 0.9857, acc_train_attach: 1.0000
+Epoch 120, training loss: 0.0550757460296154
+acc_train_clean: 0.9875, acc_train_attach: 1.0000
+Epoch 130, training loss: 0.0576942153275013
+acc_train_clean: 0.9875, acc_train_attach: 1.0000
+Epoch 140, training loss: 0.05834544450044632
+acc_train_clean: 0.9857, acc_train_attach: 1.0000
+Epoch 150, training loss: 0.06253542751073837
+acc_train_clean: 0.9893, acc_train_attach: 1.0000
+Epoch 160, training loss: 0.05710753798484802
+acc_train_clean: 0.9893, acc_train_attach: 1.0000
+Epoch 170, training loss: 0.046577420085668564
+acc_train_clean: 0.9911, acc_train_attach: 1.0000
+Epoch 180, training loss: 0.05491398274898529
+acc_train_clean: 0.9893, acc_train_attach: 1.0000
+Epoch 190, training loss: 0.0513279065489769
+acc_train_clean: 0.9893, acc_train_attach: 0.9412
+577
+577
+4306 2918
+{2242, 1506, 2436, 1157, 1734, 2276, 1029, 2089, 1894, 2502, 430, 1743, 1969, 213, 1591, 183, 2204}
+=== training gcn model ===
+Epoch 0, training loss: 2.0404231548309326
+acc_val: 0.5050
+Epoch 10, training loss: 0.8063037395477295
+acc_val: 0.7575
+Epoch 20, training loss: 0.728510856628418
+acc_val: 0.7350
+Epoch 30, training loss: 0.6822751760482788
+acc_val: 0.7175
+Epoch 40, training loss: 0.7071661353111267
+acc_val: 0.7425
+Epoch 50, training loss: 0.7132748961448669
+acc_val: 0.7275
+Epoch 60, training loss: 0.6052036881446838
+acc_val: 0.7225
+Epoch 70, training loss: 0.6144585013389587
+acc_val: 0.7350
+Epoch 80, training loss: 0.6511904001235962
+acc_val: 0.7125
+Epoch 90, training loss: 0.6334220767021179
+acc_val: 0.7250
+Epoch 100, training loss: 0.7102088928222656
+acc_val: 0.7225
+Epoch 110, training loss: 0.650654673576355
+acc_val: 0.7325
+Epoch 120, training loss: 0.6989272832870483
+acc_val: 0.6950
+Epoch 130, training loss: 0.601996898651123
+acc_val: 0.7025
+Epoch 140, training loss: 0.6058093905448914
+acc_val: 0.7175
+Epoch 150, training loss: 0.6962728500366211
+acc_val: 0.7025
+Epoch 160, training loss: 0.7133215665817261
+acc_val: 0.7175
+Epoch 170, training loss: 0.6720242500305176
+acc_val: 0.7250
+Epoch 180, training loss: 0.7496458292007446
+acc_val: 0.7425
+Epoch 190, training loss: 0.6699461936950684
+acc_val: 0.7300
+=== picking the best model according to the performance on validation ===
+target class rate on Vs: 0.4118
+accuracy on clean test nodes: 0.8150
+ASR: 0.1300
+CA: 0.7550
