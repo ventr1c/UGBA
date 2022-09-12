@@ -1,9 +1,41 @@
+#%%
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
 import utils
-from torch_geometric.utils import to_dense_adj,dense_to_sparse
 
+from models.GCN import GCN
+from models.GAT import GAT
+from models.SAGE import GraphSage
+def model_construct(args,model_name,data,device):
+    if (model_name == 'GCN'):
+        model = GCN(nfeat=data.x.shape[1],\
+                    nhid=args.hidden,\
+                    nclass= int(data.y.max()+1),\
+                    dropout=args.dropout,\
+                    lr=args.lr,\
+                    weight_decay=args.weight_decay,\
+                    device=device)
+    elif(model_name == 'GAT'):
+        model = GAT(nfeat=data.x.shape[1], 
+                    nhid=args.hidden, 
+                    nclass=int(data.y.max()+1), 
+                    heads=8,
+                    dropout=args.dropout, 
+                    lr=args.lr, 
+                    weight_decay=args.weight_decay, 
+                    device=device)
+    elif(model_name == 'GraphSage'):
+        model = GraphSage(nfeat=data.x.shape[1],\
+                nhid=args.hidden,\
+                nclass= int(data.y.max()+1),\
+                dropout=args.dropout,\
+                lr=args.lr,\
+                weight_decay=args.weight_decay,\
+                device=device)
+    return model
+
+#%%
 class GradWhere(torch.autograd.Function):
     """
     We can implement our own custom autograd Functions by subclassing
@@ -85,35 +117,15 @@ class HomoLoss(nn.Module):
         self.args = args
         self.device = device
         
-    def forward(self,edge_index,edge_weights,x,target_nodes,bkd_nodes):
-        adj = to_dense_adj(edge_index,edge_attr=edge_weights)[0].cpu()
-        edge_index, edge_weights= dense_to_sparse(adj)
-        # bkd_edges_index = adj.nonzero()
+    def forward(self,trigger_edge_index,trigger_edge_weights,x,thrd):
 
-        bkd_tri_edges_index = []
-        # bkd_tri_edge_sims = torch.FloatTensor([]).requires_grad_(True).to(self.device)
-        bkd_tri_edge_sims = torch.tensor(0.).to(self.device).requires_grad_(True)
-        edge_sims = F.cosine_similarity(x[edge_index[0]],x[edge_index[1]])
-        # find trigger-target edges
-        E = len(edge_index[0])
-        for i in range(E):
-            (u,v) = edge_index[:,i].tolist()
-            # if is t-t edges
-            if ((u in bkd_nodes) and (v in target_nodes)) or ((v in bkd_nodes) and (u in target_nodes)):
-                # print("tritar",u,v)
-                cur_edge_sim = edge_sims[i]
-                cur_sim_loss = self.args.homo_boost_thrd - cur_edge_sim
-                # print(cur_sim_loss)
-                if(cur_sim_loss<0):
-                    cur_sim_loss = 0
-                bkd_tri_edge_sims = torch.add(bkd_tri_edge_sims,cur_sim_loss).to(self.device)
-                # bkd_tri_edge_sims = torch.cat((bkd_tri_edge_sims,cur_sim_loss)).to(self.device)
-                # bkd_tri_edge_sims = torch.cat((bkd_tri_edge_sims,edge_sims)).to(self.device)
-                bkd_tri_edges_index.append((u,v))
-        loss = self.args.homo_loss_weight * torch.sum(bkd_tri_edge_sims) 
-        loss = loss.to(self.device)
+        trigger_edge_index = trigger_edge_index[:,trigger_edge_weights>0.0]
+        edge_sims = F.cosine_similarity(x[trigger_edge_index[0]],x[trigger_edge_index[1]])
+        
+        loss = torch.relu(thrd - edge_sims).mean()
         return loss
 
+#%%
 import numpy as np
 import torch.optim as optim
 from models.GCN import GCN
@@ -251,6 +263,8 @@ class Backdoor:
         args = self.args
         if edge_weight is None:
             edge_weight = torch.ones([edge_index.shape[1]],device=self.device,dtype=torch.float)
+
+        
         # initial a shadow model
         self.shadow_model = GCN(nfeat=features.shape[1],
                          nhid=self.args.hidden,
@@ -258,23 +272,28 @@ class Backdoor:
                          dropout=self.args.dropout, device=self.device).to(self.device)
         # initalize a trojanNet to generate trigger
         self.trojan = GraphTrojanNet(self.device, features.shape[1], args.trigger_size, layernum=2).to(self.device)
+        self.homo_loss = HomoLoss(self.args,self.device)
 
         optimizer_shadow = optim.Adam(self.shadow_model.parameters(), lr=args.lr, weight_decay=args.weight_decay)
         optimizer_trigger = optim.Adam(self.trojan.parameters(), lr=args.lr, weight_decay=args.weight_decay)
 
-        labels = labels.clone()
+    
         # change the labels of the poisoned node to the target class
+        labels = labels.clone()
         labels[idx_attach] = args.target_class
         self.labels = labels
+
         # get the trojan edges, which include the target-trigger edge and the edges among trigger
         trojan_edge = self.get_trojan_edge(len(features),idx_attach,args.trigger_size).to(self.device)
+
         # update the poisoned graph's edge index
         self.poison_edge_index = torch.cat([edge_index,trojan_edge],dim=1)
 
 
         # furture change it to bilevel optimization
         self.trojan.train()
-        for i in range(args.trojan_epochs): 
+        for i in range(args.trojan_epochs):
+
             optimizer_shadow.zero_grad()
             optimizer_trigger.zero_grad()
 
@@ -285,16 +304,21 @@ class Backdoor:
             trojan_feat = trojan_feat.view([-1,features.shape[1]])
             self.poison_edge_weights = torch.cat([edge_weight,trojan_weights,trojan_weights]) # repeat trojan weights beacuse of undirected edge
             self.poison_x = torch.cat([features,trojan_feat])
-            idx_trojan = list(range(features.shape[0],self.poison_x.shape[0]))
+            
+            
             output = self.shadow_model(self.poison_x, self.poison_edge_index, self.poison_edge_weights)
+            
             loss_train = F.nll_loss(output[torch.cat([idx_train,idx_attach])], labels[torch.cat([idx_train,idx_attach])]) # add our adaptive loss
+            
+            loss_homo = 0.0
             if(self.args.homo_loss_weight > 0):
-                homo_loss = HomoLoss(self.args,self.device)
-                loss_homo = homo_loss(self.poison_edge_index,self.poison_edge_weights,self.poison_x,idx_attach,idx_trojan)
-                print(loss_train,loss_homo)
-                loss_all = torch.add(loss_train,loss_homo).to(self.device)
-            else:
-                loss_all = loss_train
+                loss_homo = self.homo_loss(trojan_edge[:,:int(trojan_edge.shape[1]/2)],\
+                                            trojan_weights,\
+                                            self.poison_x,\
+                                            self.args.homo_boost_thrd)
+            
+            loss_all = loss_train + self.args.homo_loss_weight * loss_homo
+
             loss_all.backward()
 
             optimizer_shadow.step()
@@ -305,10 +329,18 @@ class Backdoor:
             
 
             if args.debug and i % 10 == 0:
-                print('Epoch {}, training loss: {}'.format(i, loss_train.item()))
+                print('Epoch {}, training loss: {:.5f}, homo loss: {:.5f} '.format(i, loss_train, loss_homo))
                 print("acc_train_clean: {:.4f}, acc_train_attach: {:.4f}".format(acc_train_clean,acc_train_attach))
         self.trojan.eval()
-    # def test_atk(self, features, edge_index, edge_weight, idx_atk):
-    #     output = 
+    
+    def get_poisoned(self):
 
+        poison_x = self.poison_x.data
+        poison_edge_index = self.poison_edge_index.data
+        poison_edge_weights = self.poison_edge_weights.data
+        poison_edge_index = poison_edge_index[:,poison_edge_weights>0.0]
+        poison_edge_weights = poison_edge_weights[poison_edge_weights>0.0]
+        poison_labels = self.labels
+
+        return poison_x, poison_edge_index, poison_edge_weights, poison_labels
 
