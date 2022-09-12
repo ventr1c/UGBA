@@ -169,7 +169,6 @@ class Backdoor:
             self.poison_edge_weights = torch.cat([edge_weight,trojan_weights,trojan_weights]) # repeat trojan weights beacuse of undirected edge
             self.poison_x = torch.cat([features,trojan_feat])
 
-
             output = self.shadow_model(self.poison_x, self.poison_edge_index, self.poison_edge_weights)
             loss_train = F.nll_loss(output[torch.cat([idx_train,idx_attach])], labels[torch.cat([idx_train,idx_attach])]) # add our adaptive loss
             loss_train.backward()
