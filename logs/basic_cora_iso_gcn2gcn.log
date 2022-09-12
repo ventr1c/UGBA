@@ -1,0 +1,104 @@
+nohup: ignoring input
+Namespace(clean_test_nodes_num=200, cuda=True, dataset='cora', debug=True, defense_mode='isolate', device_id=5, dropout=0.5, epochs=200, hidden=32, homo_boost_thrd=0.6, homo_loss_weight=0, load_benign_model=True, lr=0.01, model='GCN', no_cuda=False, prune_thr=0.1, seed=10, target_class=0, target_test_nodes_num=200, test_model='GCN', thrd=0.5, trigger_size=3, trojan_epochs=200, vs_ratio=0.01, weight_decay=0.0005)
+Loading benign GCN model Finished!
+Benign CA: 0.8360
+Benign CA on clean test nodes: 0.7800
+2708
+200
+Epoch 0, training loss: 1.9394763708114624
+acc_train_clean: 0.1768, acc_train_attach: 0.0000
+Epoch 10, training loss: 0.5679745078086853
+acc_train_clean: 0.9071, acc_train_attach: 1.0000
+Epoch 20, training loss: 0.20934629440307617
+acc_train_clean: 0.9411, acc_train_attach: 1.0000
+Epoch 30, training loss: 0.12698887288570404
+acc_train_clean: 0.9643, acc_train_attach: 1.0000
+Epoch 40, training loss: 0.09730815887451172
+acc_train_clean: 0.9750, acc_train_attach: 1.0000
+Epoch 50, training loss: 0.06966763734817505
+acc_train_clean: 0.9875, acc_train_attach: 1.0000
+Epoch 60, training loss: 0.09380032122135162
+acc_train_clean: 0.9857, acc_train_attach: 0.9412
+Epoch 70, training loss: 0.07424838095903397
+acc_train_clean: 0.9821, acc_train_attach: 1.0000
+Epoch 80, training loss: 0.07422427833080292
+acc_train_clean: 0.9857, acc_train_attach: 0.8824
+Epoch 90, training loss: 0.058609556406736374
+acc_train_clean: 0.9893, acc_train_attach: 1.0000
+Epoch 100, training loss: 0.06764666736125946
+acc_train_clean: 0.9875, acc_train_attach: 1.0000
+Epoch 110, training loss: 0.059555165469646454
+acc_train_clean: 0.9857, acc_train_attach: 1.0000
+Epoch 120, training loss: 0.05507583171129227
+acc_train_clean: 0.9875, acc_train_attach: 1.0000
+Epoch 130, training loss: 0.05769551917910576
+acc_train_clean: 0.9875, acc_train_attach: 1.0000
+Epoch 140, training loss: 0.058335673063993454
+acc_train_clean: 0.9857, acc_train_attach: 1.0000
+Epoch 150, training loss: 0.06283144652843475
+acc_train_clean: 0.9893, acc_train_attach: 1.0000
+Epoch 160, training loss: 0.05728546902537346
+acc_train_clean: 0.9893, acc_train_attach: 1.0000
+Epoch 170, training loss: 0.04697233811020851
+acc_train_clean: 0.9911, acc_train_attach: 1.0000
+Epoch 180, training loss: 0.059153299778699875
+acc_train_clean: 0.9875, acc_train_attach: 1.0000
+Epoch 190, training loss: 0.04799976199865341
+acc_train_clean: 0.9893, acc_train_attach: 1.0000
+tensor([[   2, 1986],
+        [   9, 2614],
+        [  12, 1001],
+        ...,
+        [2750, 1894],
+        [2753, 2502],
+        [2756,  213]])
+577
+314
+4306 2914
+set()
+=== training gcn model ===
+Epoch 0, training loss: 1.9486044645309448
+acc_val: 0.3775
+Epoch 10, training loss: 0.4788263440132141
+acc_val: 0.7075
+Epoch 20, training loss: 0.13253991305828094
+acc_val: 0.7250
+Epoch 30, training loss: 0.0786936953663826
+acc_val: 0.7325
+Epoch 40, training loss: 0.05229712277650833
+acc_val: 0.7300
+Epoch 50, training loss: 0.05129525437951088
+acc_val: 0.7325
+Epoch 60, training loss: 0.06375515460968018
+acc_val: 0.7250
+Epoch 70, training loss: 0.041268330067396164
+acc_val: 0.7300
+Epoch 80, training loss: 0.045659761875867844
+acc_val: 0.7275
+Epoch 90, training loss: 0.03836650773882866
+acc_val: 0.7275
+Epoch 100, training loss: 0.043466966599226
+acc_val: 0.7300
+Epoch 110, training loss: 0.0421992652118206
+acc_val: 0.7275
+Epoch 120, training loss: 0.04261629655957222
+acc_val: 0.7350
+Epoch 130, training loss: 0.05480267480015755
+acc_val: 0.7400
+Epoch 140, training loss: 0.0355059914290905
+acc_val: 0.7400
+Epoch 150, training loss: 0.02910318411886692
+acc_val: 0.7375
+Epoch 160, training loss: 0.038946785032749176
+acc_val: 0.7400
+Epoch 170, training loss: 0.03426278010010719
+acc_val: 0.7200
+Epoch 180, training loss: 0.04259224981069565
+acc_val: 0.7300
+Epoch 190, training loss: 0.03803045675158501
+acc_val: 0.7275
+=== picking the best model according to the performance on validation ===
+target class rate on Vs: 0.1176
+accuracy on clean test nodes: 0.8200
+ASR: 0.0600
+CA: 0.7700

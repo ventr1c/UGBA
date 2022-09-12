@@ -1,0 +1,104 @@
+nohup: ignoring input
+Namespace(clean_test_nodes_num=200, cuda=True, dataset='pubmed', debug=True, defense_mode='isolate', device_id=5, dropout=0.5, epochs=200, hidden=32, homo_boost_thrd=0.6, homo_loss_weight=0, load_benign_model=True, lr=0.01, model='GCN', no_cuda=False, prune_thr=0.1, seed=10, target_class=0, target_test_nodes_num=200, test_model='GCN', thrd=0.5, trigger_size=3, trojan_epochs=200, vs_ratio=0.01, weight_decay=0.0005)
+Loading benign GCN model Finished!
+Benign CA: 0.8110
+Benign CA on clean test nodes: 0.7400
+19717
+200
+Epoch 0, training loss: 1.098490834236145
+acc_train_clean: 0.2083, acc_train_attach: 0.3155
+Epoch 10, training loss: 0.6075447201728821
+acc_train_clean: 0.3333, acc_train_attach: 1.0000
+Epoch 20, training loss: 0.5429587364196777
+acc_train_clean: 0.5583, acc_train_attach: 1.0000
+Epoch 30, training loss: 0.46013858914375305
+acc_train_clean: 0.8042, acc_train_attach: 1.0000
+Epoch 40, training loss: 0.37842515110969543
+acc_train_clean: 0.8542, acc_train_attach: 1.0000
+Epoch 50, training loss: 0.31342199444770813
+acc_train_clean: 0.8625, acc_train_attach: 1.0000
+Epoch 60, training loss: 0.2580145001411438
+acc_train_clean: 0.8750, acc_train_attach: 1.0000
+Epoch 70, training loss: 0.24708066880702972
+acc_train_clean: 0.8708, acc_train_attach: 1.0000
+Epoch 80, training loss: 0.21780796349048615
+acc_train_clean: 0.9125, acc_train_attach: 1.0000
+Epoch 90, training loss: 0.19871540367603302
+acc_train_clean: 0.9292, acc_train_attach: 0.9947
+Epoch 100, training loss: 0.20866759121418
+acc_train_clean: 0.9167, acc_train_attach: 0.9947
+Epoch 110, training loss: 0.23188871145248413
+acc_train_clean: 0.9208, acc_train_attach: 1.0000
+Epoch 120, training loss: 0.1986335664987564
+acc_train_clean: 0.9375, acc_train_attach: 0.9947
+Epoch 130, training loss: 0.16939203441143036
+acc_train_clean: 0.9458, acc_train_attach: 1.0000
+Epoch 140, training loss: 0.1529444009065628
+acc_train_clean: 0.9583, acc_train_attach: 1.0000
+Epoch 150, training loss: 0.1574838012456894
+acc_train_clean: 0.9583, acc_train_attach: 0.9947
+Epoch 160, training loss: 0.1521543562412262
+acc_train_clean: 0.9458, acc_train_attach: 1.0000
+Epoch 170, training loss: 0.12763606011867523
+acc_train_clean: 0.9708, acc_train_attach: 1.0000
+Epoch 180, training loss: 0.13360823690891266
+acc_train_clean: 0.9542, acc_train_attach: 1.0000
+Epoch 190, training loss: 0.12905187904834747
+acc_train_clean: 0.9667, acc_train_attach: 1.0000
+tensor([[    3,  8249],
+        [    4, 14044],
+        [    6,  9232],
+        ...,
+        [20266, 10246],
+        [20269,    64],
+        [20275, 11007]])
+427
+211
+81052 67468
+{19584, 11777, 3845, 2183, 17928, 17914, 2067, 15892, 1530, 7959, 15640, 11935, 15009, 8609, 13352, 7592, 6570, 45, 2478, 15919, 19122, 6455, 9785, 14780, 1855, 10307, 15178, 7374, 4176, 18642, 12627, 7384, 8926, 5987, 5092, 2917, 9324, 4076, 4589, 14193, 17778, 3955, 9460, 7414, 374, 2554}
+=== training gcn model ===
+Epoch 0, training loss: 1.0969020128250122
+acc_val: 0.2300
+Epoch 10, training loss: 0.7617601156234741
+acc_val: 0.4550
+Epoch 20, training loss: 0.6327401995658875
+acc_val: 0.7200
+Epoch 30, training loss: 0.5004540085792542
+acc_val: 0.7825
+Epoch 40, training loss: 0.4074496626853943
+acc_val: 0.7925
+Epoch 50, training loss: 0.3420538604259491
+acc_val: 0.8100
+Epoch 60, training loss: 0.3142240047454834
+acc_val: 0.8200
+Epoch 70, training loss: 0.25817012786865234
+acc_val: 0.8150
+Epoch 80, training loss: 0.23910973966121674
+acc_val: 0.8200
+Epoch 90, training loss: 0.24435105919837952
+acc_val: 0.8250
+Epoch 100, training loss: 0.1852717101573944
+acc_val: 0.8225
+Epoch 110, training loss: 0.17827528715133667
+acc_val: 0.8125
+Epoch 120, training loss: 0.16600282490253448
+acc_val: 0.8125
+Epoch 130, training loss: 0.1664760261774063
+acc_val: 0.8125
+Epoch 140, training loss: 0.15425166487693787
+acc_val: 0.8200
+Epoch 150, training loss: 0.14629152417182922
+acc_val: 0.8275
+Epoch 160, training loss: 0.12346941977739334
+acc_val: 0.8125
+Epoch 170, training loss: 0.13315384089946747
+acc_val: 0.8125
+Epoch 180, training loss: 0.1275862455368042
+acc_val: 0.8150
+Epoch 190, training loss: 0.12362417578697205
+acc_val: 0.8125
+=== picking the best model according to the performance on validation ===
+target class rate on Vs: 0.3529
+accuracy on clean test nodes: 0.7250
+ASR: 0.1600
+CA: 0.7200

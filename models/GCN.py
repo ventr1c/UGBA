@@ -144,5 +144,12 @@ class GCN(nn.Module):
         #       "loss= {:.4f}".format(loss_test.item()),
         #       "accuracy= {:.4f}".format(acc_test.item()))
         return float(acc_test)
+    
+    def test_with_correct_nodes(self, features, edge_index, edge_weight, labels,idx_test):
+        self.eval()
+        output = self.forward(features, edge_index, edge_weight)
+        correct_nids = (output.argmax(dim=1)[idx_test]==labels[idx_test]).nonzero().flatten()   # return a tensor
+        acc_test = utils.accuracy(output[idx_test], labels[idx_test])
+        return acc_test,correct_nids
 
 # %%

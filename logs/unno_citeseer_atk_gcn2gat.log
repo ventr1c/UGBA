@@ -1,0 +1,299 @@
+nohup: ignoring input
+Namespace(clean_test_nodes_num=200, cuda=True, dataset='citeseer', debug=True, defense_mode='none', device_id=5, dropout=0.5, epochs=200, hidden=32, homo_boost_thrd=0.6, homo_loss_weight=1.0, load_benign_model=True, lr=0.01, model='GCN', no_cuda=False, prune_thr=0.1, seed=10, target_class=0, target_test_nodes_num=200, test_model='GAT', thrd=0.5, trigger_size=3, trojan_epochs=200, vs_ratio=0.01, weight_decay=0.0005)
+Loading benign GCN model Finished!
+Benign CA: 0.7100
+Benign CA on clean test nodes: 0.6450
+3327
+200
+tensor(1.8010, device='cuda:5', grad_fn=<NllLossBackward0>) tensor(27.6000, device='cuda:5', grad_fn=<MulBackward0>)
+Epoch 0, training loss: 1.8009929656982422
+acc_train_clean: 0.1479, acc_train_attach: 0.1304
+tensor(1.5739, device='cuda:5', grad_fn=<NllLossBackward0>) tensor(21.2796, device='cuda:5', grad_fn=<MulBackward0>)
+tensor(1.3213, device='cuda:5', grad_fn=<NllLossBackward0>) tensor(18.4777, device='cuda:5', grad_fn=<MulBackward0>)
+tensor(1.0667, device='cuda:5', grad_fn=<NllLossBackward0>) tensor(17.1251, device='cuda:5', grad_fn=<MulBackward0>)
+tensor(0.8614, device='cuda:5', grad_fn=<NllLossBackward0>) tensor(16.1932, device='cuda:5', grad_fn=<MulBackward0>)
+tensor(0.6531, device='cuda:5', grad_fn=<NllLossBackward0>) tensor(15.5384, device='cuda:5', grad_fn=<MulBackward0>)
+tensor(0.5415, device='cuda:5', grad_fn=<NllLossBackward0>) tensor(13.9678, device='cuda:5', grad_fn=<MulBackward0>)
+tensor(0.4194, device='cuda:5', grad_fn=<NllLossBackward0>) tensor(12.1442, device='cuda:5', grad_fn=<MulBackward0>)
+tensor(0.3363, device='cuda:5', grad_fn=<NllLossBackward0>) tensor(10.6601, device='cuda:5', grad_fn=<MulBackward0>)
+tensor(0.2743, device='cuda:5', grad_fn=<NllLossBackward0>) tensor(8.8068, device='cuda:5', grad_fn=<MulBackward0>)
+tensor(0.2232, device='cuda:5', grad_fn=<NllLossBackward0>) tensor(7.8117, device='cuda:5', grad_fn=<MulBackward0>)
+Epoch 10, training loss: 0.2232016921043396
+acc_train_clean: 0.9521, acc_train_attach: 1.0000
+tensor(0.2181, device='cuda:5', grad_fn=<NllLossBackward0>) tensor(7.0254, device='cuda:5', grad_fn=<MulBackward0>)
+tensor(0.1729, device='cuda:5', grad_fn=<NllLossBackward0>) tensor(6.9704, device='cuda:5', grad_fn=<MulBackward0>)
+tensor(0.1452, device='cuda:5', grad_fn=<NllLossBackward0>) tensor(6.6850, device='cuda:5', grad_fn=<MulBackward0>)
+tensor(0.1325, device='cuda:5', grad_fn=<NllLossBackward0>) tensor(6.5300, device='cuda:5', grad_fn=<MulBackward0>)
+tensor(0.1130, device='cuda:5', grad_fn=<NllLossBackward0>) tensor(6.3080, device='cuda:5', grad_fn=<MulBackward0>)
+tensor(0.1129, device='cuda:5', grad_fn=<NllLossBackward0>) tensor(5.8426, device='cuda:5', grad_fn=<MulBackward0>)
+tensor(0.0876, device='cuda:5', grad_fn=<NllLossBackward0>) tensor(5.1230, device='cuda:5', grad_fn=<MulBackward0>)
+tensor(0.0901, device='cuda:5', grad_fn=<NllLossBackward0>) tensor(4.0242, device='cuda:5', grad_fn=<MulBackward0>)
+tensor(0.0893, device='cuda:5', grad_fn=<NllLossBackward0>) tensor(2.8477, device='cuda:5', grad_fn=<MulBackward0>)
+tensor(0.0763, device='cuda:5', grad_fn=<NllLossBackward0>) tensor(1.9997, device='cuda:5', grad_fn=<MulBackward0>)
+Epoch 20, training loss: 0.0763327032327652
+acc_train_clean: 0.9729, acc_train_attach: 1.0000
+tensor(0.0800, device='cuda:5', grad_fn=<NllLossBackward0>) tensor(1.2380, device='cuda:5', grad_fn=<MulBackward0>)
+tensor(0.0675, device='cuda:5', grad_fn=<NllLossBackward0>) tensor(1.1835, device='cuda:5', grad_fn=<MulBackward0>)
+tensor(0.0773, device='cuda:5', grad_fn=<NllLossBackward0>) tensor(1.0631, device='cuda:5', grad_fn=<MulBackward0>)
+tensor(0.0807, device='cuda:5', grad_fn=<NllLossBackward0>) tensor(0.9739, device='cuda:5', grad_fn=<MulBackward0>)
+tensor(0.0569, device='cuda:5', grad_fn=<NllLossBackward0>) tensor(1.1338, device='cuda:5', grad_fn=<MulBackward0>)
+tensor(0.0533, device='cuda:5', grad_fn=<NllLossBackward0>) tensor(0.8043, device='cuda:5', grad_fn=<MulBackward0>)
+tensor(0.0626, device='cuda:5', grad_fn=<NllLossBackward0>) tensor(0.8056, device='cuda:5', grad_fn=<MulBackward0>)
+tensor(0.0607, device='cuda:5', grad_fn=<NllLossBackward0>) tensor(0.7396, device='cuda:5', grad_fn=<MulBackward0>)
+tensor(0.0539, device='cuda:5', grad_fn=<NllLossBackward0>) tensor(0.7264, device='cuda:5', grad_fn=<MulBackward0>)
+tensor(0.0511, device='cuda:5', grad_fn=<NllLossBackward0>) tensor(0.7662, device='cuda:5', grad_fn=<MulBackward0>)
+Epoch 30, training loss: 0.05108346417546272
+acc_train_clean: 0.9854, acc_train_attach: 1.0000
+tensor(0.0599, device='cuda:5', grad_fn=<NllLossBackward0>) tensor(0.8439, device='cuda:5', grad_fn=<MulBackward0>)
+tensor(0.0567, device='cuda:5', grad_fn=<NllLossBackward0>) tensor(0.7477, device='cuda:5', grad_fn=<MulBackward0>)
+tensor(0.0623, device='cuda:5', grad_fn=<NllLossBackward0>) tensor(0.5062, device='cuda:5', grad_fn=<MulBackward0>)
+tensor(0.0498, device='cuda:5', grad_fn=<NllLossBackward0>) tensor(0.3598, device='cuda:5', grad_fn=<MulBackward0>)
+tensor(0.0587, device='cuda:5', grad_fn=<NllLossBackward0>) tensor(0.5482, device='cuda:5', grad_fn=<MulBackward0>)
+tensor(0.0450, device='cuda:5', grad_fn=<NllLossBackward0>) tensor(0.5291, device='cuda:5', grad_fn=<MulBackward0>)
+tensor(0.0463, device='cuda:5', grad_fn=<NllLossBackward0>) tensor(0.3576, device='cuda:5', grad_fn=<MulBackward0>)
+tensor(0.0567, device='cuda:5', grad_fn=<NllLossBackward0>) tensor(0.3932, device='cuda:5', grad_fn=<MulBackward0>)
+tensor(0.0546, device='cuda:5', grad_fn=<NllLossBackward0>) tensor(0.5322, device='cuda:5', grad_fn=<MulBackward0>)
+tensor(0.0482, device='cuda:5', grad_fn=<NllLossBackward0>) tensor(0.2170, device='cuda:5', grad_fn=<MulBackward0>)
+Epoch 40, training loss: 0.048165373504161835
+acc_train_clean: 0.9854, acc_train_attach: 1.0000
+tensor(0.0582, device='cuda:5', grad_fn=<NllLossBackward0>) tensor(0.3889, device='cuda:5', grad_fn=<MulBackward0>)
+tensor(0.0497, device='cuda:5', grad_fn=<NllLossBackward0>) tensor(0.1227, device='cuda:5', grad_fn=<MulBackward0>)
+tensor(0.0597, device='cuda:5', grad_fn=<NllLossBackward0>) tensor(0.0755, device='cuda:5', grad_fn=<MulBackward0>)
+tensor(0.0499, device='cuda:5', grad_fn=<NllLossBackward0>) tensor(0.2679, device='cuda:5', grad_fn=<MulBackward0>)
+tensor(0.0525, device='cuda:5', grad_fn=<NllLossBackward0>) tensor(0.5099, device='cuda:5', grad_fn=<MulBackward0>)
+tensor(0.0515, device='cuda:5', grad_fn=<NllLossBackward0>) tensor(0.0962, device='cuda:5', grad_fn=<MulBackward0>)
+tensor(0.0573, device='cuda:5', grad_fn=<NllLossBackward0>) tensor(0.0311, device='cuda:5', grad_fn=<MulBackward0>)
+tensor(0.0493, device='cuda:5', grad_fn=<NllLossBackward0>) tensor(0.1162, device='cuda:5', grad_fn=<MulBackward0>)
+tensor(0.0494, device='cuda:5', grad_fn=<NllLossBackward0>) tensor(0.0801, device='cuda:5', grad_fn=<MulBackward0>)
+tensor(0.0563, device='cuda:5', grad_fn=<NllLossBackward0>) tensor(0.1600, device='cuda:5', grad_fn=<MulBackward0>)
+Epoch 50, training loss: 0.05626556649804115
+acc_train_clean: 0.9875, acc_train_attach: 1.0000
+tensor(0.0557, device='cuda:5', grad_fn=<NllLossBackward0>) tensor(0.2093, device='cuda:5', grad_fn=<MulBackward0>)
+tensor(0.0519, device='cuda:5', grad_fn=<NllLossBackward0>) tensor(0., device='cuda:5', grad_fn=<MulBackward0>)
+tensor(0.0541, device='cuda:5', grad_fn=<NllLossBackward0>) tensor(0.0727, device='cuda:5', grad_fn=<MulBackward0>)
+tensor(0.0611, device='cuda:5', grad_fn=<NllLossBackward0>) tensor(0.0734, device='cuda:5', grad_fn=<MulBackward0>)
+tensor(0.0568, device='cuda:5', grad_fn=<NllLossBackward0>) tensor(0.0738, device='cuda:5', grad_fn=<MulBackward0>)
+tensor(0.0491, device='cuda:5', grad_fn=<NllLossBackward0>) tensor(0.0500, device='cuda:5', grad_fn=<MulBackward0>)
+tensor(0.0592, device='cuda:5', grad_fn=<NllLossBackward0>) tensor(0., device='cuda:5', grad_fn=<MulBackward0>)
+tensor(0.0539, device='cuda:5', grad_fn=<NllLossBackward0>) tensor(0.0669, device='cuda:5', grad_fn=<MulBackward0>)
+tensor(0.0464, device='cuda:5', grad_fn=<NllLossBackward0>) tensor(0.0310, device='cuda:5', grad_fn=<MulBackward0>)
+tensor(0.0482, device='cuda:5', grad_fn=<NllLossBackward0>) tensor(0.1940, device='cuda:5', grad_fn=<MulBackward0>)
+Epoch 60, training loss: 0.048164889216423035
+acc_train_clean: 0.9875, acc_train_attach: 1.0000
+tensor(0.0606, device='cuda:5', grad_fn=<NllLossBackward0>) tensor(0.0311, device='cuda:5', grad_fn=<MulBackward0>)
+tensor(0.0492, device='cuda:5', grad_fn=<NllLossBackward0>) tensor(0.0268, device='cuda:5', grad_fn=<MulBackward0>)
+tensor(0.0471, device='cuda:5', grad_fn=<NllLossBackward0>) tensor(0.0110, device='cuda:5', grad_fn=<MulBackward0>)
+tensor(0.0512, device='cuda:5', grad_fn=<NllLossBackward0>) tensor(0., device='cuda:5', grad_fn=<MulBackward0>)
+tensor(0.0516, device='cuda:5', grad_fn=<NllLossBackward0>) tensor(0.0396, device='cuda:5', grad_fn=<MulBackward0>)
+tensor(0.0523, device='cuda:5', grad_fn=<NllLossBackward0>) tensor(0.0224, device='cuda:5', grad_fn=<MulBackward0>)
+tensor(0.0541, device='cuda:5', grad_fn=<NllLossBackward0>) tensor(0., device='cuda:5', grad_fn=<MulBackward0>)
+tensor(0.0700, device='cuda:5', grad_fn=<NllLossBackward0>) tensor(0.0775, device='cuda:5', grad_fn=<MulBackward0>)
+tensor(0.0489, device='cuda:5', grad_fn=<NllLossBackward0>) tensor(0.1704, device='cuda:5', grad_fn=<MulBackward0>)
+tensor(0.0594, device='cuda:5', grad_fn=<NllLossBackward0>) tensor(0., device='cuda:5', grad_fn=<MulBackward0>)
+Epoch 70, training loss: 0.05937192961573601
+acc_train_clean: 0.9917, acc_train_attach: 0.9565
+tensor(0.0483, device='cuda:5', grad_fn=<NllLossBackward0>) tensor(0., device='cuda:5', grad_fn=<MulBackward0>)
+tensor(0.0520, device='cuda:5', grad_fn=<NllLossBackward0>) tensor(0.0626, device='cuda:5', grad_fn=<MulBackward0>)
+tensor(0.0526, device='cuda:5', grad_fn=<NllLossBackward0>) tensor(0., device='cuda:5', grad_fn=<MulBackward0>)
+tensor(0.0617, device='cuda:5', grad_fn=<NllLossBackward0>) tensor(0.0773, device='cuda:5', grad_fn=<MulBackward0>)
+tensor(0.0425, device='cuda:5', grad_fn=<NllLossBackward0>) tensor(0., device='cuda:5', grad_fn=<MulBackward0>)
+tensor(0.0419, device='cuda:5', grad_fn=<NllLossBackward0>) tensor(0.0959, device='cuda:5', grad_fn=<MulBackward0>)
+tensor(0.0542, device='cuda:5', grad_fn=<NllLossBackward0>) tensor(0., device='cuda:5', grad_fn=<MulBackward0>)
+tensor(0.0528, device='cuda:5', grad_fn=<NllLossBackward0>) tensor(0.0086, device='cuda:5', grad_fn=<MulBackward0>)
+tensor(0.0458, device='cuda:5', grad_fn=<NllLossBackward0>) tensor(0.1856, device='cuda:5', grad_fn=<MulBackward0>)
+tensor(0.0565, device='cuda:5', grad_fn=<NllLossBackward0>) tensor(0.0669, device='cuda:5', grad_fn=<MulBackward0>)
+Epoch 80, training loss: 0.05645617097616196
+acc_train_clean: 0.9812, acc_train_attach: 0.9565
+tensor(0.0475, device='cuda:5', grad_fn=<NllLossBackward0>) tensor(0.0922, device='cuda:5', grad_fn=<MulBackward0>)
+tensor(0.0427, device='cuda:5', grad_fn=<NllLossBackward0>) tensor(1.1921e-07, device='cuda:5', grad_fn=<MulBackward0>)
+tensor(0.0478, device='cuda:5', grad_fn=<NllLossBackward0>) tensor(0.0035, device='cuda:5', grad_fn=<MulBackward0>)
+tensor(0.0471, device='cuda:5', grad_fn=<NllLossBackward0>) tensor(0.1262, device='cuda:5', grad_fn=<MulBackward0>)
+tensor(0.0514, device='cuda:5', grad_fn=<NllLossBackward0>) tensor(0.1139, device='cuda:5', grad_fn=<MulBackward0>)
+tensor(0.0411, device='cuda:5', grad_fn=<NllLossBackward0>) tensor(0., device='cuda:5', grad_fn=<MulBackward0>)
+tensor(0.0490, device='cuda:5', grad_fn=<NllLossBackward0>) tensor(0., device='cuda:5', grad_fn=<MulBackward0>)
+tensor(0.0426, device='cuda:5', grad_fn=<NllLossBackward0>) tensor(0.1119, device='cuda:5', grad_fn=<MulBackward0>)
+tensor(0.0475, device='cuda:5', grad_fn=<NllLossBackward0>) tensor(0.0669, device='cuda:5', grad_fn=<MulBackward0>)
+tensor(0.0475, device='cuda:5', grad_fn=<NllLossBackward0>) tensor(0., device='cuda:5', grad_fn=<MulBackward0>)
+Epoch 90, training loss: 0.04754752293229103
+acc_train_clean: 0.9896, acc_train_attach: 1.0000
+tensor(0.0466, device='cuda:5', grad_fn=<NllLossBackward0>) tensor(0., device='cuda:5', grad_fn=<MulBackward0>)
+tensor(0.0387, device='cuda:5', grad_fn=<NllLossBackward0>) tensor(0.0959, device='cuda:5', grad_fn=<MulBackward0>)
+tensor(0.0427, device='cuda:5', grad_fn=<NllLossBackward0>) tensor(0.0453, device='cuda:5', grad_fn=<MulBackward0>)
+tensor(0.0511, device='cuda:5', grad_fn=<NllLossBackward0>) tensor(0.0033, device='cuda:5', grad_fn=<MulBackward0>)
+tensor(0.0429, device='cuda:5', grad_fn=<NllLossBackward0>) tensor(0.0224, device='cuda:5', grad_fn=<MulBackward0>)
+tensor(0.0434, device='cuda:5', grad_fn=<NllLossBackward0>) tensor(0., device='cuda:5', grad_fn=<MulBackward0>)
+tensor(0.0413, device='cuda:5', grad_fn=<NllLossBackward0>) tensor(0., device='cuda:5', grad_fn=<MulBackward0>)
+tensor(0.0355, device='cuda:5', grad_fn=<NllLossBackward0>) tensor(0., device='cuda:5', grad_fn=<MulBackward0>)
+tensor(0.0450, device='cuda:5', grad_fn=<NllLossBackward0>) tensor(0.1194, device='cuda:5', grad_fn=<MulBackward0>)
+tensor(0.0451, device='cuda:5', grad_fn=<NllLossBackward0>) tensor(0., device='cuda:5', grad_fn=<MulBackward0>)
+Epoch 100, training loss: 0.04511576145887375
+acc_train_clean: 0.9896, acc_train_attach: 1.0000
+tensor(0.0400, device='cuda:5', grad_fn=<NllLossBackward0>) tensor(0., device='cuda:5', grad_fn=<MulBackward0>)
+tensor(0.0511, device='cuda:5', grad_fn=<NllLossBackward0>) tensor(0., device='cuda:5', grad_fn=<MulBackward0>)
+tensor(0.0364, device='cuda:5', grad_fn=<NllLossBackward0>) tensor(0., device='cuda:5', grad_fn=<MulBackward0>)
+tensor(0.0386, device='cuda:5', grad_fn=<NllLossBackward0>) tensor(0.2204, device='cuda:5', grad_fn=<MulBackward0>)
+tensor(0.0441, device='cuda:5', grad_fn=<NllLossBackward0>) tensor(0., device='cuda:5', grad_fn=<MulBackward0>)
+tensor(0.0393, device='cuda:5', grad_fn=<NllLossBackward0>) tensor(0., device='cuda:5', grad_fn=<MulBackward0>)
+tensor(0.0335, device='cuda:5', grad_fn=<NllLossBackward0>) tensor(0., device='cuda:5', grad_fn=<MulBackward0>)
+tensor(0.0472, device='cuda:5', grad_fn=<NllLossBackward0>) tensor(0.0098, device='cuda:5', grad_fn=<MulBackward0>)
+tensor(0.0399, device='cuda:5', grad_fn=<NllLossBackward0>) tensor(0., device='cuda:5', grad_fn=<MulBackward0>)
+tensor(0.0459, device='cuda:5', grad_fn=<NllLossBackward0>) tensor(0.1610, device='cuda:5', grad_fn=<MulBackward0>)
+Epoch 110, training loss: 0.04589908942580223
+acc_train_clean: 0.9854, acc_train_attach: 1.0000
+tensor(0.0401, device='cuda:5', grad_fn=<NllLossBackward0>) tensor(0.1190, device='cuda:5', grad_fn=<MulBackward0>)
+tensor(0.0327, device='cuda:5', grad_fn=<NllLossBackward0>) tensor(0., device='cuda:5', grad_fn=<MulBackward0>)
+tensor(0.0327, device='cuda:5', grad_fn=<NllLossBackward0>) tensor(0., device='cuda:5', grad_fn=<MulBackward0>)
+tensor(0.0488, device='cuda:5', grad_fn=<NllLossBackward0>) tensor(0.0157, device='cuda:5', grad_fn=<MulBackward0>)
+tensor(0.0367, device='cuda:5', grad_fn=<NllLossBackward0>) tensor(0., device='cuda:5', grad_fn=<MulBackward0>)
+tensor(0.0412, device='cuda:5', grad_fn=<NllLossBackward0>) tensor(0., device='cuda:5', grad_fn=<MulBackward0>)
+tensor(0.0391, device='cuda:5', grad_fn=<NllLossBackward0>) tensor(0.0381, device='cuda:5', grad_fn=<MulBackward0>)
+tensor(0.0331, device='cuda:5', grad_fn=<NllLossBackward0>) tensor(0.1834, device='cuda:5', grad_fn=<MulBackward0>)
+tensor(0.0498, device='cuda:5', grad_fn=<NllLossBackward0>) tensor(0., device='cuda:5', grad_fn=<MulBackward0>)
+tensor(0.0403, device='cuda:5', grad_fn=<NllLossBackward0>) tensor(0., device='cuda:5', grad_fn=<MulBackward0>)
+Epoch 120, training loss: 0.04025261849164963
+acc_train_clean: 0.9896, acc_train_attach: 1.0000
+tensor(0.0338, device='cuda:5', grad_fn=<NllLossBackward0>) tensor(0., device='cuda:5', grad_fn=<MulBackward0>)
+tensor(0.0598, device='cuda:5', grad_fn=<NllLossBackward0>) tensor(0., device='cuda:5', grad_fn=<MulBackward0>)
+tensor(0.0431, device='cuda:5', grad_fn=<NllLossBackward0>) tensor(0.1391, device='cuda:5', grad_fn=<MulBackward0>)
+tensor(0.0450, device='cuda:5', grad_fn=<NllLossBackward0>) tensor(0., device='cuda:5', grad_fn=<MulBackward0>)
+tensor(0.0452, device='cuda:5', grad_fn=<NllLossBackward0>) tensor(0., device='cuda:5', grad_fn=<MulBackward0>)
+tensor(0.0426, device='cuda:5', grad_fn=<NllLossBackward0>) tensor(0.0261, device='cuda:5', grad_fn=<MulBackward0>)
+tensor(0.0390, device='cuda:5', grad_fn=<NllLossBackward0>) tensor(0., device='cuda:5', grad_fn=<MulBackward0>)
+tensor(0.0396, device='cuda:5', grad_fn=<NllLossBackward0>) tensor(0., device='cuda:5', grad_fn=<MulBackward0>)
+tensor(0.0478, device='cuda:5', grad_fn=<NllLossBackward0>) tensor(0., device='cuda:5', grad_fn=<MulBackward0>)
+tensor(0.0355, device='cuda:5', grad_fn=<NllLossBackward0>) tensor(0.0110, device='cuda:5', grad_fn=<MulBackward0>)
+Epoch 130, training loss: 0.035480696707963943
+acc_train_clean: 0.9896, acc_train_attach: 1.0000
+tensor(0.0379, device='cuda:5', grad_fn=<NllLossBackward0>) tensor(0., device='cuda:5', grad_fn=<MulBackward0>)
+tensor(0.0377, device='cuda:5', grad_fn=<NllLossBackward0>) tensor(0., device='cuda:5', grad_fn=<MulBackward0>)
+tensor(0.0317, device='cuda:5', grad_fn=<NllLossBackward0>) tensor(0., device='cuda:5', grad_fn=<MulBackward0>)
+tensor(0.0454, device='cuda:5', grad_fn=<NllLossBackward0>) tensor(0.0453, device='cuda:5', grad_fn=<MulBackward0>)
+tensor(0.0390, device='cuda:5', grad_fn=<NllLossBackward0>) tensor(0.0682, device='cuda:5', grad_fn=<MulBackward0>)
+tensor(0.0443, device='cuda:5', grad_fn=<NllLossBackward0>) tensor(0.0006, device='cuda:5', grad_fn=<MulBackward0>)
+tensor(0.0385, device='cuda:5', grad_fn=<NllLossBackward0>) tensor(0., device='cuda:5', grad_fn=<MulBackward0>)
+tensor(0.0359, device='cuda:5', grad_fn=<NllLossBackward0>) tensor(0., device='cuda:5', grad_fn=<MulBackward0>)
+tensor(0.0379, device='cuda:5', grad_fn=<NllLossBackward0>) tensor(0.1645, device='cuda:5', grad_fn=<MulBackward0>)
+tensor(0.0361, device='cuda:5', grad_fn=<NllLossBackward0>) tensor(0., device='cuda:5', grad_fn=<MulBackward0>)
+Epoch 140, training loss: 0.03608318790793419
+acc_train_clean: 0.9896, acc_train_attach: 1.0000
+tensor(0.0367, device='cuda:5', grad_fn=<NllLossBackward0>) tensor(0., device='cuda:5', grad_fn=<MulBackward0>)
+tensor(0.0312, device='cuda:5', grad_fn=<NllLossBackward0>) tensor(0., device='cuda:5', grad_fn=<MulBackward0>)
+tensor(0.0368, device='cuda:5', grad_fn=<NllLossBackward0>) tensor(0., device='cuda:5', grad_fn=<MulBackward0>)
+tensor(0.0393, device='cuda:5', grad_fn=<NllLossBackward0>) tensor(0., device='cuda:5', grad_fn=<MulBackward0>)
+tensor(0.0410, device='cuda:5', grad_fn=<NllLossBackward0>) tensor(0., device='cuda:5', grad_fn=<MulBackward0>)
+tensor(0.0306, device='cuda:5', grad_fn=<NllLossBackward0>) tensor(0.1592, device='cuda:5', grad_fn=<MulBackward0>)
+tensor(0.0470, device='cuda:5', grad_fn=<NllLossBackward0>) tensor(0., device='cuda:5', grad_fn=<MulBackward0>)
+tensor(0.0343, device='cuda:5', grad_fn=<NllLossBackward0>) tensor(0.0220, device='cuda:5', grad_fn=<MulBackward0>)
+tensor(0.0378, device='cuda:5', grad_fn=<NllLossBackward0>) tensor(0., device='cuda:5', grad_fn=<MulBackward0>)
+tensor(0.0297, device='cuda:5', grad_fn=<NllLossBackward0>) tensor(0., device='cuda:5', grad_fn=<MulBackward0>)
+Epoch 150, training loss: 0.02969892881810665
+acc_train_clean: 0.9896, acc_train_attach: 1.0000
+tensor(0.0350, device='cuda:5', grad_fn=<NllLossBackward0>) tensor(0., device='cuda:5', grad_fn=<MulBackward0>)
+tensor(0.0376, device='cuda:5', grad_fn=<NllLossBackward0>) tensor(0.0168, device='cuda:5', grad_fn=<MulBackward0>)
+tensor(0.0405, device='cuda:5', grad_fn=<NllLossBackward0>) tensor(0.0110, device='cuda:5', grad_fn=<MulBackward0>)
+tensor(0.0354, device='cuda:5', grad_fn=<NllLossBackward0>) tensor(0., device='cuda:5', grad_fn=<MulBackward0>)
+tensor(0.0438, device='cuda:5', grad_fn=<NllLossBackward0>) tensor(0., device='cuda:5', grad_fn=<MulBackward0>)
+tensor(0.0373, device='cuda:5', grad_fn=<NllLossBackward0>) tensor(0., device='cuda:5', grad_fn=<MulBackward0>)
+tensor(0.0304, device='cuda:5', grad_fn=<NllLossBackward0>) tensor(0., device='cuda:5', grad_fn=<MulBackward0>)
+tensor(0.0340, device='cuda:5', grad_fn=<NllLossBackward0>) tensor(0.0677, device='cuda:5', grad_fn=<MulBackward0>)
+tensor(0.0465, device='cuda:5', grad_fn=<NllLossBackward0>) tensor(0.0220, device='cuda:5', grad_fn=<MulBackward0>)
+tensor(0.0397, device='cuda:5', grad_fn=<NllLossBackward0>) tensor(0., device='cuda:5', grad_fn=<MulBackward0>)
+Epoch 160, training loss: 0.03972509503364563
+acc_train_clean: 0.9896, acc_train_attach: 1.0000
+tensor(0.0352, device='cuda:5', grad_fn=<NllLossBackward0>) tensor(0.0058, device='cuda:5', grad_fn=<MulBackward0>)
+tensor(0.0382, device='cuda:5', grad_fn=<NllLossBackward0>) tensor(0., device='cuda:5', grad_fn=<MulBackward0>)
+tensor(0.0361, device='cuda:5', grad_fn=<NllLossBackward0>) tensor(0.0401, device='cuda:5', grad_fn=<MulBackward0>)
+tensor(0.0428, device='cuda:5', grad_fn=<NllLossBackward0>) tensor(0., device='cuda:5', grad_fn=<MulBackward0>)
+tensor(0.0325, device='cuda:5', grad_fn=<NllLossBackward0>) tensor(0., device='cuda:5', grad_fn=<MulBackward0>)
+tensor(0.0385, device='cuda:5', grad_fn=<NllLossBackward0>) tensor(0., device='cuda:5', grad_fn=<MulBackward0>)
+tensor(0.0388, device='cuda:5', grad_fn=<NllLossBackward0>) tensor(0., device='cuda:5', grad_fn=<MulBackward0>)
+tensor(0.0395, device='cuda:5', grad_fn=<NllLossBackward0>) tensor(0.0184, device='cuda:5', grad_fn=<MulBackward0>)
+tensor(0.0331, device='cuda:5', grad_fn=<NllLossBackward0>) tensor(0., device='cuda:5', grad_fn=<MulBackward0>)
+tensor(0.0309, device='cuda:5', grad_fn=<NllLossBackward0>) tensor(0.0223, device='cuda:5', grad_fn=<MulBackward0>)
+Epoch 170, training loss: 0.030888346955180168
+acc_train_clean: 0.9938, acc_train_attach: 1.0000
+tensor(0.0334, device='cuda:5', grad_fn=<NllLossBackward0>) tensor(0., device='cuda:5', grad_fn=<MulBackward0>)
+tensor(0.0430, device='cuda:5', grad_fn=<NllLossBackward0>) tensor(0.0111, device='cuda:5', grad_fn=<MulBackward0>)
+tensor(0.0373, device='cuda:5', grad_fn=<NllLossBackward0>) tensor(0., device='cuda:5', grad_fn=<MulBackward0>)
+tensor(0.0323, device='cuda:5', grad_fn=<NllLossBackward0>) tensor(0., device='cuda:5', grad_fn=<MulBackward0>)
+tensor(0.0344, device='cuda:5', grad_fn=<NllLossBackward0>) tensor(0.1029, device='cuda:5', grad_fn=<MulBackward0>)
+tensor(0.0334, device='cuda:5', grad_fn=<NllLossBackward0>) tensor(0.0261, device='cuda:5', grad_fn=<MulBackward0>)
+tensor(0.0354, device='cuda:5', grad_fn=<NllLossBackward0>) tensor(0., device='cuda:5', grad_fn=<MulBackward0>)
+tensor(0.0322, device='cuda:5', grad_fn=<NllLossBackward0>) tensor(0., device='cuda:5', grad_fn=<MulBackward0>)
+tensor(0.0382, device='cuda:5', grad_fn=<NllLossBackward0>) tensor(0.0274, device='cuda:5', grad_fn=<MulBackward0>)
+tensor(0.0338, device='cuda:5', grad_fn=<NllLossBackward0>) tensor(0., device='cuda:5', grad_fn=<MulBackward0>)
+Epoch 180, training loss: 0.03381142020225525
+acc_train_clean: 0.9854, acc_train_attach: 1.0000
+tensor(0.0412, device='cuda:5', grad_fn=<NllLossBackward0>) tensor(0.0224, device='cuda:5', grad_fn=<MulBackward0>)
+tensor(0.0333, device='cuda:5', grad_fn=<NllLossBackward0>) tensor(0.1063, device='cuda:5', grad_fn=<MulBackward0>)
+tensor(0.0342, device='cuda:5', grad_fn=<NllLossBackward0>) tensor(0.0007, device='cuda:5', grad_fn=<MulBackward0>)
+tensor(0.0376, device='cuda:5', grad_fn=<NllLossBackward0>) tensor(0.0576, device='cuda:5', grad_fn=<MulBackward0>)
+tensor(0.0351, device='cuda:5', grad_fn=<NllLossBackward0>) tensor(0.0593, device='cuda:5', grad_fn=<MulBackward0>)
+tensor(0.0393, device='cuda:5', grad_fn=<NllLossBackward0>) tensor(0.1113, device='cuda:5', grad_fn=<MulBackward0>)
+tensor(0.0361, device='cuda:5', grad_fn=<NllLossBackward0>) tensor(0.0074, device='cuda:5', grad_fn=<MulBackward0>)
+tensor(0.0406, device='cuda:5', grad_fn=<NllLossBackward0>) tensor(0., device='cuda:5', grad_fn=<MulBackward0>)
+tensor(0.0447, device='cuda:5', grad_fn=<NllLossBackward0>) tensor(0.1715, device='cuda:5', grad_fn=<MulBackward0>)
+tensor(0.0385, device='cuda:5', grad_fn=<NllLossBackward0>) tensor(0.1014, device='cuda:5', grad_fn=<MulBackward0>)
+Epoch 190, training loss: 0.03849981725215912
+acc_train_clean: 0.9917, acc_train_attach: 1.0000
+tensor(0.0397, device='cuda:5', grad_fn=<NllLossBackward0>) tensor(0.2154, device='cuda:5', grad_fn=<MulBackward0>)
+tensor(0.0398, device='cuda:5', grad_fn=<NllLossBackward0>) /home/project-graph-backdoor/Backdoor/models/GAT.py:59: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  self.labels = torch.tensor(labels, dtype=torch.long)
+tensor(0.0647, device='cuda:5', grad_fn=<MulBackward0>)
+tensor(0.0388, device='cuda:5', grad_fn=<NllLossBackward0>) tensor(0.1516, device='cuda:5', grad_fn=<MulBackward0>)
+tensor(0.0310, device='cuda:5', grad_fn=<NllLossBackward0>) tensor(0., device='cuda:5', grad_fn=<MulBackward0>)
+tensor(0.0395, device='cuda:5', grad_fn=<NllLossBackward0>) tensor(0.0463, device='cuda:5', grad_fn=<MulBackward0>)
+tensor(0.0320, device='cuda:5', grad_fn=<NllLossBackward0>) tensor(0.2190, device='cuda:5', grad_fn=<MulBackward0>)
+tensor(0.0426, device='cuda:5', grad_fn=<NllLossBackward0>) tensor(0., device='cuda:5', grad_fn=<MulBackward0>)
+tensor(0.0421, device='cuda:5', grad_fn=<NllLossBackward0>) tensor(0., device='cuda:5', grad_fn=<MulBackward0>)
+tensor(0.0360, device='cuda:5', grad_fn=<NllLossBackward0>) tensor(0., device='cuda:5', grad_fn=<MulBackward0>)
+503
+503
+4454 4454
+{1152, 2062, 1945, 3239, 1461, 57, 2371, 195, 2118, 1478, 1481, 2506, 1741, 1366, 3031, 1115, 3038, 3294, 350, 2537, 1778, 499, 1785}
+=== training gcn model ===
+Epoch 0, training loss: 1.8481189012527466
+acc_val: 0.2075
+Epoch 10, training loss: 0.7264786958694458
+acc_val: 0.6425
+Epoch 20, training loss: 0.6374747157096863
+acc_val: 0.6725
+Epoch 30, training loss: 0.5913710594177246
+acc_val: 0.6650
+Epoch 40, training loss: 0.6277524828910828
+acc_val: 0.6825
+Epoch 50, training loss: 0.5412614941596985
+acc_val: 0.6875
+Epoch 60, training loss: 0.5422649383544922
+acc_val: 0.6900
+Epoch 70, training loss: 0.5811758637428284
+acc_val: 0.6625
+Epoch 80, training loss: 0.5997915863990784
+acc_val: 0.6900
+Epoch 90, training loss: 0.5800253748893738
+acc_val: 0.6675
+Epoch 100, training loss: 0.5969270467758179
+acc_val: 0.6750
+Epoch 110, training loss: 0.6346213221549988
+acc_val: 0.6700
+Epoch 120, training loss: 0.5347506999969482
+acc_val: 0.6700
+Epoch 130, training loss: 0.573890745639801
+acc_val: 0.6925
+Epoch 140, training loss: 0.582162618637085
+acc_val: 0.6625
+Epoch 150, training loss: 0.6599088311195374
+acc_val: 0.6850
+Epoch 160, training loss: 0.6012412309646606
+acc_val: 0.6625
+Epoch 170, training loss: 0.47289273142814636
+acc_val: 0.6575
+Epoch 180, training loss: 0.6455334424972534
+acc_val: 0.6625
+Epoch 190, training loss: 0.6035649180412292
+acc_val: 0.6650
+=== picking the best model according to the performance on validation ===
+target class rate on Vs: 1.0000
+accuracy on clean test nodes: 0.7450
+ASR: 1.0000
+CA: 0.7350
