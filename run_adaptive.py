@@ -24,7 +24,7 @@ parser.add_argument('--no-cuda', action='store_true', default=False,
 parser.add_argument('--seed', type=int, default=10, help='Random seed.')
 parser.add_argument('--model', type=str, default='GCN', help='model',
                     choices=['GCN','GAT','GraphSage','GIN'])
-parser.add_argument('--dataset', type=str, default='Pubmed', help='Dataset',
+parser.add_argument('--dataset', type=str, default='Cora', help='Dataset',
                     choices=['Cora','Citeseer','Pubmed'])
 parser.add_argument('--lr', type=float, default=0.01,
                     help='Initial learning rate.')
@@ -32,7 +32,7 @@ parser.add_argument('--weight_decay', type=float, default=5e-4,
                     help='Weight decay (L2 loss on parameters).')
 parser.add_argument('--hidden', type=int, default=32,
                     help='Number of hidden units.')
-parser.add_argument('--thrd', type=float, default=0.5)
+parser.add_argument('--thrd', type=float, default=0.0)
 parser.add_argument('--target_class', type=int, default=0)
 parser.add_argument('--dropout', type=float, default=0.5,
                     help='Dropout rate (1 - keep probability).')
@@ -48,11 +48,11 @@ parser.add_argument('--vs_ratio', type=float, default=0.01,
 parser.add_argument('--defense_mode', type=str, default="prune",
                     choices=['prune', 'isolate', 'none'],
                     help="Mode of defense")
-parser.add_argument('--prune_thr', type=float, default=0.1,
+parser.add_argument('--prune_thr', type=float, default=0.3,
                     help="Threshold of prunning edges")
-parser.add_argument('--homo_loss_weight', type=float, default=1000,
+parser.add_argument('--homo_loss_weight', type=float, default=100,
                     help="Weight of optimize similarity loss")
-parser.add_argument('--homo_boost_thrd', type=float, default=0.8,
+parser.add_argument('--homo_boost_thrd', type=float, default=0.5,
                     help="Threshold of increase similarity")
 # attack setting
 parser.add_argument('--selection_method', type=str, default='none',

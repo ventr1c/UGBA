@@ -74,7 +74,7 @@ class GradWhere(torch.autograd.Function):
 
 class GraphTrojanNet(nn.Module):
     # In the furture, we may use a GNN model to generate backdoor
-    def __init__(self, device, nfeat, nout, layernum=1, dropout=0.05):
+    def __init__(self, device, nfeat, nout, layernum=1, dropout=0.00):
         super(GraphTrojanNet, self).__init__()
 
         layers = []
@@ -92,7 +92,7 @@ class GraphTrojanNet(nn.Module):
         self.edge = nn.Linear(nfeat, int(nout*(nout-1)/2))
         self.device = device
 
-    def forward(self, input, thrd, binaryfeat=False):
+    def forward(self, input, thrd):
 
         """
         "input", "mask" and "thrd", should already in cuda before sent to this function.
@@ -106,7 +106,7 @@ class GraphTrojanNet(nn.Module):
 
         feat = self.feat(h)
         edge_weight = self.edge(h)
-        feat = GW(feat, thrd, self.device)
+        # feat = GW(feat, thrd, self.device)
         edge_weight = GW(edge_weight, thrd, self.device)
 
         return feat, edge_weight
@@ -123,6 +123,7 @@ class HomoLoss(nn.Module):
         edge_sims = F.cosine_similarity(x[trigger_edge_index[0]],x[trigger_edge_index[1]])
         
         loss = torch.relu(thrd - edge_sims).mean()
+        # print(edge_sims.min())
         return loss
 
 #%%
@@ -344,7 +345,7 @@ class Backdoor:
 
             labels_outter = labels.clone()
             labels_outter[idx_outter] = args.target_class
-            loss_target = F.nll_loss(output[torch.cat([idx_train,idx_outter])],
+            loss_target = 0.0 *F.nll_loss(output[torch.cat([idx_train,idx_outter])],
                                     labels_outter[torch.cat([idx_train,idx_outter])])
             loss_homo = 0.0
 
