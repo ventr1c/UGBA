@@ -24,8 +24,8 @@ parser.add_argument('--no-cuda', action='store_true', default=False,
 parser.add_argument('--seed', type=int, default=10, help='Random seed.')
 parser.add_argument('--model', type=str, default='GCN', help='model',
                     choices=['GCN','GAT','GraphSage','GIN'])
-parser.add_argument('--dataset', type=str, default='Cora', help='Dataset',
-                    choices=['cora','citeseer','pubmed'])
+parser.add_argument('--dataset', type=str, default='Pubmed', help='Dataset',
+                    choices=['Cora','Citeseer','Pubmed'])
 parser.add_argument('--lr', type=float, default=0.01,
                     help='Initial learning rate.')
 parser.add_argument('--weight_decay', type=float, default=5e-4,
@@ -38,19 +38,19 @@ parser.add_argument('--dropout', type=float, default=0.5,
                     help='Dropout rate (1 - keep probability).')
 parser.add_argument('--epochs', type=int,  default=200, help='Number of epochs to train benign and backdoor model.')
 parser.add_argument('--trojan_epochs', type=int,  default=200, help='Number of epochs to train trigger generator.')
-
+parser.add_argument('--inner', type=int,  default=1, help='Number of inner')
 # backdoor setting
 parser.add_argument('--trigger_size', type=int, default=3,
                     help='tirgger_size')
 parser.add_argument('--vs_ratio', type=float, default=0.01,
                     help="ratio of poisoning nodes relative to the full graph")
 # defense setting
-parser.add_argument('--defense_mode', type=str, default="isolate",
+parser.add_argument('--defense_mode', type=str, default="prune",
                     choices=['prune', 'isolate', 'none'],
                     help="Mode of defense")
 parser.add_argument('--prune_thr', type=float, default=0.1,
                     help="Threshold of prunning edges")
-parser.add_argument('--homo_loss_weight', type=float, default=10,
+parser.add_argument('--homo_loss_weight', type=float, default=1000,
                     help="Weight of optimize similarity loss")
 parser.add_argument('--homo_boost_thrd', type=float, default=0.8,
                     help="Threshold of increase similarity")
@@ -76,7 +76,7 @@ from torch_geometric.utils import to_undirected
 import torch_geometric.transforms as T
 transform = T.Compose([T.NormalizeFeatures()])
 
-np.random.seed(15) # fix the random seed is important
+np.random.seed(11) # fix the random seed is important
 dataset = Planetoid(root='./data/', \
                     name=args.dataset,\
                     transform=transform)
@@ -142,7 +142,7 @@ elif(args.selection_method == 'loss' or args.selection_method == 'conf'):
 # In[10]:
 # train trigger generator 
 model = Backdoor(args,device)
-model.fit(data.x, train_edge_index, None, data.y, idx_train,idx_attach)
+model.fit(data.x, train_edge_index, None, data.y, idx_train,idx_attach, unlabeled_idx)
 poison_x, poison_edge_index, poison_edge_weights, poison_labels = model.get_poisoned()
 
 # In[12]:
