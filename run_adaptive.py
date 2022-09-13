@@ -180,9 +180,10 @@ elif(args.selection_method == 'cluster'):
 model = Backdoor(args,device)
 if(args.attack_method == 'GTA'):
     model.fit(data.x, train_edge_index, None, data.y, idx_train,idx_attach, unlabeled_idx)
+    poison_x, poison_edge_index, poison_edge_weights, poison_labels = model.get_poisoned()
 elif(args.attack_method == 'Rand_Gene' or args.attack_method == 'Rand_Samp'):
     model.fit_rand(data.x, train_edge_index, None, data.y, idx_train,idx_attach, unlabeled_idx)
-poison_x, poison_edge_index, poison_edge_weights, poison_labels = model.get_poisoned()
+    poison_x, poison_edge_index, poison_edge_weights, poison_labels = model.get_poisoned()
 
 # In[12]:
 if(args.defense_mode == 'prune'):

@@ -546,7 +546,8 @@ class Backdoor:
                         .format(i, loss_inner, loss_target, loss_homo))
                 print("acc_train_clean: {:.4f}, ASR_train_attach: {:.4f}, ASR_train_outter: {:.4f}"\
                         .format(acc_train_clean,acc_train_attach,acc_train_outter))
-
+        poison_labels = self.labels
+        return poison_x, poison_edge_index, poison_edge_weights, poison_labels
 
 
     def get_poisoned(self):
