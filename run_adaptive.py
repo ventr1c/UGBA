@@ -9,6 +9,7 @@ import argparse
 import numpy as np
 import torch
 from models.GCN import GCN
+from models.GCN_Encoder import GCN_Encoder
 from torch_geometric.datasets import Planetoid, WebKB, WikipediaNetwork,Reddit
 from torch_geometric.utils import to_dense_adj,dense_to_sparse
 from help_funcs import prune_unrelated_edge,prune_unrelated_edge_isolated,select_target_nodes
@@ -136,12 +137,44 @@ from models.backdoor import obtain_attach_nodes,Backdoor,obtain_attach_nodes_by_
 # filter out the unlabeled nodes except from training nodes and testing nodes, nonzero() is to get index, flatten is to get 1-d tensor
 unlabeled_idx = (torch.bitwise_not(data.test_mask)&torch.bitwise_not(data.train_mask)).nonzero().flatten()
 size = int((len(data.test_mask)-data.test_mask.sum())*args.vs_ratio)
-
 # here is randomly select poison nodes from unlabeled nodes
 if(args.selection_method == 'none'):
     idx_attach = obtain_attach_nodes(unlabeled_idx,size)
 elif(args.selection_method == 'loss' or args.selection_method == 'conf'):
-    idx_attach = obtain_attach_nodes_by_influential(args,benign_model,unlabeled_idx.cpu().tolist(),data.x,data.edge_index,edge_weights,data.y,device,size,selected_way=args.selection_method)
+    idx_attach = obtain_attach_nodes_by_influential(args,benign_model,unlabeled_idx.cpu().tolist(),data.x,train_edge_index,train_edge_weights,data.y,device,size,selected_way=args.selection_method)
+    idx_attach = torch.LongTensor(idx_attach).to(device)
+elif(args.selection_method == 'cluster'):
+    # construct GCN encoder
+    encoder_modelpath = './modelpath/{}_{}_benign.pth'.format('GCN_Encoder', args.dataset)
+    if(os.path.exists(encoder_modelpath) and args.load_benign_model):
+        # load existing benign model
+        gcn_encoder = torch.load(encoder_modelpath)
+        gcn_encoder = gcn_encoder.to(device)
+        edge_weights = torch.ones([data.edge_index.shape[1]],device=device,dtype=torch.float)
+        print("Loading benign {} model Finished!".format(args.model))
+    else:
+        gcn_encoder = model_construct(args,'GCN_Encoder',data).to(device) 
+        t_total = time.time()
+        edge_weights = torch.ones([data.edge_index.shape[1]],device=device,dtype=torch.float)
+        print("Length of training set: {}".format(len(idx_train)))
+        gcn_encoder.fit(data.x, train_edge_index, train_edge_weights, data.y, idx_train, idx_val,train_iters=args.epochs,verbose=True)
+        print("Training encoder Finished!")
+        print("Total time elapsed: {:.4f}s".format(time.time() - t_total))
+        # Save trained model
+        torch.save(gcn_encoder, encoder_modelpath)
+        print("Encoder saved at {}".format(encoder_modelpath))
+    # test gcn encoder 
+    encoder_benign_ca = gcn_encoder.test(data.x, data.edge_index, edge_weights, data.y,idx_test)
+    print("Encoder CA: {:.4f}".format(encoder_benign_ca))
+    encoder_clean_test_ca = gcn_encoder.test(data.x, data.edge_index, edge_weights, data.y,clean_test_nodes)
+    print("Encoder CA on clean test nodes: {:.4f}".format(encoder_clean_test_ca))
+    # from sklearn import cluster
+    seen_node_idx = torch.concat([idx_train,unlabeled_idx])
+    nclass = np.unique(data.y.cpu().numpy()).shape[0]
+    encoder_x = gcn_encoder.get_h(data.x, train_edge_index,train_edge_weights).clone().detach()
+    kmeans = cluster.KMedoids(n_clusters=nclass,method='pam')
+    kmeans.fit(encoder_x.detach().cpu().numpy())
+    idx_attach = obtain_attach_nodes_by_cluster(args,kmeans,unlabeled_idx.cpu().tolist(),encoder_x,data.y,device,size)
     idx_attach = torch.LongTensor(idx_attach).to(device)
 elif(args.selection_method == 'cluster'):
     # construct GCN encoder

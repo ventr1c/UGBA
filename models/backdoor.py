@@ -139,6 +139,11 @@ class HomoLoss(nn.Module):
 import numpy as np
 import torch.optim as optim
 from models.GCN import GCN
+
+def max_norm(data):
+    _range = np.max(data) - np.min(data)
+    return (data - np.min(data)) / _range
+
 def obtain_attach_nodes(node_idxs, size):
     ### current random to implement
     size = min(len(node_idxs),size)
