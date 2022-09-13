@@ -11,43 +11,52 @@ def edge_sim_analysis(edge_index, features):
     sims = np.array(sims)
     # print(f"mean: {sims.mean()}, <0.1: {sum(sims<0.1)}/{sims.shape[0]}")
     return sims
-def prune_unrelated_edge(args,input_edge_index,input_edge_weights,x,device):
+def prune_unrelated_edge_old(args,edge_index,edge_weights,x,device):
     # x = x.to_dense()
-    adj = to_dense_adj(input_edge_index,edge_attr=input_edge_weights)[0].cpu()
-    input_edge_index, input_edge_weights= dense_to_sparse(adj)
-    edges_index = adj.nonzero()
+    # adj = to_dense_adj(input_edge_index,edge_attr=input_edge_weights)[0].cpu()
+    # input_edge_index, input_edge_weights= dense_to_sparse(adj)
+    # edges_index = adj.nonzero()
+    edge_index = edge_index[:,edge_weights>0.0]
+    edge_weights = edge_weights[edge_weights>0.0]
     # edges_index = torch.transpose(input_edge_index,0,1)
-    edge_sims = F.cosine_similarity(x[input_edge_index[0]],x[input_edge_index[1]])
-    # edge_sims = edge_sim_analysis(edges_index,x)
+    edge_sims = F.cosine_similarity(x[edge_index[0]],x[edge_index[1]])
     dissim_edges_index = np.where(edge_sims.cpu()<=args.prune_thr)[0]
-    # dissim_edges_index = np.where(edge_sims>=0.8)[0]
-    dissim_edges = edges_index[dissim_edges_index]
+    # dissim_edges = edges_index[dissim_edges_index]
+    dissim_edges = edge_index[:,dissim_edges_index]
     for (u,v) in dissim_edges:
         adj[u,v] = 0
     updated_edge_index,updated_edge_weights = dense_to_sparse(adj.to(device))
     return updated_edge_index,updated_edge_weights
-def prune_unrelated_edge_isolated(args,input_edge_index,input_edge_weights,x,device):
-    adj = to_dense_adj(input_edge_index,edge_attr=input_edge_weights)[0].cpu()
-    input_edge_index, input_edge_weights= dense_to_sparse(adj)
-    edges_index = adj.nonzero()
-    # edges_index = torch.transpose(input_edge_index,0,1)
-    # edge_sims = edge_sim_analysis(edges_index,x)
-    edge_sims = F.cosine_similarity(x[input_edge_index[0]],x[input_edge_index[1]])
-    dissim_edges_index = np.where(edge_sims.cpu()<=args.prune_thr)[0]
-    # dissim_edges_index = np.where(edge_sims>=0.8)[0]
-    dissim_edges = edges_index[dissim_edges_index]
-    can_nodes = []
-    for (u,v) in dissim_edges:
-        adj[u,v] = 0
-        # adj[v,u] = 0
-        can_nodes.append(int(u))
-        can_nodes.append(int(v))
-    can_nodes = list(set(can_nodes))
 
-    # adj = adj.to_sparse()
-    # x = x.to_sparse()
-    updated_edge_index,updated_edge_weights = dense_to_sparse(adj.to(device))
-    return updated_edge_index,updated_edge_weights,can_nodes
+def prune_unrelated_edge(args,edge_index,edge_weights,x,device):
+    edge_index = edge_index[:,edge_weights>0.0]
+    edge_weights = edge_weights[edge_weights>0.0]
+    # calculate edge simlarity
+    edge_sims = F.cosine_similarity(x[edge_index[0]],x[edge_index[1]])
+    # find dissimilar edges and remote them
+    dissim_edges_index = np.where(edge_sims.cpu()<=args.prune_thr)[0]
+    edge_weights[dissim_edges_index] = 0
+    # update structure
+    updated_edge_index = edge_index[:,edge_weights>0.0]
+    updated_edge_weights = edge_weights[edge_weights>0.0]
+    return updated_edge_index,updated_edge_weights
+
+def prune_unrelated_edge_isolated(args,edge_index,edge_weights,x,device):
+    edge_index = edge_index[:,edge_weights>0.0]
+    edge_weights = edge_weights[edge_weights>0.0]
+    # calculate edge simlarity
+    edge_sims = F.cosine_similarity(x[edge_index[0]],x[edge_index[1]])
+    # find dissimilar edges and remote them
+    dissim_edges_index = np.where(edge_sims.cpu()<=args.prune_thr)[0]
+    edge_weights[dissim_edges_index] = 0
+    # select the nodes between dissimilar edgesy
+    dissim_edges = edge_index[:,dissim_edges_index]    # output: [[v_1,v_2],[u_1,u_2]]
+    dissim_nodes = torch.cat([dissim_edges[0],dissim_edges[1]]).tolist()
+    dissim_nodes = list(set(dissim_nodes))
+    # update structure
+    updated_edge_index = edge_index[:,edge_weights>0.0]
+    updated_edge_weights = edge_weights[edge_weights>0.0]
+    return updated_edge_index,updated_edge_weights,dissim_nodes 
 
 def select_target_nodes(args,seed,model,features,edge_index,edge_weights,labels,idx_val,idx_test):
     test_ca,test_correct_index = model.test_with_correct_nodes(features,edge_index,edge_weights,labels,idx_test)

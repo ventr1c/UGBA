@@ -117,6 +117,11 @@ class HomoLoss(nn.Module):
 import numpy as np
 import torch.optim as optim
 from models.GCN import GCN
+
+def max_norm(data):
+    _range = np.max(data) - np.min(data)
+    return (data - np.min(data)) / _range
+
 def obtain_attach_nodes(node_idxs, size):
     ### current random to implement
     size = min(len(node_idxs),size)
@@ -199,6 +204,66 @@ def obtain_attach_nodes_by_influential(args,model,node_idxs,x,edge_index,edge_we
             else:
                 candidate_nodes = np.concatenate([candidate_nodes,sorted_single_labels_nodes[:last_seleced_num]])
         return candidate_nodes.astype(int)
+
+def obtain_attach_nodes_by_cluster(args,model,node_idxs,x,labels,device,size):
+    dis_weight = 1
+    cluster_centers = model.cluster_centers_
+    y_pred = model.predict(x.detach().cpu().numpy())
+    # y_true = labels.cpu().numpy()
+    # calculate the distance of each nodes away from their centers
+    distances = [] 
+    distances_tar = []
+    for id in range(x.shape[0]):
+        # tmp_center_label = args.target_class
+        tmp_center_label = y_pred[id]
+        # tmp_true_label = y_true[id]
+        tmp_tar_label = args.target_class
+        
+        tmp_center_x = cluster_centers[tmp_center_label]
+        # tmp_true_x = cluster_centers[tmp_true_label]
+        tmp_tar_x = cluster_centers[tmp_tar_label]
+
+        dis = np.linalg.norm(tmp_center_x - x[id].detach().cpu().numpy())
+        # dis1 = np.linalg.norm(tmp_true_x - x[id].cpu().numpy())
+        dis_tar = np.linalg.norm(tmp_tar_x - x[id].cpu().numpy())
+        # print(dis,dis1,tmp_center_label,tmp_true_label)
+        distances.append(dis)
+        distances_tar.append(dis_tar)
+        
+    distances = np.array(distances)
+    distances_tar = np.array(distances_tar)
+    # label_list = np.unique(labels.cpu())
+    print(y_pred)
+    label_list = np.unique(y_pred)
+    labels_dict = {}
+    for i in label_list:
+        # labels_dict[i] = np.where(labels.cpu()==i)[0]
+        labels_dict[i] = np.where(y_pred==i)[0]
+        # filter out labeled nodes
+        labels_dict[i] = np.array(list(set(node_idxs) & set(labels_dict[i])))
+
+    each_selected_num = int(size/len(label_list)-1)
+    last_seleced_num = size - each_selected_num*(len(label_list)-2)
+    candidate_nodes = np.array([])
+    for label in label_list:
+        if(label == args.target_class):
+            continue
+        single_labels_nodes = labels_dict[label]    # the node idx of the nodes in single class
+        single_labels_nodes = np.array(list(set(single_labels_nodes)))
+
+        single_labels_nodes_dis = distances[single_labels_nodes]
+        single_labels_nodes_dis = max_norm(single_labels_nodes_dis)
+        single_labels_nodes_dis_tar = distances_tar[single_labels_nodes]
+        single_labels_nodes_dis_tar = max_norm(single_labels_nodes_dis_tar)
+        # the closer to the center, the more far away from the target centers
+        single_labels_dis_score = dis_weight * single_labels_nodes_dis + (-single_labels_nodes_dis_tar)
+        single_labels_nid_index = np.argsort(single_labels_dis_score) # sort descently based on the distance away from the center
+        sorted_single_labels_nodes = np.array(single_labels_nodes[single_labels_nid_index])
+        if(label != label_list[-1]):
+            candidate_nodes = np.concatenate([candidate_nodes,sorted_single_labels_nodes[:each_selected_num]])
+        else:
+            candidate_nodes = np.concatenate([candidate_nodes,sorted_single_labels_nodes[:last_seleced_num]])
+    return candidate_nodes
 
 from torch_geometric.utils import to_undirected
 class Backdoor:

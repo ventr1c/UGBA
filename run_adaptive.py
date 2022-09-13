@@ -9,6 +9,7 @@ import argparse
 import numpy as np
 import torch
 from models.GCN import GCN
+from models.GCN_Encoder import GCN_Encoder
 from torch_geometric.datasets import Planetoid, WebKB, WikipediaNetwork,Reddit
 from torch_geometric.utils import to_dense_adj,dense_to_sparse
 from help_funcs import prune_unrelated_edge,prune_unrelated_edge_isolated,select_target_nodes
@@ -32,9 +33,6 @@ parser.add_argument('--weight_decay', type=float, default=5e-4,
                     help='Weight decay (L2 loss on parameters).')
 parser.add_argument('--hidden', type=int, default=32,
                     help='Number of hidden units.')
-# parser.add_argument('--trigger_size', type=int, default=3,
-#                     help='tirgger_size')
-# parser.add_argument('--vs_ratio', type=float, default=0.01)
 parser.add_argument('--thrd', type=float, default=0.5)
 parser.add_argument('--target_class', type=int, default=0)
 parser.add_argument('--dropout', type=float, default=0.5,
@@ -54,7 +52,7 @@ parser.add_argument('--target_test_nodes_num', type=float, default=200,
 parser.add_argument('--clean_test_nodes_num', type=float, default=200,
                     help="ratio of poisoning nodes relative to the full graph")
 # defense setting
-parser.add_argument('--defense_mode', type=str, default="isolate",
+parser.add_argument('--defense_mode', type=str, default="prune",
                     choices=['prune', 'isolate', 'none'],
                     help="Mode of defense")
 parser.add_argument('--prune_thr', type=float, default=0.1,
@@ -64,7 +62,7 @@ parser.add_argument('--homo_loss_weight', type=float, default=1,
 parser.add_argument('--homo_boost_thrd', type=float, default=0.6,
                     help="Threshold of increase similarity")
 # attack setting
-parser.add_argument('--selection_method', type=str, default='conf',
+parser.add_argument('--selection_method', type=str, default='cluster',
                     choices=['loss','conf','cluster','none'],
                     help='Method to select idx_attach for training trojan model (none means randomly select)')
 parser.add_argument('--test_model', type=str, default='GCN',
@@ -79,9 +77,6 @@ args = parser.parse_known_args()[0]
 args.cuda =  not args.no_cuda and torch.cuda.is_available()
 device = torch.device(('cuda:{}' if torch.cuda.is_available() else 'cpu').format(args.device_id))
 
-# args = parser.parse_known_args()[0]
-# args.cuda = not args.no_cuda and torch.cuda.is_available()
-# device = torch.device("cuda:1" if args.cuda else "cpu")
 np.random.seed(args.seed)
 torch.manual_seed(args.seed)
 if args.cuda:
@@ -120,7 +115,7 @@ data.edge_index = to_undirected(data.edge_index)
 #%%  mask the test nodes
 from utils import subgraph
 # get the edge index used for training (except from test nodes) and 
-train_edge_index,_, edge_mask = subgraph(torch.bitwise_not(data.test_mask),data.edge_index,relabel_nodes=False)
+train_edge_index,train_edge_weights, edge_mask = subgraph(torch.bitwise_not(data.test_mask),data.edge_index,relabel_nodes=False)
 
 mask_edge_index = data.edge_index[:,torch.bitwise_not(edge_mask)]
 idx_train =data.train_mask.nonzero().flatten()
@@ -140,7 +135,13 @@ from models.GIN import GIN
 from models.SAGE import GraphSage
 def model_construct(args,model_name,data):
     if (model_name == 'GCN'):
-        model = GCN(nfeat=data.x.shape[1],                    nhid=args.hidden,                    nclass= int(data.y.max()+1),                    dropout=args.dropout,                    lr=args.lr,                    weight_decay=args.weight_decay,                    device=device)
+        model = GCN(nfeat=data.x.shape[1], 
+                    nhid=args.hidden, 
+                    nclass= int(data.y.max()+1), 
+                    dropout=args.dropout, 
+                    lr=args.lr, 
+                    weight_decay=args.weight_decay, 
+                    device=device)
     elif(model_name == 'GAT'):
         model = GAT(nfeat=data.x.shape[1], 
                     nhid=args.hidden, 
@@ -151,7 +152,21 @@ def model_construct(args,model_name,data):
                     weight_decay=args.weight_decay, 
                     device=device)
     elif(model_name == 'GraphSage'):
-        model = GraphSage(nfeat=data.x.shape[1],                    nhid=args.hidden,                    nclass= int(data.y.max()+1),                    dropout=args.dropout,                    lr=args.lr,                    weight_decay=args.weight_decay,                    device=device)
+        model = GraphSage(nfeat=data.x.shape[1],                    
+                        nhid=args.hidden,                    
+                        nclass= int(data.y.max()+1),                    
+                        dropout=args.dropout,                    
+                        lr=args.lr,                    
+                        weight_decay=args.weight_decay,                    
+                        device=device)
+    elif(model_name == 'GCN_Encoder'):
+        model = GCN_Encoder(nfeat=data.x.shape[1],                    
+                            nhid=args.hidden,                    
+                            nclass= int(data.y.max()+1),                    
+                            dropout=args.dropout,                    
+                            lr=args.lr,                    
+                            weight_decay=args.weight_decay,                    
+                            device=device)
     return model
 
 
@@ -170,18 +185,11 @@ if(os.path.exists(benign_modelpath) and args.load_benign_model):
     edge_weights = torch.ones([data.edge_index.shape[1]],device=device,dtype=torch.float)
     print("Loading benign {} model Finished!".format(args.model))
 else:
-    # benign_model = GCN(nfeat=data.x.shape[1],\
-    #             nhid=args.hidden,\
-    #             nclass= int(data.y.max()+1),\
-    #             dropout=args.dropout,\
-    #             lr=args.lr,\
-    #             weight_decay=args.weight_decay,\
-    #             device=device).to(device)
     benign_model = model_construct(args,args.model,data).to(device) 
     t_total = time.time()
     edge_weights = torch.ones([data.edge_index.shape[1]],device=device,dtype=torch.float)
     print("Length of training set: {}".format(len(idx_train)))
-    benign_model.fit(data.x, data.edge_index, edge_weights, data.y, idx_train, idx_val,train_iters=args.epochs,verbose=True)
+    benign_model.fit(data.x, train_edge_index, train_edge_weights, data.y, idx_train, idx_val,train_iters=args.epochs,verbose=True)
     print("Training benign model Finished!")
     print("Total time elapsed: {:.4f}s".format(time.time() - t_total))
     # Save trained model
@@ -193,36 +201,65 @@ else:
 
 
 benign_output = benign_model(data.x, data.edge_index, edge_weights)
-# benign4poison_output = benign_gcn(induct_x,induct_edge_index,induct_edge_weights)
-# benign_ca = (benign_output.argmax(dim=1)[idx_test]==data.y[idx_test]).float().mean()
 benign_ca = benign_model.test(data.x, data.edge_index, edge_weights, data.y,idx_test)
-# benign4poison_ca = (benign4poison_output.argmax(dim=1)[idx_test]==atk_labels[idx_test]).float().mean()
 print("Benign CA: {:.4f}".format(benign_ca))
 atk_test_nodes, clean_test_nodes,poi_train_nodes = select_target_nodes(args,args.seed,benign_model,data.x, data.edge_index, edge_weights,data.y,idx_val,idx_test)
 clean_test_ca = benign_model.test(data.x, data.edge_index, edge_weights, data.y,clean_test_nodes)
 print("Benign CA on clean test nodes: {:.4f}".format(clean_test_ca))
-# print("Benign for poisoning CA: {:.4f}".format(benign4poison_ca))
-# print((benign_output.argmax(dim=1)[yx_nids]==args.target_class).float().mean())
 
 
-# In[9]:
+# In[8]:
 
 
-from models.backdoor import obtain_attach_nodes,Backdoor,obtain_attach_nodes_by_influential
+#%%
+from sklearn_extra import cluster
+from models.backdoor import obtain_attach_nodes,Backdoor,obtain_attach_nodes_by_influential,obtain_attach_nodes_by_cluster
 # filter out the unlabeled nodes except from training nodes and testing nodes, nonzero() is to get index, flatten is to get 1-d tensor
 unlabeled_idx = (torch.bitwise_not(data.test_mask)&torch.bitwise_not(data.train_mask)).nonzero().flatten()
 # poison nodes' size
 size = int((len(data.test_mask)-data.test_mask.sum())*args.vs_ratio)
-print(len(data.test_mask))
 # here is randomly select poison nodes from unlabeled nodes
 if(args.selection_method == 'none'):
     idx_attach = obtain_attach_nodes(unlabeled_idx,size)
 elif(args.selection_method == 'loss' or args.selection_method == 'conf'):
-    idx_attach = obtain_attach_nodes_by_influential(args,benign_model,unlabeled_idx.cpu().tolist(),data.x,data.edge_index,edge_weights,data.y,device,size,selected_way=args.selection_method)
+    idx_attach = obtain_attach_nodes_by_influential(args,benign_model,unlabeled_idx.cpu().tolist(),data.x,train_edge_index,train_edge_weights,data.y,device,size,selected_way=args.selection_method)
+    idx_attach = torch.LongTensor(idx_attach).to(device)
+elif(args.selection_method == 'cluster'):
+    # construct GCN encoder
+    encoder_modelpath = './modelpath/{}_{}_benign.pth'.format('GCN_Encoder', args.dataset)
+    if(os.path.exists(encoder_modelpath) and args.load_benign_model):
+        # load existing benign model
+        gcn_encoder = torch.load(encoder_modelpath)
+        gcn_encoder = gcn_encoder.to(device)
+        edge_weights = torch.ones([data.edge_index.shape[1]],device=device,dtype=torch.float)
+        print("Loading benign {} model Finished!".format(args.model))
+    else:
+        gcn_encoder = model_construct(args,'GCN_Encoder',data).to(device) 
+        t_total = time.time()
+        edge_weights = torch.ones([data.edge_index.shape[1]],device=device,dtype=torch.float)
+        print("Length of training set: {}".format(len(idx_train)))
+        gcn_encoder.fit(data.x, train_edge_index, train_edge_weights, data.y, idx_train, idx_val,train_iters=args.epochs,verbose=True)
+        print("Training encoder Finished!")
+        print("Total time elapsed: {:.4f}s".format(time.time() - t_total))
+        # Save trained model
+        torch.save(gcn_encoder, encoder_modelpath)
+        print("Encoder saved at {}".format(encoder_modelpath))
+    # test gcn encoder 
+    encoder_benign_ca = gcn_encoder.test(data.x, data.edge_index, edge_weights, data.y,idx_test)
+    print("Encoder CA: {:.4f}".format(encoder_benign_ca))
+    encoder_clean_test_ca = gcn_encoder.test(data.x, data.edge_index, edge_weights, data.y,clean_test_nodes)
+    print("Encoder CA on clean test nodes: {:.4f}".format(encoder_clean_test_ca))
+    # from sklearn import cluster
+    seen_node_idx = torch.concat([idx_train,unlabeled_idx])
+    nclass = np.unique(data.y.cpu().numpy()).shape[0]
+    encoder_x = gcn_encoder.get_h(data.x, train_edge_index,train_edge_weights).clone().detach()
+    kmeans = cluster.KMedoids(n_clusters=nclass,method='pam')
+    kmeans.fit(encoder_x.detach().cpu().numpy())
+    idx_attach = obtain_attach_nodes_by_cluster(args,kmeans,unlabeled_idx.cpu().tolist(),encoder_x,data.y,device,size)
     idx_attach = torch.LongTensor(idx_attach).to(device)
 
 
-# In[10]:
+# In[ ]:
 
 
 # train trigger generator 
@@ -231,7 +268,7 @@ print(args.epochs)
 model.fit(data.x, train_edge_index, None, data.y, idx_train,idx_attach)
 
 
-# In[11]:
+# In[ ]:
 
 
 # %%
@@ -241,7 +278,7 @@ poison_edge_weights = model.poison_edge_weights.data
 poison_labels = model.labels
 
 
-# In[12]:
+# In[ ]:
 
 
 if(args.defense_mode == 'prune'):
@@ -255,7 +292,8 @@ else:
     bkd_tn_nodes = torch.cat([idx_train,idx_attach]).to(device)
 
 
-# In[13]:
+# In[ ]:
+
 
 
 print(len(torch.cat([idx_train,idx_attach])))
@@ -265,7 +303,7 @@ print(len(model.poison_edge_index.data[0]),len(poison_edge_index[0]))
 print(set(bkd_tn_nodes.tolist()) & set(idx_attach.tolist()))
 
 
-# In[14]:
+# In[ ]:
 
 
 #%%
@@ -279,11 +317,9 @@ if(args.test_model == 'GraphSage' or args.test_model == 'GAT'):
 test_model.fit(poison_x, poison_edge_index, poison_edge_weights, poison_labels, bkd_tn_nodes, idx_val,train_iters=200,verbose=True)
 
 
-# In[15]:
+# In[ ]:
 
 
-# gcn.eval()
-# model.eval()
 output = test_model(poison_x,poison_edge_index,poison_edge_weights)
 train_attach_rate = (output.argmax(dim=1)[idx_attach]==args.target_class).float().mean()
 print("target class rate on Vs: {:.4f}".format(train_attach_rate))
@@ -291,13 +327,9 @@ print("target class rate on Vs: {:.4f}".format(train_attach_rate))
 induct_edge_index = torch.cat([poison_edge_index,mask_edge_index],dim=1)
 induct_edge_weights = torch.cat([poison_edge_weights,torch.ones([mask_edge_index.shape[1]],dtype=torch.float,device=device)])
 
-# idx_test = data.test_mask.nonzero().flatten()[:200]
-# idx_test = list(set(data.test_mask.nonzero().flatten().tolist()) - set(atk_test_nodes))
-# idx_atk = data.test_mask.nonzero().flatten()[200:].tolist()
-# yt_nids = [nid for nid in idx_atk if data.y.tolist()==args.target_class] 
-# yx_nids = torch.LongTensor(list(set(idx_atk) - set(yt_nids))).to(device)
 atk_labels = poison_labels.clone()
 atk_labels[atk_test_nodes] = args.target_class
+
 clean_acc = test_model.test(poison_x,induct_edge_index,induct_edge_weights,data.y,clean_test_nodes)
 '''clean accuracy of clean test nodes before injecting triggers to the attack test nodes'''
 print("accuracy on clean test nodes: {:.4f}".format(clean_acc))
@@ -311,6 +343,4 @@ asr = test_model.test(induct_x,induct_edge_index,induct_edge_weights,atk_labels,
 ca = test_model.test(induct_x,induct_edge_index,induct_edge_weights,data.y,clean_test_nodes)
 print("ASR: {:.4f}".format(asr))
 print("CA: {:.4f}".format(ca))
-# output = test_model(induct_x,induct_edge_index,induct_edge_weights)
-# train_attach_rate = (output.argmax(dim=1)[atk_test_nodes]==args.target_class).float().mean()
-# print("ASR: {:.4f}".format(train_attach_rate))
+
