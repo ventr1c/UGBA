@@ -1,0 +1,58 @@
+nohup: ignoring input
+Namespace(attack_method='None', cuda=True, dataset='Cora', debug=True, defense_mode='none', device_id=1, dis_weight=1.0, dropout=0.5, epochs=200, hidden=32, homo_boost_thrd=0.5, homo_loss_weight=0.0, inner=1, lr=0.01, model='GCN', no_cuda=False, prune_thr=0.2, seed=10, selection_method='cluster', target_class=0, target_loss_weight=1, test_model='GCN', thrd=0.5, trigger_prob=0.5, trigger_size=3, trojan_epochs=200, vs_ratio=0.01, weight_decay=0.0005)
+Length of training set: 541
+Training benign model Finished!
+Total time elapsed: 2.7120s
+Benign CA: 0.8444
+Length of training set: 541
+=== training gcn model ===
+Epoch 0, training loss: 1.9322519302368164
+acc_val: 0.2926
+Epoch 10, training loss: 1.8021061420440674
+acc_val: 0.3037
+Epoch 20, training loss: 1.7138649225234985
+acc_val: 0.3037
+Epoch 30, training loss: 1.4916369915008545
+acc_val: 0.3704
+Epoch 40, training loss: 1.249752402305603
+acc_val: 0.4222
+Epoch 50, training loss: 1.0792059898376465
+acc_val: 0.4852
+Epoch 60, training loss: 0.9508324861526489
+acc_val: 0.5519
+Epoch 70, training loss: 0.8185819387435913
+acc_val: 0.5889
+Epoch 80, training loss: 0.7560440301895142
+acc_val: 0.6000
+Epoch 90, training loss: 0.7048590779304504
+acc_val: 0.6815
+Epoch 100, training loss: 0.6410071849822998
+acc_val: 0.7037
+Epoch 110, training loss: 0.5871880054473877
+acc_val: 0.7000
+Epoch 120, training loss: 0.5697429776191711
+acc_val: 0.7074
+Epoch 130, training loss: 0.5388628244400024
+acc_val: 0.7222
+Epoch 140, training loss: 0.5049092769622803
+acc_val: 0.7185
+Epoch 150, training loss: 0.49561578035354614
+acc_val: 0.7185
+Epoch 160, training loss: 0.46084827184677124
+acc_val: 0.7148
+Epoch 170, training loss: 0.4230300188064575
+acc_val: 0.7259
+Epoch 180, training loss: 0.4255925714969635
+acc_val: 0.7185
+Epoch 190, training loss: 0.39406707882881165
+acc_val: 0.7333
+=== picking the best model according to the performance on validation ===
+Training encoder Finished!
+Total time elapsed: 1.7850s
+Encoder CA on clean test nodes: 0.7889
+[1 4 4 ... 6 1 1]
+precent of left attach nodes: 1.000
+target class rate on Vs: 0.0000
+accuracy on clean test nodes: 0.8407
+ASR: 0.2030
+CA: 0.8407

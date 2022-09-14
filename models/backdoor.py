@@ -232,7 +232,7 @@ def max_norm(data):
     return (data - np.min(data)) / _range
     
 def obtain_attach_nodes_by_cluster(args,model,node_idxs,x,labels,device,size):
-    dis_weight = 1
+    dis_weight = args.dis_weight
     cluster_centers = model.cluster_centers_
     y_pred = model.predict(x.detach().cpu().numpy())
     # y_true = labels.cpu().numpy()
@@ -421,7 +421,7 @@ class Backdoor:
 
             labels_outter = labels.clone()
             labels_outter[idx_outter] = args.target_class
-            loss_target = 0.0 *F.nll_loss(output[torch.cat([idx_train,idx_outter])],
+            loss_target = self.args.target_loss_weight *F.nll_loss(output[torch.cat([idx_train,idx_outter])],
                                     labels_outter[torch.cat([idx_train,idx_outter])])
             loss_homo = 0.0
 
@@ -446,6 +446,18 @@ class Backdoor:
 
         self.trojan.eval()
 
+    def inject_trigger_rand(self, idx_attach, features,edge_index,edge_weight, labels):
+
+        if(self.args.attack_method == 'Rand_Gene'):
+            trojan_feat, trojan_edge_index, trojan_weights = self.trigger_rand_gene(features, self.idx_labeled, idx_attach)
+        elif(self.args.attack_method == 'Rand_Samp'):
+            trojan_feat, trojan_edge_index, trojan_weights = self.trigger_rand_samp(features, self.idx_labeled, labels, idx_attach)
+        update_edge_index = torch.cat([edge_index,trojan_edge_index],dim=1)
+        update_edge_weights = torch.cat([edge_weight,trojan_weights]) 
+        update_feat = torch.cat([features,trojan_feat])
+
+        return update_feat, update_edge_index, update_edge_weights
+
     def fit_rand(self, features, edge_index, edge_weight, labels, idx_train, idx_attach,idx_unlabeled):
 
         args = self.args
@@ -469,6 +481,7 @@ class Backdoor:
         optimizer_shadow = optim.Adam(self.shadow_model.parameters(), lr=args.lr, weight_decay=args.weight_decay)
 
         # change the labels of the poisoned node to the target class
+        self.origin_labels = labels.clone()
         self.labels = labels.clone()
         self.labels[idx_attach] = args.target_class
 
@@ -487,7 +500,7 @@ class Backdoor:
                 if(self.args.attack_method == 'Rand_Gene'):
                     trojan_feat, trojan_edge_index, trojan_weights = self.trigger_rand_gene(features, self.idx_labeled, idx_attach)
                 elif(self.args.attack_method == 'Rand_Samp'):
-                    trojan_feat, trojan_edge_index, trojan_weights = self.trigger_rand_samp(features, self.idx_labeled, labels, idx_attach)
+                    trojan_feat, trojan_edge_index, trojan_weights = self.trigger_rand_samp(features, self.idx_labeled, self.origin_labels, idx_attach)
  
                 # trojan_weights = torch.cat([torch.ones([len(trojan_feat),1],dtype=torch.float,device=self.device),trojan_weights],dim=1)
                 # trojan_weights = trojan_weights.flatten()
@@ -551,14 +564,21 @@ class Backdoor:
                         .format(i, loss_inner, loss_target, loss_homo))
                 print("acc_train_clean: {:.4f}, ASR_train_attach: {:.4f}, ASR_train_outter: {:.4f}"\
                         .format(acc_train_clean,acc_train_attach,acc_train_outter))
-        poison_labels = self.labels
-        return poison_x, poison_edge_index, poison_edge_weights, poison_labels
 
 
     def get_poisoned(self):
 
         with torch.no_grad():
             poison_x, poison_edge_index, poison_edge_weights = self.inject_trigger(self.idx_attach,self.features,self.edge_index,self.edge_weights)
+        poison_labels = self.labels
+        poison_edge_index = poison_edge_index[:,poison_edge_weights>0.0]
+        poison_edge_weights = poison_edge_weights[poison_edge_weights>0.0]
+        return poison_x, poison_edge_index, poison_edge_weights, poison_labels
+    
+    def get_poisoned_rand(self):
+
+        with torch.no_grad():
+            poison_x, poison_edge_index, poison_edge_weights = self.inject_trigger_rand(self.idx_attach,self.features,self.edge_index,self.edge_weights, self.origin_labels)
         poison_labels = self.labels
         poison_edge_index = poison_edge_index[:,poison_edge_weights>0.0]
         poison_edge_weights = poison_edge_weights[poison_edge_weights>0.0]
@@ -626,7 +646,7 @@ class Backdoor:
         
         return trojan_feat, trojan_edge_index, trojan_edge_weights
 
-    def trigger_rand_saml(self, x, idx_attach, labels, seen_node_idx):
+    def trigger_rand_samp(self, x, seen_node_idx, origin_labels, idx_attach):
         '''random sampling'''
         '''
         construct connection: randomly select 
@@ -657,12 +677,12 @@ class Backdoor:
         '''
         injTriggerNum = nattach*self.args.trigger_size
 
-        target_class_nodes_index = np.where(labels.cpu() == self.args.target_class)[0]
+        target_class_nodes_index = np.where(origin_labels.cpu() == self.args.target_class)[0]
         candidaite_nodes = [val for val in target_class_nodes_index if val in seen_node_idx]
 
         rs = np.random.RandomState(self.args.seed)
         trojan_feat_node_index = rs.choice(candidaite_nodes, size = injTriggerNum, replace=True)
         trojan_feat = x[trojan_feat_node_index].to(self.device)
         
-        return trojan_feat, trojan_edge_weights
+        return trojan_feat, trojan_edge_index, trojan_edge_weights
 # %%

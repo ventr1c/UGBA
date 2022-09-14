@@ -4,7 +4,7 @@ import argparse
 import numpy as np
 import torch
 from models.GCN import GCN
-from torch_geometric.datasets import Planetoid, WebKB, WikipediaNetwork
+from torch_geometric.datasets import Planetoid, WebKB, WikipediaNetwork, Reddit2
 #%%
 
 # Training settings
@@ -14,7 +14,7 @@ parser.add_argument('--debug', action='store_true',
 parser.add_argument('--no-cuda', action='store_true', default=False,
                     help='Disables CUDA training.')
 parser.add_argument('--seed', type=int, default=10, help='Random seed.')
-parser.add_argument('--dataset', type=str, default='Cora', help='Random seed.')
+parser.add_argument('--dataset', type=str, default='Reddit2', help='Random seed.')
 parser.add_argument('--lr', type=float, default=0.01,
                     help='Initial learning rate.')
 parser.add_argument('--weight_decay', type=float, default=5e-4,
@@ -52,8 +52,10 @@ transform = T.Compose([T.NormalizeFeatures()])
 
 # if args.dataset in ['Cora', 'Citeseer', 'Pubmed']:
 np.random.seed(11) # fix the random seed is important
-dataset = Planetoid(root='./data/', \
-                    name=args.dataset,\
+# dataset = Planetoid(root='./data/', \
+#                     name=args.dataset,\
+#                     transform=None)
+dataset = Reddit2(root='./data/Reddit2', \
                     transform=None)
 
 data = dataset[0].to(device)
