@@ -1,0 +1,54 @@
+nohup: ignoring input
+WARNING:root:The OGB package is out of date. Your version is 1.3.3, while the latest version is 1.3.4.
+1
+2
+Namespace(attack_method='Basic', cuda=True, dataset='Flickr', debug=True, defense_mode='prune', device_id=1, dis_weight=1.0, dropout=0.5, epochs=200, hidden=128, homo_boost_thrd=0.5, homo_loss_weight=1.0, inner=1, lr=0.01, model='GCN', no_cuda=False, prune_thr=0.2, seed=10, selection_method='loss', target_class=0, target_loss_weight=1, test_model='GCN', thrd=0.5, train_lr=0.02, trigger_prob=0.5, trigger_size=3, trojan_epochs=200, vs_ratio=0.01, weight_decay=0.0005)
+Length of training set: 17850
+Training benign model Finished!
+Total time elapsed: 4.7046s
+Benign CA: 0.4737
+Epoch 0, loss_inner: 1.94602, loss_target: 1.91601, homo loss: 0.52792 
+acc_train_clean: 0.1218, ASR_train_attach: 0.0000, ASR_train_outter: 0.0384
+Epoch 10, loss_inner: 1.67862, loss_target: 1.64306, homo loss: 0.01583 
+acc_train_clean: 0.4147, ASR_train_attach: 0.7202, ASR_train_outter: 0.8003
+Epoch 20, loss_inner: 1.63156, loss_target: 1.59189, homo loss: 0.01157 
+acc_train_clean: 0.4127, ASR_train_attach: 0.8061, ASR_train_outter: 0.8794
+Epoch 30, loss_inner: 1.61211, loss_target: 1.57507, homo loss: 0.01471 
+acc_train_clean: 0.4133, ASR_train_attach: 0.8221, ASR_train_outter: 0.9141
+Epoch 40, loss_inner: 1.59471, loss_target: 1.55687, homo loss: 0.02907 
+acc_train_clean: 0.4137, ASR_train_attach: 0.8699, ASR_train_outter: 0.9352
+Epoch 50, loss_inner: 1.58390, loss_target: 1.81679, homo loss: 0.03904 
+acc_train_clean: 0.4125, ASR_train_attach: 0.9301, ASR_train_outter: 0.0000
+Epoch 60, loss_inner: 1.58334, loss_target: 1.66444, homo loss: 0.71158 
+acc_train_clean: 0.4115, ASR_train_attach: 0.9362, ASR_train_outter: 0.0301
+Epoch 70, loss_inner: 1.56472, loss_target: 1.52717, homo loss: 0.79196 
+acc_train_clean: 0.4146, ASR_train_attach: 0.9018, ASR_train_outter: 0.9525
+Epoch 80, loss_inner: 1.55662, loss_target: 1.52217, homo loss: 0.76455 
+acc_train_clean: 0.4143, ASR_train_attach: 0.9399, ASR_train_outter: 0.9804
+Epoch 90, loss_inner: 1.55185, loss_target: 1.54417, homo loss: 0.61886 
+acc_train_clean: 0.4141, ASR_train_attach: 0.9595, ASR_train_outter: 0.9992
+Epoch 100, loss_inner: 1.55324, loss_target: 1.59576, homo loss: 0.12784 
+acc_train_clean: 0.4147, ASR_train_attach: 0.9055, ASR_train_outter: 1.0000
+Epoch 110, loss_inner: 1.57660, loss_target: 1.53674, homo loss: 0.01240 
+acc_train_clean: 0.4269, ASR_train_attach: 0.7399, ASR_train_outter: 0.9917
+Epoch 120, loss_inner: 1.52950, loss_target: 1.49188, homo loss: 0.03259 
+acc_train_clean: 0.4168, ASR_train_attach: 0.9951, ASR_train_outter: 1.0000
+Epoch 130, loss_inner: 1.52199, loss_target: 1.48082, homo loss: 0.03819 
+acc_train_clean: 0.4166, ASR_train_attach: 1.0000, ASR_train_outter: 1.0000
+Epoch 140, loss_inner: 1.52030, loss_target: 1.48060, homo loss: 0.00997 
+acc_train_clean: 0.4175, ASR_train_attach: 0.9988, ASR_train_outter: 0.9985
+Epoch 150, loss_inner: 1.51719, loss_target: 1.47722, homo loss: 0.00687 
+acc_train_clean: 0.4178, ASR_train_attach: 0.9988, ASR_train_outter: 1.0000
+Epoch 160, loss_inner: 1.51350, loss_target: 1.47302, homo loss: 0.00625 
+acc_train_clean: 0.4183, ASR_train_attach: 1.0000, ASR_train_outter: 1.0000
+Epoch 170, loss_inner: 1.51043, loss_target: 1.46995, homo loss: 0.00619 
+acc_train_clean: 0.4196, ASR_train_attach: 1.0000, ASR_train_outter: 1.0000
+Epoch 180, loss_inner: 1.50742, loss_target: 1.46730, homo loss: 0.00528 
+acc_train_clean: 0.4203, ASR_train_attach: 1.0000, ASR_train_outter: 1.0000
+Epoch 190, loss_inner: 1.50404, loss_target: 1.46365, homo loss: 0.00468 
+acc_train_clean: 0.4211, ASR_train_attach: 1.0000, ASR_train_outter: 1.0000
+precent of left attach nodes: 1.000
+target class rate on Vs: 0.9988
+accuracy on clean test nodes: 0.4271
+ASR: 0.9992
+CA: 0.4305

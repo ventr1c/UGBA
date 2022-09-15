@@ -14,7 +14,7 @@ def model_construct(args,model_name,data,device):
                     nhid=args.hidden,\
                     nclass= int(data.y.max()+1),\
                     dropout=args.dropout,\
-                    lr=args.lr,\
+                    lr=args.train_lr,\
                     weight_decay=args.weight_decay,\
                     device=device)
     elif(model_name == 'GAT'):
@@ -23,7 +23,7 @@ def model_construct(args,model_name,data,device):
                     nclass=int(data.y.max()+1), 
                     heads=8,
                     dropout=args.dropout, 
-                    lr=args.lr, 
+                    lr=args.train_lr, 
                     weight_decay=args.weight_decay, 
                     device=device)
     elif(model_name == 'GraphSage'):
@@ -31,7 +31,7 @@ def model_construct(args,model_name,data,device):
                 nhid=args.hidden,\
                 nclass= int(data.y.max()+1),\
                 dropout=args.dropout,\
-                lr=args.lr,\
+                lr=args.train_lr,\
                 weight_decay=args.weight_decay,\
                 device=device)
     elif(model_name == 'GCN_Encoder'):
@@ -39,7 +39,7 @@ def model_construct(args,model_name,data,device):
                             nhid=args.hidden,                    
                             nclass= int(data.y.max()+1),                    
                             dropout=args.dropout,                    
-                            lr=args.lr,                    
+                            lr=args.train_lr,                    
                             weight_decay=args.weight_decay,                    
                             device=device)
     return model
@@ -291,6 +291,67 @@ def obtain_attach_nodes_by_cluster(args,model,node_idxs,x,labels,device,size):
             candidate_nodes = np.concatenate([candidate_nodes,sorted_single_labels_nodes[:last_seleced_num]])
     return candidate_nodes
 
+def obtain_attach_nodes_by_cluster_gpu(args,y_pred,cluster_centers,node_idxs,x,labels,device,size):
+    dis_weight = args.dis_weight
+    # cluster_centers = model.cluster_centers_
+    # y_pred = model.predict(x.detach().cpu().numpy())
+    # y_true = labels.cpu().numpy()
+    # calculate the distance of each nodes away from their centers
+    distances = [] 
+    distances_tar = []
+    for id in range(x.shape[0]):
+        # tmp_center_label = args.target_class
+        tmp_center_label = y_pred[id]
+        # tmp_true_label = y_true[id]
+        tmp_tar_label = args.target_class
+        
+        tmp_center_x = cluster_centers[tmp_center_label]
+        # tmp_true_x = cluster_centers[tmp_true_label]
+        tmp_tar_x = cluster_centers[tmp_tar_label]
+
+        dis = np.linalg.norm(tmp_center_x - x[id].detach().cpu().numpy())
+        # dis1 = np.linalg.norm(tmp_true_x - x[id].cpu().numpy())
+        dis_tar = np.linalg.norm(tmp_tar_x - x[id].cpu().numpy())
+        # print(dis,dis1,tmp_center_label,tmp_true_label)
+        distances.append(dis)
+        distances_tar.append(dis_tar)
+        
+    distances = np.array(distances)
+    distances_tar = np.array(distances_tar)
+    # label_list = np.unique(labels.cpu())
+    print(y_pred)
+    label_list = np.unique(y_pred)
+    labels_dict = {}
+    for i in label_list:
+        # labels_dict[i] = np.where(labels.cpu()==i)[0]
+        labels_dict[i] = np.where(y_pred==i)[0]
+        # filter out labeled nodes
+        labels_dict[i] = np.array(list(set(node_idxs) & set(labels_dict[i])))
+
+    each_selected_num = int(size/len(label_list)-1)
+    last_seleced_num = size - each_selected_num*(len(label_list)-2)
+    candidate_nodes = np.array([])
+    for label in label_list:
+        if(label == args.target_class):
+            continue
+        single_labels_nodes = labels_dict[label]    # the node idx of the nodes in single class
+        single_labels_nodes = np.array(list(set(single_labels_nodes)))
+
+        single_labels_nodes_dis = distances[single_labels_nodes]
+        single_labels_nodes_dis = max_norm(single_labels_nodes_dis)
+        single_labels_nodes_dis_tar = distances_tar[single_labels_nodes]
+        single_labels_nodes_dis_tar = max_norm(single_labels_nodes_dis_tar)
+        # the closer to the center, the more far away from the target centers
+        single_labels_dis_score =  single_labels_nodes_dis + dis_weight * (-single_labels_nodes_dis_tar)
+        single_labels_nid_index = np.argsort(single_labels_dis_score) # sort descently based on the distance away from the center
+        sorted_single_labels_nodes = np.array(single_labels_nodes[single_labels_nid_index])
+        if(label != label_list[-1]):
+            candidate_nodes = np.concatenate([candidate_nodes,sorted_single_labels_nodes[:each_selected_num]])
+        else:
+            candidate_nodes = np.concatenate([candidate_nodes,sorted_single_labels_nodes[:last_seleced_num]])
+    return candidate_nodes
+
+
 from torch_geometric.utils import to_undirected,erdos_renyi_graph
 class Backdoor:
 
@@ -319,23 +380,32 @@ class Backdoor:
 
         return edge_index
         
-    def inject_trigger(self, idx_attach, features,edge_index,edge_weight):
-
+    def inject_trigger(self, idx_attach, features,edge_index,edge_weight,device):
+        self.trojan = self.trojan.to(device)
+        idx_attach = idx_attach.to(device)
+        features = features.to(device)
+        edge_index = edge_index.to(device)
+        edge_weight = edge_weight.to(device)
         self.trojan.eval()
 
         trojan_feat, trojan_weights = self.trojan(features[idx_attach],self.args.thrd) # may revise the process of generate
         
-        trojan_weights = torch.cat([torch.ones([len(idx_attach),1],dtype=torch.float,device=self.device),trojan_weights],dim=1)
+        trojan_weights = torch.cat([torch.ones([len(idx_attach),1],dtype=torch.float,device=device),trojan_weights],dim=1)
         trojan_weights = trojan_weights.flatten()
 
         trojan_feat = trojan_feat.view([-1,features.shape[1]])
 
-        trojan_edge = self.get_trojan_edge(len(features),idx_attach,self.args.trigger_size).to(self.device)
+        trojan_edge = self.get_trojan_edge(len(features),idx_attach,self.args.trigger_size).to(device)
 
         update_edge_weights = torch.cat([edge_weight,trojan_weights,trojan_weights])
         update_feat = torch.cat([features,trojan_feat])
         update_edge_index = torch.cat([edge_index,trojan_edge],dim=1)
 
+        self.trojan = self.trojan.cpu()
+        idx_attach = idx_attach.cpu()
+        features = features.cpu()
+        edge_index = edge_index.cpu()
+        edge_weight = edge_weight.cpu()
         return update_feat, update_edge_index, update_edge_weights
 
 
@@ -445,6 +515,7 @@ class Backdoor:
                         .format(acc_train_clean,acc_train_attach,acc_train_outter))
 
         self.trojan.eval()
+        torch.cuda.empty_cache()
 
     def inject_trigger_rand(self, idx_attach, features,edge_index,edge_weight, labels):
 
@@ -569,7 +640,7 @@ class Backdoor:
     def get_poisoned(self):
 
         with torch.no_grad():
-            poison_x, poison_edge_index, poison_edge_weights = self.inject_trigger(self.idx_attach,self.features,self.edge_index,self.edge_weights)
+            poison_x, poison_edge_index, poison_edge_weights = self.inject_trigger(self.idx_attach,self.features,self.edge_index,self.edge_weights,self.device)
         poison_labels = self.labels
         poison_edge_index = poison_edge_index[:,poison_edge_weights>0.0]
         poison_edge_weights = poison_edge_weights[poison_edge_weights>0.0]

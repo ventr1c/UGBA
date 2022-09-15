@@ -144,8 +144,9 @@ class GCN_Encoder(nn.Module):
             node testing indices
         """
         self.eval()
-        output = self.forward(features, edge_index, edge_weight)
-        acc_test = utils.accuracy(output[idx_test], labels[idx_test])
+        with torch.no_grad():
+            output = self.forward(features, edge_index, edge_weight)
+            acc_test = utils.accuracy(output[idx_test], labels[idx_test])
         # print("Test set results:",
         #       "loss= {:.4f}".format(loss_test.item()),
         #       "accuracy= {:.4f}".format(acc_test.item()))

@@ -4,7 +4,7 @@ import argparse
 import numpy as np
 import torch
 from models.GCN import GCN
-from torch_geometric.datasets import Planetoid, WebKB, WikipediaNetwork, Reddit2
+from torch_geometric.datasets import Planetoid, WebKB, WikipediaNetwork, Reddit
 #%%
 
 # Training settings
@@ -19,7 +19,7 @@ parser.add_argument('--lr', type=float, default=0.01,
                     help='Initial learning rate.')
 parser.add_argument('--weight_decay', type=float, default=5e-4,
                     help='Weight decay (L2 loss on parameters).')
-parser.add_argument('--hidden', type=int, default=32,
+parser.add_argument('--hidden', type=int, default=128,
                     help='Number of hidden units.')
 parser.add_argument('--dropout', type=float, default=0.5,
                     help='Dropout rate (1 - keep probability).')
@@ -55,7 +55,7 @@ np.random.seed(11) # fix the random seed is important
 # dataset = Planetoid(root='./data/', \
 #                     name=args.dataset,\
 #                     transform=None)
-dataset = Reddit2(root='./data/Reddit2', \
+dataset = Reddit(root='./data/Reddit', \
                     transform=None)
 
 data = dataset[0].to(device)
