@@ -1,4 +1,6 @@
 #%%
+from math import degrees
+from tkinter.tix import Tree
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
@@ -10,13 +12,21 @@ from models.SAGE import GraphSage
 from models.GCN_Encoder import GCN_Encoder
 def model_construct(args,model_name,data,device):
     if (model_name == 'GCN'):
+        if(args.dataset == 'Reddit2'):
+            use_ln = True
+            layer_norm_first = False
+        else:
+            use_ln = False
+            layer_norm_first = False
         model = GCN(nfeat=data.x.shape[1],\
                     nhid=args.hidden,\
                     nclass= int(data.y.max()+1),\
                     dropout=args.dropout,\
                     lr=args.train_lr,\
                     weight_decay=args.weight_decay,\
-                    device=device)
+                    device=device,
+                    use_ln=use_ln,
+                    layer_norm_first=layer_norm_first)
     elif(model_name == 'GAT'):
         model = GAT(nfeat=data.x.shape[1], 
                     nhid=args.hidden, 
@@ -35,13 +45,21 @@ def model_construct(args,model_name,data,device):
                 weight_decay=args.weight_decay,\
                 device=device)
     elif(model_name == 'GCN_Encoder'):
+        if(args.dataset == 'Reddit2'):
+            use_ln = True
+            layer_norm_first = False
+        else:
+            use_ln = False
+            layer_norm_first = False
         model = GCN_Encoder(nfeat=data.x.shape[1],                    
                             nhid=args.hidden,                    
                             nclass= int(data.y.max()+1),                    
                             dropout=args.dropout,                    
                             lr=args.train_lr,                    
                             weight_decay=args.weight_decay,                    
-                            device=device)
+                            device=device,
+                            use_ln=use_ln,
+                            layer_norm_first=layer_norm_first)
     return model
 
 #%%
@@ -144,10 +162,11 @@ def max_norm(data):
     _range = np.max(data) - np.min(data)
     return (data - np.min(data)) / _range
 
-def obtain_attach_nodes(node_idxs, size):
+def obtain_attach_nodes(args,node_idxs, size):
     ### current random to implement
     size = min(len(node_idxs),size)
-    return node_idxs[np.random.choice(len(node_idxs),size,replace=False)]
+    rs = np.random.RandomState(args.seed)
+    return node_idxs[rs.choice(len(node_idxs),size,replace=False)]
 
 def obtain_attach_nodes_by_influential(args,model,node_idxs,x,edge_index,edge_weights,labels,device,size,selected_way='conf'):
     size = min(len(node_idxs),size)
@@ -231,10 +250,10 @@ def max_norm(data):
     _range = np.max(data) - np.min(data)
     return (data - np.min(data)) / _range
     
-def obtain_attach_nodes_by_cluster(args,model,node_idxs,x,labels,device,size):
+def obtain_attach_nodes_by_cluster(args,y_pred,model,node_idxs,x,labels,device,size):
     dis_weight = args.dis_weight
     cluster_centers = model.cluster_centers_
-    y_pred = model.predict(x.detach().cpu().numpy())
+    # y_pred = model.predict(x.detach().cpu().numpy())
     # y_true = labels.cpu().numpy()
     # calculate the distance of each nodes away from their centers
     distances = [] 
@@ -343,6 +362,122 @@ def obtain_attach_nodes_by_cluster_gpu(args,y_pred,cluster_centers,node_idxs,x,l
         single_labels_nodes_dis_tar = max_norm(single_labels_nodes_dis_tar)
         # the closer to the center, the more far away from the target centers
         single_labels_dis_score =  single_labels_nodes_dis + dis_weight * (-single_labels_nodes_dis_tar)
+        single_labels_nid_index = np.argsort(single_labels_dis_score) # sort descently based on the distance away from the center
+        sorted_single_labels_nodes = np.array(single_labels_nodes[single_labels_nid_index])
+        if(label != label_list[-1]):
+            candidate_nodes = np.concatenate([candidate_nodes,sorted_single_labels_nodes[:each_selected_num]])
+        else:
+            candidate_nodes = np.concatenate([candidate_nodes,sorted_single_labels_nodes[:last_seleced_num]])
+    return candidate_nodes
+
+from torch_geometric.utils import degree
+def obtain_attach_nodes_by_cluster_degree(args,edge_index,y_pred,cluster_centers,node_idxs,x,size):
+    dis_weight = args.dis_weight
+    # cluster_centers = model.cluster_centers_
+    # y_pred = model.predict(x.detach().cpu().numpy())
+    # y_true = labels.cpu().numpy()
+    # calculate the distance of each nodes away from their centers
+    degrees = (degree(edge_index[0])  + degree(edge_index[1])).cpu().numpy()
+    distances = [] 
+    # degrees = []
+ 
+    for id in range(x.shape[0]):
+        tmp_center_label = y_pred[id]
+        tmp_center_x = cluster_centers[tmp_center_label]
+
+        dis = np.linalg.norm(tmp_center_x - x[id].detach().cpu().numpy())
+        distances.append(dis)
+
+        
+    distances = np.array(distances)
+
+    # label_list = np.unique(labels.cpu())
+    print(y_pred)
+    label_list = np.unique(y_pred)
+    labels_dict = {}
+    for i in label_list:
+        # labels_dict[i] = np.where(labels.cpu()==i)[0]
+        labels_dict[i] = np.where(y_pred==i)[0]
+        # filter out labeled nodes
+        labels_dict[i] = np.array(list(set(node_idxs) & set(labels_dict[i])))
+
+    each_selected_num = int(size/len(label_list)-1)
+    last_seleced_num = size - each_selected_num*(len(label_list)-2)
+    candidate_nodes = np.array([])
+    for label in label_list:
+        if(label == args.target_class):
+            continue
+        single_labels_nodes = labels_dict[label]    # the node idx of the nodes in single class
+        single_labels_nodes = np.array(list(set(single_labels_nodes)))
+
+        single_labels_nodes_dis = distances[single_labels_nodes]
+        single_labels_nodes_dis = max_norm(single_labels_nodes_dis)
+
+        single_labels_nodes_degrees = degrees[single_labels_nodes]
+        single_labels_nodes_degrees = max_norm(single_labels_nodes_degrees)
+        
+        # the closer to the center, the more far away from the target centers
+        # single_labels_dis_score =  single_labels_nodes_dis + dis_weight * (-single_labels_nodes_dis_tar)
+        single_labels_dis_score = single_labels_nodes_dis + dis_weight * single_labels_nodes_degrees
+        single_labels_nid_index = np.argsort(single_labels_dis_score) # sort descently based on the distance away from the center
+        sorted_single_labels_nodes = np.array(single_labels_nodes[single_labels_nid_index])
+        if(label != label_list[-1]):
+            candidate_nodes = np.concatenate([candidate_nodes,sorted_single_labels_nodes[:each_selected_num]])
+        else:
+            candidate_nodes = np.concatenate([candidate_nodes,sorted_single_labels_nodes[:last_seleced_num]])
+    return candidate_nodes
+
+def obtain_attach_nodes_by_cluster_degree_all(args,edge_index,y_pred,cluster_centers,node_idxs,x,labels,device,size):
+    dis_weight = args.dis_weight
+    # cluster_centers = model.cluster_centers_
+    # y_pred = model.predict(x.detach().cpu().numpy())
+    # y_true = labels.cpu().numpy()
+    # calculate the distance of each nodes away from their centers
+    degrees = (degree(edge_index[0])  + degree(edge_index[1])).cpu().numpy()
+    distances = [] 
+    # degrees = []
+ 
+    for id in range(x.shape[0]):
+        tmp_center_label = y_pred[id]
+        tmp_center_x = cluster_centers[tmp_center_label]
+
+        dis = np.linalg.norm(tmp_center_x - x[id].detach().cpu().numpy())
+        distances.append(dis)
+
+        
+    distances = np.array(distances)
+
+    # label_list = np.unique(labels.cpu())
+    print(y_pred)
+
+
+
+    label_list = np.unique(y_pred)
+    labels_dict = {}
+    for i in label_list:
+        # labels_dict[i] = np.where(labels.cpu()==i)[0]
+        labels_dict[i] = np.where(y_pred==i)[0]
+        # filter out labeled nodes
+        labels_dict[i] = np.array(list(set(node_idxs) & set(labels_dict[i])))
+
+    each_selected_num = int(size/len(label_list)-1)
+    last_seleced_num = size - each_selected_num*(len(label_list)-2)
+    candidate_nodes = np.array([])
+    for label in label_list:
+        if(label == args.target_class):
+            continue
+        single_labels_nodes = labels_dict[label]    # the node idx of the nodes in single class
+        single_labels_nodes = np.array(list(set(single_labels_nodes)))
+
+        single_labels_nodes_dis = distances[single_labels_nodes]
+        single_labels_nodes_dis = max_norm(single_labels_nodes_dis)
+
+        single_labels_nodes_degrees = degrees[single_labels_nodes]
+        single_labels_nodes_degrees = max_norm(single_labels_nodes_degrees)
+        
+        # the closer to the center, the more far away from the target centers
+        # single_labels_dis_score =  single_labels_nodes_dis + dis_weight * (-single_labels_nodes_dis_tar)
+        single_labels_dis_score = single_labels_nodes_dis + dis_weight * single_labels_nodes_degrees
         single_labels_nid_index = np.argsort(single_labels_dis_score) # sort descently based on the distance away from the center
         sorted_single_labels_nodes = np.array(single_labels_nodes[single_labels_nid_index])
         if(label != label_list[-1]):
@@ -472,7 +607,8 @@ class Backdoor:
             self.trojan.eval()
             optimizer_trigger.zero_grad()
 
-            idx_outter = torch.cat([idx_attach,idx_unlabeled[np.random.choice(len(idx_unlabeled),size=512,replace=False)]])
+            rs = np.random.RandomState(self.args.seed)
+            idx_outter = torch.cat([idx_attach,idx_unlabeled[rs.choice(len(idx_unlabeled),size=512,replace=False)]])
 
             trojan_feat, trojan_weights = self.trojan(features[idx_outter],self.args.thrd) # may revise the process of generate
         

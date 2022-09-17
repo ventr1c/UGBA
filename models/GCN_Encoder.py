@@ -14,7 +14,7 @@ from torch_geometric.utils import from_scipy_sparse_matrix
 
 class GCN_Encoder(nn.Module):
 
-    def __init__(self, nfeat, nhid, nclass, dropout=0.5, lr=0.01, weight_decay=5e-4, layer=2,device=None):
+    def __init__(self, nfeat, nhid, nclass, dropout=0.5, lr=0.01, weight_decay=5e-4, layer=2,device=None,use_ln=False,layer_norm_first=False):
 
         super(GCN_Encoder, self).__init__()
 
@@ -23,12 +23,14 @@ class GCN_Encoder(nn.Module):
         self.nfeat = nfeat
         self.hidden_sizes = [nhid]
         self.nclass = nclass
+        self.use_ln = use_ln
+        self.layer_norm_first = layer_norm_first
         # self.convs = nn.ModuleList()
         # self.convs.append(GCNConv(nfeat, nhid))
         # for _ in range(layer-2):
         #     self.convs.append(GCNConv(nhid,nhid))
         # self.gc2 = GCNConv(nhid, nclass)
-        self.body = GCN_body(nfeat, nhid, dropout, layer,device=None)
+        self.body = GCN_body(nfeat, nhid, dropout, layer,device=None,use_ln=use_ln,layer_norm_first=layer_norm_first)
         self.fc = nn.Linear(nhid,nclass)
 
         self.dropout = dropout
@@ -160,7 +162,7 @@ class GCN_Encoder(nn.Module):
         return acc_test,correct_nids
 
 class GCN_body(nn.Module):
-    def __init__(self,nfeat, nhid, dropout=0.5, layer=2,device=None,layer_norm_first=True,use_ln=True):
+    def __init__(self,nfeat, nhid, dropout=0.5, layer=2,device=None,layer_norm_first=False,use_ln=False):
         super(GCN_body, self).__init__()
         self.device = device
         self.nfeat = nfeat

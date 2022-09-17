@@ -1,12 +1,9 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[1]:
-print(1)
-# import ogb
-# import ogb.nodeproppred
-# from ogb import nodeproppred
-print(2)
+# In[1]: 
+
+
 import time
 import argparse
 import numpy as np
@@ -14,9 +11,10 @@ import torch
 from models.GCN import GCN
 from models.GCN_Encoder import GCN_Encoder
 from torch_geometric.datasets import Planetoid, WebKB, WikipediaNetwork,Reddit,Reddit2,Flickr,Yelp,PPI
+from torch_geometric.utils import to_dense_adj,dense_to_sparse
+
 # from ogb.nodeproppred import PygNodePropPredDataset
 # from torch_geometric.loader import DataLoader
-
 from help_funcs import prune_unrelated_edge,prune_unrelated_edge_isolated,select_target_nodes
 import help_funcs
 import scipy.sparse as sp
@@ -33,11 +31,11 @@ parser.add_argument('--model', type=str, default='GCN', help='model',
 parser.add_argument('--dataset', type=str, default='Cora', 
                     help='Dataset',
                     choices=['Cora','Citeseer','Pubmed','PPI','Flickr','ogbn-arxiv','Reddit','Reddit2','Yelp'])
-parser.add_argument('--train_lr', type=float, default=0.02,
+parser.add_argument('--train_lr', type=float, default=0.01,
                     help='Initial learning rate.')
 parser.add_argument('--weight_decay', type=float, default=5e-4,
                     help='Weight decay (L2 loss on parameters).')
-parser.add_argument('--hidden', type=int, default=128,
+parser.add_argument('--hidden', type=int, default=32,
                     help='Number of hidden units.')
 parser.add_argument('--thrd', type=float, default=0.5)
 parser.add_argument('--target_class', type=int, default=0)
@@ -51,22 +49,22 @@ parser.add_argument('--lr', type=float, default=0.01,
                     help='Initial learning rate.')
 parser.add_argument('--trigger_size', type=int, default=3,
                     help='tirgger_size')
-parser.add_argument('--vs_ratio', type=float, default=0.01,
+parser.add_argument('--vs_ratio', type=float, default=0.005,
                     help="ratio of poisoning nodes relative to the full graph")
 # defense setting
-parser.add_argument('--defense_mode', type=str, default="none",
+parser.add_argument('--defense_mode', type=str, default="prune",
                     choices=['prune', 'isolate', 'none'],
                     help="Mode of defense")
-parser.add_argument('--prune_thr', type=float, default=0.3,
+parser.add_argument('--prune_thr', type=float, default=0.15,
                     help="Threshold of prunning edges")
 parser.add_argument('--target_loss_weight', type=float, default=1,
                     help="Weight of optimize outter trigger generator")
-parser.add_argument('--homo_loss_weight', type=float, default=0,
+parser.add_argument('--homo_loss_weight', type=float, default=1,
                     help="Weight of optimize similarity loss")
 parser.add_argument('--homo_boost_thrd', type=float, default=0.5,
                     help="Threshold of increase similarity")
 # attack setting
-parser.add_argument('--dis_weight', type=float, default=1,
+parser.add_argument('--dis_weight', type=float, default=-1,
                     help="Weight of cluster distance")
 parser.add_argument('--attack_method', type=str, default='Basic',
                     choices=['Rand_Gene','Rand_Samp','Basic','None'],
@@ -74,7 +72,7 @@ parser.add_argument('--attack_method', type=str, default='Basic',
 parser.add_argument('--trigger_prob', type=float, default=0.5,
                     help="The probability to generate the trigger's edges in random method")
 parser.add_argument('--selection_method', type=str, default='none',
-                    choices=['loss','conf','cluster','none'],
+                    choices=['loss','conf','cluster','none','cluster_degree'],
                     help='Method to select idx_attach for training trojan model (none means randomly select)')
 parser.add_argument('--test_model', type=str, default='GCN',
                     choices=['GCN','GAT','GraphSage','GIN'],
@@ -90,6 +88,9 @@ args = parser.parse_known_args()[0]
 args.cuda =  not args.no_cuda and torch.cuda.is_available()
 device = torch.device(('cuda:{}' if torch.cuda.is_available() else 'cpu').format(args.device_id))
 # device2 = torch.device(('cuda:{}' if torch.cuda.is_available() else 'cpu').format(args.device_id+1))
+
+torch.manual_seed(args.seed)
+torch.cuda.manual_seed(args.seed)
 
 
 #%%
@@ -113,7 +114,7 @@ elif(args.dataset == 'Reddit2'):
                     transform=transform)
 elif(args.dataset == 'ogbn-arxiv'):
     # Download and process data at './dataset/ogbg_molhiv/'
-    dataset = nodeproppred.PygNodePropPredDataset(name = 'ogbn-arxiv', root='./data/')
+    dataset = PygNodePropPredDataset(name = 'ogbn-arxiv', root='./data/')
     split_idx = dataset.get_idx_split() 
 elif(args.dataset == 'Yelp'):
     # Download and process data at './dataset/ogbg_molhiv/'
@@ -121,16 +122,17 @@ elif(args.dataset == 'Yelp'):
     # idx_train, idx_val, idx_test = split_idx["train"], split_idx["valid"], split_idx["test"]
 
 data = dataset[0].to(device)
+
 if(args.dataset == 'ogbn-arxiv'):
-    nEdge = dataset[0].edge_index.shape[1]
-    setattr(data,'train_mask',torch.zeros(nEdge, dtype=torch.bool).to(device))
+    nNode = data.x.shape[0]
+    setattr(data,'train_mask',torch.zeros(nNode, dtype=torch.bool).to(device))
     # dataset[0].train_mask = torch.zeros(nEdge, dtype=torch.bool).to(device)
-    data.val_mask = torch.zeros(nEdge, dtype=torch.bool).to(device)
-    data.test_mask = torch.zeros(nEdge, dtype=torch.bool).to(device)
+    data.val_mask = torch.zeros(nNode, dtype=torch.bool).to(device)
+    data.test_mask = torch.zeros(nNode, dtype=torch.bool).to(device)
     data.y = data.y.squeeze(1)
 # we build our own train test split 
 from utils import get_split
-data, idx_train, idx_val, idx_clean_test, idx_atk = get_split(data,device)
+data, idx_train, idx_val, idx_clean_test, idx_atk = get_split(args,data,device)
 
 #%%
 from torch_geometric.utils import to_undirected
@@ -175,7 +177,7 @@ benign_model = benign_model.cpu()
 # In[9]:
 
 from sklearn_extra import cluster
-from models.backdoor import obtain_attach_nodes,Backdoor, obtain_attach_nodes_by_cluster_gpu,obtain_attach_nodes_by_influential,obtain_attach_nodes_by_cluster
+from models.backdoor import obtain_attach_nodes,Backdoor, obtain_attach_nodes_by_cluster_degree, obtain_attach_nodes_by_cluster_gpu,obtain_attach_nodes_by_influential,obtain_attach_nodes_by_cluster
 
 from kmeans_pytorch import kmeans, kmeans_predict
 
@@ -184,11 +186,11 @@ unlabeled_idx = (torch.bitwise_not(data.test_mask)&torch.bitwise_not(data.train_
 size = int((len(data.test_mask)-data.test_mask.sum())*args.vs_ratio)
 # here is randomly select poison nodes from unlabeled nodes
 if(args.selection_method == 'none'):
-    idx_attach = obtain_attach_nodes(unlabeled_idx,size)
+    idx_attach = obtain_attach_nodes(args,unlabeled_idx,size)
 elif(args.selection_method == 'loss' or args.selection_method == 'conf'):
     idx_attach = obtain_attach_nodes_by_influential(args,benign_model,unlabeled_idx.cpu().tolist(),data.x,train_edge_index,None,data.y,device,size,selected_way=args.selection_method)
     idx_attach = torch.LongTensor(idx_attach).to(device)
-elif(args.selection_method == 'cluster'):
+elif(args.selection_method == 'cluster0'):
     encoder_modelpath = './modelpath/{}_{}_benign.pth'.format('GCN_Encoder', args.dataset)
     if(os.path.exists(encoder_modelpath)):
         # load existing benign model
@@ -215,13 +217,16 @@ elif(args.selection_method == 'cluster'):
     nclass = np.unique(data.y.cpu().numpy()).shape[0]
     encoder_x = gcn_encoder.get_h(data.x, train_edge_index,None).clone().detach()
     _, cluster_centers = kmeans(X=encoder_x[seen_node_idx], num_clusters=nclass, distance='euclidean', device=device)
-    y_pred = kmeans_predict(encoder_x, cluster_centers, 'euclidean', device=device)
+    # y_pred = kmeans_predict(encoder_x, cluster_centers, 'euclidean', device=device)
+    encoder_output = gcn_encoder(data.x,train_edge_index,None)
+    y_pred = np.array(encoder_output.argmax(dim=1).cpu()).astype(int)
+
     idx_attach = obtain_attach_nodes_by_cluster_gpu(args,y_pred,cluster_centers,unlabeled_idx.cpu().tolist(),encoder_x,data.y,device,size).astype(int)
     idx_attach = torch.LongTensor(idx_attach).to(device)
     # kmedoids = cluster.KMedoids(n_clusters=nclass,method='pam')
     # kmedoids.fit(encoder_x[seen_node_idx].detach().cpu().numpy())
     # idx_attach = obtain_attach_nodes_by_cluster(args,kmedoids,unlabeled_idx.cpu().tolist(),encoder_x,data.y,device,size)
-elif(args.selection_method == 'cluster0'):
+elif(args.selection_method == 'cluster'):
     # construct GCN encoder
     encoder_modelpath = './modelpath/{}_{}_benign.pth'.format('GCN_Encoder', args.dataset)
     if(os.path.exists(encoder_modelpath)):
@@ -248,12 +253,45 @@ elif(args.selection_method == 'cluster0'):
     seen_node_idx = torch.concat([idx_train,unlabeled_idx])
     nclass = np.unique(data.y.cpu().numpy()).shape[0]
     encoder_x = gcn_encoder.get_h(data.x, train_edge_index,None).clone().detach()
+    encoder_output = gcn_encoder(data.x,train_edge_index,None)
+    y_pred = np.array(encoder_output.argmax(dim=1).cpu()).astype(int)
     gcn_encoder = gcn_encoder.cpu()
     kmedoids = cluster.KMedoids(n_clusters=nclass,method='pam')
     kmedoids.fit(encoder_x[seen_node_idx].detach().cpu().numpy())
-    idx_attach = obtain_attach_nodes_by_cluster(args,kmedoids,unlabeled_idx.cpu().tolist(),encoder_x,data.y,device,size).astype(int)
+    idx_attach = obtain_attach_nodes_by_cluster(args,y_pred,kmedoids,unlabeled_idx.cpu().tolist(),encoder_x,data.y,device,size).astype(int)
     idx_attach = torch.LongTensor(idx_attach).to(device)
+elif(args.selection_method == 'cluster_degree'):
+    gcn_encoder = model_construct(args,'GCN_Encoder',data,device).to(device) 
+    t_total = time.time()
+    # edge_weights = torch.ones([data.edge_index.shape[1]],device=device,dtype=torch.float)
+    print("Length of training set: {}".format(len(idx_train)))
+    gcn_encoder.fit(data.x, train_edge_index, None, data.y, idx_train, idx_val,train_iters=args.epochs,verbose=True)
+    print("Training encoder Finished!")
+    print("Total time elapsed: {:.4f}s".format(time.time() - t_total))
 
+    encoder_clean_test_ca = gcn_encoder.test(data.x, data.edge_index, None, data.y,idx_clean_test)
+    print("Encoder CA on clean test nodes: {:.4f}".format(encoder_clean_test_ca))
+    # from sklearn import cluster
+    seen_node_idx = torch.concat([idx_train,unlabeled_idx])
+    nclass = np.unique(data.y.cpu().numpy()).shape[0]
+    encoder_x = gcn_encoder.get_h(data.x, train_edge_index,None).clone().detach()
+    _, cluster_centers = kmeans(X=encoder_x[seen_node_idx], num_clusters=nclass, distance='euclidean', device=device)
+    # kmedoids = cluster.KMedoids(n_clusters=nclass,method='pam')
+    # kmedoids.fit(encoder_x[seen_node_idx].detach().cpu().numpy())
+    # cluster_centers = kmedoids.cluster_centers_
+    # y_pred = kmeans_predict(encoder_x, cluster_centers, 'euclidean', device=device)
+    encoder_output = gcn_encoder(data.x,train_edge_index,None)
+    y_pred = np.array(encoder_output.argmax(dim=1).cpu()).astype(int)
+    # cluster_centers = []
+    # for label in range(nclass):
+    #     idx_sing_class = (y_pred == label).nonzero()[0]
+    #     print(encoder_x[idx_sing_class])
+    #     # print((y_pred == label).nonzero()[0])
+    #     print(idx_sing_class)
+    #     _, sing_center = kmeans(X=encoder_x[idx_sing_class], num_clusters=1, distance='euclidean', device=device)
+    #     cluster_centers.append(sing_center)
+    idx_attach = obtain_attach_nodes_by_cluster_degree(args,train_edge_index,y_pred,cluster_centers,unlabeled_idx.cpu().tolist(),encoder_x,size).astype(int)
+    idx_attach = torch.LongTensor(idx_attach).to(device)
 # In[10]:
 # train trigger generator 
 model = Backdoor(args,device)
@@ -316,7 +354,7 @@ if(args.evaluate_mode == '1by1'):
             induct_x, induct_edge_index,induct_edge_weights = poison_x[sub_induct_nodeset],sub_induct_edge_index,sub_induct_edge_weights
 
         induct_x, induct_edge_index,induct_edge_weights = induct_x.clone().detach(), induct_edge_index.clone().detach(),induct_edge_weights.clone().detach()
-        # do pruning in test datas'''
+        # # do pruning in test datas'''
         if(args.defense_mode == 'prune' or args.defense_mode == 'isolate'):
             induct_edge_index,induct_edge_weights = prune_unrelated_edge(args,induct_edge_index,induct_edge_weights,induct_x,device)
         # attack evaluation
@@ -352,5 +390,3 @@ elif(args.evaluate_mode == 'overall'):
     print("ASR: {:.4f}".format(train_attach_rate))
     ca = test_model.test(induct_x,induct_edge_index,induct_edge_weights,data.y,idx_clean_test)
     print("CA: {:.4f}".format(ca))
-
-# %%

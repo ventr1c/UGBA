@@ -99,8 +99,9 @@ def subgraph(subset,edge_index, edge_attr = None, relabel_nodes: bool = False):
     return edge_index, edge_attr, edge_mask
 # %%
 
-def get_split(data, device):
-    perm = np.random.permutation(data.num_nodes)
+def get_split(args,data, device):
+    rs = np.random.RandomState(args.seed)
+    perm = rs.permutation(data.num_nodes)
     train_number = int(0.2*len(perm))
     idx_train = torch.tensor(sorted(perm[:train_number])).to(device)
     data.train_mask = torch.zeros_like(data.train_mask)
