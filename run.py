@@ -3,7 +3,8 @@
 
 # In[1]:
 print(1)
-import ogb
+# import ogb
+# import ogb.nodeproppred
 # from ogb import nodeproppred
 print(2)
 import time
@@ -29,7 +30,7 @@ parser.add_argument('--no-cuda', action='store_true', default=False,
 parser.add_argument('--seed', type=int, default=10, help='Random seed.')
 parser.add_argument('--model', type=str, default='GCN', help='model',
                     choices=['GCN','GAT','GraphSage','GIN'])
-parser.add_argument('--dataset', type=str, default='ogbn-arxiv', 
+parser.add_argument('--dataset', type=str, default='Cora', 
                     help='Dataset',
                     choices=['Cora','Citeseer','Pubmed','PPI','Flickr','ogbn-arxiv','Reddit','Reddit2','Yelp'])
 parser.add_argument('--train_lr', type=float, default=0.02,
@@ -72,13 +73,15 @@ parser.add_argument('--attack_method', type=str, default='Basic',
                     help='Method to select idx_attach for training trojan model (none means randomly select)')
 parser.add_argument('--trigger_prob', type=float, default=0.5,
                     help="The probability to generate the trigger's edges in random method")
-parser.add_argument('--selection_method', type=str, default='loss',
+parser.add_argument('--selection_method', type=str, default='none',
                     choices=['loss','conf','cluster','none'],
                     help='Method to select idx_attach for training trojan model (none means randomly select)')
 parser.add_argument('--test_model', type=str, default='GCN',
                     choices=['GCN','GAT','GraphSage','GIN'],
                     help='Model used to attack')
-
+parser.add_argument('--evaluate_mode', type=str, default='1by1',
+                    choices=['overall','1by1'],
+                    help='Model used to attack')
 # GPU setting
 parser.add_argument('--device_id', type=int, default=0,
                     help="Threshold of prunning edges")
@@ -294,25 +297,60 @@ print("accuracy on clean test nodes: {:.4f}".format(clean_acc))
 
 # poison_x, poison_edge_index, poison_edge_weights, poison_labels = poison_x.to(device2), poison_edge_index.to(device2), poison_edge_weights.to(device2), poison_labels.to(device2)
 # model.trojan = model.trojan.cpu()
-# %% inject trigger on attack test nodes (idx_atk)'''
-if(args.attack_method == 'Basic'):
-    induct_x, induct_edge_index,induct_edge_weights = model.inject_trigger(idx_atk,poison_x,induct_edge_index,induct_edge_weights,device)
-elif(args.attack_method == 'Rand_Gene' or args.attack_method == 'Rand_Samp'):
-    induct_x, induct_edge_index,induct_edge_weights = model.inject_trigger_rand(idx_atk,poison_x,induct_edge_index,induct_edge_weights,data.y)
-elif(args.attack_method == 'None'):
-    induct_x, induct_edge_index,induct_edge_weights = poison_x,induct_edge_index,induct_edge_weights
+if(args.evaluate_mode == '1by1'):
+    from torch_geometric.utils  import k_hop_subgraph
+    overall_induct_edge_index, overall_induct_edge_weights = induct_edge_index.clone(),induct_edge_weights.clone()
+    asr = 0
+    for i, idx in enumerate(idx_atk):
+        idx=int(idx)
+        sub_induct_nodeset, sub_induct_edge_index, sub_mapping, sub_edge_mask  = k_hop_subgraph(node_idx = [idx], num_hops = 2, edge_index = overall_induct_edge_index, relabel_nodes=True) # sub_mapping means the index of [idx] in sub)nodeset
+        ori_node_idx = sub_induct_nodeset[sub_mapping]
+        relabeled_node_idx = sub_mapping
+        sub_induct_edge_weights = torch.ones([sub_induct_edge_index.shape[1]]).to(device)
+        # inject trigger on attack test nodes (idx_atk)'''
+        if(args.attack_method == 'Basic'):
+            induct_x, induct_edge_index,induct_edge_weights = model.inject_trigger(relabeled_node_idx,poison_x[sub_induct_nodeset],sub_induct_edge_index,sub_induct_edge_weights,device)
+        elif(args.attack_method == 'Rand_Gene' or args.attack_method == 'Rand_Samp'):
+            induct_x, induct_edge_index,induct_edge_weights = model.inject_trigger_rand(relabeled_node_idx,poison_x[sub_induct_nodeset],sub_induct_edge_index,sub_induct_edge_weights,data.y)
+        elif(args.attack_method == 'None'):
+            induct_x, induct_edge_index,induct_edge_weights = poison_x[sub_induct_nodeset],sub_induct_edge_index,sub_induct_edge_weights
 
-induct_x, induct_edge_index,induct_edge_weights = induct_x.clone().detach(), induct_edge_index.clone().detach(),induct_edge_weights.clone().detach()
-# do pruning in test datas'''
-if(args.defense_mode == 'prune' or args.defense_mode == 'isolate'):
-    induct_edge_index,induct_edge_weights = prune_unrelated_edge(args,induct_edge_index,induct_edge_weights,induct_x,device)
-# attack evaluation
+        induct_x, induct_edge_index,induct_edge_weights = induct_x.clone().detach(), induct_edge_index.clone().detach(),induct_edge_weights.clone().detach()
+        # do pruning in test datas'''
+        if(args.defense_mode == 'prune' or args.defense_mode == 'isolate'):
+            induct_edge_index,induct_edge_weights = prune_unrelated_edge(args,induct_edge_index,induct_edge_weights,induct_x,device)
+        # attack evaluation
 
-# test_model = test_model.to(device)
-output = test_model(induct_x,induct_edge_index,induct_edge_weights)
-train_attach_rate = (output.argmax(dim=1)[idx_atk]==args.target_class).float().mean()
-print("ASR: {:.4f}".format(train_attach_rate))
-ca = test_model.test(induct_x,induct_edge_index,induct_edge_weights,data.y,idx_clean_test)
-print("CA: {:.4f}".format(ca))
+        # test_model = test_model.to(device)
+        output = test_model(induct_x,induct_edge_index,induct_edge_weights)
+        train_attach_rate = (output.argmax(dim=1)[relabeled_node_idx]==args.target_class).float().mean()
+        print("Node {}: {}".format(i, idx))
+        print("ASR: {:.4f}".format(train_attach_rate))
+        asr += train_attach_rate
+        # ca = test_model.test(induct_x,induct_edge_index,induct_edge_weights,data.y,idx_clean_test)
+        # print("CA: {:.4f}".format(ca))
+    asr = asr/(idx_atk.shape[0])
+    print("Overall ASR: {:.4f}".format(asr))
+elif(args.evaluate_mode == 'overall'):
+    # %% inject trigger on attack test nodes (idx_atk)'''
+    if(args.attack_method == 'Basic'):
+        induct_x, induct_edge_index,induct_edge_weights = model.inject_trigger(idx_atk,poison_x,induct_edge_index,induct_edge_weights,device)
+    elif(args.attack_method == 'Rand_Gene' or args.attack_method == 'Rand_Samp'):
+        induct_x, induct_edge_index,induct_edge_weights = model.inject_trigger_rand(idx_atk,poison_x,induct_edge_index,induct_edge_weights,data.y)
+    elif(args.attack_method == 'None'):
+        induct_x, induct_edge_index,induct_edge_weights = poison_x,induct_edge_index,induct_edge_weights
+
+    induct_x, induct_edge_index,induct_edge_weights = induct_x.clone().detach(), induct_edge_index.clone().detach(),induct_edge_weights.clone().detach()
+    # do pruning in test datas'''
+    if(args.defense_mode == 'prune' or args.defense_mode == 'isolate'):
+        induct_edge_index,induct_edge_weights = prune_unrelated_edge(args,induct_edge_index,induct_edge_weights,induct_x,device)
+    # attack evaluation
+
+    # test_model = test_model.to(device)
+    output = test_model(induct_x,induct_edge_index,induct_edge_weights)
+    train_attach_rate = (output.argmax(dim=1)[idx_atk]==args.target_class).float().mean()
+    print("ASR: {:.4f}".format(train_attach_rate))
+    ca = test_model.test(induct_x,induct_edge_index,induct_edge_weights,data.y,idx_clean_test)
+    print("CA: {:.4f}".format(ca))
 
 # %%

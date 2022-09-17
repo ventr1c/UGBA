@@ -160,7 +160,7 @@ class GCN_Encoder(nn.Module):
         return acc_test,correct_nids
 
 class GCN_body(nn.Module):
-    def __init__(self,nfeat, nhid, dropout=0.5, layer=2,device=None):
+    def __init__(self,nfeat, nhid, dropout=0.5, layer=2,device=None,layer_norm_first=True,use_ln=True):
         super(GCN_body, self).__init__()
         self.device = device
         self.nfeat = nfeat
@@ -169,11 +169,23 @@ class GCN_body(nn.Module):
 
         self.convs = nn.ModuleList()
         self.convs.append(GCNConv(nfeat, nhid))
+        self.lns = nn.ModuleList()
+        self.lns.append(torch.nn.LayerNorm(nfeat))
         for _ in range(layer-1):
             self.convs.append(GCNConv(nhid,nhid))
+            self.lns.append(nn.LayerNorm(nhid))
+        self.lns.append(torch.nn.LayerNorm(nhid))
+        self.layer_norm_first = layer_norm_first
+        self.use_ln = use_ln
     def forward(self,x, edge_index,edge_weight=None):
+        if(self.layer_norm_first):
+            x = self.lns[0](x)
+        i=0
         for conv in self.convs:
             x = F.relu(conv(x, edge_index,edge_weight))
+            if self.use_ln: 
+                x = self.lns[i+1](x)
+            i+=1
             x = F.dropout(x, self.dropout, training=self.training)
         return x
 # %%

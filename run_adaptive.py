@@ -87,7 +87,7 @@ device = torch.device(('cuda:{}' if torch.cuda.is_available() else 'cpu').format
 #%%
 from torch_geometric.utils import to_undirected
 import torch_geometric.transforms as T
-transform = T.Compose([T.NormalizeFeatures()])
+transform = T.([T.NormalizeFeatures()])
 
 np.random.seed(11) # fix the random seed is important
 if(args.dataset == 'Cora' or args.dataset == 'Citeseer' or args.dataset == 'Pubmed'):
