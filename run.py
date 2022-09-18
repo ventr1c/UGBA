@@ -77,7 +77,7 @@ parser.add_argument('--selection_method', type=str, default='none',
 parser.add_argument('--test_model', type=str, default='GCN',
                     choices=['GCN','GAT','GraphSage','GIN'],
                     help='Model used to attack')
-parser.add_argument('--evaluate_mode', type=str, default='1by1',
+parser.add_argument('--evaluate_mode', type=str, default='overall',
                     choices=['overall','1by1'],
                     help='Model used to attack')
 # GPU setting
@@ -89,10 +89,22 @@ args.cuda =  not args.no_cuda and torch.cuda.is_available()
 device = torch.device(('cuda:{}' if torch.cuda.is_available() else 'cpu').format(args.device_id))
 # device2 = torch.device(('cuda:{}' if torch.cuda.is_available() else 'cpu').format(args.device_id+1))
 
+# np.random.seed(args.seed)
 torch.manual_seed(args.seed)
 torch.cuda.manual_seed(args.seed)
 
-
+np.random.seed(args.seed)
+torch.manual_seed(args.seed)
+torch.cuda.manual_seed(args.seed)
+print(args)
+def setup_seed(seed):
+     torch.manual_seed(seed)
+     torch.cuda.manual_seed_all(seed)
+     np.random.seed(seed)
+    #  random.seed(seed)
+     torch.backends.cudnn.deterministic = True
+# 设置随机数种子
+setup_seed(args.seed)
 #%%
 from torch_geometric.utils import to_undirected
 import torch_geometric.transforms as T
@@ -142,10 +154,6 @@ train_edge_index,_, edge_mask = subgraph(torch.bitwise_not(data.test_mask),data.
 mask_edge_index = data.edge_index[:,torch.bitwise_not(edge_mask)]
 
 # In[3]:
-np.random.seed(args.seed)
-torch.manual_seed(args.seed)
-torch.cuda.manual_seed(args.seed)
-print(args)
 
 # In[6]: 
 import os
@@ -177,7 +185,7 @@ benign_model = benign_model.cpu()
 # In[9]:
 
 from sklearn_extra import cluster
-from models.backdoor import obtain_attach_nodes,Backdoor, obtain_attach_nodes_by_cluster_degree, obtain_attach_nodes_by_cluster_gpu,obtain_attach_nodes_by_influential,obtain_attach_nodes_by_cluster
+from models.backdoor import obtain_attach_nodes,Backdoor, obtain_attach_nodes_by_cluster_degree, obtain_attach_nodes_by_cluster_gpu,obtain_attach_nodes_by_influential,obtain_attach_nodes_by_cluster,cluster_distance_selection,cluster_degree_selection
 
 from kmeans_pytorch import kmeans, kmeans_predict
 
@@ -190,108 +198,13 @@ if(args.selection_method == 'none'):
 elif(args.selection_method == 'loss' or args.selection_method == 'conf'):
     idx_attach = obtain_attach_nodes_by_influential(args,benign_model,unlabeled_idx.cpu().tolist(),data.x,train_edge_index,None,data.y,device,size,selected_way=args.selection_method)
     idx_attach = torch.LongTensor(idx_attach).to(device)
-elif(args.selection_method == 'cluster0'):
-    encoder_modelpath = './modelpath/{}_{}_benign.pth'.format('GCN_Encoder', args.dataset)
-    if(os.path.exists(encoder_modelpath)):
-        # load existing benign model
-        gcn_encoder = torch.load(encoder_modelpath)
-        gcn_encoder = gcn_encoder.to(device)
-        edge_weights = torch.ones([data.edge_index.shape[1]],device=device,dtype=torch.float)
-        print("Loading {} encoder Finished!".format(args.model))
-    else:
-        gcn_encoder = model_construct(args,'GCN_Encoder',data,device).to(device) 
-        t_total = time.time()
-        # edge_weights = torch.ones([data.edge_index.shape[1]],device=device,dtype=torch.float)
-        print("Length of training set: {}".format(len(idx_train)))
-        gcn_encoder.fit(data.x, train_edge_index, None, data.y, idx_train, idx_val,train_iters=args.epochs,verbose=True)
-        print("Training encoder Finished!")
-        print("Total time elapsed: {:.4f}s".format(time.time() - t_total))
-        # # Save trained model
-        # torch.save(gcn_encoder, encoder_modelpath)
-        # print("Encoder saved at {}".format(encoder_modelpath))
-    # test gcn encoder 
-    encoder_clean_test_ca = gcn_encoder.test(data.x, data.edge_index, None, data.y,idx_clean_test)
-    print("Encoder CA on clean test nodes: {:.4f}".format(encoder_clean_test_ca))
-    # from sklearn import cluster
-    seen_node_idx = torch.concat([idx_train,unlabeled_idx])
-    nclass = np.unique(data.y.cpu().numpy()).shape[0]
-    encoder_x = gcn_encoder.get_h(data.x, train_edge_index,None).clone().detach()
-    _, cluster_centers = kmeans(X=encoder_x[seen_node_idx], num_clusters=nclass, distance='euclidean', device=device)
-    # y_pred = kmeans_predict(encoder_x, cluster_centers, 'euclidean', device=device)
-    encoder_output = gcn_encoder(data.x,train_edge_index,None)
-    y_pred = np.array(encoder_output.argmax(dim=1).cpu()).astype(int)
-
-    idx_attach = obtain_attach_nodes_by_cluster_gpu(args,y_pred,cluster_centers,unlabeled_idx.cpu().tolist(),encoder_x,data.y,device,size).astype(int)
-    idx_attach = torch.LongTensor(idx_attach).to(device)
-    # kmedoids = cluster.KMedoids(n_clusters=nclass,method='pam')
-    # kmedoids.fit(encoder_x[seen_node_idx].detach().cpu().numpy())
-    # idx_attach = obtain_attach_nodes_by_cluster(args,kmedoids,unlabeled_idx.cpu().tolist(),encoder_x,data.y,device,size)
 elif(args.selection_method == 'cluster'):
-    # construct GCN encoder
-    encoder_modelpath = './modelpath/{}_{}_benign.pth'.format('GCN_Encoder', args.dataset)
-    if(os.path.exists(encoder_modelpath)):
-        # load existing benign model
-        gcn_encoder = torch.load(encoder_modelpath)
-        gcn_encoder = gcn_encoder.to(device)
-        edge_weights = torch.ones([data.edge_index.shape[1]],device=device,dtype=torch.float)
-        print("Loading {} encoder Finished!".format(args.model))
-    else:
-        gcn_encoder = model_construct(args,'GCN_Encoder',data,device).to(device) 
-        t_total = time.time()
-        # edge_weights = torch.ones([data.edge_index.shape[1]],device=device,dtype=torch.float)
-        print("Length of training set: {}".format(len(idx_train)))
-        gcn_encoder.fit(data.x, train_edge_index, None, data.y, idx_train, idx_val,train_iters=args.epochs,verbose=True)
-        print("Training encoder Finished!")
-        print("Total time elapsed: {:.4f}s".format(time.time() - t_total))
-        # # Save trained model
-        # torch.save(gcn_encoder, encoder_modelpath)
-        # print("Encoder saved at {}".format(encoder_modelpath))
-    # test gcn encoder 
-    encoder_clean_test_ca = gcn_encoder.test(data.x, data.edge_index, None, data.y,idx_clean_test)
-    print("Encoder CA on clean test nodes: {:.4f}".format(encoder_clean_test_ca))
-    # from sklearn import cluster
-    seen_node_idx = torch.concat([idx_train,unlabeled_idx])
-    nclass = np.unique(data.y.cpu().numpy()).shape[0]
-    encoder_x = gcn_encoder.get_h(data.x, train_edge_index,None).clone().detach()
-    encoder_output = gcn_encoder(data.x,train_edge_index,None)
-    y_pred = np.array(encoder_output.argmax(dim=1).cpu()).astype(int)
-    gcn_encoder = gcn_encoder.cpu()
-    kmedoids = cluster.KMedoids(n_clusters=nclass,method='pam')
-    kmedoids.fit(encoder_x[seen_node_idx].detach().cpu().numpy())
-    idx_attach = obtain_attach_nodes_by_cluster(args,y_pred,kmedoids,unlabeled_idx.cpu().tolist(),encoder_x,data.y,device,size).astype(int)
+    idx_attach = cluster_distance_selection(args,data,idx_train,idx_val,idx_clean_test,unlabeled_idx,train_edge_index,size,device)
     idx_attach = torch.LongTensor(idx_attach).to(device)
 elif(args.selection_method == 'cluster_degree'):
-    gcn_encoder = model_construct(args,'GCN_Encoder',data,device).to(device) 
-    t_total = time.time()
-    # edge_weights = torch.ones([data.edge_index.shape[1]],device=device,dtype=torch.float)
-    print("Length of training set: {}".format(len(idx_train)))
-    gcn_encoder.fit(data.x, train_edge_index, None, data.y, idx_train, idx_val,train_iters=args.epochs,verbose=True)
-    print("Training encoder Finished!")
-    print("Total time elapsed: {:.4f}s".format(time.time() - t_total))
-
-    encoder_clean_test_ca = gcn_encoder.test(data.x, data.edge_index, None, data.y,idx_clean_test)
-    print("Encoder CA on clean test nodes: {:.4f}".format(encoder_clean_test_ca))
-    # from sklearn import cluster
-    seen_node_idx = torch.concat([idx_train,unlabeled_idx])
-    nclass = np.unique(data.y.cpu().numpy()).shape[0]
-    encoder_x = gcn_encoder.get_h(data.x, train_edge_index,None).clone().detach()
-    _, cluster_centers = kmeans(X=encoder_x[seen_node_idx], num_clusters=nclass, distance='euclidean', device=device)
-    # kmedoids = cluster.KMedoids(n_clusters=nclass,method='pam')
-    # kmedoids.fit(encoder_x[seen_node_idx].detach().cpu().numpy())
-    # cluster_centers = kmedoids.cluster_centers_
-    # y_pred = kmeans_predict(encoder_x, cluster_centers, 'euclidean', device=device)
-    encoder_output = gcn_encoder(data.x,train_edge_index,None)
-    y_pred = np.array(encoder_output.argmax(dim=1).cpu()).astype(int)
-    # cluster_centers = []
-    # for label in range(nclass):
-    #     idx_sing_class = (y_pred == label).nonzero()[0]
-    #     print(encoder_x[idx_sing_class])
-    #     # print((y_pred == label).nonzero()[0])
-    #     print(idx_sing_class)
-    #     _, sing_center = kmeans(X=encoder_x[idx_sing_class], num_clusters=1, distance='euclidean', device=device)
-    #     cluster_centers.append(sing_center)
-    idx_attach = obtain_attach_nodes_by_cluster_degree(args,train_edge_index,y_pred,cluster_centers,unlabeled_idx.cpu().tolist(),encoder_x,size).astype(int)
+    idx_attach = cluster_degree_selection(args,data,idx_train,idx_val,idx_clean_test,unlabeled_idx,train_edge_index,size,device)
     idx_attach = torch.LongTensor(idx_attach).to(device)
+
 # In[10]:
 # train trigger generator 
 model = Backdoor(args,device)
@@ -304,7 +217,6 @@ elif(args.attack_method == 'Rand_Gene' or args.attack_method == 'Rand_Samp'):
 elif(args.attack_method == 'None'):
     train_edge_weights = torch.ones([train_edge_index.shape[1]],device=device,dtype=torch.float)
     poison_x, poison_edge_index, poison_edge_weights, poison_labels = data.x.clone(), train_edge_index.clone(), train_edge_weights, data.y.clone()
-
 # In[12]:
 if(args.defense_mode == 'prune'):
     poison_edge_index,poison_edge_weights = prune_unrelated_edge(args,poison_edge_index,poison_edge_weights,poison_x,device)

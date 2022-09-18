@@ -486,6 +486,77 @@ def obtain_attach_nodes_by_cluster_degree_all(args,edge_index,y_pred,cluster_cen
             candidate_nodes = np.concatenate([candidate_nodes,sorted_single_labels_nodes[:last_seleced_num]])
     return candidate_nodes
 
+import os
+import time
+from sklearn_extra import cluster
+from kmeans_pytorch import kmeans, kmeans_predict
+
+def cluster_distance_selection(args,data,idx_train,idx_val,idx_clean_test,unlabeled_idx,train_edge_index,size,device):
+    encoder_modelpath = './modelpath/{}_{}_benign.pth'.format('GCN_Encoder', args.dataset)
+    if(os.path.exists(encoder_modelpath)):
+        # load existing benign model
+        gcn_encoder = torch.load(encoder_modelpath)
+        gcn_encoder = gcn_encoder.to(device)
+        edge_weights = torch.ones([data.edge_index.shape[1]],device=device,dtype=torch.float)
+        print("Loading {} encoder Finished!".format(args.model))
+    else:
+        gcn_encoder = model_construct(args,'GCN_Encoder',data,device).to(device) 
+        t_total = time.time()
+        # edge_weights = torch.ones([data.edge_index.shape[1]],device=device,dtype=torch.float)
+        print("Length of training set: {}".format(len(idx_train)))
+        gcn_encoder.fit(data.x, train_edge_index, None, data.y, idx_train, idx_val,train_iters=args.epochs,verbose=True)
+        print("Training encoder Finished!")
+        print("Total time elapsed: {:.4f}s".format(time.time() - t_total))
+        # # Save trained model
+        # torch.save(gcn_encoder, encoder_modelpath)
+        # print("Encoder saved at {}".format(encoder_modelpath))
+    # test gcn encoder 
+    encoder_clean_test_ca = gcn_encoder.test(data.x, data.edge_index, None, data.y,idx_clean_test)
+    print("Encoder CA on clean test nodes: {:.4f}".format(encoder_clean_test_ca))
+    # from sklearn import cluster
+    seen_node_idx = torch.concat([idx_train,unlabeled_idx])
+    nclass = np.unique(data.y.cpu().numpy()).shape[0]
+    encoder_x = gcn_encoder.get_h(data.x, train_edge_index,None).clone().detach()
+    encoder_output = gcn_encoder(data.x,train_edge_index,None)
+    y_pred = np.array(encoder_output.argmax(dim=1).cpu()).astype(int)
+    gcn_encoder = gcn_encoder.cpu()
+    kmedoids = cluster.KMedoids(n_clusters=nclass,method='pam')
+    kmedoids.fit(encoder_x[seen_node_idx].detach().cpu().numpy())
+    idx_attach = obtain_attach_nodes_by_cluster(args,y_pred,kmedoids,unlabeled_idx.cpu().tolist(),encoder_x,data.y,device,size).astype(int)
+    return idx_attach
+
+def cluster_degree_selection(args,data,idx_train,idx_val,idx_clean_test,unlabeled_idx,train_edge_index,size,device):
+        gcn_encoder = model_construct(args,'GCN_Encoder',data,device).to(device) 
+        t_total = time.time()
+        # edge_weights = torch.ones([data.edge_index.shape[1]],device=device,dtype=torch.float)
+        print("Length of training set: {}".format(len(idx_train)))
+        gcn_encoder.fit(data.x, train_edge_index, None, data.y, idx_train, idx_val,train_iters=args.epochs,verbose=True)
+        print("Training encoder Finished!")
+        print("Total time elapsed: {:.4f}s".format(time.time() - t_total))
+
+        encoder_clean_test_ca = gcn_encoder.test(data.x, data.edge_index, None, data.y,idx_clean_test)
+        print("Encoder CA on clean test nodes: {:.4f}".format(encoder_clean_test_ca))
+        # from sklearn import cluster
+        seen_node_idx = torch.concat([idx_train,unlabeled_idx])
+        nclass = np.unique(data.y.cpu().numpy()).shape[0]
+        encoder_x = gcn_encoder.get_h(data.x, train_edge_index,None).clone().detach()
+        # _, cluster_centers = kmeans(X=encoder_x[seen_node_idx], num_clusters=nclass, distance='euclidean', device=device)
+        kmedoids = cluster.KMedoids(n_clusters=nclass,method='pam')
+        kmedoids.fit(encoder_x[seen_node_idx].detach().cpu().numpy())
+        cluster_centers = kmedoids.cluster_centers_
+        # y_pred = kmeans_predict(encoder_x, cluster_centers, 'euclidean', device=device)
+        encoder_output = gcn_encoder(data.x,train_edge_index,None)
+        y_pred = np.array(encoder_output.argmax(dim=1).cpu()).astype(int)
+        # cluster_centers = []
+        # for label in range(nclass):
+        #     idx_sing_class = (y_pred == label).nonzero()[0]
+        #     print(encoder_x[idx_sing_class])
+        #     # print((y_pred == label).nonzero()[0])
+        #     print(idx_sing_class)
+        #     _, sing_center = kmeans(X=encoder_x[idx_sing_class], num_clusters=1, distance='euclidean', device=device)
+        #     cluster_centers.append(sing_center)
+        idx_attach = obtain_attach_nodes_by_cluster_degree(args,train_edge_index,y_pred,cluster_centers,unlabeled_idx.cpu().tolist(),encoder_x,size).astype(int)
+        return idx_attach
 
 from torch_geometric.utils import to_undirected,erdos_renyi_graph
 class Backdoor:
@@ -651,7 +722,7 @@ class Backdoor:
                         .format(acc_train_clean,acc_train_attach,acc_train_outter))
 
         self.trojan.eval()
-        torch.cuda.empty_cache()
+        # torch.cuda.empty_cache()
 
     def inject_trigger_rand(self, idx_attach, features,edge_index,edge_weight, labels):
 
@@ -728,8 +799,8 @@ class Backdoor:
             acc_train_attach = utils.accuracy(output[idx_attach], self.labels[idx_attach])
             
             # involve unlabeled nodes in outter optimization
-
-            idx_outter = torch.cat([idx_attach,idx_unlabeled[np.random.choice(len(idx_unlabeled),size=512,replace=False)]])
+            rs = np.random.RandomState(self.args.seed)
+            idx_outter = torch.cat([idx_attach,idx_unlabeled[rs.choice(len(idx_unlabeled),size=512,replace=False)]])
 
             if(self.args.attack_method == 'Rand_Gene'):
                 trojan_feat, trojan_edge_index, trojan_weights = self.trigger_rand_gene(features, self.idx_labeled, idx_outter)
