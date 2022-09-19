@@ -52,32 +52,32 @@ parser.add_argument('--trigger_size', type=int, default=3,
 parser.add_argument('--vs_ratio', type=float, default=0.005,
                     help="ratio of poisoning nodes relative to the full graph")
 # defense setting
-parser.add_argument('--defense_mode', type=str, default="prune",
-                    choices=['prune', 'isolate', 'none'],
+parser.add_argument('--defense_mode', type=str, default="guard",
+                    choices=['prune', 'isolate', 'none', 'guard', 'median'],
                     help="Mode of defense")
 parser.add_argument('--prune_thr', type=float, default=0.15,
                     help="Threshold of prunning edges")
 parser.add_argument('--target_loss_weight', type=float, default=1,
                     help="Weight of optimize outter trigger generator")
-parser.add_argument('--homo_loss_weight', type=float, default=1,
+parser.add_argument('--homo_loss_weight', type=float, default=3,
                     help="Weight of optimize similarity loss")
 parser.add_argument('--homo_boost_thrd', type=float, default=0.5,
                     help="Threshold of increase similarity")
 # attack setting
-parser.add_argument('--dis_weight', type=float, default=-1,
+parser.add_argument('--dis_weight', type=float, default=1,
                     help="Weight of cluster distance")
 parser.add_argument('--attack_method', type=str, default='Basic',
                     choices=['Rand_Gene','Rand_Samp','Basic','None'],
                     help='Method to select idx_attach for training trojan model (none means randomly select)')
 parser.add_argument('--trigger_prob', type=float, default=0.5,
                     help="The probability to generate the trigger's edges in random method")
-parser.add_argument('--selection_method', type=str, default='none',
+parser.add_argument('--selection_method', type=str, default='cluster_degree',
                     choices=['loss','conf','cluster','none','cluster_degree'],
                     help='Method to select idx_attach for training trojan model (none means randomly select)')
 parser.add_argument('--test_model', type=str, default='GCN',
                     choices=['GCN','GAT','GraphSage','GIN'],
                     help='Model used to attack')
-parser.add_argument('--evaluate_mode', type=str, default='overall',
+parser.add_argument('--evaluate_mode', type=str, default='1by1',
                     choices=['overall','1by1'],
                     help='Model used to attack')
 # GPU setting
@@ -188,7 +188,7 @@ from sklearn_extra import cluster
 from models.backdoor import obtain_attach_nodes,Backdoor, obtain_attach_nodes_by_cluster_degree, obtain_attach_nodes_by_cluster_gpu,obtain_attach_nodes_by_influential,obtain_attach_nodes_by_cluster,cluster_distance_selection,cluster_degree_selection
 
 from kmeans_pytorch import kmeans, kmeans_predict
-
+from models.backdoor import defend_baseline_construct
 # filter out the unlabeled nodes except from training nodes and testing nodes, nonzero() is to get index, flatten is to get 1-d tensor
 unlabeled_idx = (torch.bitwise_not(data.test_mask)&torch.bitwise_not(data.train_mask)).nonzero().flatten()
 size = int((len(data.test_mask)-data.test_mask.sum())*args.vs_ratio)
@@ -231,7 +231,9 @@ else:
 print("precent of left attach nodes: {:.3f}"\
     .format(len(set(bkd_tn_nodes.tolist()) & set(idx_attach.tolist()))/len(idx_attach)))
 #%%
-test_model = model_construct(args,args.test_model,data,device).to(device) 
+# test_model = model_construct(args,args.test_model,data,device).to(device) 
+print(poison_edge_index.shape,poison_labels.shape)
+test_model = defend_baseline_construct(args,args.defense_mode,args.test_model,data,device).to(device) 
 test_model.fit(poison_x, poison_edge_index, poison_edge_weights, poison_labels, bkd_tn_nodes, idx_val,train_iters=args.epochs,verbose=False)
 
 output = test_model(poison_x,poison_edge_index,poison_edge_weights)
