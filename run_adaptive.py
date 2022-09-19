@@ -59,14 +59,14 @@ parser.add_argument('--prune_thr', type=float, default=0.15,
                     help="Threshold of prunning edges")
 parser.add_argument('--target_loss_weight', type=float, default=1,
                     help="Weight of optimize outter trigger generator")
-parser.add_argument('--homo_loss_weight', type=float, default=1,
+parser.add_argument('--homo_loss_weight', type=float, default=0,
                     help="Weight of optimize similarity loss")
 parser.add_argument('--homo_boost_thrd', type=float, default=0.5,
                     help="Threshold of increase similarity")
 # attack setting
 parser.add_argument('--dis_weight', type=float, default=-1,
                     help="Weight of cluster distance")
-parser.add_argument('--attack_method', type=str, default='Basic',
+parser.add_argument('--attack_method', type=str, default='Rand_Gene',
                     choices=['Rand_Gene','Rand_Samp','Basic','None'],
                     help='Method to select idx_attach for training trojan model (none means randomly select)')
 parser.add_argument('--trigger_prob', type=float, default=0.5,
@@ -185,7 +185,8 @@ benign_model = benign_model.cpu()
 # In[9]:
 
 from sklearn_extra import cluster
-from models.backdoor import obtain_attach_nodes,Backdoor, obtain_attach_nodes_by_cluster_degree, obtain_attach_nodes_by_cluster_gpu,obtain_attach_nodes_by_influential,obtain_attach_nodes_by_cluster,cluster_distance_selection,cluster_degree_selection
+from models.backdoor import Backdoor
+from heuristic_selection import obtain_attach_nodes, obtain_attach_nodes_by_cluster_degree, obtain_attach_nodes_by_cluster_gpu,obtain_attach_nodes_by_influential,obtain_attach_nodes_by_cluster,cluster_distance_selection,cluster_degree_selection
 
 from kmeans_pytorch import kmeans, kmeans_predict
 
@@ -212,8 +213,8 @@ if(args.attack_method == 'Basic'):
     model.fit(data.x, train_edge_index, None, data.y, idx_train,idx_attach, unlabeled_idx)
     poison_x, poison_edge_index, poison_edge_weights, poison_labels = model.get_poisoned()
 elif(args.attack_method == 'Rand_Gene' or args.attack_method == 'Rand_Samp'):
-    model.fit_rand(data.x, train_edge_index, None, data.y, idx_train,idx_attach, unlabeled_idx)
-    poison_x, poison_edge_index, poison_edge_weights, poison_labels = model.get_poisoned_rand()
+    # model.fit_rand(data.x, train_edge_index, None, data.y, idx_train,idx_attach, unlabeled_idx)
+    poison_x, poison_edge_index, poison_edge_weights, poison_labels = model.get_poisoned_rand(data.x, train_edge_index, None, data.y, idx_train,idx_attach, unlabeled_idx)
 elif(args.attack_method == 'None'):
     train_edge_weights = torch.ones([train_edge_index.shape[1]],device=device,dtype=torch.float)
     poison_x, poison_edge_index, poison_edge_weights, poison_labels = data.x.clone(), train_edge_index.clone(), train_edge_weights, data.y.clone()
