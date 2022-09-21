@@ -34,7 +34,7 @@ class MedianConv(MessagePassing):
     """
 
     def __init__(self, in_channels: int, out_channels: int,
-                 add_self_loops: bool = False,
+                 add_self_loops: bool = True,
                  bias: bool = True, **kwargs):
 
         kwargs.setdefault('aggr', None)
@@ -65,8 +65,8 @@ class MedianConv(MessagePassing):
 
         if self.add_self_loops:
             if isinstance(edge_index, Tensor):
-                edge_index, _ = remove_self_loops(edge_index)
-                edge_index, _ = add_self_loops(edge_index,
+                edge_index, edge_weight = remove_self_loops(edge_index, edge_weight)
+                edge_index, edge_weight = add_self_loops(edge_index, edge_weight,
                                                num_nodes=x.size(self.node_dim))
             elif isinstance(edge_index, SparseTensor):
                 edge_index = set_diag(edge_index)
@@ -85,6 +85,7 @@ class MedianConv(MessagePassing):
     def aggregate(self, x_j, index):
         # `to_dense_batch` requires the `index` is sorted
         # TODO: is there any way to avoid `argsort`?
+        # print(index.shape)
         ix = torch.argsort(index)
         index = index[ix]
         x_j = x_j[ix]
@@ -93,7 +94,7 @@ class MedianConv(MessagePassing):
         deg = mask.sum(dim=1)
         for i in deg.unique():
             deg_mask = deg == i
-            print(deg_mask,deg.unique())
+            # print(deg_mask,deg.unique())
             out[deg_mask] = dense_x[deg_mask, :i].median(dim=1).values
         return out
 

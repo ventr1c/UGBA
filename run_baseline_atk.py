@@ -53,26 +53,26 @@ parser.add_argument('--trigger_size', type=int, default=3,
 parser.add_argument('--vs_ratio', type=float, default=0.005,
                     help="ratio of poisoning nodes relative to the full graph")
 # defense setting
-parser.add_argument('--defense_mode', type=str, default="guard",
+parser.add_argument('--defense_mode', type=str, default="none",
                     choices=['prune', 'isolate', 'none', 'guard', 'median'],
                     help="Mode of defense")
 parser.add_argument('--prune_thr', type=float, default=0.15,
                     help="Threshold of prunning edges")
 parser.add_argument('--target_loss_weight', type=float, default=1,
                     help="Weight of optimize outter trigger generator")
-parser.add_argument('--homo_loss_weight', type=float, default=3,
+parser.add_argument('--homo_loss_weight', type=float, default=0,
                     help="Weight of optimize similarity loss")
 parser.add_argument('--homo_boost_thrd', type=float, default=0.5,
                     help="Threshold of increase similarity")
 # attack setting
-parser.add_argument('--dis_weight', type=float, default=1,
+parser.add_argument('--dis_weight', type=float, default=0,
                     help="Weight of cluster distance")
-parser.add_argument('--attack_method', type=str, default='Basic',
+parser.add_argument('--attack_method', type=str, default='TDGIA',
                     choices=['Rand_Gene','Rand_Samp','Basic','None','TDGIA','AGIA'],
                     help='Method to select idx_attach for training trojan model (none means randomly select)')
 parser.add_argument('--trigger_prob', type=float, default=0.5,
                     help="The probability to generate the trigger's edges in random method")
-parser.add_argument('--selection_method', type=str, default='cluster_degree',
+parser.add_argument('--selection_method', type=str, default='none',
                     choices=['loss','conf','cluster','none','cluster_degree'],
                     help='Method to select idx_attach for training trojan model (none means randomly select)')
 parser.add_argument('--test_model', type=str, default='GCN',
@@ -113,9 +113,16 @@ transform = T.Compose([T.NormalizeFeatures()])
 
 np.random.seed(11) # fix the random seed is important
 if(args.dataset == 'Cora' or args.dataset == 'Citeseer' or args.dataset == 'Pubmed'):
-    dataset = Planetoid(root='./data/', \
-                        name=args.dataset,\
-                        transform=transform)
+    if(args.attack_method == 'TDGIA'):
+        transform = T.Compose([T.ToSparseTensor()])
+        dataset = Planetoid(root='./data/', name = args.dataset, transform=transform)
+        data = dataset[0].to(device)
+        data.adj_t = data.adj_t.to_symmetric()
+        num_classes = dataset.num_classes
+    else:
+        dataset = Planetoid(root='./data/', \
+                            name=args.dataset,\
+                            transform=transform)
 elif(args.dataset == 'Flickr'):
     dataset = Flickr(root='./data/Flickr/', \
                     transform=transform)
@@ -127,15 +134,22 @@ elif(args.dataset == 'Reddit2'):
                     transform=transform)
 elif(args.dataset == 'ogbn-arxiv'):
     # Download and process data at './dataset/ogbg_molhiv/'
-    dataset = PygNodePropPredDataset(name = 'ogbn-arxiv', root='./data/')
-    split_idx = dataset.get_idx_split() 
+    if(args.attack_method == 'TDGIA'):
+        dataset = PygNodePropPredDataset(name='ogbn-arxiv', transform=T.ToSparseTensor(), root='./data/')
+    else:
+        dataset = PygNodePropPredDataset(name = 'ogbn-arxiv', root='./data/')
+        split_idx = dataset.get_idx_split() 
 elif(args.dataset == 'Yelp'):
     # Download and process data at './dataset/ogbg_molhiv/'
     dataset = Yelp(root='./data/Yelp/')
     # idx_train, idx_val, idx_test = split_idx["train"], split_idx["valid"], split_idx["test"]
 
-
-data = dataset[0].to(device)
+if(args.attack_method == 'TDGIA'):
+    data = dataset[0].to(device)
+    data.adj_t = data.adj_t.to_symmetric()
+    num_classes = dataset.num_classes
+else:
+    data = dataset[0].to(device)
 
 if(args.dataset == 'ogbn-arxiv'):
     nNode = data.x.shape[0]
@@ -149,14 +163,32 @@ from utils import get_split
 data, idx_train, idx_val, idx_clean_test, idx_atk = get_split(args,data,device)
 
 print(data)
+split_idx = {'train': torch.nonzero(data.train_mask, as_tuple=True)[0],
+            'valid':torch.nonzero(data.val_mask, as_tuple=True)[0], 
+            'test': torch.nonzero(data.test_mask, as_tuple=True)[0]}
 
+# inductive split will automatically use relative ids for splitted graphs
+from Baseline_Attack.utils import prune_graph, set_rand_seed, inductive_split, get_index_induc, feat_normalize, target_select
+
+adj_train, adj_val, adj_test = inductive_split(data.adj_t, split_idx)
+x_train, y_train = data.x[idx_train], data.y[idx_train]
+train_val_idx, _ = torch.sort(torch.cat([idx_train,idx_val],dim=0))
+x_val, y_val = data.x[train_val_idx], data.y[idx_val]
+x_test, y_test = data.x, data.y[idx_clean_test]
+tval_idx_train, tval_idx_val = get_index_induc(idx_train,idx_val)
+tval_idx_train = torch.LongTensor(tval_idx_train).to(device)
+tval_idx_val = torch.LongTensor(tval_idx_val).to(device)
+
+data.edge_index = dense_to_sparse(data.adj_t.to_dense())[0].to(device)
+# train_edge_index = dense_to_sparse(adj_train)
 #%%
 from torch_geometric.utils import to_undirected
 from utils import subgraph
-data.edge_index = to_undirected(data.edge_index)
+# data.edge_index = to_undirected(data.edge_index)
 train_edge_index,_, edge_mask = subgraph(torch.bitwise_not(data.test_mask),data.edge_index,relabel_nodes=False)
 mask_edge_index = data.edge_index[:,torch.bitwise_not(edge_mask)]
 
+print(data.x,data.edge_index,data.y)
 # In[3]:
 
 # In[6]: 
@@ -170,7 +202,7 @@ if(os.path.exists(benign_modelpath)):
     # edge_weights = torch.ones([data.edge_index.shape[1]],device=device,dtype=torch.float)
     print("Loading benign {} model Finished!".format(args.model))
 else:
-    benign_model = model_construct(args,args.test_model,data,device).to(device) 
+    benign_model = model_construct(args,args.model,data,device).to(device) 
     t_total = time.time()
     print("Length of training set: {}".format(len(idx_train)))
     benign_model.fit(data.x, train_edge_index, None, data.y, idx_train, idx_val,train_iters=args.epochs,verbose=False)
@@ -231,13 +263,7 @@ elif(args.attack_method == 'None'):
 elif(args.attack_method == 'TDGIA' or args.attack_method == 'AGIA'):
     train_edge_weights = torch.ones([train_edge_index.shape[1]],device=device,dtype=torch.float)
     poison_x, poison_edge_index, poison_edge_weights, poison_labels = data.x.clone(), train_edge_index.clone(), train_edge_weights, data.y.clone()
-    # build surrogate model
-    surrogate_model = model_construct(args,args.model,data,device).to(device) 
-    t_total = time.time()
-    # print("Length of training set: {}".format(len(idx_train)))
-    print("Training Surrogate Model...")
-    surrogate_model.fit(data.x, train_edge_index, None, data.y, idx_train, idx_val,train_iters=args.epochs,verbose=True)
-    print("Training Completed...")
+    
 # In[12]:
 if(args.defense_mode == 'prune'):
     poison_edge_index,poison_edge_weights = prune_unrelated_edge(args,poison_edge_index,poison_edge_weights,poison_x,device)
@@ -252,18 +278,28 @@ else:
 print("precent of left attach nodes: {:.3f}"\
     .format(len(set(bkd_tn_nodes.tolist()) & set(idx_attach.tolist()))/len(idx_attach)))
 #%%
-# test_model = model_construct(args,args.test_model,data,device).to(device) 
+from Baseline_Attack import model_pyg
+# test_model = model_construct(args,args.test_model,data,device).to(device) \
+# data.adj_t = data.adj_t.to(device)
+# print(poison_x)
+# print(data.adj_t)
+# print(poison_labels)
 test_model = defend_baseline_construct(args,args.defense_mode,args.test_model,data,device).to(device) 
 test_model.fit(poison_x, poison_edge_index, poison_edge_weights, poison_labels, bkd_tn_nodes, idx_val,train_iters=args.epochs,verbose=False)
-
-output = test_model(poison_x,poison_edge_index,poison_edge_weights)
+# test_model = model_pyg.GCN(in_channels=data.x.shape[1], 
+#                         hidden_channels=args.hidden, 
+#                         out_channels=int(data.y.max()+1), 
+#                         num_layers=2, 
+#                         dropout=args.dropout,
+#                         lr = args.train_lr,
+#                         weight_decay = args.weight_decay,
+#                         device = device)
+# test_model.fit(poison_x, data.adj_t, poison_labels, bkd_tn_nodes, idx_val,train_iters=args.epochs,verbose=False)
+# output = test_model(poison_x, data.adj_t)
+output = test_model(poison_x,poison_edge_index, poison_edge_weights)
 train_attach_rate = (output.argmax(dim=1)[idx_attach]==args.target_class).float().mean()
 print("target class rate on Vs: {:.4f}".format(train_attach_rate)) 
-
-train_attach_rate = (poison_labels[idx_attach]==args.target_class).float().mean()
-print("target class rate on Vs: {:.4f}".format(train_attach_rate)) 
 #%%
-from torch_sparse import SparseTensor
 from baseline_atk import baseline_attack_parser, attack_baseline_construct
 induct_edge_index = torch.cat([poison_edge_index,mask_edge_index],dim=1)
 induct_edge_weights = torch.cat([poison_edge_weights,torch.ones([mask_edge_index.shape[1]],dtype=torch.float,device=device)])
@@ -297,14 +333,12 @@ if(args.evaluate_mode == '1by1'):
             atk_param['n_inject_max'] = 3
             atk_param['n_edge_max'] = 1
             attacker = attack_baseline_construct(args,atk_param)
-            sp_induct_adj = SparseTensor(row=induct_edge_index[0], col=induct_edge_index[1], value=induct_edge_weights)
-
             # induct_adj = to_dense_adj(induct_edge_index,edge_attr=induct_edge_weights)[0]
-            # print(induct_adj.to_sparse())
-            # sp_induct_adj = induct_adj.to_sparse()
-            # print(sp_induct_adj.has_value())
-            induct_adj, x_attack = attacker.attack(model=surrogate_model,
-                                                    adj=sp_induct_adj,
+            induct_adj = data.adj_t[sub_induct_nodeset][:,sub_induct_nodeset]
+            # print(induct_adj,sub_induct_nodeset, sub_induct_edge_index, sub_mapping, sub_edge_mask,idx_atk)
+            # sp_induct_adj = sp.csr_matrix(induct_adj)
+            induct_adj, x_attack = attacker.attack(model=test_model,
+                                                    adj=induct_adj,
                                                     features=induct_x,
                                                     target_idx=torch.tensor([relabeled_node_idx]),
                                                     labels=None)
@@ -315,7 +349,7 @@ if(args.evaluate_mode == '1by1'):
         if(args.defense_mode == 'prune' or args.defense_mode == 'isolate'):
             induct_edge_index,induct_edge_weights = prune_unrelated_edge(args,induct_edge_index,induct_edge_weights,induct_x,device)
         # attack evaluation
-        
+
         # test_model = test_model.to(device)
         output = test_model(induct_x,induct_edge_index,induct_edge_weights)
         train_attach_rate = (output.argmax(dim=1)[relabeled_node_idx]==args.target_class).float().mean()
@@ -334,22 +368,17 @@ elif(args.evaluate_mode == 'overall'):
         induct_x, induct_edge_index,induct_edge_weights = model.inject_trigger_rand(idx_atk,poison_x,induct_edge_index,induct_edge_weights,data.y)
     elif(args.attack_method == 'None'):
         induct_x, induct_edge_index,induct_edge_weights = poison_x,induct_edge_index,induct_edge_weights
-    elif(args.attack_method == 'TDGIA' or args.attack_method == 'AGIA'):
-        induct_x, induct_edge_index,induct_edge_weights = poison_x,data.edge_index,induct_edge_weights
-        induct_edge_weights = torch.ones([data.edge_index.shape[1]],device=device,dtype=torch.float)
+    elif(args.attack_method == 'TDGIA'):
+        induct_x, induct_edge_index,induct_edge_weights = poison_x,induct_edge_index,induct_edge_weights
         atk_param = baseline_attack_parser(args,device)
         atk_param['n_inject_max'] = idx_atk.shape[0] * 3
         atk_param['n_edge_max'] = 1
         attacker = attack_baseline_construct(args,atk_param)
-        sp_induct_adj = SparseTensor(row=induct_edge_index[0], col=induct_edge_index[1], value=induct_edge_weights)
-        print(induct_edge_weights.shape)
-        print(induct_x.shape)
-        # induct_adj = to_dense_adj(induct_edge_index,edge_attr=induct_edge_weights)[0]
-        # print(induct_adj.to_sparse())
-        # sp_induct_adj = induct_adj.to_sparse()
-        # print(sp_induct_adj.has_value())
-        induct_adj, x_attack = attacker.attack(model=surrogate_model,
-                                                adj=sp_induct_adj,
+        induct_adj = data.adj_t
+        # print(induct_adj,sub_induct_nodeset, sub_induct_edge_index, sub_mapping, sub_edge_mask,idx_atk)
+        # sp_induct_adj = sp.csr_matrix(induct_adj)
+        induct_adj, x_attack = attacker.attack(model=test_model,
+                                                adj=induct_adj,
                                                 features=induct_x,
                                                 target_idx=idx_atk,
                                                 labels=None)
@@ -363,10 +392,7 @@ elif(args.evaluate_mode == 'overall'):
 
     # test_model = test_model.to(device)
     output = test_model(induct_x,induct_edge_index,induct_edge_weights)
-    if(args.attack_method == 'TDGIA' or args.attack_method == 'AGIA'):
-        train_attach_rate = (output.argmax(dim=1)[idx_atk]!=data.y[idx_atk]).float().mean()
-    else:
-        train_attach_rate = (output.argmax(dim=1)[idx_atk]==args.target_class).float().mean()
+    train_attach_rate = (output.argmax(dim=1)[idx_atk]==args.target_class).float().mean()
     print("ASR: {:.4f}".format(train_attach_rate))
     ca = test_model.test(induct_x,induct_edge_index,induct_edge_weights,data.y,idx_clean_test)
     print("CA: {:.4f}".format(ca))
