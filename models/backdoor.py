@@ -20,7 +20,7 @@ def model_construct(args,model_name,data,device):
     if (model_name == 'GCN'):
         if(args.dataset == 'Reddit2'):
             use_ln = True
-            layer_norm_first = False
+            layer_norm_first = True
         else:
             use_ln = False
             layer_norm_first = False
@@ -401,12 +401,12 @@ class Backdoor:
         self.trojan.eval()
         # torch.cuda.empty_cache()
 
-    def inject_trigger_rand(self, idx_attach, features,edge_index,edge_weight, labels):
+    def inject_trigger_rand(self, idx_attach, features,edge_index,edge_weight, labels, full_data = False):
 
         if(self.args.attack_method == 'Rand_Gene'):
-            trojan_feat, trojan_edge_index, trojan_weights = self.trigger_rand_gene(features, self.idx_labeled, idx_attach)
+            trojan_feat, trojan_edge_index, trojan_weights = self.trigger_rand_gene(features, self.idx_labeled, idx_attach, full_data)
         elif(self.args.attack_method == 'Rand_Samp'):
-            trojan_feat, trojan_edge_index, trojan_weights = self.trigger_rand_samp(features, self.idx_labeled, labels, idx_attach)
+            trojan_feat, trojan_edge_index, trojan_weights = self.trigger_rand_samp(features, self.idx_labeled, labels, idx_attach, full_data)
         update_edge_index = torch.cat([edge_index,trojan_edge_index],dim=1)
         update_edge_weights = torch.cat([edge_weight,trojan_weights]) 
         update_feat = torch.cat([features,trojan_feat])
@@ -444,7 +444,7 @@ class Backdoor:
         poison_edge_weights = poison_edge_weights[poison_edge_weights>0.0]
         return poison_x, poison_edge_index, poison_edge_weights, poison_labels
 
-    def trigger_rand_gene(self, x, idx_labeled, idx_attach):
+    def trigger_rand_gene(self, x, idx_labeled, idx_attach, full_data = True):
         '''random generate'''
         '''
         construct connection: randomly select 
@@ -488,9 +488,14 @@ class Backdoor:
         '''
         calculate the average of node features
         '''
-        nodeNum = x[idx_labeled].shape[0]
-        featDim = x[idx_labeled].shape[1]
-        aver_featNum = int(len(x[idx_labeled].nonzero())/nodeNum)
+        if(full_data == True):
+            nodeNum = x.shape[0]
+            featDim = x.shape[1]
+            aver_featNum = int(len(x.nonzero())/nodeNum)
+        else:
+            nodeNum = x[idx_labeled].shape[0]
+            featDim = x[idx_labeled].shape[1]
+            aver_featNum = int(len(x[idx_labeled].nonzero())/nodeNum)
         nattach = len(idx_attach)
         '''
         construct features: randomly sample N dims in one feature vectors and assign their items as 1
@@ -506,7 +511,7 @@ class Backdoor:
         
         return trojan_feat, trojan_edge_index, trojan_edge_weights
 
-    def trigger_rand_samp(self, x, seen_node_idx, origin_labels, idx_attach):
+    def trigger_rand_samp(self, x, seen_node_idx, origin_labels, idx_attach, full_data = True):
         '''random sampling'''
         '''
         construct connection: randomly select 

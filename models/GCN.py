@@ -90,7 +90,7 @@ class GCN(nn.Module):
             self._train_without_val(self.labels, idx_train, train_iters, verbose)
         else:
             self._train_with_val(self.labels, idx_train, idx_val, train_iters, verbose)
-        torch.cuda.empty_cache()
+        # torch.cuda.empty_cache()
 
     def _train_without_val(self, labels, idx_train, train_iters, verbose):
         self.train()
@@ -107,7 +107,7 @@ class GCN(nn.Module):
         self.eval()
         output = self.forward(self.features, self.edge_index, self.edge_weight)
         self.output = output
-        torch.cuda.empty_cache()
+        # torch.cuda.empty_cache()
 
     def _train_with_val(self, labels, idx_train, idx_val, train_iters, verbose):
         if verbose:
@@ -143,7 +143,7 @@ class GCN(nn.Module):
         if verbose:
             print('=== picking the best model according to the performance on validation ===')
         self.load_state_dict(weights)
-        torch.cuda.empty_cache()
+        # torch.cuda.empty_cache()
 
 
     def test(self, features, edge_index, edge_weight, labels,idx_test):
@@ -157,7 +157,7 @@ class GCN(nn.Module):
         with torch.no_grad():
             output = self.forward(features, edge_index, edge_weight)
             acc_test = utils.accuracy(output[idx_test], labels[idx_test])
-        torch.cuda.empty_cache()
+        # torch.cuda.empty_cache()
         # print("Test set results:",
         #       "loss= {:.4f}".format(loss_test.item()),
         #       "accuracy= {:.4f}".format(acc_test.item()))
@@ -168,7 +168,7 @@ class GCN(nn.Module):
         output = self.forward(features, edge_index, edge_weight)
         correct_nids = (output.argmax(dim=1)[idx_test]==labels[idx_test]).nonzero().flatten()   # return a tensor
         acc_test = utils.accuracy(output[idx_test], labels[idx_test])
-        torch.cuda.empty_cache()
+        # torch.cuda.empty_cache()
         return acc_test,correct_nids
 
 # %%
