@@ -345,7 +345,7 @@ class Backdoor:
 
             labels_outter = labels.clone()
             labels_outter[idx_outter] = args.target_class
-            loss_target = 0.0 *F.nll_loss(output[torch.cat([idx_train,idx_outter])],
+            loss_target = F.nll_loss(output[torch.cat([idx_train,idx_outter])],
                                     labels_outter[torch.cat([idx_train,idx_outter])])
             loss_homo = 0.0
 
