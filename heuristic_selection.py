@@ -12,7 +12,9 @@ def obtain_attach_nodes(args,node_idxs, size):
     ### current random to implement
     size = min(len(node_idxs),size)
     rs = np.random.RandomState(args.seed)
-    return node_idxs[rs.choice(len(node_idxs),size,replace=False)]
+    choice = np.arange(len(node_idxs))
+    rs.shuffle(choice)
+    return node_idxs[choice[:size]]
 
 def obtain_attach_nodes_by_influential(args,model,node_idxs,x,edge_index,edge_weights,labels,device,size,selected_way='conf'):
     size = min(len(node_idxs),size)
