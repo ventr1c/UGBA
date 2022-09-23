@@ -22,10 +22,10 @@ parser.add_argument('--debug', action='store_true',
         default=True, help='debug mode')
 parser.add_argument('--no-cuda', action='store_true', default=False,
                     help='Disables CUDA training.')
-parser.add_argument('--seed', type=int, default=10, help='Random seed.')
+parser.add_argument('--seed', type=int, default=11, help='Random seed.')
 parser.add_argument('--model', type=str, default='GCN', help='model',
                     choices=['GCN','GAT','GraphSage','GIN'])
-parser.add_argument('--dataset', type=str, default='ogbn-arxiv', 
+parser.add_argument('--dataset', type=str, default='Pubmed', 
                     help='Dataset',
                     choices=['Cora','Citeseer','Pubmed','PPI','Flickr','ogbn-arxiv','Reddit','Reddit2','Yelp'])
 parser.add_argument('--train_lr', type=float, default=0.01,
@@ -46,7 +46,7 @@ parser.add_argument('--lr', type=float, default=0.01,
                     help='Initial learning rate.')
 parser.add_argument('--trigger_size', type=int, default=3,
                     help='tirgger_size')
-parser.add_argument('--vs_ratio', type=float, default=0.0005,
+parser.add_argument('--vs_ratio', type=float, default=0.008,
                     help="ratio of poisoning nodes relative to the full graph")
 # defense setting
 parser.add_argument('--defense_mode', type=str, default="none",
