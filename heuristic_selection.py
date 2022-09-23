@@ -2,7 +2,7 @@ import torch
 import torch.nn.functional as F
 import numpy as np
 import torch.optim as optim
-from models.backdoor import model_construct
+from models.construct import model_construct
 
 def max_norm(data):
     _range = np.max(data) - np.min(data)
@@ -314,7 +314,7 @@ def obtain_attach_nodes_by_cluster_degree_all(args,edge_index,y_pred,cluster_cen
 import os
 import time
 from sklearn_extra import cluster
-from kmeans_pytorch import kmeans, kmeans_predict
+# from kmeans_pytorch import kmeans, kmeans_predict
 
 def cluster_distance_selection(args,data,idx_train,idx_val,idx_clean_test,unlabeled_idx,train_edge_index,size,device):
     encoder_modelpath = './modelpath/{}_{}_benign.pth'.format('GCN_Encoder', args.dataset)

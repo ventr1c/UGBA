@@ -100,7 +100,7 @@ def subgraph(subset,edge_index, edge_attr = None, relabel_nodes: bool = False):
 # %%
 
 def get_split(args,data, device):
-    rs = np.random.RandomState(args.seed)
+    rs = np.random.RandomState(10)
     perm = rs.permutation(data.num_nodes)
     train_number = int(0.2*len(perm))
     idx_train = torch.tensor(sorted(perm[:train_number])).to(device)
