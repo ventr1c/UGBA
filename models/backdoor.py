@@ -2,38 +2,9 @@
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
+import torch.optim as optim
 import utils
-
 from models.GCN import GCN
-from models.GAT import GAT
-from models.SAGE import GraphSage
-def model_construct(args,model_name,data,device):
-    if (model_name == 'GCN'):
-        model = GCN(nfeat=data.x.shape[1],\
-                    nhid=args.hidden,\
-                    nclass= int(data.y.max()+1),\
-                    dropout=args.dropout,\
-                    lr=args.lr,\
-                    weight_decay=args.weight_decay,\
-                    device=device)
-    elif(model_name == 'GAT'):
-        model = GAT(nfeat=data.x.shape[1], 
-                    nhid=args.hidden, 
-                    nclass=int(data.y.max()+1), 
-                    heads=8,
-                    dropout=args.dropout, 
-                    lr=args.lr, 
-                    weight_decay=args.weight_decay, 
-                    device=device)
-    elif(model_name == 'GraphSage'):
-        model = GraphSage(nfeat=data.x.shape[1],\
-                nhid=args.hidden,\
-                nclass= int(data.y.max()+1),\
-                dropout=args.dropout,\
-                lr=args.lr,\
-                weight_decay=args.weight_decay,\
-                device=device)
-    return model
 
 #%%
 class GradWhere(torch.autograd.Function):
@@ -128,92 +99,6 @@ class HomoLoss(nn.Module):
 
 #%%
 import numpy as np
-import torch.optim as optim
-from models.GCN import GCN
-def obtain_attach_nodes(node_idxs, size):
-    ### current random to implement
-    size = min(len(node_idxs),size)
-    return node_idxs[np.random.choice(len(node_idxs),size,replace=False)]
-
-def obtain_attach_nodes_by_influential(args,model,node_idxs,x,edge_index,edge_weights,labels,device,size,selected_way='conf'):
-    size = min(len(node_idxs),size)
-    # return node_idxs[np.random.choice(len(node_idxs),size,replace=False)]
-    loss_fn = F.nll_loss
-    model = model.to(device)
-    labels = labels.to(device)
-    model.eval()
-    output = model(x, edge_index, edge_weights)
-    loss_diffs = []
-    '''select based on the diff between the loss on target class and true class, nodes with larger diffs are easily selected '''
-    if(selected_way == 'loss'):
-        candidate_nodes = np.array([])
-
-        for id in range(output.shape[0]):
-            loss_atk = loss_fn(output[id],torch.LongTensor([args.target_class]).to(device)[0])
-            loss_bef = loss_fn(output[id],labels[id])
-            # print(loss_atk,loss_bef)
-            loss_diff = float(loss_atk - loss_bef)
-            loss_diffs.append(loss_diff)
-        loss_diffs = np.array(loss_diffs)
-
-        # split the nodes according to the label
-        label_list = np.unique(labels.cpu())
-        labels_dict = {}
-        for i in label_list:
-            labels_dict[i] = np.where(labels.cpu()==i)[0]
-            # filter out labeled nodes
-            labels_dict[i] = np.array(list(set(node_idxs) & set(labels_dict[i])))
-        # fairly select from all the class except for the target class 
-        each_selected_num = int(size/len(label_list)-1)
-        last_seleced_num = size - each_selected_num*(len(label_list)-2)
-        for label in label_list:
-            single_labels_nodes = labels_dict[label]    # the node idx of the nodes in single class
-            single_labels_nodes = np.array(list(set(single_labels_nodes)))
-            single_labels_nodes_loss = loss_diffs[single_labels_nodes]
-            single_labels_nid_index = np.argsort(-single_labels_nodes_loss) # sort descently based on the loss
-            sorted_single_labels_nodes = np.array(single_labels_nodes[single_labels_nid_index])
-            if(label != label_list[-1]):
-                candidate_nodes = np.concatenate([candidate_nodes,sorted_single_labels_nodes[:each_selected_num]])
-            else:
-                candidate_nodes = np.concatenate([candidate_nodes,sorted_single_labels_nodes[:last_seleced_num]])
-        return candidate_nodes.astype(int)
-    elif(selected_way == 'conf'):
-        '''select based on the diff between the conf on target class and true class, nodes with larger confidents are easily selected '''
-        candidate_nodes = np.array([])
-        confidences = []
-        # calculate the confident of each node
-        output = model(x, edge_index, edge_weights)
-        softmax = torch.nn.Softmax(dim=1)
-        for i in range(output.shape[0]):
-            output_nids = output[[i]]
-            preds = output_nids.max(1)[1].type_as(labels)
-            preds = preds.cpu()
-            correct = preds.eq(labels[[i]].detach().cpu()).double().sum().item()
-            confidence = torch.mean(torch.max(softmax(output_nids), dim=1)[0]).item()
-            confidences.append(confidence)
-        confidences = np.array(confidences)
-        # split the nodes according to the label
-        label_list = np.unique(labels.cpu())
-        labels_dict = {}
-        for i in label_list:
-            labels_dict[i] = np.where(labels.cpu()==i)[0]
-            labels_dict[i] = np.array(list(set(node_idxs) & set(labels_dict[i])))
-        # fairly select from all the class except for the target class 
-        each_selected_num = int(size/len(label_list)-1)
-        last_seleced_num = size - each_selected_num*(len(label_list)-2)
-        for label in label_list:
-            single_labels_nodes = labels_dict[label]
-            single_labels_nodes = np.array(list(set(single_labels_nodes)))
-            single_labels_nodes_conf = confidences[single_labels_nodes]
-            single_labels_nid_index = np.argsort(-single_labels_nodes_conf)
-            sorted_single_labels_nodes = np.array(single_labels_nodes[single_labels_nid_index])
-            if(label != label_list[-1]):
-                candidate_nodes = np.concatenate([candidate_nodes,sorted_single_labels_nodes[:each_selected_num]])
-            else:
-                candidate_nodes = np.concatenate([candidate_nodes,sorted_single_labels_nodes[:last_seleced_num]])
-        return candidate_nodes.astype(int)
-
-from torch_geometric.utils import to_undirected
 class Backdoor:
 
     def __init__(self,args, device):
@@ -241,23 +126,32 @@ class Backdoor:
 
         return edge_index
         
-    def inject_trigger(self, idx_attach, features,edge_index,edge_weight):
-
+    def inject_trigger(self, idx_attach, features,edge_index,edge_weight,device):
+        self.trojan = self.trojan.to(device)
+        idx_attach = idx_attach.to(device)
+        features = features.to(device)
+        edge_index = edge_index.to(device)
+        edge_weight = edge_weight.to(device)
         self.trojan.eval()
 
         trojan_feat, trojan_weights = self.trojan(features[idx_attach],self.args.thrd) # may revise the process of generate
         
-        trojan_weights = torch.cat([torch.ones([len(idx_attach),1],dtype=torch.float,device=self.device),trojan_weights],dim=1)
+        trojan_weights = torch.cat([torch.ones([len(idx_attach),1],dtype=torch.float,device=device),trojan_weights],dim=1)
         trojan_weights = trojan_weights.flatten()
 
         trojan_feat = trojan_feat.view([-1,features.shape[1]])
 
-        trojan_edge = self.get_trojan_edge(len(features),idx_attach,self.args.trigger_size).to(self.device)
+        trojan_edge = self.get_trojan_edge(len(features),idx_attach,self.args.trigger_size).to(device)
 
         update_edge_weights = torch.cat([edge_weight,trojan_weights,trojan_weights])
         update_feat = torch.cat([features,trojan_feat])
         update_edge_index = torch.cat([edge_index,trojan_edge],dim=1)
 
+        self.trojan = self.trojan.cpu()
+        idx_attach = idx_attach.cpu()
+        features = features.cpu()
+        edge_index = edge_index.cpu()
+        edge_weight = edge_weight.cpu()
         return update_feat, update_edge_index, update_edge_weights
 
 
@@ -302,14 +196,12 @@ class Backdoor:
             for j in range(self.args.inner):
 
                 optimizer_shadow.zero_grad()
-
                 trojan_feat, trojan_weights = self.trojan(features[idx_attach],args.thrd) # may revise the process of generate
                 trojan_weights = torch.cat([torch.ones([len(trojan_feat),1],dtype=torch.float,device=self.device),trojan_weights],dim=1)
-
                 trojan_weights = trojan_weights.flatten()
                 trojan_feat = trojan_feat.view([-1,features.shape[1]])
-                poison_edge_weights = torch.cat([edge_weight,trojan_weights,trojan_weights]) # repeat trojan weights beacuse of undirected edge
-                poison_x = torch.cat([features,trojan_feat])
+                poison_edge_weights = torch.cat([edge_weight,trojan_weights,trojan_weights]).detach() # repeat trojan weights beacuse of undirected edge
+                poison_x = torch.cat([features,trojan_feat]).detach()
 
                 output = self.shadow_model(poison_x, poison_edge_index, poison_edge_weights)
                 
@@ -326,7 +218,8 @@ class Backdoor:
             self.trojan.eval()
             optimizer_trigger.zero_grad()
 
-            idx_outter = torch.cat([idx_attach,idx_unlabeled[np.random.choice(len(idx_unlabeled),size=512,replace=False)]])
+            rs = np.random.RandomState(self.args.seed)
+            idx_outter = torch.cat([idx_attach,idx_unlabeled[rs.choice(len(idx_unlabeled),size=512,replace=False)]])
 
             trojan_feat, trojan_weights = self.trojan(features[idx_outter],self.args.thrd) # may revise the process of generate
         
@@ -345,7 +238,7 @@ class Backdoor:
 
             labels_outter = labels.clone()
             labels_outter[idx_outter] = args.target_class
-            loss_target = F.nll_loss(output[torch.cat([idx_train,idx_outter])],
+            loss_target = self.args.target_loss_weight *F.nll_loss(output[torch.cat([idx_train,idx_outter])],
                                     labels_outter[torch.cat([idx_train,idx_outter])])
             loss_homo = 0.0
 
@@ -369,15 +262,15 @@ class Backdoor:
                         .format(acc_train_clean,acc_train_attach,acc_train_outter))
 
         self.trojan.eval()
+        # torch.cuda.empty_cache()
 
     def get_poisoned(self):
 
         with torch.no_grad():
-            poison_x, poison_edge_index, poison_edge_weights = self.inject_trigger(self.idx_attach,self.features,self.edge_index,self.edge_weights)
+            poison_x, poison_edge_index, poison_edge_weights = self.inject_trigger(self.idx_attach,self.features,self.edge_index,self.edge_weights,self.device)
         poison_labels = self.labels
         poison_edge_index = poison_edge_index[:,poison_edge_weights>0.0]
         poison_edge_weights = poison_edge_weights[poison_edge_weights>0.0]
         return poison_x, poison_edge_index, poison_edge_weights, poison_labels
-
 
 # %%
