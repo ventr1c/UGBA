@@ -1,0 +1,424 @@
+nohup: ignoring input
+Namespace(attack_method='Basic', cuda=True, dataset='ogbn-arxiv', debug=True, defense_mode='isolate', device_id=2, dis_weight=1.0, dropout=0.5, epochs=200, evaluate_mode='overall', hidden=64, homo_boost_thrd=0.5, homo_loss_weight=0.0, inner=1, lr=0.01, model='GCN', no_cuda=False, prune_thr=0.3, seed=11, selection_method='cluster_degree', target_class=0, target_loss_weight=1, test_model='GCN', thrd=0.5, train_lr=0.02, trigger_prob=0.5, trigger_size=3, trojan_epochs=200, use_vs_number=False, vs_number=0, vs_ratio=0.001, weight_decay=0.0005)
+Length of training set: 33868
+Training benign model Finished!
+Total time elapsed: 16.9537s
+Benign CA: 0.6676
+Length of training set: 33868
+=== training gcn model ===
+Epoch 0, training loss: 3.680744171142578
+acc_val: 0.1306
+Epoch 10, training loss: 2.764760971069336
+acc_val: 0.2969
+Epoch 20, training loss: 2.2360143661499023
+acc_val: 0.4128
+Epoch 30, training loss: 1.9630393981933594
+acc_val: 0.5069
+Epoch 40, training loss: 1.8155815601348877
+acc_val: 0.5445
+Epoch 50, training loss: 1.7280184030532837
+acc_val: 0.5762
+Epoch 60, training loss: 1.655828595161438
+acc_val: 0.5906
+Epoch 70, training loss: 1.6163262128829956
+acc_val: 0.5987
+Epoch 80, training loss: 1.5772699117660522
+acc_val: 0.6052
+Epoch 90, training loss: 1.5579160451889038
+acc_val: 0.6177
+Epoch 100, training loss: 1.5466969013214111
+acc_val: 0.6179
+Epoch 110, training loss: 1.520814061164856
+acc_val: 0.6255
+Epoch 120, training loss: 1.4979526996612549
+acc_val: 0.6267
+Epoch 130, training loss: 1.490506887435913
+acc_val: 0.6307
+Epoch 140, training loss: 1.4843404293060303
+acc_val: 0.6312
+Epoch 150, training loss: 1.4798792600631714
+acc_val: 0.6353
+Epoch 160, training loss: 1.4660470485687256
+acc_val: 0.6358
+Epoch 170, training loss: 1.4667439460754395
+acc_val: 0.6313
+Epoch 180, training loss: 1.4524213075637817
+acc_val: 0.6369
+Epoch 190, training loss: 1.4425530433654785
+acc_val: 0.6413
+=== picking the best model according to the performance on validation ===
+Training encoder Finished!
+Total time elapsed: 15.7489s
+Encoder CA on clean test nodes: 0.6476
+running k-means on cuda:2..
+[running kmeans]: 0it [00:00, ?it/s][running kmeans]: 0it [00:05, ?it/s, center_shift=1657.992310, iteration=1, tol=0.000100][running kmeans]: 1it [00:05,  5.31s/it, center_shift=1657.992310, iteration=1, tol=0.000100][running kmeans]: 1it [00:10,  5.31s/it, center_shift=269.224365, iteration=2, tol=0.000100] [running kmeans]: 2it [00:10,  5.04s/it, center_shift=269.224365, iteration=2, tol=0.000100][running kmeans]: 2it [00:16,  5.04s/it, center_shift=104.570076, iteration=3, tol=0.000100][running kmeans]: 3it [00:16,  5.73s/it, center_shift=104.570076, iteration=3, tol=0.000100][running kmeans]: 3it [00:22,  5.73s/it, center_shift=51.110855, iteration=4, tol=0.000100] [running kmeans]: 4it [00:22,  5.83s/it, center_shift=51.110855, iteration=4, tol=0.000100][running kmeans]: 4it [00:27,  5.83s/it, center_shift=28.761702, iteration=5, tol=0.000100][running kmeans]: 5it [00:27,  5.40s/it, center_shift=28.761702, iteration=5, tol=0.000100][running kmeans]: 5it [00:33,  5.40s/it, center_shift=18.766296, iteration=6, tol=0.000100][running kmeans]: 6it [00:33,  5.56s/it, center_shift=18.766296, iteration=6, tol=0.000100][running kmeans]: 6it [00:37,  5.56s/it, center_shift=13.136721, iteration=7, tol=0.000100][running kmeans]: 7it [00:37,  5.21s/it, center_shift=13.136721, iteration=7, tol=0.000100][running kmeans]: 7it [00:42,  5.21s/it, center_shift=9.472467, iteration=8, tol=0.000100] [running kmeans]: 8it [00:42,  5.05s/it, center_shift=9.472467, iteration=8, tol=0.000100][running kmeans]: 8it [00:48,  5.05s/it, center_shift=7.252515, iteration=9, tol=0.000100][running kmeans]: 9it [00:48,  5.34s/it, center_shift=7.252515, iteration=9, tol=0.000100][running kmeans]: 9it [00:54,  5.34s/it, center_shift=6.925564, iteration=10, tol=0.000100][running kmeans]: 10it [00:54,  5.50s/it, center_shift=6.925564, iteration=10, tol=0.000100][running kmeans]: 10it [00:58,  5.50s/it, center_shift=5.962955, iteration=11, tol=0.000100][running kmeans]: 11it [00:58,  5.21s/it, center_shift=5.962955, iteration=11, tol=0.000100][running kmeans]: 11it [01:04,  5.21s/it, center_shift=5.539671, iteration=12, tol=0.000100][running kmeans]: 12it [01:04,  5.30s/it, center_shift=5.539671, iteration=12, tol=0.000100][running kmeans]: 12it [01:08,  5.30s/it, center_shift=5.512389, iteration=13, tol=0.000100][running kmeans]: 13it [01:08,  4.94s/it, center_shift=5.512389, iteration=13, tol=0.000100][running kmeans]: 13it [01:14,  4.94s/it, center_shift=4.968307, iteration=14, tol=0.000100][running kmeans]: 14it [01:14,  5.22s/it, center_shift=4.968307, iteration=14, tol=0.000100][running kmeans]: 14it [01:20,  5.22s/it, center_shift=4.247713, iteration=15, tol=0.000100][running kmeans]: 15it [01:20,  5.46s/it, center_shift=4.247713, iteration=15, tol=0.000100][running kmeans]: 15it [01:26,  5.46s/it, center_shift=4.109523, iteration=16, tol=0.000100][running kmeans]: 16it [01:26,  5.54s/it, center_shift=4.109523, iteration=16, tol=0.000100][running kmeans]: 16it [01:31,  5.54s/it, center_shift=3.576822, iteration=17, tol=0.000100][running kmeans]: 17it [01:31,  5.61s/it, center_shift=3.576822, iteration=17, tol=0.000100][running kmeans]: 17it [01:36,  5.61s/it, center_shift=3.278536, iteration=18, tol=0.000100][running kmeans]: 18it [01:36,  5.35s/it, center_shift=3.278536, iteration=18, tol=0.000100][running kmeans]: 18it [01:40,  5.35s/it, center_shift=3.030240, iteration=19, tol=0.000100][running kmeans]: 19it [01:40,  4.95s/it, center_shift=3.030240, iteration=19, tol=0.000100][running kmeans]: 19it [01:44,  4.95s/it, center_shift=2.555813, iteration=20, tol=0.000100][running kmeans]: 20it [01:44,  4.77s/it, center_shift=2.555813, iteration=20, tol=0.000100][running kmeans]: 20it [01:48,  4.77s/it, center_shift=2.033958, iteration=21, tol=0.000100][running kmeans]: 21it [01:48,  4.46s/it, center_shift=2.033958, iteration=21, tol=0.000100][running kmeans]: 21it [01:52,  4.46s/it, center_shift=1.842151, iteration=22, tol=0.000100][running kmeans]: 22it [01:52,  4.19s/it, center_shift=1.842151, iteration=22, tol=0.000100][running kmeans]: 22it [01:56,  4.19s/it, center_shift=1.711642, iteration=23, tol=0.000100][running kmeans]: 23it [01:56,  4.28s/it, center_shift=1.711642, iteration=23, tol=0.000100][running kmeans]: 23it [02:01,  4.28s/it, center_shift=1.284179, iteration=24, tol=0.000100][running kmeans]: 24it [02:01,  4.34s/it, center_shift=1.284179, iteration=24, tol=0.000100][running kmeans]: 24it [02:04,  4.34s/it, center_shift=1.402753, iteration=25, tol=0.000100][running kmeans]: 25it [02:04,  4.07s/it, center_shift=1.402753, iteration=25, tol=0.000100][running kmeans]: 25it [02:09,  4.07s/it, center_shift=1.362525, iteration=26, tol=0.000100][running kmeans]: 26it [02:09,  4.33s/it, center_shift=1.362525, iteration=26, tol=0.000100][running kmeans]: 26it [02:13,  4.33s/it, center_shift=1.234277, iteration=27, tol=0.000100][running kmeans]: 27it [02:13,  4.36s/it, center_shift=1.234277, iteration=27, tol=0.000100][running kmeans]: 27it [02:18,  4.36s/it, center_shift=1.284302, iteration=28, tol=0.000100][running kmeans]: 28it [02:18,  4.49s/it, center_shift=1.284302, iteration=28, tol=0.000100][running kmeans]: 28it [02:24,  4.49s/it, center_shift=1.037604, iteration=29, tol=0.000100][running kmeans]: 29it [02:24,  4.88s/it, center_shift=1.037604, iteration=29, tol=0.000100][running kmeans]: 29it [02:29,  4.88s/it, center_shift=0.849407, iteration=30, tol=0.000100][running kmeans]: 30it [02:29,  4.81s/it, center_shift=0.849407, iteration=30, tol=0.000100][running kmeans]: 30it [02:34,  4.81s/it, center_shift=0.910142, iteration=31, tol=0.000100][running kmeans]: 31it [02:34,  5.04s/it, center_shift=0.910142, iteration=31, tol=0.000100][running kmeans]: 31it [02:38,  5.04s/it, center_shift=1.148709, iteration=32, tol=0.000100][running kmeans]: 32it [02:38,  4.71s/it, center_shift=1.148709, iteration=32, tol=0.000100][running kmeans]: 32it [02:44,  4.71s/it, center_shift=0.968998, iteration=33, tol=0.000100][running kmeans]: 33it [02:44,  4.90s/it, center_shift=0.968998, iteration=33, tol=0.000100][running kmeans]: 33it [02:49,  4.90s/it, center_shift=1.185556, iteration=34, tol=0.000100][running kmeans]: 34it [02:49,  5.16s/it, center_shift=1.185556, iteration=34, tol=0.000100][running kmeans]: 34it [02:55,  5.16s/it, center_shift=1.603377, iteration=35, tol=0.000100][running kmeans]: 35it [02:55,  5.17s/it, center_shift=1.603377, iteration=35, tol=0.000100][running kmeans]: 35it [03:01,  5.17s/it, center_shift=0.681174, iteration=36, tol=0.000100][running kmeans]: 36it [03:01,  5.56s/it, center_shift=0.681174, iteration=36, tol=0.000100][running kmeans]: 36it [03:06,  5.56s/it, center_shift=0.432756, iteration=37, tol=0.000100][running kmeans]: 37it [03:06,  5.28s/it, center_shift=0.432756, iteration=37, tol=0.000100][running kmeans]: 37it [03:10,  5.28s/it, center_shift=0.440642, iteration=38, tol=0.000100][running kmeans]: 38it [03:10,  5.15s/it, center_shift=0.440642, iteration=38, tol=0.000100][running kmeans]: 38it [03:16,  5.15s/it, center_shift=0.381874, iteration=39, tol=0.000100][running kmeans]: 39it [03:16,  5.33s/it, center_shift=0.381874, iteration=39, tol=0.000100][running kmeans]: 39it [03:22,  5.33s/it, center_shift=0.417648, iteration=40, tol=0.000100][running kmeans]: 40it [03:22,  5.51s/it, center_shift=0.417648, iteration=40, tol=0.000100][running kmeans]: 40it [03:28,  5.51s/it, center_shift=0.420289, iteration=41, tol=0.000100][running kmeans]: 41it [03:28,  5.61s/it, center_shift=0.420289, iteration=41, tol=0.000100][running kmeans]: 41it [03:34,  5.61s/it, center_shift=0.728905, iteration=42, tol=0.000100][running kmeans]: 42it [03:34,  5.66s/it, center_shift=0.728905, iteration=42, tol=0.000100][running kmeans]: 42it [03:39,  5.66s/it, center_shift=0.478851, iteration=43, tol=0.000100][running kmeans]: 43it [03:39,  5.58s/it, center_shift=0.478851, iteration=43, tol=0.000100][running kmeans]: 43it [03:44,  5.58s/it, center_shift=0.591065, iteration=44, tol=0.000100][running kmeans]: 44it [03:44,  5.34s/it, center_shift=0.591065, iteration=44, tol=0.000100][running kmeans]: 44it [03:48,  5.34s/it, center_shift=0.667358, iteration=45, tol=0.000100][running kmeans]: 45it [03:48,  5.11s/it, center_shift=0.667358, iteration=45, tol=0.000100][running kmeans]: 45it [03:53,  5.11s/it, center_shift=0.250693, iteration=46, tol=0.000100][running kmeans]: 46it [03:53,  4.99s/it, center_shift=0.250693, iteration=46, tol=0.000100][running kmeans]: 46it [03:58,  4.99s/it, center_shift=0.212362, iteration=47, tol=0.000100][running kmeans]: 47it [03:58,  4.79s/it, center_shift=0.212362, iteration=47, tol=0.000100][running kmeans]: 47it [04:03,  4.79s/it, center_shift=0.173606, iteration=48, tol=0.000100][running kmeans]: 48it [04:03,  4.93s/it, center_shift=0.173606, iteration=48, tol=0.000100][running kmeans]: 48it [04:08,  4.93s/it, center_shift=0.140344, iteration=49, tol=0.000100][running kmeans]: 49it [04:08,  5.08s/it, center_shift=0.140344, iteration=49, tol=0.000100][running kmeans]: 49it [04:14,  5.08s/it, center_shift=0.129454, iteration=50, tol=0.000100][running kmeans]: 50it [04:14,  5.19s/it, center_shift=0.129454, iteration=50, tol=0.000100][running kmeans]: 50it [04:21,  5.19s/it, center_shift=0.150495, iteration=51, tol=0.000100][running kmeans]: 51it [04:21,  5.74s/it, center_shift=0.150495, iteration=51, tol=0.000100][running kmeans]: 51it [04:25,  5.74s/it, center_shift=0.265877, iteration=52, tol=0.000100][running kmeans]: 52it [04:25,  5.29s/it, center_shift=0.265877, iteration=52, tol=0.000100][running kmeans]: 52it [04:30,  5.29s/it, center_shift=0.223021, iteration=53, tol=0.000100][running kmeans]: 53it [04:30,  5.13s/it, center_shift=0.223021, iteration=53, tol=0.000100][running kmeans]: 53it [04:33,  5.13s/it, center_shift=0.163082, iteration=54, tol=0.000100][running kmeans]: 54it [04:33,  4.68s/it, center_shift=0.163082, iteration=54, tol=0.000100][running kmeans]: 54it [04:36,  4.68s/it, center_shift=0.061914, iteration=55, tol=0.000100][running kmeans]: 55it [04:36,  4.14s/it, center_shift=0.061914, iteration=55, tol=0.000100][running kmeans]: 55it [04:41,  4.14s/it, center_shift=0.127607, iteration=56, tol=0.000100][running kmeans]: 56it [04:41,  4.40s/it, center_shift=0.127607, iteration=56, tol=0.000100][running kmeans]: 56it [04:46,  4.40s/it, center_shift=0.114375, iteration=57, tol=0.000100][running kmeans]: 57it [04:46,  4.55s/it, center_shift=0.114375, iteration=57, tol=0.000100][running kmeans]: 57it [04:51,  4.55s/it, center_shift=0.068658, iteration=58, tol=0.000100][running kmeans]: 58it [04:51,  4.79s/it, center_shift=0.068658, iteration=58, tol=0.000100][running kmeans]: 58it [04:57,  4.79s/it, center_shift=0.070651, iteration=59, tol=0.000100][running kmeans]: 59it [04:57,  4.94s/it, center_shift=0.070651, iteration=59, tol=0.000100][running kmeans]: 59it [05:02,  4.94s/it, center_shift=0.040445, iteration=60, tol=0.000100][running kmeans]: 60it [05:02,  5.08s/it, center_shift=0.040445, iteration=60, tol=0.000100][running kmeans]: 60it [05:05,  5.08s/it, center_shift=0.033611, iteration=61, tol=0.000100][running kmeans]: 61it [05:05,  4.55s/it, center_shift=0.033611, iteration=61, tol=0.000100][running kmeans]: 61it [05:09,  4.55s/it, center_shift=0.044509, iteration=62, tol=0.000100][running kmeans]: 62it [05:09,  4.37s/it, center_shift=0.044509, iteration=62, tol=0.000100][running kmeans]: 62it [05:15,  4.37s/it, center_shift=0.036832, iteration=63, tol=0.000100][running kmeans]: 63it [05:15,  4.83s/it, center_shift=0.036832, iteration=63, tol=0.000100][running kmeans]: 63it [05:21,  4.83s/it, center_shift=0.033398, iteration=64, tol=0.000100][running kmeans]: 64it [05:21,  5.20s/it, center_shift=0.033398, iteration=64, tol=0.000100][running kmeans]: 64it [05:28,  5.20s/it, center_shift=0.025692, iteration=65, tol=0.000100][running kmeans]: 65it [05:28,  5.62s/it, center_shift=0.025692, iteration=65, tol=0.000100][running kmeans]: 65it [05:34,  5.62s/it, center_shift=0.018816, iteration=66, tol=0.000100][running kmeans]: 66it [05:34,  5.74s/it, center_shift=0.018816, iteration=66, tol=0.000100][running kmeans]: 66it [05:39,  5.74s/it, center_shift=0.017255, iteration=67, tol=0.000100][running kmeans]: 67it [05:39,  5.43s/it, center_shift=0.017255, iteration=67, tol=0.000100][running kmeans]: 67it [05:43,  5.43s/it, center_shift=0.014538, iteration=68, tol=0.000100][running kmeans]: 68it [05:43,  5.22s/it, center_shift=0.014538, iteration=68, tol=0.000100][running kmeans]: 68it [05:48,  5.22s/it, center_shift=0.017761, iteration=69, tol=0.000100][running kmeans]: 69it [05:48,  5.14s/it, center_shift=0.017761, iteration=69, tol=0.000100][running kmeans]: 69it [05:53,  5.14s/it, center_shift=0.015979, iteration=70, tol=0.000100][running kmeans]: 70it [05:53,  5.02s/it, center_shift=0.015979, iteration=70, tol=0.000100][running kmeans]: 70it [05:58,  5.02s/it, center_shift=0.010449, iteration=71, tol=0.000100][running kmeans]: 71it [05:58,  4.88s/it, center_shift=0.010449, iteration=71, tol=0.000100][running kmeans]: 71it [06:04,  4.88s/it, center_shift=0.010896, iteration=72, tol=0.000100][running kmeans]: 72it [06:04,  5.22s/it, center_shift=0.010896, iteration=72, tol=0.000100][running kmeans]: 72it [06:10,  5.22s/it, center_shift=0.006984, iteration=73, tol=0.000100][running kmeans]: 73it [06:10,  5.62s/it, center_shift=0.006984, iteration=73, tol=0.000100][running kmeans]: 73it [06:15,  5.62s/it, center_shift=0.003926, iteration=74, tol=0.000100][running kmeans]: 74it [06:15,  5.40s/it, center_shift=0.003926, iteration=74, tol=0.000100][running kmeans]: 74it [06:20,  5.40s/it, center_shift=0.003429, iteration=75, tol=0.000100][running kmeans]: 75it [06:20,  5.32s/it, center_shift=0.003429, iteration=75, tol=0.000100][running kmeans]: 75it [06:26,  5.32s/it, center_shift=0.004394, iteration=76, tol=0.000100][running kmeans]: 76it [06:26,  5.32s/it, center_shift=0.004394, iteration=76, tol=0.000100][running kmeans]: 76it [06:31,  5.32s/it, center_shift=0.004985, iteration=77, tol=0.000100][running kmeans]: 77it [06:31,  5.29s/it, center_shift=0.004985, iteration=77, tol=0.000100][running kmeans]: 77it [06:36,  5.29s/it, center_shift=0.003342, iteration=78, tol=0.000100][running kmeans]: 78it [06:36,  5.36s/it, center_shift=0.003342, iteration=78, tol=0.000100][running kmeans]: 78it [06:41,  5.36s/it, center_shift=0.004280, iteration=79, tol=0.000100][running kmeans]: 79it [06:41,  5.26s/it, center_shift=0.004280, iteration=79, tol=0.000100][running kmeans]: 79it [06:44,  5.26s/it, center_shift=0.002702, iteration=80, tol=0.000100][running kmeans]: 80it [06:44,  4.61s/it, center_shift=0.002702, iteration=80, tol=0.000100][running kmeans]: 80it [06:47,  4.61s/it, center_shift=0.003312, iteration=81, tol=0.000100][running kmeans]: 81it [06:47,  4.09s/it, center_shift=0.003312, iteration=81, tol=0.000100][running kmeans]: 81it [06:50,  4.09s/it, center_shift=0.003014, iteration=82, tol=0.000100][running kmeans]: 82it [06:50,  3.61s/it, center_shift=0.003014, iteration=82, tol=0.000100][running kmeans]: 82it [06:52,  3.61s/it, center_shift=0.002152, iteration=83, tol=0.000100][running kmeans]: 83it [06:52,  3.13s/it, center_shift=0.002152, iteration=83, tol=0.000100][running kmeans]: 83it [06:56,  3.13s/it, center_shift=0.002740, iteration=84, tol=0.000100][running kmeans]: 84it [06:56,  3.57s/it, center_shift=0.002740, iteration=84, tol=0.000100][running kmeans]: 84it [07:01,  3.57s/it, center_shift=0.001534, iteration=85, tol=0.000100][running kmeans]: 85it [07:01,  3.84s/it, center_shift=0.001534, iteration=85, tol=0.000100][running kmeans]: 85it [07:05,  3.84s/it, center_shift=0.000756, iteration=86, tol=0.000100][running kmeans]: 86it [07:05,  3.94s/it, center_shift=0.000756, iteration=86, tol=0.000100][running kmeans]: 86it [07:08,  3.94s/it, center_shift=0.000691, iteration=87, tol=0.000100][running kmeans]: 87it [07:08,  3.51s/it, center_shift=0.000691, iteration=87, tol=0.000100][running kmeans]: 87it [07:12,  3.51s/it, center_shift=0.001132, iteration=88, tol=0.000100][running kmeans]: 88it [07:12,  3.82s/it, center_shift=0.001132, iteration=88, tol=0.000100][running kmeans]: 88it [07:17,  3.82s/it, center_shift=0.001107, iteration=89, tol=0.000100][running kmeans]: 89it [07:17,  4.16s/it, center_shift=0.001107, iteration=89, tol=0.000100][running kmeans]: 89it [07:22,  4.16s/it, center_shift=0.001194, iteration=90, tol=0.000100][running kmeans]: 90it [07:22,  4.26s/it, center_shift=0.001194, iteration=90, tol=0.000100][running kmeans]: 90it [07:26,  4.26s/it, center_shift=0.001618, iteration=91, tol=0.000100][running kmeans]: 91it [07:26,  4.24s/it, center_shift=0.001618, iteration=91, tol=0.000100][running kmeans]: 91it [07:30,  4.24s/it, center_shift=0.001219, iteration=92, tol=0.000100][running kmeans]: 92it [07:30,  4.31s/it, center_shift=0.001219, iteration=92, tol=0.000100][running kmeans]: 92it [07:35,  4.31s/it, center_shift=0.001944, iteration=93, tol=0.000100][running kmeans]: 93it [07:35,  4.35s/it, center_shift=0.001944, iteration=93, tol=0.000100][running kmeans]: 93it [07:40,  4.35s/it, center_shift=0.001534, iteration=94, tol=0.000100][running kmeans]: 94it [07:40,  4.56s/it, center_shift=0.001534, iteration=94, tol=0.000100][running kmeans]: 94it [07:44,  4.56s/it, center_shift=0.001110, iteration=95, tol=0.000100][running kmeans]: 95it [07:44,  4.43s/it, center_shift=0.001110, iteration=95, tol=0.000100][running kmeans]: 95it [07:49,  4.43s/it, center_shift=0.001325, iteration=96, tol=0.000100][running kmeans]: 96it [07:49,  4.77s/it, center_shift=0.001325, iteration=96, tol=0.000100][running kmeans]: 96it [07:56,  4.77s/it, center_shift=0.001733, iteration=97, tol=0.000100][running kmeans]: 97it [07:56,  5.18s/it, center_shift=0.001733, iteration=97, tol=0.000100][running kmeans]: 97it [08:00,  5.18s/it, center_shift=0.001167, iteration=98, tol=0.000100][running kmeans]: 98it [08:00,  5.07s/it, center_shift=0.001167, iteration=98, tol=0.000100][running kmeans]: 98it [08:05,  5.07s/it, center_shift=0.000856, iteration=99, tol=0.000100][running kmeans]: 99it [08:05,  5.02s/it, center_shift=0.000856, iteration=99, tol=0.000100][running kmeans]: 99it [08:09,  5.02s/it, center_shift=0.001179, iteration=100, tol=0.000100][running kmeans]: 100it [08:09,  4.60s/it, center_shift=0.001179, iteration=100, tol=0.000100][running kmeans]: 100it [08:12,  4.60s/it, center_shift=0.001534, iteration=101, tol=0.000100][running kmeans]: 101it [08:12,  4.18s/it, center_shift=0.001534, iteration=101, tol=0.000100][running kmeans]: 101it [08:17,  4.18s/it, center_shift=0.001637, iteration=102, tol=0.000100][running kmeans]: 102it [08:17,  4.30s/it, center_shift=0.001637, iteration=102, tol=0.000100][running kmeans]: 102it [08:22,  4.30s/it, center_shift=0.001693, iteration=103, tol=0.000100][running kmeans]: 103it [08:22,  4.66s/it, center_shift=0.001693, iteration=103, tol=0.000100][running kmeans]: 103it [08:27,  4.66s/it, center_shift=0.001318, iteration=104, tol=0.000100][running kmeans]: 104it [08:27,  4.58s/it, center_shift=0.001318, iteration=104, tol=0.000100][running kmeans]: 104it [08:31,  4.58s/it, center_shift=0.001126, iteration=105, tol=0.000100][running kmeans]: 105it [08:31,  4.39s/it, center_shift=0.001126, iteration=105, tol=0.000100][running kmeans]: 105it [08:36,  4.39s/it, center_shift=0.001239, iteration=106, tol=0.000100][running kmeans]: 106it [08:36,  4.65s/it, center_shift=0.001239, iteration=106, tol=0.000100][running kmeans]: 106it [08:41,  4.65s/it, center_shift=0.002344, iteration=107, tol=0.000100][running kmeans]: 107it [08:41,  4.94s/it, center_shift=0.002344, iteration=107, tol=0.000100][running kmeans]: 107it [08:47,  4.94s/it, center_shift=0.003028, iteration=108, tol=0.000100][running kmeans]: 108it [08:47,  5.00s/it, center_shift=0.003028, iteration=108, tol=0.000100][running kmeans]: 108it [08:51,  5.00s/it, center_shift=0.002881, iteration=109, tol=0.000100][running kmeans]: 109it [08:51,  4.72s/it, center_shift=0.002881, iteration=109, tol=0.000100][running kmeans]: 109it [08:55,  4.72s/it, center_shift=0.002565, iteration=110, tol=0.000100][running kmeans]: 110it [08:55,  4.55s/it, center_shift=0.002565, iteration=110, tol=0.000100][running kmeans]: 110it [08:59,  4.55s/it, center_shift=0.002378, iteration=111, tol=0.000100][running kmeans]: 111it [08:59,  4.42s/it, center_shift=0.002378, iteration=111, tol=0.000100][running kmeans]: 111it [09:03,  4.42s/it, center_shift=0.002697, iteration=112, tol=0.000100][running kmeans]: 112it [09:03,  4.43s/it, center_shift=0.002697, iteration=112, tol=0.000100][running kmeans]: 112it [09:08,  4.43s/it, center_shift=0.003771, iteration=113, tol=0.000100][running kmeans]: 113it [09:08,  4.46s/it, center_shift=0.003771, iteration=113, tol=0.000100][running kmeans]: 113it [09:12,  4.46s/it, center_shift=0.004738, iteration=114, tol=0.000100][running kmeans]: 114it [09:12,  4.25s/it, center_shift=0.004738, iteration=114, tol=0.000100][running kmeans]: 114it [09:17,  4.25s/it, center_shift=0.004382, iteration=115, tol=0.000100][running kmeans]: 115it [09:17,  4.57s/it, center_shift=0.004382, iteration=115, tol=0.000100][running kmeans]: 115it [09:21,  4.57s/it, center_shift=0.004977, iteration=116, tol=0.000100][running kmeans]: 116it [09:21,  4.35s/it, center_shift=0.004977, iteration=116, tol=0.000100][running kmeans]: 116it [09:25,  4.35s/it, center_shift=0.006642, iteration=117, tol=0.000100][running kmeans]: 117it [09:25,  4.22s/it, center_shift=0.006642, iteration=117, tol=0.000100][running kmeans]: 117it [09:31,  4.22s/it, center_shift=0.006715, iteration=118, tol=0.000100][running kmeans]: 118it [09:31,  4.70s/it, center_shift=0.006715, iteration=118, tol=0.000100][running kmeans]: 118it [09:35,  4.70s/it, center_shift=0.009021, iteration=119, tol=0.000100][running kmeans]: 119it [09:35,  4.74s/it, center_shift=0.009021, iteration=119, tol=0.000100][running kmeans]: 119it [09:40,  4.74s/it, center_shift=0.008371, iteration=120, tol=0.000100][running kmeans]: 120it [09:40,  4.74s/it, center_shift=0.008371, iteration=120, tol=0.000100][running kmeans]: 120it [09:46,  4.74s/it, center_shift=0.008443, iteration=121, tol=0.000100][running kmeans]: 121it [09:46,  5.06s/it, center_shift=0.008443, iteration=121, tol=0.000100][running kmeans]: 121it [09:52,  5.06s/it, center_shift=0.012163, iteration=122, tol=0.000100][running kmeans]: 122it [09:52,  5.37s/it, center_shift=0.012163, iteration=122, tol=0.000100][running kmeans]: 122it [09:58,  5.37s/it, center_shift=0.009354, iteration=123, tol=0.000100][running kmeans]: 123it [09:58,  5.56s/it, center_shift=0.009354, iteration=123, tol=0.000100][running kmeans]: 123it [10:03,  5.56s/it, center_shift=0.007292, iteration=124, tol=0.000100][running kmeans]: 124it [10:03,  5.41s/it, center_shift=0.007292, iteration=124, tol=0.000100][running kmeans]: 124it [10:09,  5.41s/it, center_shift=0.009362, iteration=125, tol=0.000100][running kmeans]: 125it [10:09,  5.45s/it, center_shift=0.009362, iteration=125, tol=0.000100][running kmeans]: 125it [10:11,  5.45s/it, center_shift=0.006349, iteration=126, tol=0.000100][running kmeans]: 126it [10:11,  4.59s/it, center_shift=0.006349, iteration=126, tol=0.000100][running kmeans]: 126it [10:15,  4.59s/it, center_shift=0.006844, iteration=127, tol=0.000100][running kmeans]: 127it [10:15,  4.28s/it, center_shift=0.006844, iteration=127, tol=0.000100][running kmeans]: 127it [10:17,  4.28s/it, center_shift=0.008769, iteration=128, tol=0.000100][running kmeans]: 128it [10:17,  3.78s/it, center_shift=0.008769, iteration=128, tol=0.000100][running kmeans]: 128it [10:22,  3.78s/it, center_shift=0.007319, iteration=129, tol=0.000100][running kmeans]: 129it [10:22,  3.95s/it, center_shift=0.007319, iteration=129, tol=0.000100][running kmeans]: 129it [10:26,  3.95s/it, center_shift=0.008506, iteration=130, tol=0.000100][running kmeans]: 130it [10:26,  4.10s/it, center_shift=0.008506, iteration=130, tol=0.000100][running kmeans]: 130it [10:31,  4.10s/it, center_shift=0.006356, iteration=131, tol=0.000100][running kmeans]: 131it [10:31,  4.41s/it, center_shift=0.006356, iteration=131, tol=0.000100][running kmeans]: 131it [10:36,  4.41s/it, center_shift=0.005872, iteration=132, tol=0.000100][running kmeans]: 132it [10:36,  4.60s/it, center_shift=0.005872, iteration=132, tol=0.000100][running kmeans]: 132it [10:42,  4.60s/it, center_shift=0.007088, iteration=133, tol=0.000100][running kmeans]: 133it [10:42,  4.94s/it, center_shift=0.007088, iteration=133, tol=0.000100][running kmeans]: 133it [10:48,  4.94s/it, center_shift=0.004894, iteration=134, tol=0.000100][running kmeans]: 134it [10:48,  5.16s/it, center_shift=0.004894, iteration=134, tol=0.000100][running kmeans]: 134it [10:53,  5.16s/it, center_shift=0.003945, iteration=135, tol=0.000100][running kmeans]: 135it [10:53,  5.16s/it, center_shift=0.003945, iteration=135, tol=0.000100][running kmeans]: 135it [10:58,  5.16s/it, center_shift=0.004351, iteration=136, tol=0.000100][running kmeans]: 136it [10:58,  5.12s/it, center_shift=0.004351, iteration=136, tol=0.000100][running kmeans]: 136it [11:03,  5.12s/it, center_shift=0.005975, iteration=137, tol=0.000100][running kmeans]: 137it [11:03,  5.08s/it, center_shift=0.005975, iteration=137, tol=0.000100][running kmeans]: 137it [11:09,  5.08s/it, center_shift=0.004748, iteration=138, tol=0.000100][running kmeans]: 138it [11:09,  5.24s/it, center_shift=0.004748, iteration=138, tol=0.000100][running kmeans]: 138it [11:15,  5.24s/it, center_shift=0.006267, iteration=139, tol=0.000100][running kmeans]: 139it [11:15,  5.58s/it, center_shift=0.006267, iteration=139, tol=0.000100][running kmeans]: 139it [11:20,  5.58s/it, center_shift=0.006387, iteration=140, tol=0.000100][running kmeans]: 140it [11:20,  5.42s/it, center_shift=0.006387, iteration=140, tol=0.000100][running kmeans]: 140it [11:27,  5.42s/it, center_shift=0.006953, iteration=141, tol=0.000100][running kmeans]: 141it [11:27,  5.82s/it, center_shift=0.006953, iteration=141, tol=0.000100][running kmeans]: 141it [11:33,  5.82s/it, center_shift=0.008730, iteration=142, tol=0.000100][running kmeans]: 142it [11:33,  5.91s/it, center_shift=0.008730, iteration=142, tol=0.000100][running kmeans]: 142it [11:40,  5.91s/it, center_shift=0.012185, iteration=143, tol=0.000100][running kmeans]: 143it [11:40,  6.18s/it, center_shift=0.012185, iteration=143, tol=0.000100][running kmeans]: 143it [11:45,  6.18s/it, center_shift=0.011807, iteration=144, tol=0.000100][running kmeans]: 144it [11:45,  6.02s/it, center_shift=0.011807, iteration=144, tol=0.000100][running kmeans]: 144it [11:51,  6.02s/it, center_shift=0.013902, iteration=145, tol=0.000100][running kmeans]: 145it [11:51,  5.89s/it, center_shift=0.013902, iteration=145, tol=0.000100][running kmeans]: 145it [11:55,  5.89s/it, center_shift=0.013412, iteration=146, tol=0.000100][running kmeans]: 146it [11:55,  5.51s/it, center_shift=0.013412, iteration=146, tol=0.000100][running kmeans]: 146it [12:01,  5.51s/it, center_shift=0.019320, iteration=147, tol=0.000100][running kmeans]: 147it [12:01,  5.60s/it, center_shift=0.019320, iteration=147, tol=0.000100][running kmeans]: 147it [12:07,  5.60s/it, center_shift=0.016137, iteration=148, tol=0.000100][running kmeans]: 148it [12:07,  5.62s/it, center_shift=0.016137, iteration=148, tol=0.000100][running kmeans]: 148it [12:12,  5.62s/it, center_shift=0.019057, iteration=149, tol=0.000100][running kmeans]: 149it [12:12,  5.56s/it, center_shift=0.019057, iteration=149, tol=0.000100][running kmeans]: 149it [12:19,  5.56s/it, center_shift=0.019207, iteration=150, tol=0.000100][running kmeans]: 150it [12:19,  6.02s/it, center_shift=0.019207, iteration=150, tol=0.000100][running kmeans]: 150it [12:26,  6.02s/it, center_shift=0.025870, iteration=151, tol=0.000100][running kmeans]: 151it [12:26,  6.25s/it, center_shift=0.025870, iteration=151, tol=0.000100][running kmeans]: 151it [12:32,  6.25s/it, center_shift=0.034645, iteration=152, tol=0.000100][running kmeans]: 152it [12:32,  6.17s/it, center_shift=0.034645, iteration=152, tol=0.000100][running kmeans]: 152it [12:37,  6.17s/it, center_shift=0.034835, iteration=153, tol=0.000100][running kmeans]: 153it [12:37,  5.82s/it, center_shift=0.034835, iteration=153, tol=0.000100][running kmeans]: 153it [12:43,  5.82s/it, center_shift=0.040598, iteration=154, tol=0.000100][running kmeans]: 154it [12:43,  5.92s/it, center_shift=0.040598, iteration=154, tol=0.000100][running kmeans]: 154it [12:51,  5.92s/it, center_shift=0.037309, iteration=155, tol=0.000100][running kmeans]: 155it [12:51,  6.29s/it, center_shift=0.037309, iteration=155, tol=0.000100][running kmeans]: 155it [12:57,  6.29s/it, center_shift=0.046638, iteration=156, tol=0.000100][running kmeans]: 156it [12:57,  6.24s/it, center_shift=0.046638, iteration=156, tol=0.000100][running kmeans]: 156it [13:01,  6.24s/it, center_shift=0.052245, iteration=157, tol=0.000100][running kmeans]: 157it [13:01,  5.77s/it, center_shift=0.052245, iteration=157, tol=0.000100][running kmeans]: 157it [13:06,  5.77s/it, center_shift=0.056333, iteration=158, tol=0.000100][running kmeans]: 158it [13:06,  5.45s/it, center_shift=0.056333, iteration=158, tol=0.000100][running kmeans]: 158it [13:11,  5.45s/it, center_shift=0.064568, iteration=159, tol=0.000100][running kmeans]: 159it [13:11,  5.32s/it, center_shift=0.064568, iteration=159, tol=0.000100][running kmeans]: 159it [13:16,  5.32s/it, center_shift=0.071061, iteration=160, tol=0.000100][running kmeans]: 160it [13:16,  5.07s/it, center_shift=0.071061, iteration=160, tol=0.000100][running kmeans]: 160it [13:20,  5.07s/it, center_shift=0.154630, iteration=161, tol=0.000100][running kmeans]: 161it [13:20,  5.01s/it, center_shift=0.154630, iteration=161, tol=0.000100][running kmeans]: 161it [13:25,  5.01s/it, center_shift=0.068546, iteration=162, tol=0.000100][running kmeans]: 162it [13:25,  4.86s/it, center_shift=0.068546, iteration=162, tol=0.000100][running kmeans]: 162it [13:31,  4.86s/it, center_shift=0.063651, iteration=163, tol=0.000100][running kmeans]: 163it [13:31,  5.16s/it, center_shift=0.063651, iteration=163, tol=0.000100][running kmeans]: 163it [13:37,  5.16s/it, center_shift=0.061037, iteration=164, tol=0.000100][running kmeans]: 164it [13:37,  5.53s/it, center_shift=0.061037, iteration=164, tol=0.000100][running kmeans]: 164it [13:43,  5.53s/it, center_shift=0.062787, iteration=165, tol=0.000100][running kmeans]: 165it [13:43,  5.51s/it, center_shift=0.062787, iteration=165, tol=0.000100][running kmeans]: 165it [13:48,  5.51s/it, center_shift=0.050192, iteration=166, tol=0.000100][running kmeans]: 166it [13:48,  5.59s/it, center_shift=0.050192, iteration=166, tol=0.000100][running kmeans]: 166it [13:54,  5.59s/it, center_shift=0.051037, iteration=167, tol=0.000100][running kmeans]: 167it [13:54,  5.50s/it, center_shift=0.051037, iteration=167, tol=0.000100][running kmeans]: 167it [13:59,  5.50s/it, center_shift=0.050057, iteration=168, tol=0.000100][running kmeans]: 168it [13:59,  5.44s/it, center_shift=0.050057, iteration=168, tol=0.000100][running kmeans]: 168it [14:05,  5.44s/it, center_shift=0.057198, iteration=169, tol=0.000100][running kmeans]: 169it [14:05,  5.51s/it, center_shift=0.057198, iteration=169, tol=0.000100][running kmeans]: 169it [14:10,  5.51s/it, center_shift=0.042826, iteration=170, tol=0.000100][running kmeans]: 170it [14:10,  5.55s/it, center_shift=0.042826, iteration=170, tol=0.000100][running kmeans]: 170it [14:15,  5.55s/it, center_shift=0.031865, iteration=171, tol=0.000100][running kmeans]: 171it [14:15,  5.36s/it, center_shift=0.031865, iteration=171, tol=0.000100][running kmeans]: 171it [14:20,  5.36s/it, center_shift=0.031983, iteration=172, tol=0.000100][running kmeans]: 172it [14:20,  5.22s/it, center_shift=0.031983, iteration=172, tol=0.000100][running kmeans]: 172it [14:26,  5.22s/it, center_shift=0.030073, iteration=173, tol=0.000100][running kmeans]: 173it [14:26,  5.43s/it, center_shift=0.030073, iteration=173, tol=0.000100][running kmeans]: 173it [14:32,  5.43s/it, center_shift=0.020365, iteration=174, tol=0.000100][running kmeans]: 174it [14:32,  5.65s/it, center_shift=0.020365, iteration=174, tol=0.000100][running kmeans]: 174it [14:37,  5.65s/it, center_shift=0.020901, iteration=175, tol=0.000100][running kmeans]: 175it [14:37,  5.42s/it, center_shift=0.020901, iteration=175, tol=0.000100][running kmeans]: 175it [14:43,  5.42s/it, center_shift=0.018139, iteration=176, tol=0.000100][running kmeans]: 176it [14:43,  5.66s/it, center_shift=0.018139, iteration=176, tol=0.000100][running kmeans]: 176it [14:48,  5.66s/it, center_shift=0.017563, iteration=177, tol=0.000100][running kmeans]: 177it [14:48,  5.43s/it, center_shift=0.017563, iteration=177, tol=0.000100][running kmeans]: 177it [14:53,  5.43s/it, center_shift=0.023338, iteration=178, tol=0.000100][running kmeans]: 178it [14:53,  5.34s/it, center_shift=0.023338, iteration=178, tol=0.000100][running kmeans]: 178it [15:00,  5.34s/it, center_shift=0.019615, iteration=179, tol=0.000100][running kmeans]: 179it [15:00,  5.59s/it, center_shift=0.019615, iteration=179, tol=0.000100][running kmeans]: 179it [15:05,  5.59s/it, center_shift=0.018352, iteration=180, tol=0.000100][running kmeans]: 180it [15:05,  5.69s/it, center_shift=0.018352, iteration=180, tol=0.000100][running kmeans]: 180it [15:12,  5.69s/it, center_shift=0.012840, iteration=181, tol=0.000100][running kmeans]: 181it [15:12,  5.82s/it, center_shift=0.012840, iteration=181, tol=0.000100][running kmeans]: 181it [15:18,  5.82s/it, center_shift=0.014427, iteration=182, tol=0.000100][running kmeans]: 182it [15:18,  5.90s/it, center_shift=0.014427, iteration=182, tol=0.000100][running kmeans]: 182it [15:21,  5.90s/it, center_shift=0.014401, iteration=183, tol=0.000100][running kmeans]: 183it [15:21,  5.24s/it, center_shift=0.014401, iteration=183, tol=0.000100][running kmeans]: 183it [15:26,  5.24s/it, center_shift=0.012267, iteration=184, tol=0.000100][running kmeans]: 184it [15:26,  5.15s/it, center_shift=0.012267, iteration=184, tol=0.000100][running kmeans]: 184it [15:32,  5.15s/it, center_shift=0.010876, iteration=185, tol=0.000100][running kmeans]: 185it [15:32,  5.20s/it, center_shift=0.010876, iteration=185, tol=0.000100][running kmeans]: 185it [15:37,  5.20s/it, center_shift=0.009319, iteration=186, tol=0.000100][running kmeans]: 186it [15:37,  5.34s/it, center_shift=0.009319, iteration=186, tol=0.000100][running kmeans]: 186it [15:42,  5.34s/it, center_shift=0.009933, iteration=187, tol=0.000100][running kmeans]: 187it [15:42,  5.16s/it, center_shift=0.009933, iteration=187, tol=0.000100][running kmeans]: 187it [15:47,  5.16s/it, center_shift=0.009080, iteration=188, tol=0.000100][running kmeans]: 188it [15:47,  5.08s/it, center_shift=0.009080, iteration=188, tol=0.000100][running kmeans]: 188it [15:52,  5.08s/it, center_shift=0.006801, iteration=189, tol=0.000100][running kmeans]: 189it [15:52,  5.18s/it, center_shift=0.006801, iteration=189, tol=0.000100][running kmeans]: 189it [15:58,  5.18s/it, center_shift=0.005098, iteration=190, tol=0.000100][running kmeans]: 190it [15:58,  5.40s/it, center_shift=0.005098, iteration=190, tol=0.000100][running kmeans]: 190it [16:04,  5.40s/it, center_shift=0.005716, iteration=191, tol=0.000100][running kmeans]: 191it [16:04,  5.57s/it, center_shift=0.005716, iteration=191, tol=0.000100][running kmeans]: 191it [16:10,  5.57s/it, center_shift=0.004767, iteration=192, tol=0.000100][running kmeans]: 192it [16:10,  5.70s/it, center_shift=0.004767, iteration=192, tol=0.000100][running kmeans]: 192it [16:16,  5.70s/it, center_shift=0.003404, iteration=193, tol=0.000100][running kmeans]: 193it [16:16,  5.67s/it, center_shift=0.003404, iteration=193, tol=0.000100][running kmeans]: 193it [16:21,  5.67s/it, center_shift=0.003000, iteration=194, tol=0.000100][running kmeans]: 194it [16:21,  5.57s/it, center_shift=0.003000, iteration=194, tol=0.000100][running kmeans]: 194it [16:27,  5.57s/it, center_shift=0.002888, iteration=195, tol=0.000100][running kmeans]: 195it [16:27,  5.59s/it, center_shift=0.002888, iteration=195, tol=0.000100][running kmeans]: 195it [16:31,  5.59s/it, center_shift=0.004860, iteration=196, tol=0.000100][running kmeans]: 196it [16:31,  5.30s/it, center_shift=0.004860, iteration=196, tol=0.000100][running kmeans]: 196it [16:36,  5.30s/it, center_shift=0.005239, iteration=197, tol=0.000100][running kmeans]: 197it [16:36,  5.20s/it, center_shift=0.005239, iteration=197, tol=0.000100][running kmeans]: 197it [16:42,  5.20s/it, center_shift=0.005116, iteration=198, tol=0.000100][running kmeans]: 198it [16:42,  5.38s/it, center_shift=0.005116, iteration=198, tol=0.000100][running kmeans]: 198it [16:48,  5.38s/it, center_shift=0.003936, iteration=199, tol=0.000100][running kmeans]: 199it [16:48,  5.53s/it, center_shift=0.003936, iteration=199, tol=0.000100][running kmeans]: 199it [16:54,  5.53s/it, center_shift=0.002608, iteration=200, tol=0.000100][running kmeans]: 200it [16:54,  5.63s/it, center_shift=0.002608, iteration=200, tol=0.000100][running kmeans]: 200it [17:00,  5.63s/it, center_shift=0.003625, iteration=201, tol=0.000100][running kmeans]: 201it [17:00,  5.63s/it, center_shift=0.003625, iteration=201, tol=0.000100][running kmeans]: 201it [17:06,  5.63s/it, center_shift=0.000967, iteration=202, tol=0.000100][running kmeans]: 202it [17:06,  5.81s/it, center_shift=0.000967, iteration=202, tol=0.000100][running kmeans]: 202it [17:11,  5.81s/it, center_shift=0.000723, iteration=203, tol=0.000100][running kmeans]: 203it [17:11,  5.64s/it, center_shift=0.000723, iteration=203, tol=0.000100][running kmeans]: 203it [17:18,  5.64s/it, center_shift=0.000508, iteration=204, tol=0.000100][running kmeans]: 204it [17:18,  5.92s/it, center_shift=0.000508, iteration=204, tol=0.000100][running kmeans]: 204it [17:24,  5.92s/it, center_shift=0.000423, iteration=205, tol=0.000100][running kmeans]: 205it [17:24,  5.96s/it, center_shift=0.000423, iteration=205, tol=0.000100][running kmeans]: 205it [17:29,  5.96s/it, center_shift=0.000533, iteration=206, tol=0.000100][running kmeans]: 206it [17:29,  5.93s/it, center_shift=0.000533, iteration=206, tol=0.000100][running kmeans]: 206it [17:35,  5.93s/it, center_shift=0.000823, iteration=207, tol=0.000100][running kmeans]: 207it [17:35,  5.85s/it, center_shift=0.000823, iteration=207, tol=0.000100][running kmeans]: 207it [17:40,  5.85s/it, center_shift=0.000670, iteration=208, tol=0.000100][running kmeans]: 208it [17:40,  5.62s/it, center_shift=0.000670, iteration=208, tol=0.000100][running kmeans]: 208it [17:45,  5.62s/it, center_shift=0.000506, iteration=209, tol=0.000100][running kmeans]: 209it [17:45,  5.40s/it, center_shift=0.000506, iteration=209, tol=0.000100][running kmeans]: 209it [17:50,  5.40s/it, center_shift=0.000407, iteration=210, tol=0.000100][running kmeans]: 210it [17:50,  5.36s/it, center_shift=0.000407, iteration=210, tol=0.000100][running kmeans]: 210it [17:56,  5.36s/it, center_shift=0.000601, iteration=211, tol=0.000100][running kmeans]: 211it [17:56,  5.38s/it, center_shift=0.000601, iteration=211, tol=0.000100][running kmeans]: 211it [18:00,  5.38s/it, center_shift=0.000415, iteration=212, tol=0.000100][running kmeans]: 212it [18:00,  5.16s/it, center_shift=0.000415, iteration=212, tol=0.000100][running kmeans]: 212it [18:05,  5.16s/it, center_shift=0.000445, iteration=213, tol=0.000100][running kmeans]: 213it [18:05,  4.97s/it, center_shift=0.000445, iteration=213, tol=0.000100][running kmeans]: 213it [18:12,  4.97s/it, center_shift=0.000505, iteration=214, tol=0.000100][running kmeans]: 214it [18:12,  5.50s/it, center_shift=0.000505, iteration=214, tol=0.000100][running kmeans]: 214it [18:17,  5.50s/it, center_shift=0.000384, iteration=215, tol=0.000100][running kmeans]: 215it [18:17,  5.53s/it, center_shift=0.000384, iteration=215, tol=0.000100][running kmeans]: 215it [18:22,  5.53s/it, center_shift=0.000301, iteration=216, tol=0.000100][running kmeans]: 216it [18:22,  5.24s/it, center_shift=0.000301, iteration=216, tol=0.000100][running kmeans]: 216it [18:27,  5.24s/it, center_shift=0.000521, iteration=217, tol=0.000100][running kmeans]: 217it [18:27,  5.33s/it, center_shift=0.000521, iteration=217, tol=0.000100][running kmeans]: 217it [18:34,  5.33s/it, center_shift=0.000341, iteration=218, tol=0.000100][running kmeans]: 218it [18:34,  5.59s/it, center_shift=0.000341, iteration=218, tol=0.000100][running kmeans]: 218it [18:40,  5.59s/it, center_shift=0.000341, iteration=219, tol=0.000100][running kmeans]: 219it [18:40,  5.70s/it, center_shift=0.000341, iteration=219, tol=0.000100][running kmeans]: 219it [18:45,  5.70s/it, center_shift=0.000194, iteration=220, tol=0.000100][running kmeans]: 220it [18:45,  5.65s/it, center_shift=0.000194, iteration=220, tol=0.000100][running kmeans]: 220it [18:50,  5.65s/it, center_shift=0.000160, iteration=221, tol=0.000100][running kmeans]: 221it [18:50,  5.34s/it, center_shift=0.000160, iteration=221, tol=0.000100][running kmeans]: 221it [18:54,  5.34s/it, center_shift=0.000223, iteration=222, tol=0.000100][running kmeans]: 222it [18:54,  4.91s/it, center_shift=0.000223, iteration=222, tol=0.000100][running kmeans]: 222it [18:57,  4.91s/it, center_shift=0.000147, iteration=223, tol=0.000100][running kmeans]: 223it [18:57,  4.50s/it, center_shift=0.000147, iteration=223, tol=0.000100][running kmeans]: 223it [19:01,  4.50s/it, center_shift=0.000097, iteration=224, tol=0.000100][running kmeans]: 224it [19:01,  4.23s/it, center_shift=0.000097, iteration=224, tol=0.000100][running kmeans]: 224it [19:01,  5.10s/it, center_shift=0.000097, iteration=224, tol=0.000100][24 28 28 ... 30 24  8]
+[14.811661   6.710636   5.091315  ...  2.9102683 16.607233   3.8766806] [131074 131076 163848 ... 163828 131063  32760]
+[14.811661   6.710636   5.091315  ...  2.9102683 16.607233   3.8766806] [ 79873 100871  77320  10761 128010  51212 156689 100892 136736 145959
+ 160295 141354   2602  73258  18991 129074  93749 127033  95289   5181
+  98367  27711  70720  74309  48709 108615 125515 159311 123985  45657
+  49757  75366  15978 104556 153197  79982 164466 155255 126071  35963
+  44157  65662   5760  34946 117890 103557  24199 158344  31880 159882
+  75401 151694 109710 121488  67729 136850 118934 146070  31894  23194
+  71837 125085  43165 120479  67233 140961 120484 165540 136361 145069
+ 131761  22706 157362 137723  74937  63166  29888  76993 106178  46278
+   9416  34505  53964 146127 127184 137426 137427 162002   4309  45781
+ 145623  38102 103129  23265  39138 134374 103148  61678  60144  26865
+  44784  32498 126707 114423  50425   9475   7430  67848  73480   8458
+  83722 151820 103692  24332  57104  82706  79634 102679 148251  83739
+  46365  95520 105249  41250 165155  66852 131367 157691 131370  70442
+  41264  17203  29501 167742  70463  75077  16710  48969  31050  34125
+ 145746  19795  46419 154453 147282 103771  91489   5476  36715  29548
+ 156526  40815  47475  37752 165754  14715 105855  55174 119175  72583
+ 161670  40330  11664  45457 160145 113553  44434 132503 162202  23964
+ 168349  54685 157600  65443   9126  97192   5034  32171 157613 160688
+ 159152  11699 133556 117685  30134 156087  75700  50106  82365 129470
+ 141246 131523   3543  56288 137697    996  68581   3556 126951  83434
+ 140267  47086  36849 131060  21493  48634 122875 138751]
+[14.811661   6.710636   5.091315  ...  2.9102683 16.607233   3.8766806] [147461      8 155662 ...  65524  81911  32763]
+[14.811661   6.710636   5.091315  ...  2.9102683 16.607233   3.8766806] [122881 163842  73735 ... 155637  65530  98301]
+[14.811661   6.710636   5.091315  ...  2.9102683 16.607233   3.8766806] [ 27137  23042  51727  98832  67094 123928  30746 124459 162884  17478
+ 139849  93772  35405 156236  68195    100  12902  17000  11894  19062
+ 158342  12935  84619  55960  46748 155810 104099  74921  31920  46259
+ 160436  37566  91841 116943  19152  21712  32464    219 156385  92401
+ 144630  26877  45830  31500 129300    287  15647  42271 128799  99623
+  75560  67882  28459  14125  13619 122163  57653 124214  71992  34631
+  43847 111944 125257  61792  37729  42854 147302  46969 159105  61830
+  78214 168865  22447  84919  95162 132027 158138  92607    448  62913
+ 123841  59844  49098  70098 114644 140761 168933   3050 146413  39919]
+[14.811661   6.710636   5.091315  ...  2.9102683 16.607233   3.8766806] [ 65536  49152  16386 ...  57333  16381 131070]
+[14.811661   6.710636   5.091315  ...  2.9102683 16.607233   3.8766806] [ 98304 114688 114693 ...  16352  98280 131069]
+[14.811661   6.710636   5.091315  ...  2.9102683 16.607233   3.8766806] [ 81920  90115 139269 ...  16378  32764 147453]
+[14.811661   6.710636   5.091315  ...  2.9102683 16.607233   3.8766806] [121250  53795  42276 137445  62118  32683 135196  99215  24016  74686
+ 100790  63993 122618 148540 131293 157022]
+[14.811661   6.710636   5.091315  ...  2.9102683 16.607233   3.8766806] []
+[14.811661   6.710636   5.091315  ...  2.9102683 16.607233   3.8766806] [163844  98309 163849 ...  65527 163835 131071]
+[14.811661   6.710636   5.091315  ...  2.9102683 16.607233   3.8766806] [  5633  11778  36867  90117   8711  90120 119307  50700  45071  49682
+  72210 104468  11800 103962  29211 135195 147485 143395  29221  40998
+ 148005  29733 160297  29226  71205 111660  63019  38444  15408    566
+  58423  14905  96825 135228 160319  93247  92739  42053   2119   2631
+ 126536  89163   8269  92749  44111  42576  83025 162898  44115 131156
+   9300 130647  69210  62556 157789 150622  90207 139360  24157 153183
+  68710  25704  70761  26731  62060 145004  21619  94324 152181 155251
+ 149112  40058  34938 159867 157820 127614 155779 112772 148613  26246
+  90247  66699  31372  82572  91787  36495 135312 135313  55953 168593
+ 159376 165525  46230 160919  93849  57504   5281  19620 114855  72363
+  94893   4782  46767  90801  12466 155317  38910  39097  92858 144572
+  30909  44735  16577  43201   7361  58052 117955 137415  17098  84686
+  70864  51409 139473  65748  83668   2775 110302 120542  92897  94434
+  14563  68837 123623 104686 144624 162033  38643  29428 142069  38134
+ 157427 145142 162041 102649 109307 114943 122111  81152 154879  85760
+  10507  27405 121102 154383  25871 121617 118543  33558  58134  46360
+  99609  46871   5915  18720  11041  50467  23332  45349  97061 120611
+  22827  71980  88875  20782 107307  61228 121138  70452 145718  80698
+ 152378 161597  94015 100673 142149  61258 143692 160590  51535  91471
+  91474   6996   9049 147294  63842  98149  96613 150886  54631   9576
+  29545  33130  39276  43372 102765  34156  12136  64881  75628 117107
+  45428  56179  98166 148855 103289 151934 159103 141184  74114 136583
+ 141192 164749  40333  12688  54674 141203 144277  60311 127897  19356
+  53149  56222  97182  14239   5025  47010  13731 161189  94118 105896
+ 163756 138158  66485  56246  49079  74680 122299  45500 112060  20413
+ 113601  43974   4551 135112 115658 152522  71115  35789  89548 113104
+ 146898 135124 105943 114649  32218  24028  85468  92639  71647  80867
+  43492  54756 155110  40931  50152  52714  31215  42480  22001 104946
+  46578  52212 136690 109046 104432 106491  93694]
+[14.811661   6.710636   5.091315  ...  2.9102683 16.607233   3.8766806] [ 57346  16388  10245 ...  71673 126970   8190]
+[14.811661   6.710636   5.091315  ...  2.9102683 16.607233   3.8766806] [112641  14341 126987  53259 122892 159757 114709  65558  55319  53270
+  86046  90142 155682  96290  16420  22564  90150  24615     42 116781
+  53294  94257 161842  61491 137270  59447  98360 129085  59469  49231
+  55381  71767 159833  51291  65630  88158  88170  75883 143471  26737
+   2165   2173  39038 127103   6273  75907 116868  67720  26764  41102
+ 127123 149655  55451  47267  39076 104615  67753 100521  45228  41136
+  32948 168117 164022  20663  28857  18620  49344  90304  28865  10439
+  22728  82126  57551  73936  22736 129246  63713  84196  24806  84198
+ 131304  92391  88298  88299  28913  41203 151797  73974  92406  57594
+  76027 104698 104703 102657  82178 129281  30982  55559 129288 149770
+  20754 110866  63762  10519  98585  63770  47387  37154  61730  37156
+ 141605  61733  22822  55590 145705 104749  53551 100656 127281  12597
+  69943 102713 145727  16705  24898  63817  12619 151883  24912  90452
+   8533  82264  61785 162136 135515   8540  39267  90470  26986 129386
+ 164207  78193  24946  43380  88437  47479  70013  33152  33153  16772
+ 106885  74118  39303  47496 129415  84362 137608 160140   6541  70044
+  16798  27040 137633  61858 151973  57770  20909 166318 121264  57778
+ 141747  35255  43448  31159  88506 156092    446 125376  14785  84419
+  70083  35269 168393 125386 147917  16853   4565 109018  63962 160233
+  29162  35307 162283  94701  37360 168434  90612  70132  35319  45563
+ 111106 104963 166407  29197 113170  39446  72215  37402  64028 102941
+ 164382  39455  76322  14882  35364 141861 115237  33321 148009  78385
+ 100914  57911  27192 166456  55866  80444  35390  86593  80455 113224
+ 141897 107084  57932  66125  35406 135757  16977  78418 148052  92758
+ 143958 137819   4700  76381  94813  62048  80482 139875  14947  88674
+ 135784  80488 156266 129642  96877  25198  88687 129651 156278  62070
+  39544 143993 103037 115329  41603  98948  94853  74374 129686 103063
+ 146072 152218  29340  76454  51879 119463  10922 123563 127661  47789
+ 168624  94899 127669  17078  27318 160444  76477  86718  82625 111297
+  47809 162499 113349  60102  27335 168647 168648 146122 146132 135893
+  99031  90840  60125  76516 137959 131822  25333  27383  90872  45821
+  74497 135937 131857 135953  66323 107293 109343  66336  54047   4897
+  47911    819 127797  58166  29494  64310  27453 113471  13122 111427
+  74566  11080   4937  41802 133963  70474 154443  37717  17239   2904
+  54104 107356  90973 105311 113504  88929 115554  90984  74604 156524
+  88941 113519 156528  27504   7025 105329  76662 148343  62328  70520
+ 156540 127871 107392 109440 160642  23425 101258 144266  56204  50061
+   9105 148369  84881  80788  80790  27549 103325 160670 103328 107425
+ 150434 121761 127909  82854  50087 134054 105381  17329  56242 115639
+ 103352  76731 148414 150463  43973 162759 150473  11215 101328  48083
+ 168916  87000  35805  11230 103391    994  62436  11237  19432 156653
+  62447  91125 101365  35835 101373 130053 119815  13321  29713  42005
+   1046  66582  23573  87065  68639 115744  82977  72735  35876 168997
+  46128 103474 162866   3136 111682  68676  19526  66631  80973 136286
+ 121951  91239 162921 119920  58484  78964 119925  46199   7287  13433
+  78969  40055 162935  15483 146558 167039  27781 136330  58509  83087
+  91283 126099  76948   7318  46231 132249 152730  50333  64670  64677
+  27825 142513  33972 132276  29877   1209  19649 138433  56521 169162
+  56525 113871 101584 144596 115933 101598  79074 117988  62697 124140
+  13555 118006 134391  60669 142589  64766   7423  95494 109833 150796
+ 115981 154892 128275  42262  66838 148760 152856 167195 120096  56609
+ 146723  77092  93476 103718 146726  48423   9514   5424 120115 107833
+  32061  17737  34122 116041 107852 128335 152911  30033   1363  75101
+ 114016  75108  87408 105840 128371  91514 150906 138620  68989  77182
+  42367  46464  52609 128388 118149 109958  89477  97673 126350 152975
+ 107924 150940 118175  48546  52643  83365 157093 132521 114089 157103
+ 112049  75187 130484  75191 132536 130488  81338 124348 165310  36287
+ 112062  99777  71103   9667  21956  83397  36294 144842 150987   3532
+ 112076  56782  11728  11733  24022 157147 155102 118239  93664 136674
+ 105956  99821  58873  50685  83456  42498 157187 142855  42506 151060
+  11797  48663  60952 106009  71194  46619  87579 120358  44583 130601
+ 165418 106026  32300 165423 134706 132659 112187  75326 157246  60991
+ 151104 128576  38466  13900  79447  65111 151131  91741  85600  20069
+  61031 104041  97899  69231 104047 130672  50806 126582  52855 108153
+  22138 114294   9854 114307 122501  52874  50829  81549 126609 161434
+  13979  16033  97958  18088  89770 143019  48812   1711   9903  18099
+  40628 130743  89784  40635  85693  71358  32446 110273 104132   5829
+  48837  14023  16071  97992  48846 165587  71379 167637  79578  46819
+ 165606 145126 167656 102121  81640 141035  40685  67313   1779   9971
+  73459 130803  73463 145144 106233 161532  16125  48896 145164 118547
+ 124693 116502  63257  14106 141088  36644  12076 167725  85806  81709
+ 159536 143154 141108 161590 122678 165689  42812 104252   7998  75583
+ 149312 112453  42824  91977 102217 139082 147281  10068 163670 116567
+ 100184  61274  12124  42846   1891  40807  42857  94061 102254  79725
+ 132978 102259  32634 157567  69503  94080 155522  30596  40845 141198
+ 157585  20371  96150 100251 124829  71584 149411 124838  53158  40872
+  28586  30638 153519  26544 128945   4018 122802  98227  98228  77754
+  42940  71622   1991  14280  14286  38867 116701  92126  40927 100325
+ 108517 165861  92137   6122  96236  26606 122863 137200 163824  55283
+  51188 139254]
+[14.811661   6.710636   5.091315  ...  2.9102683 16.607233   3.8766806] [152576 141826 146437  53254 126471 110088  80395 138765  66576   8210
+  99347 164884  62995  98838  46102 153107 140313 111644 107555 137257
+ 133167  31792  28723 103987 128053  28213 139321  49213  71751 122953
+ 155209  31307  68176 155733 114775  15961  26203  15455 158817   6755
+  66659 127078  19048 137322 114798  84080  23152 115312  32883 132208
+ 167541 134264 127096  72825 165500 136319  82047 138369  71807 153732
+  50820 127110 135307 117901  25236  89748 120474  56999  70824  98476
+ 147631 152241  55990    183 155832  31934 132800 149186 112324 127687
+  82121  69834 104650  60109 149710  79056  75987 106196  31967  34527
+    225  67295  41187  12522  39146  84715  77034  81642  88815 101625
+  16634  45325 151821 164110 116495 167185 100114  56596  91413  69401
+ 167198  19744 112929  23331  98091  34093  38190 159025  74556 117060
+ 133453 158029  98639  19278  81748  48989 124255  17253  67944  63849
+ 161129  56173 100721  80255  64385  39298 107402  34188 106383 102289
+ 108947  41875  11156  32661 141720 111514  80291 151971  44453  29100
+  19373  33203 130996  61877    441  23998  75200  35265  62401  28609
+ 106433 162757  35784 163273  76748  31182 116175  28623  73169 106962
+  62418  30681  35808  32736  41444 114669 108527  71152  40436  46582
+ 122870 130553  43514 125436 148477   2558]
+[14.811661   6.710636   5.091315  ...  2.9102683 16.607233   3.8766806] [ 40967  90119     13 ... 139251 122873 155646]
+[14.811661   6.710636   5.091315  ...  2.9102683 16.607233   3.8766806] [     0  32769 163841 ...  65526 163832  98300]
+[14.811661   6.710636   5.091315  ...  2.9102683 16.607233   3.8766806] [ 10241  30732  73746  63508  10263 135208 155690  81963 112684  14381
+  36930  26691 131141  14408  63560 127054 137297 155734  98399   2144
+  12390  30825  30842 118907 155774  47233 147601  43170 159909   2220
+  80044   2233 147646  94413 139483  65768  84201 166122  30958  35057
+ 166129  51483 155954  63797 114998 151867  63807  55631 104786 147802
+    350 112994  29030  72041 139627  53629 125309 133508 127375  67986
+  12691  20890 111011  27044 135593 106925   2487  16825  90569  68046
+  88527 102865  33236  23001  25051 166399 119303  88588 150036  39448
+ 123418 129563  51743 113186 107043 131618  96805  66086 158248  47657
+    558 162351  70202  39492  47706  84585   6765 137847 103033  78458
+ 154238 105088 148125 164516 150182  45746  62137 129721  29376  43731
+ 142043 160482 166627  23274  43760  15089 105201 101114 144137  19210
+  97034 162569 160527 138008 138010  68395 111404 135993  58186  37709
+   2899 164706  56164 115557 129894 150387  23420  70537 136090 115617
+  23468  48045  99254 156605  37826 129987 154571 160718  78804 156636
+ 119786 138219 109551 142330  25597   3077 160775  21529 130076  64544
+ 105505  44070  46123 164921 123968  66642  74841  91227 134235 126047
+  58470  19560  85097  97392  54391 144506  48252 115837 107646 109717
+ 152737   3236   5295   3256 160958  52415  89281 150736  72915  62676
+ 156886  66776  46299  40157  50397 140511  64746   1261 152815 124153
+  40197 105738 169226  34072 132377  32028  75037 126239   5421 103727
+  75059 159027  62781  81216  19783 116052  13658  52574 116062 165218
+ 103783  19825   5508  13700 126344 161162  15768 165284  81328  91571
+ 120245 167355  83396  40422  26092 149006  85534 155166 101927  95786
+ 163400  20065  65124 163431  24185 140922  26241  50828  54931 151187
+ 118432  36514   1699  36520 122542  89777 132803  24270 143080 106220
+   5870  65272 163594   7950  96014  26388  28438  91931  44830  28447
+ 130849  93988 155432 145196  53062  55110  73542  81735  85837  46925
+  83792  65361  77650 151376 100187   8029  48993 163682 112491  24428
+ 149363 102261 163715 110472  42894 110479  65426  16276  83871  83883
+ 165804  61357  73655  92090 159682 126921  38868  49109  30693  83942
+ 165872 133106 114681]
+[14.811661   6.710636   5.091315  ...  2.9102683 16.607233   3.8766806] [139264 114689  90114 ...  73716  49140  16379]
+[14.811661   6.710636   5.091315  ...  2.9102683 16.607233   3.8766806] [122883  81924  81931 ... 122876 114685 147454]
+[14.811661   6.710636   5.091315  ...  2.9102683 16.607233   3.8766806] [     1      2 163843 ...  32759 131066  32767]
+[14.811661   6.710636   5.091315  ...  2.9102683 16.607233   3.8766806] [ 98306 163847  65544 ... 163821  32752  65529]
+[14.811661   6.710636   5.091315  ...  2.9102683 16.607233   3.8766806] [ 81933 149519  96291  55338  71722  73772 106542  34863  79919  86068
+ 110663 161876  77909  90200 135256   4193 110701  69757 129158  32907
+  61582  67730 129172 135322  34975 168113  71870  30913 143563 110813
+ 159968 157925  49394  49396 147702  73980  67844 166155  45329   2324
+  22808 108826 119068  16674  90402  10544  86321 119090  90427  47423
+  61761 145732 117065 123209 141643 133462  10596 102756  10598  33131
+ 106871  47480 129400  49541 117127  29064  76183  76185  10652  70050
+  29092 131492 147878  55730  51635 143796 156089  61882 154043 137664
+ 166343  35299  33253  12774 111077   8687  76284  23050  35359  33323
+   8749  12853  92727 162362 139836  33342 117314 117317 133712  25169
+ 119384  29287  94823 121452 129645  57972  53879 144005  53907 160407
+  58010 148123  21151  90783 125612 156335  10952  45769 158411  41677
+ 115436 156399 146166 107257  33549 131864 103197  35628  97069  66355
+   4920  47928  60237 131921 144213 119648  41825  52072  23410  21370
+  91010 123782  76679 160650  45964 103309  41882  21419 168878  41909
+ 134073 136140 132052  25569  82914  11235  19436  11246 107509   1024
+ 152579  17414  72736  99367 136231  89135  21556 144443  31815  66650
+ 140382 134242  19555 144487  13423 126065  40062  74883  81028  13447
+  95370  64654  58518  35992 103580 148640  79010 101542 134315   7340
+ 136368 113843  64697 144569  60609  48324 101587 165075  95455  44262
+ 126183  54513  54520  95481 148743  50446  58642  38171  97567  34096
+  91455  91461  21833 152910  19792  87383 122200  25946 161119 163174
+ 146795  77166  28018  73076  75124 118146  44428  79263 148895 146856
+  77228  97712 134578   1474  79300 134607  50648  69080 110042  77283
+  50666 101866  75250  54786  71177 124448 120355  71213  60977 138805
+  50744 116280  85571 155207 124489  77387  83536 124498  95828 126550
+  42583  93784  48732 155244  95863 134777  56956 161407 155270  26254
+ 102042  69277  63141  22188 106177   7874  42711  69335 120535 130776
+ 157401 102114  22267 112380   3856  20248  42778  18208  89904  40759
+  94008  44863 155465 120654  55119 159573  16219 132956  63338 137069
+ 118640  18289  26482 143237  38796  51091  90008   1945  14264 110525
+  55234  16323  79810   1995  22479 118737  28628  42977 139237 122871
+  77817  63487]
+[14.811661   6.710636   5.091315  ...  2.9102683 16.607233   3.8766806] [  6792  82091  78507   2283   7694  71726 163758   6128  98109  80278
+ 135254 133273  18618  74427 141789]
+[14.811661   6.710636   5.091315  ...  2.9102683 16.607233   3.8766806] [ 32768  65537  32770 ... 131067 131068  32765]
+[14.811661   6.710636   5.091315  ...  2.9102683 16.607233   3.8766806] [ 49160     11 106521 ...  81904  24571  90111]
+[14.811661   6.710636   5.091315  ...  2.9102683 16.607233   3.8766806] [ 57345  26629 120852 155671  71708 127014  12327  30759 108591 106548
+ 157751 137280 149570   6210 104515 143436  55379 147541  84053 122967
+  12376  88154  49251 143462 133227 157807  26743  10362 151677   2176
+  88193  20615  71816 151699  37012 149662  55457 110756 139429  12453
+ 110757  55463 125103 149680 110776  43194  10428 125116 102588 133312
+ 151750  41166  35022   4303 106710   4312 157915  88284 116957 100582
+  86246  16617    241  49401   2298 127226 110843  37116  14593  71938
+  43269  84238 160015  16656  82192  80143 112915  86293    278 129304
+  88345 129306  49435  20764 157982 166177 112934  24871  45351   2346
+  41260  12589  90416  43316   8501 166196  24887  59703 110900  47412
+  43323 110907    318 102724  82247  10567 110920 117075 125269 112981
+  20826  41310 117088  22883 149862   8556  53616  63857  20852 143736
+  76153 147838  18819  80260  14725 102791 164232 131465  65930  12681
+  43405   8591 147856  63887  78227 100756  47511 156056 156058 121244
+  55709 156065  37285 135589 168362 160179 166325  59832 125368 102840
+  27072   6597  80331  39376  39377 139730  98774  39385 145881  57831
+ 115177 104939  16876  35309 156155 139771 145916  98818 156163 100873
+  16909  57872 141840 125460 119327  68128  37408 145954  64036  61990
+  96806  49704  66089 148012 115246 113198 119344  47668  64052  37431
+    572 162369 111175 135755  29263  98896  16983 158296  19033 160344
+  31321  41566    610  98914   4710 131690  64106  55918  10864   2673
+  70258  31348  84602  74365  62077 135807  57985 111237  51847  58001
+ 162453  25244  78494  86688 133794 162470 113321  23210   4779  47790
+  25266  41656 131768 101048 127674 158396 154299  41664  19136  41667
+  99011  25286  94918 135879 156361  58058 105161  84701  33502  13024
+ 133861  13030  72421  33516  23277   4849  90869 107258  37630 125703
+ 111367  27413  51991  78620  68382  76575  13089  58155 115500   2861
+  76591  11056  41779  35639  43834  62271  23360 158529 125768 162638
+ 107359  11114  54124  76658 146292 101237 121718  25474  21381  35718
+ 123791    912  66451  66459   2974 162720  58275 109476 127910    935
+  91054   2990 152494  54205 127934 107456 107460  70596 105415   7113
+  78794 166863  89040  39894  19421 132062  19424  23525  35816 111594
+ 136176  17394 125940 144372  29685  35831  15351 125946  64507  48124
+ 111616 148482  50182  46091  44054  35863 168990 103459 123940  46118
+  87081   1066  13359  82992  93235  27706 150587 123966  74819 152644
+  25670 134219  62542 136270 146512  31828 101461  58454 101463 134234
+ 169050  66654  80993  13412 101477  44135  44136 158825 119916 113775
+ 138354  81019  99453  83071  64639 119940   1167  58511 158868  40089
+  21663  66720  85152  15525  17574 117928 128168  58538 132268  95405
+ 142512   5296  79026  25779 122032 146608 117942  31923  62648   1212
+  33982  29889 113859  19652  83141 120004  64708 122055  19663  27857
+  91352 126168  79066   5346  31975  42219  23789   7406  72952 163064
+ 142588 118016  54541  99599  97554  50451  60695  25881 126233  77084
+  58658 136486 161062 159020   7469   1326 142641 138547  81208   9531
+  79164 120124   3401  48459  93518 132434  19794 165206 116057 138593
+ 134506  13676 165230  62832 138608  19827  52595  46454  48504   1401
+ 161147 122236 128382  83331  56710 122246 101769  87433  42381  69010
+ 130466 161193 148906 116139  75180 159149 142766  15788  83377  23991
+ 150970 167361 112065  71109  15817  83402   3530 157134 118226 153046
+  91607 138715 165342  24032  11749 134630  83431 108008  67055  91632
+  75256  19963  19964  73219  19972 110084  69126  89608 128530  26132
+  95768 134683 142878  79390   3616  30241  71206 132648  40492  50734
+ 153134  54831  67121  65071 122421  91702 122428  77373  26183 134731
+  73294   1615 108112 126545  11860  93780  87637 124503  13911 120407
+   1630  85602  22115  48740  18022 157289 120425  67180  11885  61036
+  22129  52853  81525  69239 153219  42628  77446  69257  50827  83598
+  46737  40594  16022 165530  42651  11933 155299 143029 108214 161463
+  38589  14013  40639  65217  11972 132808  61132  34513 165585  16081
+ 124628  48852 136921   9949  61149  69342 122595  30439  36585  93930
+  34539 143082 147180 106222  98034  63223 104185  16122  42751  36610
+  57092  12039  81673  63242  77579  38671  32536   7964  65310 145193
+ 137002  16170 165698 116547  44870 141132  32590  40787  48982  26462
+  59236 100196 100200 106344 163689  20331 118635  55149 104303 145264
+  63345 108414   1923 155529  59275 118668  16268  69518 130962  92052
+ 135065  36761 112538 157597  59295 104351   6049 114594  53169 143287
+  75705  65468  53186 116681 143306  81866  59341  96215  22489  36827
+ 104412  73691  24541 128993  94200  47099  90108]
+[14.811661   6.710636   5.091315  ...  2.9102683 16.607233   3.8766806] [143361  40971  47118 ...  86007  45048  47103]
+[14.811661   6.710636   5.091315  ...  2.9102683 16.607233   3.8766806] [155224  90045  24750 122535]
+idx_attach: tensor([131050,  95019, 162865,  44434,  44157, 136736,  41646,  36393, 108794,
+         77040,   9309, 157557,  45830, 111944,  27137,  57333,  29308,  45137,
+        128549,  56271,  59120, 128906,  69265,  85867,  42276, 100790,  24016,
+        111157,  62576,   6696,  68837, 127614, 114649,  70597,  33621, 151539,
+         39038,   9105, 164207,    225, 108527, 117901,  16756,   1175, 136274,
+         88168, 123981,  81060,  80044, 132803,  96014,  30859,  22978, 154148,
+          6316,  69737,   9050,  40165,  97479, 141072, 164700, 127569,  43959,
+         34975, 106177,  23050,  82091,  74427, 135254,  57822, 148815,  80623,
+        144627, 118274, 128427,  41260,  84602,  87637,  50855, 168699,  13136,
+         90045, 122535, 155224,  24750], device='cuda:2')
+Epoch 0, loss_inner: 3.72617, loss_target: 3.53624, homo loss: 0.00000 
+acc_train_clean: 0.0115, ASR_train_attach: 0.0000, ASR_train_outter: 0.0000
+Epoch 10, loss_inner: 2.86411, loss_target: 2.78986, homo loss: 0.00000 
+acc_train_clean: 0.2827, ASR_train_attach: 0.9765, ASR_train_outter: 0.8811
+Epoch 20, loss_inner: 2.48547, loss_target: 2.42090, homo loss: 0.00000 
+acc_train_clean: 0.3249, ASR_train_attach: 0.9765, ASR_train_outter: 0.8442
+Epoch 30, loss_inner: 2.08338, loss_target: 2.04200, homo loss: 0.00000 
+acc_train_clean: 0.4701, ASR_train_attach: 0.9529, ASR_train_outter: 0.6516
+Epoch 40, loss_inner: 1.82003, loss_target: 1.81793, homo loss: 0.00000 
+acc_train_clean: 0.5342, ASR_train_attach: 0.0235, ASR_train_outter: 0.9866
+Epoch 50, loss_inner: 1.74462, loss_target: 1.74850, homo loss: 0.00000 
+acc_train_clean: 0.5630, ASR_train_attach: 0.0118, ASR_train_outter: 0.9950
+Epoch 60, loss_inner: 1.60423, loss_target: 1.59035, homo loss: 0.00000 
+acc_train_clean: 0.5724, ASR_train_attach: 0.1412, ASR_train_outter: 0.9832
+Epoch 70, loss_inner: 1.51807, loss_target: 1.50031, homo loss: 0.00000 
+acc_train_clean: 0.5861, ASR_train_attach: 0.8941, ASR_train_outter: 0.8409
+Epoch 80, loss_inner: 1.44066, loss_target: 1.42298, homo loss: 0.00000 
+acc_train_clean: 0.6009, ASR_train_attach: 0.9529, ASR_train_outter: 0.9246
+Epoch 90, loss_inner: 1.38107, loss_target: 1.36512, homo loss: 0.00000 
+acc_train_clean: 0.6119, ASR_train_attach: 0.9529, ASR_train_outter: 0.9313
+Epoch 100, loss_inner: 1.33624, loss_target: 1.32127, homo loss: 0.00000 
+acc_train_clean: 0.6203, ASR_train_attach: 0.9765, ASR_train_outter: 0.9363
+Epoch 110, loss_inner: 1.30064, loss_target: 1.28677, homo loss: 0.00000 
+acc_train_clean: 0.6280, ASR_train_attach: 0.9765, ASR_train_outter: 0.9347
+Epoch 120, loss_inner: 1.27195, loss_target: 1.25844, homo loss: 0.00000 
+acc_train_clean: 0.6346, ASR_train_attach: 0.9765, ASR_train_outter: 0.9430
+Epoch 130, loss_inner: 1.24727, loss_target: 1.23463, homo loss: 0.00000 
+acc_train_clean: 0.6406, ASR_train_attach: 0.9765, ASR_train_outter: 0.9380
+Epoch 140, loss_inner: 1.22765, loss_target: 1.21565, homo loss: 0.00000 
+acc_train_clean: 0.6436, ASR_train_attach: 0.9765, ASR_train_outter: 0.9397
+Epoch 150, loss_inner: 1.21211, loss_target: 1.20066, homo loss: 0.00000 
+acc_train_clean: 0.6475, ASR_train_attach: 0.9765, ASR_train_outter: 0.9414
+
+Epoch 160, loss_inner: 1.19964, loss_target: 1.18861, homo loss: 0.00000 
+acc_train_clean: 0.6509, ASR_train_attach: 0.9765, ASR_train_outter: 0.9430
+Epoch 170, loss_inner: 1.18919, loss_target: 1.17845, homo loss: 0.00000 
+acc_train_clean: 0.6543, ASR_train_attach: 0.9765, ASR_train_outter: 0.9464
+Epoch 180, loss_inner: 1.18039, loss_target: 1.16974, homo loss: 0.00000 
+acc_train_clean: 0.6559, ASR_train_attach: 0.9765, ASR_train_outter: 0.9497
+Epoch 190, loss_inner: 1.17155, loss_target: 1.16123, homo loss: 0.00000 
+acc_train_clean: 0.6584, ASR_train_attach: 0.9765, ASR_train_outter: 0.9481
+precent of left attach nodes: 0.000
+target class rate on Vs: 0.0000
+accuracy on clean test nodes: 0.6610
+ASR: 0.0001
+Flip ASR: 0.0000/16868 nodes
+CA: 0.6609

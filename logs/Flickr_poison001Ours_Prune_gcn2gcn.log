@@ -1,0 +1,100 @@
+Namespace(attack_method='Basic', cuda=True, dataset='Flickr', debug=True, defense_mode='prune', device_id=1, dis_weight=1.0, dropout=0.5, epochs=200, evaluate_mode='overall', hidden=64, homo_boost_thrd=0.5, homo_loss_weight=1.0, inner=1, lr=0.01, model='GCN', no_cuda=False, prune_thr=0.4, seed=10, selection_method='cluster_degree', target_class=0, target_loss_weight=1, test_model='GCN', thrd=0.5, train_lr=0.02, trigger_prob=0.5, trigger_size=3, trojan_epochs=200, vs_ratio=0.005, weight_decay=0.0005)
+Length of training set: 17850
+Training benign model Finished!
+Total time elapsed: 19.3214s
+Benign CA: 0.4533
+Length of training set: 17850
+=== training gcn model ===
+Epoch 0, training loss: 1.9898420572280884
+acc_val: 0.0521
+Epoch 10, training loss: 1.6195827722549438
+acc_val: 0.4119
+Epoch 20, training loss: 1.5910993814468384
+acc_val: 0.4119
+Epoch 30, training loss: 1.5807485580444336
+acc_val: 0.4119
+Epoch 40, training loss: 1.5790473222732544
+acc_val: 0.4119
+Epoch 50, training loss: 1.5765351057052612
+acc_val: 0.4117
+Epoch 60, training loss: 1.5718852281570435
+acc_val: 0.4156
+Epoch 70, training loss: 1.5671135187149048
+acc_val: 0.4157
+Epoch 80, training loss: 1.5617642402648926
+acc_val: 0.4179
+Epoch 90, training loss: 1.5446405410766602
+acc_val: 0.4481
+Epoch 100, training loss: 1.532071828842163
+acc_val: 0.4532
+Epoch 110, training loss: 1.5207691192626953
+acc_val: 0.4672
+Epoch 120, training loss: 1.5188617706298828
+acc_val: 0.4742
+Epoch 130, training loss: 1.510366439819336
+acc_val: 0.4782
+Epoch 140, training loss: 1.5081532001495361
+acc_val: 0.4690
+Epoch 150, training loss: 1.5094823837280273
+acc_val: 0.4785
+Epoch 160, training loss: 1.5040942430496216
+acc_val: 0.4848
+Epoch 170, training loss: 1.5029035806655884
+acc_val: 0.4874
+Epoch 180, training loss: 1.4972985982894897
+acc_val: 0.4753
+Epoch 190, training loss: 1.4974470138549805
+acc_val: 0.4733
+=== picking the best model according to the performance on validation ===
+Training encoder Finished!
+Total time elapsed: 22.2245s
+Encoder CA on clean test nodes: 0.4923
+running k-means on cuda:1..
+[running kmeans]: 0it [00:00, ?it/s][running kmeans]: 0it [00:00, ?it/s, center_shift=0.040342, iteration=1, tol=0.000100][running kmeans]: 1it [00:00,  1.40it/s, center_shift=0.040342, iteration=1, tol=0.000100][running kmeans]: 1it [00:01,  1.40it/s, center_shift=0.001433, iteration=2, tol=0.000100][running kmeans]: 2it [00:01,  1.44it/s, center_shift=0.001433, iteration=2, tol=0.000100][running kmeans]: 2it [00:01,  1.44it/s, center_shift=0.000858, iteration=3, tol=0.000100][running kmeans]: 3it [00:01,  1.59it/s, center_shift=0.000858, iteration=3, tol=0.000100][running kmeans]: 3it [00:02,  1.59it/s, center_shift=0.000646, iteration=4, tol=0.000100][running kmeans]: 4it [00:02,  1.66it/s, center_shift=0.000646, iteration=4, tol=0.000100][running kmeans]: 4it [00:02,  1.66it/s, center_shift=0.000587, iteration=5, tol=0.000100][running kmeans]: 5it [00:02,  1.80it/s, center_shift=0.000587, iteration=5, tol=0.000100][running kmeans]: 5it [00:03,  1.80it/s, center_shift=0.000587, iteration=6, tol=0.000100][running kmeans]: 6it [00:03,  1.84it/s, center_shift=0.000587, iteration=6, tol=0.000100][running kmeans]: 6it [00:04,  1.84it/s, center_shift=0.000852, iteration=7, tol=0.000100][running kmeans]: 7it [00:04,  1.88it/s, center_shift=0.000852, iteration=7, tol=0.000100][running kmeans]: 7it [00:04,  1.88it/s, center_shift=0.000975, iteration=8, tol=0.000100][running kmeans]: 8it [00:04,  1.84it/s, center_shift=0.000975, iteration=8, tol=0.000100][running kmeans]: 8it [00:04,  1.84it/s, center_shift=0.000935, iteration=9, tol=0.000100][running kmeans]: 9it [00:04,  2.03it/s, center_shift=0.000935, iteration=9, tol=0.000100][running kmeans]: 9it [00:05,  2.03it/s, center_shift=0.000929, iteration=10, tol=0.000100][running kmeans]: 10it [00:05,  2.18it/s, center_shift=0.000929, iteration=10, tol=0.000100][running kmeans]: 10it [00:05,  2.18it/s, center_shift=0.000718, iteration=11, tol=0.000100][running kmeans]: 11it [00:05,  2.05it/s, center_shift=0.000718, iteration=11, tol=0.000100][running kmeans]: 11it [00:06,  2.05it/s, center_shift=0.000566, iteration=12, tol=0.000100][running kmeans]: 12it [00:06,  2.13it/s, center_shift=0.000566, iteration=12, tol=0.000100][running kmeans]: 12it [00:06,  2.13it/s, center_shift=0.000455, iteration=13, tol=0.000100][running kmeans]: 13it [00:06,  2.04it/s, center_shift=0.000455, iteration=13, tol=0.000100][running kmeans]: 13it [00:07,  2.04it/s, center_shift=0.000390, iteration=14, tol=0.000100][running kmeans]: 14it [00:07,  2.01it/s, center_shift=0.000390, iteration=14, tol=0.000100][running kmeans]: 14it [00:07,  2.01it/s, center_shift=0.000327, iteration=15, tol=0.000100][running kmeans]: 15it [00:07,  1.90it/s, center_shift=0.000327, iteration=15, tol=0.000100][running kmeans]: 15it [00:08,  1.90it/s, center_shift=0.000260, iteration=16, tol=0.000100][running kmeans]: 16it [00:08,  1.87it/s, center_shift=0.000260, iteration=16, tol=0.000100][running kmeans]: 16it [00:08,  1.87it/s, center_shift=0.000236, iteration=17, tol=0.000100][running kmeans]: 17it [00:08,  1.98it/s, center_shift=0.000236, iteration=17, tol=0.000100][running kmeans]: 17it [00:09,  1.98it/s, center_shift=0.000196, iteration=18, tol=0.000100][running kmeans]: 18it [00:09,  2.01it/s, center_shift=0.000196, iteration=18, tol=0.000100][running kmeans]: 18it [00:09,  2.01it/s, center_shift=0.000180, iteration=19, tol=0.000100][running kmeans]: 19it [00:09,  2.07it/s, center_shift=0.000180, iteration=19, tol=0.000100][running kmeans]: 19it [00:10,  2.07it/s, center_shift=0.000150, iteration=20, tol=0.000100][running kmeans]: 20it [00:10,  2.36it/s, center_shift=0.000150, iteration=20, tol=0.000100][running kmeans]: 20it [00:10,  2.36it/s, center_shift=0.000124, iteration=21, tol=0.000100][running kmeans]: 21it [00:10,  2.60it/s, center_shift=0.000124, iteration=21, tol=0.000100][running kmeans]: 21it [00:10,  2.60it/s, center_shift=0.000119, iteration=22, tol=0.000100][running kmeans]: 22it [00:10,  2.36it/s, center_shift=0.000119, iteration=22, tol=0.000100][running kmeans]: 22it [00:11,  2.36it/s, center_shift=0.000103, iteration=23, tol=0.000100][running kmeans]: 23it [00:11,  2.00it/s, center_shift=0.000103, iteration=23, tol=0.000100][running kmeans]: 23it [00:12,  2.00it/s, center_shift=0.000089, iteration=24, tol=0.000100][running kmeans]: 24it [00:12,  2.08it/s, center_shift=0.000089, iteration=24, tol=0.000100][running kmeans]: 24it [00:12,  1.98it/s, center_shift=0.000089, iteration=24, tol=0.000100]
+[6 6 4 ... 4 6 6]
+Epoch 0, loss_inner: 1.94567, loss_target: 1.92117, homo loss: 0.51720 
+acc_train_clean: 0.3020, ASR_train_attach: 0.0000, ASR_train_outter: 0.0000
+Epoch 10, loss_inner: 1.68614, loss_target: 1.66990, homo loss: 0.01023 
+acc_train_clean: 0.4243, ASR_train_attach: 0.0000, ASR_train_outter: 0.0000
+Epoch 20, loss_inner: 1.60242, loss_target: 1.55940, homo loss: 0.00487 
+acc_train_clean: 0.4236, ASR_train_attach: 1.0000, ASR_train_outter: 0.9971
+Epoch 30, loss_inner: 1.57958, loss_target: 1.53784, homo loss: 0.00297 
+acc_train_clean: 0.4243, ASR_train_attach: 1.0000, ASR_train_outter: 0.9971
+Epoch 40, loss_inner: 1.57262, loss_target: 1.53070, homo loss: 0.00285 
+acc_train_clean: 0.4243, ASR_train_attach: 1.0000, ASR_train_outter: 0.9971
+Epoch 50, loss_inner: 1.56416, loss_target: 1.52230, homo loss: 0.00309 
+acc_train_clean: 0.4243, ASR_train_attach: 1.0000, ASR_train_outter: 0.9971
+Epoch 60, loss_inner: 1.55802, loss_target: 1.51651, homo loss: 0.00311 
+acc_train_clean: 0.4243, ASR_train_attach: 1.0000, ASR_train_outter: 0.9971
+Epoch 70, loss_inner: 1.55301, loss_target: 1.51172, homo loss: 0.00340 
+acc_train_clean: 0.4244, ASR_train_attach: 1.0000, ASR_train_outter: 0.9971
+Epoch 80, loss_inner: 1.54856, loss_target: 1.50739, homo loss: 0.00313 
+acc_train_clean: 0.4242, ASR_train_attach: 1.0000, ASR_train_outter: 0.9971
+Epoch 90, loss_inner: 1.54344, loss_target: 1.50207, homo loss: 0.00316 
+acc_train_clean: 0.4248, ASR_train_attach: 1.0000, ASR_train_outter: 0.9981
+Epoch 100, loss_inner: 1.53911, loss_target: 1.49770, homo loss: 0.00344 
+acc_train_clean: 0.4253, ASR_train_attach: 1.0000, ASR_train_outter: 0.9981
+Epoch 110, loss_inner: 1.53306, loss_target: 1.49178, homo loss: 0.00317 
+acc_train_clean: 0.4262, ASR_train_attach: 1.0000, ASR_train_outter: 0.9981
+Epoch 120, loss_inner: 1.52910, loss_target: 1.48794, homo loss: 0.03277 
+acc_train_clean: 0.4258, ASR_train_attach: 1.0000, ASR_train_outter: 0.9981
+Epoch 130, loss_inner: 1.52682, loss_target: 1.48638, homo loss: 0.02067 
+acc_train_clean: 0.4281, ASR_train_attach: 1.0000, ASR_train_outter: 0.9981
+Epoch 140, loss_inner: 1.53136, loss_target: 1.52178, homo loss: 0.01863 
+acc_train_clean: 0.4300, ASR_train_attach: 1.0000, ASR_train_outter: 0.9981
+Epoch 150, loss_inner: 1.96100, loss_target: 5.14333, homo loss: 0.31349 
+acc_train_clean: 0.4301, ASR_train_attach: 1.0000, ASR_train_outter: 0.0000
+Epoch 160, loss_inner: 4.38138, loss_target: 4.84904, homo loss: 0.29272 
+acc_train_clean: 0.3937, ASR_train_attach: 1.0000, ASR_train_outter: 1.0000
+Epoch 170, loss_inner: 3.43872, loss_target: 5.24774, homo loss: 0.12485 
+acc_train_clean: 0.4157, ASR_train_attach: 1.0000, ASR_train_outter: 0.9990
+Epoch 180, loss_inner: 2.52435, loss_target: 2.83345, homo loss: 0.06097 
+acc_train_clean: 0.4035, ASR_train_attach: 1.0000, ASR_train_outter: 1.0000
+Epoch 190, loss_inner: 1.86873, loss_target: 1.62606, homo loss: 0.04171 
+acc_train_clean: 0.3943, ASR_train_attach: 1.0000, ASR_train_outter: 1.0000
+precent of left attach nodes: 1.000
+target class rate on Vs: 0.6648
+accuracy on clean test nodes: 0.4108
+ASR: 0.5999
+Flip ASR: 0.6024/8360 nodes
+CA: 0.4139

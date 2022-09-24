@@ -1,3 +1,4 @@
+
 #!/usr/bin/env python
 # coding: utf-8
 
@@ -13,8 +14,12 @@ from models.GCN_Encoder import GCN_Encoder
 from torch_geometric.datasets import Planetoid, WebKB, WikipediaNetwork,Reddit,Reddit2,Flickr,Yelp,PPI
 from torch_geometric.utils import to_dense_adj,dense_to_sparse
 
+# import ogb
+
+# from ogb import nodeproppred
 from ogb.nodeproppred import PygNodePropPredDataset
-# from torch_geometric.loader import DataLoader
+from torch_geometric.loader import DataLoader
+
 from help_funcs import prune_unrelated_edge,prune_unrelated_edge_isolated,select_target_nodes
 import help_funcs
 import scipy.sparse as sp
@@ -25,7 +30,7 @@ parser.add_argument('--debug', action='store_true',
         default=True, help='debug mode')
 parser.add_argument('--no-cuda', action='store_true', default=False,
                     help='Disables CUDA training.')
-parser.add_argument('--seed', type=int, default=10, help='Random seed.')
+parser.add_argument('--seed', type=int, default=11, help='Random seed.')
 parser.add_argument('--model', type=str, default='GCN', help='model',
                     choices=['GCN','GAT','GraphSage','GIN'])
 parser.add_argument('--dataset', type=str, default='ogbn-arxiv', 
@@ -49,8 +54,12 @@ parser.add_argument('--lr', type=float, default=0.01,
                     help='Initial learning rate.')
 parser.add_argument('--trigger_size', type=int, default=3,
                     help='tirgger_size')
-parser.add_argument('--vs_ratio', type=float, default=0.005,
+parser.add_argument('--use_vs_number', action='store_true', default=False,
+                    help="if use detailed number to decide Vs")
+parser.add_argument('--vs_ratio', type=float, default=0,
                     help="ratio of poisoning nodes relative to the full graph")
+parser.add_argument('--vs_number', type=int, default=0,
+                    help="number of poisoning nodes relative to the full graph")
 # defense setting
 parser.add_argument('--defense_mode', type=str, default="none",
                     choices=['prune', 'isolate', 'none'],
@@ -77,7 +86,7 @@ parser.add_argument('--selection_method', type=str, default='none',
 parser.add_argument('--test_model', type=str, default='GCN',
                     choices=['GCN','GAT','GraphSage','GIN'],
                     help='Model used to attack')
-parser.add_argument('--evaluate_mode', type=str, default='1by1',
+parser.add_argument('--evaluate_mode', type=str, default='overall',
                     choices=['overall','1by1'],
                     help='Model used to attack')
 # GPU setting
@@ -89,28 +98,18 @@ args.cuda =  not args.no_cuda and torch.cuda.is_available()
 device = torch.device(('cuda:{}' if torch.cuda.is_available() else 'cpu').format(args.device_id))
 # device2 = torch.device(('cuda:{}' if torch.cuda.is_available() else 'cpu').format(args.device_id+1))
 
-# np.random.seed(args.seed)
-torch.manual_seed(args.seed)
-torch.cuda.manual_seed(args.seed)
 
 np.random.seed(args.seed)
 torch.manual_seed(args.seed)
 torch.cuda.manual_seed(args.seed)
 print(args)
-def setup_seed(seed):
-     torch.manual_seed(seed)
-     torch.cuda.manual_seed_all(seed)
-     np.random.seed(seed)
-    #  random.seed(seed)
-     torch.backends.cudnn.deterministic = True
-# 设置随机数种子
-setup_seed(args.seed)
+
 #%%
 from torch_geometric.utils import to_undirected
 import torch_geometric.transforms as T
 transform = T.Compose([T.NormalizeFeatures()])
 
-np.random.seed(11) # fix the random seed is important
+# np.random.seed(11) # fix the random seed is important
 if(args.dataset == 'Cora' or args.dataset == 'Citeseer' or args.dataset == 'Pubmed'):
     dataset = Planetoid(root='./data/', \
                         name=args.dataset,\
@@ -180,13 +179,16 @@ benign_model = benign_model.cpu()
 
 from sklearn_extra import cluster
 from models.backdoor import Backdoor
-from heuristic_selection import obtain_attach_nodes, obtain_attach_nodes_by_cluster_degree, obtain_attach_nodes_by_cluster_gpu,obtain_attach_nodes_by_influential,obtain_attach_nodes_by_cluster,cluster_distance_selection,cluster_degree_selection
+from heuristic_selection import cluster_degree_selection_seperate_fixed, obtain_attach_nodes, obtain_attach_nodes_by_cluster_degree, obtain_attach_nodes_by_cluster_gpu,obtain_attach_nodes_by_influential,obtain_attach_nodes_by_cluster,cluster_distance_selection,cluster_degree_selection, cluster_degree_selection_seperate
 
 from kmeans_pytorch import kmeans, kmeans_predict
 
 # filter out the unlabeled nodes except from training nodes and testing nodes, nonzero() is to get index, flatten is to get 1-d tensor
 unlabeled_idx = (torch.bitwise_not(data.test_mask)&torch.bitwise_not(data.train_mask)).nonzero().flatten()
-size = int((len(data.test_mask)-data.test_mask.sum())*args.vs_ratio)
+if(args.use_vs_number):
+    size = args.vs_number
+else:
+    size = int((len(data.test_mask)-data.test_mask.sum())*args.vs_ratio)
 # here is randomly select poison nodes from unlabeled nodes
 if(args.selection_method == 'none'):
     idx_attach = obtain_attach_nodes(args,unlabeled_idx,size)
@@ -197,9 +199,12 @@ elif(args.selection_method == 'cluster'):
     idx_attach = cluster_distance_selection(args,data,idx_train,idx_val,idx_clean_test,unlabeled_idx,train_edge_index,size,device)
     idx_attach = torch.LongTensor(idx_attach).to(device)
 elif(args.selection_method == 'cluster_degree'):
-    idx_attach = cluster_degree_selection(args,data,idx_train,idx_val,idx_clean_test,unlabeled_idx,train_edge_index,size,device)
+    # idx_attach = cluster_degree_selection(args,data,idx_train,idx_val,idx_clean_test,unlabeled_idx,train_edge_index,size,device)
+    # idx_attach = cluster_degree_selection_seperate(args,data,idx_train,idx_val,idx_clean_test,unlabeled_idx,train_edge_index,size,device)
+    idx_attach = cluster_degree_selection_seperate_fixed(args,data,idx_train,idx_val,idx_clean_test,unlabeled_idx,train_edge_index,size,device)
     idx_attach = torch.LongTensor(idx_attach).to(device)
-
+print("idx_attach: {}".format(idx_attach))
+unlabeled_idx = torch.tensor(list(set(unlabeled_idx.cpu().numpy()) - set(idx_attach.cpu().numpy()))).to(device)
 # In[10]:
 # train trigger generator 
 model = Backdoor(args,device)
@@ -222,8 +227,8 @@ elif(args.defense_mode == 'isolate'):
     bkd_tn_nodes = torch.LongTensor(list(set(bkd_tn_nodes) - set(rel_nodes))).to(device)
 else:
     bkd_tn_nodes = torch.cat([idx_train,idx_attach]).to(device)
-if(args.attack_method == 'None'):
-    bkd_tn_nodes = idx_train
+# if(args.attack_method == 'None'):
+#     bkd_tn_nodes = idx_train
 print("precent of left attach nodes: {:.3f}"\
     .format(len(set(bkd_tn_nodes.tolist()) & set(idx_attach.tolist()))/len(idx_attach)))
 #%%
@@ -233,7 +238,7 @@ test_model.fit(poison_x, poison_edge_index, poison_edge_weights, poison_labels, 
 output = test_model(poison_x,poison_edge_index,poison_edge_weights)
 train_attach_rate = (output.argmax(dim=1)[idx_attach]==args.target_class).float().mean()
 print("target class rate on Vs: {:.4f}".format(train_attach_rate))
-torch.cuda.empty_cache()
+# torch.cuda.empty_cache()
 #%%
 induct_edge_index = torch.cat([poison_edge_index,mask_edge_index],dim=1)
 induct_edge_weights = torch.cat([poison_edge_weights,torch.ones([mask_edge_index.shape[1]],dtype=torch.float,device=device)])

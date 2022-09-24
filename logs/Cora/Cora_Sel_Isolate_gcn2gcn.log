@@ -1,0 +1,640 @@
+nohup: ignoring input
+Namespace(attack_method='Basic', cuda=True, dataset='Cora', debug=True, defense_mode='isolate', device_id=2, dis_weight=1.0, dropout=0.5, epochs=200, evaluate_mode='1by1', hidden=32, homo_boost_thrd=0.5, homo_loss_weight=0.0, inner=1, lr=0.01, model='GCN', no_cuda=False, prune_thr=0.1, seed=10, selection_method='cluster_degree', target_class=0, target_loss_weight=1, test_model='GCN', thrd=0.5, train_lr=0.01, trigger_prob=0.5, trigger_size=3, trojan_epochs=200, vs_ratio=0.005, weight_decay=0.0005)
+Length of training set: 541
+Training benign model Finished!
+Total time elapsed: 2.8379s
+Benign CA: 0.8370
+Length of training set: 541
+=== training gcn model ===
+Epoch 0, training loss: 1.9369609355926514
+acc_val: 0.3222
+Epoch 10, training loss: 1.8167824745178223
+acc_val: 0.3222
+Epoch 20, training loss: 1.733052372932434
+acc_val: 0.3222
+Epoch 30, training loss: 1.534885048866272
+acc_val: 0.3185
+Epoch 40, training loss: 1.3212164640426636
+acc_val: 0.5333
+Epoch 50, training loss: 1.1975619792938232
+acc_val: 0.5481
+Epoch 60, training loss: 1.094074010848999
+acc_val: 0.5556
+Epoch 70, training loss: 1.0517759323120117
+acc_val: 0.5593
+Epoch 80, training loss: 0.955062985420227
+acc_val: 0.5556
+Epoch 90, training loss: 0.8993108868598938
+acc_val: 0.5556
+Epoch 100, training loss: 0.8748317360877991
+acc_val: 0.6704
+Epoch 110, training loss: 0.7881456613540649
+acc_val: 0.6963
+Epoch 120, training loss: 0.7822926044464111
+acc_val: 0.7296
+Epoch 130, training loss: 0.7056646347045898
+acc_val: 0.7259
+Epoch 140, training loss: 0.667498767375946
+acc_val: 0.7481
+Epoch 150, training loss: 0.6459025740623474
+acc_val: 0.7519
+Epoch 160, training loss: 0.5695692896842957
+acc_val: 0.7704
+Epoch 170, training loss: 0.5193480849266052
+acc_val: 0.7667
+Epoch 180, training loss: 0.4540114104747772
+acc_val: 0.7519
+Epoch 190, training loss: 0.43488261103630066
+acc_val: 0.7481
+=== picking the best model according to the performance on validation ===
+Training encoder Finished!
+Total time elapsed: 2.4062s
+Encoder CA on clean test nodes: 0.7519
+[3 4 3 ... 5 3 3]
+Epoch 0, loss_inner: 1.94605, loss_target: 1.92101, homo loss: 0.00000 
+acc_train_clean: 0.1534, ASR_train_attach: 0.0000, ASR_train_outter: 0.1130
+Epoch 10, loss_inner: 1.71369, loss_target: 0.97061, homo loss: 0.00000 
+acc_train_clean: 0.2884, ASR_train_attach: 1.0000, ASR_train_outter: 1.0000
+Epoch 20, loss_inner: 1.54148, loss_target: 0.88885, homo loss: 0.00000 
+acc_train_clean: 0.3882, ASR_train_attach: 1.0000, ASR_train_outter: 0.9655
+Epoch 30, loss_inner: 1.33578, loss_target: 0.76678, homo loss: 0.00000 
+acc_train_clean: 0.5675, ASR_train_attach: 1.0000, ASR_train_outter: 1.0000
+Epoch 40, loss_inner: 1.11404, loss_target: 0.61430, homo loss: 0.00000 
+acc_train_clean: 0.7468, ASR_train_attach: 1.0000, ASR_train_outter: 1.0000
+Epoch 50, loss_inner: 0.90840, loss_target: 0.57323, homo loss: 0.00000 
+acc_train_clean: 0.8688, ASR_train_attach: 1.0000, ASR_train_outter: 0.9828
+Epoch 60, loss_inner: 0.73747, loss_target: 0.40470, homo loss: 0.00000 
+acc_train_clean: 0.9168, ASR_train_attach: 1.0000, ASR_train_outter: 0.9962
+Epoch 70, loss_inner: 0.60977, loss_target: 0.37586, homo loss: 0.00000 
+acc_train_clean: 0.9353, ASR_train_attach: 1.0000, ASR_train_outter: 0.9100
+Epoch 80, loss_inner: 0.51972, loss_target: 0.33394, homo loss: 0.00000 
+acc_train_clean: 0.9482, ASR_train_attach: 1.0000, ASR_train_outter: 0.9674
+Epoch 90, loss_inner: 0.45699, loss_target: 0.27276, homo loss: 0.00000 
+acc_train_clean: 0.9575, ASR_train_attach: 1.0000, ASR_train_outter: 1.0000
+Epoch 100, loss_inner: 0.41227, loss_target: 0.24680, homo loss: 0.00000 
+acc_train_clean: 0.9630, ASR_train_attach: 1.0000, ASR_train_outter: 1.0000
+Epoch 110, loss_inner: 0.37921, loss_target: 0.29617, homo loss: 0.00000 
+acc_train_clean: 0.9649, ASR_train_attach: 1.0000, ASR_train_outter: 0.8908
+Epoch 120, loss_inner: 0.35320, loss_target: 0.23241, homo loss: 0.00000 
+acc_train_clean: 0.9649, ASR_train_attach: 1.0000, ASR_train_outter: 0.9962
+Epoch 130, loss_inner: 0.33297, loss_target: 0.20919, homo loss: 0.00000 
+acc_train_clean: 0.9649, ASR_train_attach: 1.0000, ASR_train_outter: 1.0000
+Epoch 140, loss_inner: 0.31621, loss_target: 0.53534, homo loss: 0.00000 
+acc_train_clean: 0.9686, ASR_train_attach: 1.0000, ASR_train_outter: 1.0000
+Epoch 150, loss_inner: 0.30244, loss_target: 0.26714, homo loss: 0.00000 
+acc_train_clean: 0.9686, ASR_train_attach: 1.0000, ASR_train_outter: 0.9962
+Epoch 160, loss_inner: 0.29049, loss_target: 0.21193, homo loss: 0.00000 
+acc_train_clean: 0.9704, ASR_train_attach: 1.0000, ASR_train_outter: 0.9981
+Epoch 170, loss_inner: 0.28051, loss_target: 0.19351, homo loss: 0.00000 
+acc_train_clean: 0.9704, ASR_train_attach: 1.0000, ASR_train_outter: 1.0000
+Epoch 180, loss_inner: 0.27160, loss_target: 0.18090, homo loss: 0.00000 
+acc_train_clean: 0.9723, ASR_train_attach: 1.0000, ASR_train_outter: 0.9981
+Epoch 190, loss_inner: 0.26391, loss_target: 0.17512, homo loss: 0.00000 
+acc_train_clean: 0.9723, ASR_train_attach: 1.0000, ASR_train_outter: 0.9981
+precent of left attach nodes: 0.000
+target class rate on Vs: 0.6000
+accuracy on clean test nodes: 0.8074
+Node 0: 1370, Origin Label: 6
+ASR: 0.0000
+Node 1: 1376, Origin Label: 0
+ASR: 1.0000
+Node 2: 1378, Origin Label: 2
+ASR: 0.0000
+Node 3: 1392, Origin Label: 3
+ASR: 0.0000
+Node 4: 1393, Origin Label: 3
+ASR: 0.0000
+Node 5: 1400, Origin Label: 3
+ASR: 0.0000
+Node 6: 1416, Origin Label: 0
+ASR: 1.0000
+Node 7: 1422, Origin Label: 4
+ASR: 0.0000
+Node 8: 1423, Origin Label: 3
+ASR: 0.0000
+Node 9: 1425, Origin Label: 4
+ASR: 0.0000
+Node 10: 1429, Origin Label: 4
+ASR: 0.0000
+Node 11: 1434, Origin Label: 3
+ASR: 0.0000
+Node 12: 1436, Origin Label: 5
+ASR: 0.0000
+Node 13: 1437, Origin Label: 4
+ASR: 0.0000
+Node 14: 1441, Origin Label: 5
+ASR: 0.0000
+Node 15: 1442, Origin Label: 3
+ASR: 0.0000
+Node 16: 1444, Origin Label: 2
+ASR: 0.0000
+Node 17: 1448, Origin Label: 1
+ASR: 0.0000
+Node 18: 1450, Origin Label: 3
+ASR: 0.0000
+Node 19: 1452, Origin Label: 4
+ASR: 0.0000
+Node 20: 1457, Origin Label: 3
+ASR: 0.0000
+Node 21: 1476, Origin Label: 6
+ASR: 0.0000
+Node 22: 1486, Origin Label: 2
+ASR: 0.0000
+Node 23: 1487, Origin Label: 6
+ASR: 0.0000
+Node 24: 1493, Origin Label: 4
+ASR: 0.0000
+Node 25: 1499, Origin Label: 2
+ASR: 0.0000
+Node 26: 1501, Origin Label: 6
+ASR: 0.0000
+Node 27: 1506, Origin Label: 2
+ASR: 0.0000
+Node 28: 1507, Origin Label: 0
+ASR: 0.0000
+Node 29: 1523, Origin Label: 0
+ASR: 1.0000
+Node 30: 1541, Origin Label: 3
+ASR: 0.0000
+Node 31: 1546, Origin Label: 2
+ASR: 0.0000
+Node 32: 1554, Origin Label: 3
+ASR: 0.0000
+Node 33: 1561, Origin Label: 1
+ASR: 0.0000
+Node 34: 1565, Origin Label: 2
+ASR: 0.0000
+Node 35: 1567, Origin Label: 3
+ASR: 0.0000
+Node 36: 1568, Origin Label: 2
+ASR: 0.0000
+Node 37: 1583, Origin Label: 0
+ASR: 0.0000
+Node 38: 1589, Origin Label: 2
+ASR: 0.0000
+Node 39: 1591, Origin Label: 3
+ASR: 0.0000
+Node 40: 1597, Origin Label: 3
+ASR: 0.0000
+Node 41: 1600, Origin Label: 3
+ASR: 0.0000
+Node 42: 1602, Origin Label: 0
+ASR: 1.0000
+Node 43: 1605, Origin Label: 3
+ASR: 0.0000
+Node 44: 1611, Origin Label: 3
+ASR: 0.0000
+Node 45: 1628, Origin Label: 0
+ASR: 1.0000
+Node 46: 1629, Origin Label: 2
+ASR: 0.0000
+Node 47: 1632, Origin Label: 2
+ASR: 0.0000
+Node 48: 1637, Origin Label: 0
+ASR: 0.0000
+Node 49: 1644, Origin Label: 0
+ASR: 1.0000
+Node 50: 1645, Origin Label: 3
+ASR: 0.0000
+Node 51: 1653, Origin Label: 4
+ASR: 0.0000
+Node 52: 1661, Origin Label: 5
+ASR: 1.0000
+Node 53: 1668, Origin Label: 2
+ASR: 1.0000
+Node 54: 1675, Origin Label: 6
+ASR: 0.0000
+Node 55: 1679, Origin Label: 3
+ASR: 0.0000
+Node 56: 1684, Origin Label: 3
+ASR: 0.0000
+Node 57: 1688, Origin Label: 4
+ASR: 0.0000
+Node 58: 1695, Origin Label: 0
+ASR: 1.0000
+Node 59: 1705, Origin Label: 1
+ASR: 0.0000
+Node 60: 1707, Origin Label: 5
+ASR: 0.0000
+Node 61: 1726, Origin Label: 2
+ASR: 0.0000
+Node 62: 1727, Origin Label: 2
+ASR: 0.0000
+Node 63: 1734, Origin Label: 2
+ASR: 0.0000
+Node 64: 1749, Origin Label: 2
+ASR: 0.0000
+Node 65: 1752, Origin Label: 2
+ASR: 0.0000
+Node 66: 1753, Origin Label: 2
+ASR: 0.0000
+Node 67: 1760, Origin Label: 2
+ASR: 0.0000
+Node 68: 1764, Origin Label: 5
+ASR: 0.0000
+Node 69: 1768, Origin Label: 1
+ASR: 0.0000
+Node 70: 1771, Origin Label: 1
+ASR: 0.0000
+Node 71: 1777, Origin Label: 1
+ASR: 0.0000
+Node 72: 1779, Origin Label: 1
+ASR: 0.0000
+Node 73: 1781, Origin Label: 1
+ASR: 0.0000
+Node 74: 1783, Origin Label: 1
+ASR: 0.0000
+Node 75: 1786, Origin Label: 1
+ASR: 0.0000
+Node 76: 1794, Origin Label: 4
+ASR: 0.0000
+Node 77: 1803, Origin Label: 0
+ASR: 1.0000
+Node 78: 1807, Origin Label: 3
+ASR: 0.0000
+Node 79: 1809, Origin Label: 3
+ASR: 0.0000
+Node 80: 1810, Origin Label: 3
+ASR: 0.0000
+Node 81: 1817, Origin Label: 3
+ASR: 0.0000
+Node 82: 1822, Origin Label: 3
+ASR: 0.0000
+Node 83: 1825, Origin Label: 5
+ASR: 0.0000
+Node 84: 1829, Origin Label: 5
+ASR: 0.0000
+Node 85: 1836, Origin Label: 6
+ASR: 0.0000
+Node 86: 1838, Origin Label: 0
+ASR: 1.0000
+Node 87: 1841, Origin Label: 0
+ASR: 1.0000
+Node 88: 1845, Origin Label: 5
+ASR: 1.0000
+Node 89: 1852, Origin Label: 3
+ASR: 0.0000
+Node 90: 1853, Origin Label: 3
+ASR: 0.0000
+Node 91: 1858, Origin Label: 3
+ASR: 0.0000
+Node 92: 1862, Origin Label: 3
+ASR: 0.0000
+Node 93: 1866, Origin Label: 3
+ASR: 0.0000
+Node 94: 1870, Origin Label: 3
+ASR: 0.0000
+Node 95: 1872, Origin Label: 3
+ASR: 0.0000
+Node 96: 1878, Origin Label: 5
+ASR: 0.0000
+Node 97: 1879, Origin Label: 5
+ASR: 1.0000
+Node 98: 1881, Origin Label: 5
+ASR: 0.0000
+Node 99: 1891, Origin Label: 4
+ASR: 0.0000
+Node 100: 1899, Origin Label: 5
+ASR: 0.0000
+Node 101: 1901, Origin Label: 5
+ASR: 0.0000
+Node 102: 1904, Origin Label: 5
+ASR: 0.0000
+Node 103: 1906, Origin Label: 4
+ASR: 1.0000
+Node 104: 1909, Origin Label: 0
+ASR: 1.0000
+Node 105: 1911, Origin Label: 5
+ASR: 1.0000
+Node 106: 1913, Origin Label: 0
+ASR: 1.0000
+Node 107: 1916, Origin Label: 6
+ASR: 1.0000
+Node 108: 1918, Origin Label: 6
+ASR: 1.0000
+Node 109: 1920, Origin Label: 0
+ASR: 0.0000
+Node 110: 1925, Origin Label: 0
+ASR: 0.0000
+Node 111: 1931, Origin Label: 3
+ASR: 0.0000
+Node 112: 1932, Origin Label: 3
+ASR: 0.0000
+Node 113: 1936, Origin Label: 3
+ASR: 0.0000
+Node 114: 1938, Origin Label: 3
+ASR: 0.0000
+Node 115: 1942, Origin Label: 3
+ASR: 0.0000
+Node 116: 1947, Origin Label: 3
+ASR: 0.0000
+Node 117: 1959, Origin Label: 5
+ASR: 0.0000
+Node 118: 1961, Origin Label: 5
+ASR: 0.0000
+Node 119: 1962, Origin Label: 5
+ASR: 0.0000
+Node 120: 1969, Origin Label: 4
+ASR: 0.0000
+Node 121: 1972, Origin Label: 6
+ASR: 1.0000
+Node 122: 1977, Origin Label: 3
+ASR: 0.0000
+Node 123: 1983, Origin Label: 0
+ASR: 0.0000
+Node 124: 1996, Origin Label: 3
+ASR: 0.0000
+Node 125: 2004, Origin Label: 3
+ASR: 0.0000
+Node 126: 2006, Origin Label: 3
+ASR: 0.0000
+Node 127: 2010, Origin Label: 0
+ASR: 0.0000
+Node 128: 2011, Origin Label: 3
+ASR: 0.0000
+Node 129: 2014, Origin Label: 3
+ASR: 0.0000
+Node 130: 2015, Origin Label: 6
+ASR: 1.0000
+Node 131: 2019, Origin Label: 0
+ASR: 0.0000
+Node 132: 2038, Origin Label: 3
+ASR: 0.0000
+Node 133: 2043, Origin Label: 4
+ASR: 0.0000
+Node 134: 2045, Origin Label: 1
+ASR: 0.0000
+Node 135: 2051, Origin Label: 0
+ASR: 0.0000
+Node 136: 2054, Origin Label: 0
+ASR: 1.0000
+Node 137: 2055, Origin Label: 0
+ASR: 1.0000
+Node 138: 2058, Origin Label: 5
+ASR: 0.0000
+Node 139: 2059, Origin Label: 0
+ASR: 1.0000
+Node 140: 2071, Origin Label: 2
+ASR: 1.0000
+Node 141: 2072, Origin Label: 0
+ASR: 1.0000
+Node 142: 2075, Origin Label: 3
+ASR: 0.0000
+Node 143: 2082, Origin Label: 1
+ASR: 1.0000
+Node 144: 2087, Origin Label: 1
+ASR: 0.0000
+Node 145: 2096, Origin Label: 1
+ASR: 0.0000
+Node 146: 2105, Origin Label: 5
+ASR: 1.0000
+Node 147: 2107, Origin Label: 1
+ASR: 0.0000
+Node 148: 2113, Origin Label: 2
+ASR: 0.0000
+Node 149: 2120, Origin Label: 4
+ASR: 0.0000
+Node 150: 2122, Origin Label: 4
+ASR: 0.0000
+Node 151: 2130, Origin Label: 4
+ASR: 0.0000
+Node 152: 2131, Origin Label: 0
+ASR: 1.0000
+Node 153: 2139, Origin Label: 3
+ASR: 0.0000
+Node 154: 2141, Origin Label: 3
+ASR: 0.0000
+Node 155: 2153, Origin Label: 4
+ASR: 1.0000
+Node 156: 2156, Origin Label: 0
+ASR: 1.0000
+Node 157: 2157, Origin Label: 6
+ASR: 0.0000
+Node 158: 2158, Origin Label: 6
+ASR: 0.0000
+Node 159: 2160, Origin Label: 6
+ASR: 0.0000
+Node 160: 2164, Origin Label: 6
+ASR: 0.0000
+Node 161: 2165, Origin Label: 6
+ASR: 0.0000
+Node 162: 2166, Origin Label: 5
+ASR: 0.0000
+Node 163: 2172, Origin Label: 0
+ASR: 1.0000
+Node 164: 2177, Origin Label: 3
+ASR: 1.0000
+Node 165: 2181, Origin Label: 0
+ASR: 1.0000
+Node 166: 2189, Origin Label: 0
+ASR: 1.0000
+Node 167: 2195, Origin Label: 0
+ASR: 0.0000
+Node 168: 2198, Origin Label: 0
+ASR: 1.0000
+Node 169: 2212, Origin Label: 3
+ASR: 0.0000
+Node 170: 2215, Origin Label: 3
+ASR: 0.0000
+Node 171: 2218, Origin Label: 1
+ASR: 0.0000
+Node 172: 2224, Origin Label: 4
+ASR: 0.0000
+Node 173: 2228, Origin Label: 6
+ASR: 0.0000
+Node 174: 2229, Origin Label: 3
+ASR: 0.0000
+Node 175: 2231, Origin Label: 0
+ASR: 0.0000
+Node 176: 2232, Origin Label: 0
+ASR: 1.0000
+Node 177: 2235, Origin Label: 5
+ASR: 0.0000
+Node 178: 2249, Origin Label: 4
+ASR: 0.0000
+Node 179: 2264, Origin Label: 4
+ASR: 0.0000
+Node 180: 2274, Origin Label: 0
+ASR: 0.0000
+Node 181: 2279, Origin Label: 2
+ASR: 0.0000
+Node 182: 2288, Origin Label: 5
+ASR: 0.0000
+Node 183: 2293, Origin Label: 0
+ASR: 1.0000
+Node 184: 2297, Origin Label: 4
+ASR: 0.0000
+Node 185: 2299, Origin Label: 4
+ASR: 0.0000
+Node 186: 2302, Origin Label: 3
+ASR: 0.0000
+Node 187: 2310, Origin Label: 3
+ASR: 0.0000
+Node 188: 2316, Origin Label: 3
+ASR: 0.0000
+Node 189: 2318, Origin Label: 1
+ASR: 0.0000
+Node 190: 2320, Origin Label: 3
+ASR: 1.0000
+Node 191: 2321, Origin Label: 0
+ASR: 1.0000
+Node 192: 2330, Origin Label: 0
+ASR: 0.0000
+Node 193: 2331, Origin Label: 1
+ASR: 0.0000
+Node 194: 2337, Origin Label: 4
+ASR: 0.0000
+Node 195: 2341, Origin Label: 4
+ASR: 0.0000
+Node 196: 2342, Origin Label: 0
+ASR: 1.0000
+Node 197: 2346, Origin Label: 3
+ASR: 0.0000
+Node 198: 2347, Origin Label: 0
+ASR: 1.0000
+Node 199: 2353, Origin Label: 4
+ASR: 0.0000
+Node 200: 2359, Origin Label: 2
+ASR: 0.0000
+Node 201: 2365, Origin Label: 2
+ASR: 0.0000
+Node 202: 2368, Origin Label: 3
+ASR: 0.0000
+Node 203: 2383, Origin Label: 4
+ASR: 0.0000
+Node 204: 2384, Origin Label: 0
+ASR: 1.0000
+Node 205: 2389, Origin Label: 2
+ASR: 0.0000
+Node 206: 2392, Origin Label: 2
+ASR: 0.0000
+Node 207: 2411, Origin Label: 3
+ASR: 0.0000
+Node 208: 2425, Origin Label: 3
+ASR: 0.0000
+Node 209: 2427, Origin Label: 3
+ASR: 1.0000
+Node 210: 2428, Origin Label: 5
+ASR: 1.0000
+Node 211: 2431, Origin Label: 4
+ASR: 0.0000
+Node 212: 2433, Origin Label: 2
+ASR: 0.0000
+Node 213: 2435, Origin Label: 4
+ASR: 0.0000
+Node 214: 2438, Origin Label: 3
+ASR: 0.0000
+Node 215: 2445, Origin Label: 2
+ASR: 0.0000
+Node 216: 2446, Origin Label: 2
+ASR: 0.0000
+Node 217: 2448, Origin Label: 2
+ASR: 0.0000
+Node 218: 2456, Origin Label: 5
+ASR: 0.0000
+Node 219: 2459, Origin Label: 3
+ASR: 0.0000
+Node 220: 2461, Origin Label: 6
+ASR: 0.0000
+Node 221: 2467, Origin Label: 6
+ASR: 0.0000
+Node 222: 2474, Origin Label: 4
+ASR: 0.0000
+Node 223: 2479, Origin Label: 6
+ASR: 0.0000
+Node 224: 2483, Origin Label: 4
+ASR: 0.0000
+Node 225: 2489, Origin Label: 3
+ASR: 0.0000
+Node 226: 2490, Origin Label: 4
+ASR: 0.0000
+Node 227: 2496, Origin Label: 4
+ASR: 0.0000
+Node 228: 2505, Origin Label: 1
+ASR: 0.0000
+Node 229: 2508, Origin Label: 3
+ASR: 0.0000
+Node 230: 2509, Origin Label: 3
+ASR: 0.0000
+Node 231: 2514, Origin Label: 2
+ASR: 0.0000
+Node 232: 2523, Origin Label: 2
+ASR: 0.0000
+Node 233: 2533, Origin Label: 0
+ASR: 0.0000
+Node 234: 2540, Origin Label: 3
+ASR: 0.0000
+Node 235: 2543, Origin Label: 3
+ASR: 0.0000
+Node 236: 2549, Origin Label: 4
+ASR: 0.0000
+Node 237: 2552, Origin Label: 3
+ASR: 0.0000
+Node 238: 2557, Origin Label: 2
+ASR: 0.0000
+Node 239: 2561, Origin Label: 2
+ASR: 0.0000
+Node 240: 2562, Origin Label: 0
+ASR: 1.0000
+Node 241: 2566, Origin Label: 3
+ASR: 0.0000
+Node 242: 2568, Origin Label: 3
+ASR: 0.0000
+Node 243: 2578, Origin Label: 0
+ASR: 0.0000
+Node 244: 2582, Origin Label: 3
+ASR: 0.0000
+Node 245: 2586, Origin Label: 5
+ASR: 0.0000
+Node 246: 2592, Origin Label: 5
+ASR: 0.0000
+Node 247: 2598, Origin Label: 1
+ASR: 0.0000
+Node 248: 2599, Origin Label: 3
+ASR: 0.0000
+Node 249: 2603, Origin Label: 3
+ASR: 0.0000
+Node 250: 2604, Origin Label: 6
+ASR: 0.0000
+Node 251: 2614, Origin Label: 2
+ASR: 0.0000
+Node 252: 2618, Origin Label: 2
+ASR: 0.0000
+Node 253: 2631, Origin Label: 4
+ASR: 0.0000
+Node 254: 2641, Origin Label: 2
+ASR: 0.0000
+Node 255: 2642, Origin Label: 2
+ASR: 0.0000
+Node 256: 2646, Origin Label: 4
+ASR: 0.0000
+Node 257: 2647, Origin Label: 4
+ASR: 0.0000
+Node 258: 2653, Origin Label: 0
+ASR: 0.0000
+Node 259: 2658, Origin Label: 2
+ASR: 0.0000
+Node 260: 2668, Origin Label: 3
+ASR: 0.0000
+Node 261: 2669, Origin Label: 3
+ASR: 0.0000
+Node 262: 2681, Origin Label: 4
+ASR: 0.0000
+Node 263: 2685, Origin Label: 2
+ASR: 0.0000
+Node 264: 2686, Origin Label: 3
+ASR: 0.0000
+Node 265: 2689, Origin Label: 2
+ASR: 0.0000
+Node 266: 2690, Origin Label: 6
+ASR: 1.0000
+Node 267: 2699, Origin Label: 3
+ASR: 0.0000
+Node 268: 2700, Origin Label: 3
+ASR: 0.0000
+Node 269: 2702, Origin Label: 0
+ASR: 1.0000
+Node 270: 2707, Origin Label: 3
+ASR: 0.0000
+Overall ASR: 0.1808
+Flip ASR: 0.0844/225 nodes

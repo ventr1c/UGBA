@@ -1,12 +1,11 @@
-nohup: ignoring input
-Namespace(attack_method='Rand_Gene', cuda=True, dataset='Flickr', debug=True, defense_mode='none', device_id=1, dis_weight=1, dropout=0.5, epochs=200, evaluate_mode='overall', hidden=128, homo_boost_thrd=0.5, homo_loss_weight=0, inner=1, lr=0.01, model='GCN', no_cuda=False, prune_thr=0.15, seed=10, selection_method='none', target_class=0, target_loss_weight=1, test_model='GCN', thrd=0.5, train_lr=0.02, trigger_prob=0.5, trigger_size=3, trojan_epochs=200, vs_ratio=0.001, weight_decay=0.0005)
+Namespace(attack_method='Rand_Gene', cuda=True, dataset='Flickr', debug=True, defense_mode='none', device_id=1, dis_weight=1, dropout=0.5, epochs=200, evaluate_mode='overall', hidden=64, homo_boost_thrd=0.5, homo_loss_weight=0, inner=1, lr=0.01, model='GCN', no_cuda=False, prune_thr=0.15, seed=10, selection_method='none', target_class=0, target_loss_weight=1, test_model='GCN', thrd=0.5, train_lr=0.02, trigger_prob=0.5, trigger_size=3, trojan_epochs=200, vs_ratio=0.001, weight_decay=0.0005)
 Length of training set: 17850
 Training benign model Finished!
-Total time elapsed: 32.4658s
-Benign CA: 0.4633
+Total time elapsed: 29.9422s
+Benign CA: 0.4540
 precent of left attach nodes: 1.000
 target class rate on Vs: 0.9859
-accuracy on clean test nodes: 0.4577
-ASR: 0.9866
-Flip ASR: 0.9865/8360 nodes
-CA: 0.4390
+accuracy on clean test nodes: 0.4477
+ASR: 0.9965
+Flip ASR: 0.9965/8360 nodes
+CA: 0.4250

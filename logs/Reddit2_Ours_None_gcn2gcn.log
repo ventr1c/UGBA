@@ -1,0 +1,266 @@
+nohup: ignoring input
+Namespace(attack_method='Basic', cuda=True, dataset='Reddit2', debug=True, defense_mode='none', device_id=3, dis_weight=1.0, dropout=0.5, epochs=200, evaluate_mode='overall', hidden=64, homo_boost_thrd=0.5, homo_loss_weight=3.0, inner=1, lr=0.01, model='GCN', no_cuda=False, prune_thr=0.15, seed=11, selection_method='cluster_degree', target_class=0, target_loss_weight=1, test_model='GCN', thrd=0.5, train_lr=0.02, trigger_prob=0.5, trigger_size=3, trojan_epochs=200, use_vs_number=False, vs_number=0, vs_ratio=0.001, weight_decay=0.0005)
+Length of training set: 46593
+Training benign model Finished!
+Total time elapsed: 60.9247s
+Benign CA: 0.8611
+Length of training set: 46593
+=== training gcn model ===
+Epoch 0, training loss: 4.166820526123047
+acc_val: 0.0655
+Epoch 10, training loss: 3.34169864654541
+acc_val: 0.1284
+Epoch 20, training loss: 2.998443365097046
+acc_val: 0.2219
+Epoch 30, training loss: 2.5661985874176025
+acc_val: 0.3433
+Epoch 40, training loss: 2.274210214614868
+acc_val: 0.3616
+Epoch 50, training loss: 2.183337688446045
+acc_val: 0.4512
+Epoch 60, training loss: 2.0631208419799805
+acc_val: 0.4785
+Epoch 70, training loss: 2.0165717601776123
+acc_val: 0.4926
+Epoch 80, training loss: 2.0233490467071533
+acc_val: 0.4538
+Epoch 90, training loss: 2.0234827995300293
+acc_val: 0.4797
+Epoch 100, training loss: 1.9238091707229614
+acc_val: 0.5024
+Epoch 110, training loss: 1.8675086498260498
+acc_val: 0.5200
+Epoch 120, training loss: 1.8342734575271606
+acc_val: 0.5282
+Epoch 130, training loss: 1.8162230253219604
+acc_val: 0.5351
+Epoch 140, training loss: 1.8337974548339844
+acc_val: 0.5185
+Epoch 150, training loss: 1.7804535627365112
+acc_val: 0.5370
+Epoch 160, training loss: 1.7447565793991089
+acc_val: 0.5550
+Epoch 170, training loss: 1.7261340618133545
+acc_val: 0.5312
+Epoch 180, training loss: 1.874186635017395
+acc_val: 0.5300
+Epoch 190, training loss: 1.7357765436172485
+acc_val: 0.5527
+=== picking the best model according to the performance on validation ===
+Training encoder Finished!
+Total time elapsed: 63.0788s
+Encoder CA on clean test nodes: 0.5703
+running k-means on cuda:3..
+
+[running kmeans]: 0it [00:00, ?it/s]
+[running kmeans]: 0it [00:04, ?it/s, center_shift=2388.434570, iteration=1, tol=0.000100]
+[running kmeans]: 1it [00:04,  4.36s/it, center_shift=2388.434570, iteration=1, tol=0.000100]
+[running kmeans]: 1it [00:09,  4.36s/it, center_shift=428.749237, iteration=2, tol=0.000100] 
+[running kmeans]: 2it [00:09,  4.65s/it, center_shift=428.749237, iteration=2, tol=0.000100]
+[running kmeans]: 2it [00:14,  4.65s/it, center_shift=145.907364, iteration=3, tol=0.000100]
+[running kmeans]: 3it [00:14,  4.93s/it, center_shift=145.907364, iteration=3, tol=0.000100]
+[running kmeans]: 3it [00:21,  4.93s/it, center_shift=70.902763, iteration=4, tol=0.000100] 
+[running kmeans]: 4it [00:21,  5.59s/it, center_shift=70.902763, iteration=4, tol=0.000100]
+[running kmeans]: 4it [00:24,  5.59s/it, center_shift=41.946938, iteration=5, tol=0.000100]
+[running kmeans]: 5it [00:24,  4.96s/it, center_shift=41.946938, iteration=5, tol=0.000100]
+[running kmeans]: 5it [00:30,  4.96s/it, center_shift=29.358225, iteration=6, tol=0.000100]
+[running kmeans]: 6it [00:30,  5.33s/it, center_shift=29.358225, iteration=6, tol=0.000100]
+[running kmeans]: 6it [00:36,  5.33s/it, center_shift=22.936609, iteration=7, tol=0.000100]
+[running kmeans]: 7it [00:36,  5.52s/it, center_shift=22.936609, iteration=7, tol=0.000100]
+[running kmeans]: 7it [00:41,  5.52s/it, center_shift=17.715738, iteration=8, tol=0.000100]
+[running kmeans]: 8it [00:41,  5.32s/it, center_shift=17.715738, iteration=8, tol=0.000100]
+[running kmeans]: 8it [00:48,  5.32s/it, center_shift=14.497804, iteration=9, tol=0.000100]
+[running kmeans]: 9it [00:48,  5.67s/it, center_shift=14.497804, iteration=9, tol=0.000100]
+[running kmeans]: 9it [00:53,  5.67s/it, center_shift=12.405709, iteration=10, tol=0.000100]
+[running kmeans]: 10it [00:53,  5.67s/it, center_shift=12.405709, iteration=10, tol=0.000100]
+[running kmeans]: 10it [01:00,  5.67s/it, center_shift=10.480256, iteration=11, tol=0.000100]
+[running kmeans]: 11it [01:00,  5.85s/it, center_shift=10.480256, iteration=11, tol=0.000100]
+[running kmeans]: 11it [01:06,  5.85s/it, center_shift=7.727603, iteration=12, tol=0.000100] 
+[running kmeans]: 12it [01:06,  5.87s/it, center_shift=7.727603, iteration=12, tol=0.000100]
+[running kmeans]: 12it [01:12,  5.87s/it, center_shift=5.901356, iteration=13, tol=0.000100]
+[running kmeans]: 13it [01:12,  5.99s/it, center_shift=5.901356, iteration=13, tol=0.000100]
+[running kmeans]: 13it [01:19,  5.99s/it, center_shift=4.865366, iteration=14, tol=0.000100]
+[running kmeans]: 14it [01:19,  6.41s/it, center_shift=4.865366, iteration=14, tol=0.000100]
+[running kmeans]: 14it [01:25,  6.41s/it, center_shift=5.047086, iteration=15, tol=0.000100]
+[running kmeans]: 15it [01:25,  6.31s/it, center_shift=5.047086, iteration=15, tol=0.000100]
+[running kmeans]: 15it [01:31,  6.31s/it, center_shift=4.823658, iteration=16, tol=0.000100]
+[running kmeans]: 16it [01:31,  6.23s/it, center_shift=4.823658, iteration=16, tol=0.000100]
+[running kmeans]: 16it [01:38,  6.23s/it, center_shift=3.777628, iteration=17, tol=0.000100]
+[running kmeans]: 17it [01:38,  6.27s/it, center_shift=3.777628, iteration=17, tol=0.000100]
+[running kmeans]: 17it [01:45,  6.27s/it, center_shift=2.412751, iteration=18, tol=0.000100]
+[running kmeans]: 18it [01:45,  6.54s/it, center_shift=2.412751, iteration=18, tol=0.000100]
+[running kmeans]: 18it [01:51,  6.54s/it, center_shift=1.506528, iteration=19, tol=0.000100]
+[running kmeans]: 19it [01:51,  6.36s/it, center_shift=1.506528, iteration=19, tol=0.000100]
+[running kmeans]: 19it [01:57,  6.36s/it, center_shift=0.938353, iteration=20, tol=0.000100]
+[running kmeans]: 20it [01:57,  6.16s/it, center_shift=0.938353, iteration=20, tol=0.000100]
+[running kmeans]: 20it [02:03,  6.16s/it, center_shift=0.600453, iteration=21, tol=0.000100]
+[running kmeans]: 21it [02:03,  6.33s/it, center_shift=0.600453, iteration=21, tol=0.000100]
+[running kmeans]: 21it [02:09,  6.33s/it, center_shift=0.482303, iteration=22, tol=0.000100]
+[running kmeans]: 22it [02:09,  6.02s/it, center_shift=0.482303, iteration=22, tol=0.000100]
+[running kmeans]: 22it [02:14,  6.02s/it, center_shift=0.412694, iteration=23, tol=0.000100]
+[running kmeans]: 23it [02:14,  5.90s/it, center_shift=0.412694, iteration=23, tol=0.000100]
+[running kmeans]: 23it [02:20,  5.90s/it, center_shift=0.366099, iteration=24, tol=0.000100]
+[running kmeans]: 24it [02:20,  5.85s/it, center_shift=0.366099, iteration=24, tol=0.000100]
+[running kmeans]: 24it [02:25,  5.85s/it, center_shift=0.317438, iteration=25, tol=0.000100]
+[running kmeans]: 25it [02:25,  5.71s/it, center_shift=0.317438, iteration=25, tol=0.000100]
+[running kmeans]: 25it [02:32,  5.71s/it, center_shift=0.344082, iteration=26, tol=0.000100]
+[running kmeans]: 26it [02:32,  5.98s/it, center_shift=0.344082, iteration=26, tol=0.000100]
+[running kmeans]: 26it [02:37,  5.98s/it, center_shift=0.349224, iteration=27, tol=0.000100]
+[running kmeans]: 27it [02:37,  5.74s/it, center_shift=0.349224, iteration=27, tol=0.000100]
+[running kmeans]: 27it [02:44,  5.74s/it, center_shift=0.346425, iteration=28, tol=0.000100]
+[running kmeans]: 28it [02:44,  6.07s/it, center_shift=0.346425, iteration=28, tol=0.000100]
+[running kmeans]: 28it [02:49,  6.07s/it, center_shift=0.364156, iteration=29, tol=0.000100]
+[running kmeans]: 29it [02:49,  5.70s/it, center_shift=0.364156, iteration=29, tol=0.000100]
+[running kmeans]: 29it [02:54,  5.70s/it, center_shift=0.343230, iteration=30, tol=0.000100]
+[running kmeans]: 30it [02:54,  5.59s/it, center_shift=0.343230, iteration=30, tol=0.000100]
+[running kmeans]: 30it [02:59,  5.59s/it, center_shift=0.373516, iteration=31, tol=0.000100]
+[running kmeans]: 31it [02:59,  5.36s/it, center_shift=0.373516, iteration=31, tol=0.000100]
+[running kmeans]: 31it [03:03,  5.36s/it, center_shift=0.425742, iteration=32, tol=0.000100]
+[running kmeans]: 32it [03:03,  5.12s/it, center_shift=0.425742, iteration=32, tol=0.000100]
+[running kmeans]: 32it [03:10,  5.12s/it, center_shift=0.478735, iteration=33, tol=0.000100]
+[running kmeans]: 33it [03:10,  5.62s/it, center_shift=0.478735, iteration=33, tol=0.000100]
+[running kmeans]: 33it [03:16,  5.62s/it, center_shift=0.454685, iteration=34, tol=0.000100]
+[running kmeans]: 34it [03:16,  5.72s/it, center_shift=0.454685, iteration=34, tol=0.000100]
+[running kmeans]: 34it [03:22,  5.72s/it, center_shift=0.426151, iteration=35, tol=0.000100]
+[running kmeans]: 35it [03:22,  5.75s/it, center_shift=0.426151, iteration=35, tol=0.000100]
+[running kmeans]: 35it [03:27,  5.75s/it, center_shift=0.448383, iteration=36, tol=0.000100]
+[running kmeans]: 36it [03:27,  5.60s/it, center_shift=0.448383, iteration=36, tol=0.000100]
+[running kmeans]: 36it [03:32,  5.60s/it, center_shift=0.448814, iteration=37, tol=0.000100]
+[running kmeans]: 37it [03:32,  5.31s/it, center_shift=0.448814, iteration=37, tol=0.000100]
+[running kmeans]: 37it [03:38,  5.31s/it, center_shift=0.401723, iteration=38, tol=0.000100]
+[running kmeans]: 38it [03:38,  5.44s/it, center_shift=0.401723, iteration=38, tol=0.000100]
+[running kmeans]: 38it [03:44,  5.44s/it, center_shift=0.379983, iteration=39, tol=0.000100]
+[running kmeans]: 39it [03:44,  5.60s/it, center_shift=0.379983, iteration=39, tol=0.000100]
+[running kmeans]: 39it [03:48,  5.60s/it, center_shift=0.374518, iteration=40, tol=0.000100]
+[running kmeans]: 40it [03:48,  5.38s/it, center_shift=0.374518, iteration=40, tol=0.000100]
+[running kmeans]: 40it [03:53,  5.38s/it, center_shift=0.373586, iteration=41, tol=0.000100]
+[running kmeans]: 41it [03:53,  5.17s/it, center_shift=0.373586, iteration=41, tol=0.000100]
+[running kmeans]: 41it [03:59,  5.17s/it, center_shift=0.344754, iteration=42, tol=0.000100]
+[running kmeans]: 42it [03:59,  5.28s/it, center_shift=0.344754, iteration=42, tol=0.000100]
+[running kmeans]: 42it [04:05,  5.28s/it, center_shift=0.389706, iteration=43, tol=0.000100]
+[running kmeans]: 43it [04:05,  5.71s/it, center_shift=0.389706, iteration=43, tol=0.000100]
+[running kmeans]: 43it [04:11,  5.71s/it, center_shift=0.425546, iteration=44, tol=0.000100]
+[running kmeans]: 44it [04:11,  5.57s/it, center_shift=0.425546, iteration=44, tol=0.000100]
+[running kmeans]: 44it [04:15,  5.57s/it, center_shift=0.425112, iteration=45, tol=0.000100]
+[running kmeans]: 45it [04:15,  5.14s/it, center_shift=0.425112, iteration=45, tol=0.000100]
+[running kmeans]: 45it [04:19,  5.14s/it, center_shift=0.407759, iteration=46, tol=0.000100]
+[running kmeans]: 46it [04:19,  4.80s/it, center_shift=0.407759, iteration=46, tol=0.000100]
+[running kmeans]: 46it [04:22,  4.80s/it, center_shift=0.388029, iteration=47, tol=0.000100]
+[running kmeans]: 47it [04:22,  4.29s/it, center_shift=0.388029, iteration=47, tol=0.000100]
+[running kmeans]: 47it [04:25,  4.29s/it, center_shift=0.374725, iteration=48, tol=0.000100]
+[running kmeans]: 48it [04:25,  3.96s/it, center_shift=0.374725, iteration=48, tol=0.000100]
+[running kmeans]: 48it [04:30,  3.96s/it, center_shift=0.364330, iteration=49, tol=0.000100]
+[running kmeans]: 49it [04:30,  4.37s/it, center_shift=0.364330, iteration=49, tol=0.000100]
+[running kmeans]: 49it [04:35,  4.37s/it, center_shift=0.345856, iteration=50, tol=0.000100]
+[running kmeans]: 50it [04:35,  4.38s/it, center_shift=0.345856, iteration=50, tol=0.000100]
+[running kmeans]: 50it [04:40,  4.38s/it, center_shift=0.276165, iteration=51, tol=0.000100]
+[running kmeans]: 51it [04:40,  4.73s/it, center_shift=0.276165, iteration=51, tol=0.000100]
+[running kmeans]: 51it [04:46,  4.73s/it, center_shift=0.253589, iteration=52, tol=0.000100]
+[running kmeans]: 52it [04:46,  5.09s/it, center_shift=0.253589, iteration=52, tol=0.000100]
+[running kmeans]: 52it [04:50,  5.09s/it, center_shift=0.205693, iteration=53, tol=0.000100]
+[running kmeans]: 53it [04:50,  4.70s/it, center_shift=0.205693, iteration=53, tol=0.000100]
+[running kmeans]: 53it [04:55,  4.70s/it, center_shift=0.169160, iteration=54, tol=0.000100]
+[running kmeans]: 54it [04:55,  4.86s/it, center_shift=0.169160, iteration=54, tol=0.000100]
+[running kmeans]: 54it [05:01,  4.86s/it, center_shift=0.125631, iteration=55, tol=0.000100]
+[running kmeans]: 55it [05:01,  5.05s/it, center_shift=0.125631, iteration=55, tol=0.000100]
+[running kmeans]: 55it [05:08,  5.05s/it, center_shift=0.090581, iteration=56, tol=0.000100]
+[running kmeans]: 56it [05:08,  5.81s/it, center_shift=0.090581, iteration=56, tol=0.000100]
+[running kmeans]: 56it [05:16,  5.81s/it, center_shift=0.075776, iteration=57, tol=0.000100]
+[running kmeans]: 57it [05:16,  6.27s/it, center_shift=0.075776, iteration=57, tol=0.000100]
+[running kmeans]: 57it [05:22,  6.27s/it, center_shift=0.062296, iteration=58, tol=0.000100]
+[running kmeans]: 58it [05:22,  6.13s/it, center_shift=0.062296, iteration=58, tol=0.000100]
+[running kmeans]: 58it [05:28,  6.13s/it, center_shift=0.055468, iteration=59, tol=0.000100]
+[running kmeans]: 59it [05:28,  6.20s/it, center_shift=0.055468, iteration=59, tol=0.000100]
+[running kmeans]: 59it [05:34,  6.20s/it, center_shift=0.048982, iteration=60, tol=0.000100]
+[running kmeans]: 60it [05:34,  6.31s/it, center_shift=0.048982, iteration=60, tol=0.000100]
+[running kmeans]: 60it [05:41,  6.31s/it, center_shift=0.039342, iteration=61, tol=0.000100]
+[running kmeans]: 61it [05:41,  6.45s/it, center_shift=0.039342, iteration=61, tol=0.000100]
+[running kmeans]: 61it [05:47,  6.45s/it, center_shift=0.032035, iteration=62, tol=0.000100]
+[running kmeans]: 62it [05:47,  6.19s/it, center_shift=0.032035, iteration=62, tol=0.000100]
+[running kmeans]: 62it [05:52,  6.19s/it, center_shift=0.029598, iteration=63, tol=0.000100]
+[running kmeans]: 63it [05:52,  6.02s/it, center_shift=0.029598, iteration=63, tol=0.000100]
+[running kmeans]: 63it [05:59,  6.02s/it, center_shift=0.024270, iteration=64, tol=0.000100]
+[running kmeans]: 64it [05:59,  6.05s/it, center_shift=0.024270, iteration=64, tol=0.000100]
+[running kmeans]: 64it [06:05,  6.05s/it, center_shift=0.019761, iteration=65, tol=0.000100]
+[running kmeans]: 65it [06:05,  6.09s/it, center_shift=0.019761, iteration=65, tol=0.000100]
+[running kmeans]: 65it [06:10,  6.09s/it, center_shift=0.018848, iteration=66, tol=0.000100]
+[running kmeans]: 66it [06:10,  5.79s/it, center_shift=0.018848, iteration=66, tol=0.000100]
+[running kmeans]: 66it [06:15,  5.79s/it, center_shift=0.012913, iteration=67, tol=0.000100]
+[running kmeans]: 67it [06:15,  5.48s/it, center_shift=0.012913, iteration=67, tol=0.000100]
+[running kmeans]: 67it [06:18,  5.48s/it, center_shift=0.013402, iteration=68, tol=0.000100]
+[running kmeans]: 68it [06:18,  4.95s/it, center_shift=0.013402, iteration=68, tol=0.000100]
+[running kmeans]: 68it [06:24,  4.95s/it, center_shift=0.008462, iteration=69, tol=0.000100]
+[running kmeans]: 69it [06:24,  5.10s/it, center_shift=0.008462, iteration=69, tol=0.000100]
+[running kmeans]: 69it [06:31,  5.10s/it, center_shift=0.006915, iteration=70, tol=0.000100]
+[running kmeans]: 70it [06:31,  5.78s/it, center_shift=0.006915, iteration=70, tol=0.000100]
+[running kmeans]: 70it [06:37,  5.78s/it, center_shift=0.004897, iteration=71, tol=0.000100]
+[running kmeans]: 71it [06:37,  5.76s/it, center_shift=0.004897, iteration=71, tol=0.000100]
+[running kmeans]: 71it [06:43,  5.76s/it, center_shift=0.003824, iteration=72, tol=0.000100]
+[running kmeans]: 72it [06:43,  5.89s/it, center_shift=0.003824, iteration=72, tol=0.000100]
+[running kmeans]: 72it [06:48,  5.89s/it, center_shift=0.003052, iteration=73, tol=0.000100]
+[running kmeans]: 73it [06:48,  5.70s/it, center_shift=0.003052, iteration=73, tol=0.000100]
+[running kmeans]: 73it [06:54,  5.70s/it, center_shift=0.002745, iteration=74, tol=0.000100]
+[running kmeans]: 74it [06:54,  5.66s/it, center_shift=0.002745, iteration=74, tol=0.000100]
+[running kmeans]: 74it [06:58,  5.66s/it, center_shift=0.003189, iteration=75, tol=0.000100]
+[running kmeans]: 75it [06:58,  5.25s/it, center_shift=0.003189, iteration=75, tol=0.000100]
+[running kmeans]: 75it [07:02,  5.25s/it, center_shift=0.003014, iteration=76, tol=0.000100]
+[running kmeans]: 76it [07:02,  4.93s/it, center_shift=0.003014, iteration=76, tol=0.000100]
+[running kmeans]: 76it [07:07,  4.93s/it, center_shift=0.001634, iteration=77, tol=0.000100]
+[running kmeans]: 77it [07:07,  4.95s/it, center_shift=0.001634, iteration=77, tol=0.000100]
+[running kmeans]: 77it [07:12,  4.95s/it, center_shift=0.001605, iteration=78, tol=0.000100]
+[running kmeans]: 78it [07:12,  4.80s/it, center_shift=0.001605, iteration=78, tol=0.000100]
+[running kmeans]: 78it [07:16,  4.80s/it, center_shift=0.001293, iteration=79, tol=0.000100]
+[running kmeans]: 79it [07:16,  4.62s/it, center_shift=0.001293, iteration=79, tol=0.000100]
+[running kmeans]: 79it [07:20,  4.62s/it, center_shift=0.001670, iteration=80, tol=0.000100]
+[running kmeans]: 80it [07:20,  4.56s/it, center_shift=0.001670, iteration=80, tol=0.000100]
+[running kmeans]: 80it [07:26,  4.56s/it, center_shift=0.001484, iteration=81, tol=0.000100]
+[running kmeans]: 81it [07:26,  4.92s/it, center_shift=0.001484, iteration=81, tol=0.000100]
+[running kmeans]: 81it [07:32,  4.92s/it, center_shift=0.001230, iteration=82, tol=0.000100]
+[running kmeans]: 82it [07:32,  5.18s/it, center_shift=0.001230, iteration=82, tol=0.000100]
+[running kmeans]: 82it [07:37,  5.18s/it, center_shift=0.000980, iteration=83, tol=0.000100]
+[running kmeans]: 83it [07:37,  5.09s/it, center_shift=0.000980, iteration=83, tol=0.000100]
+[running kmeans]: 83it [07:41,  5.09s/it, center_shift=0.000475, iteration=84, tol=0.000100]
+[running kmeans]: 84it [07:41,  4.94s/it, center_shift=0.000475, iteration=84, tol=0.000100]
+[running kmeans]: 84it [07:47,  4.94s/it, center_shift=0.000365, iteration=85, tol=0.000100]
+[running kmeans]: 85it [07:47,  5.07s/it, center_shift=0.000365, iteration=85, tol=0.000100]
+[running kmeans]: 85it [07:53,  5.07s/it, center_shift=0.000426, iteration=86, tol=0.000100]
+[running kmeans]: 86it [07:53,  5.32s/it, center_shift=0.000426, iteration=86, tol=0.000100]
+[running kmeans]: 86it [07:59,  5.32s/it, center_shift=0.000510, iteration=87, tol=0.000100]
+[running kmeans]: 87it [07:59,  5.58s/it, center_shift=0.000510, iteration=87, tol=0.000100]
+[running kmeans]: 87it [08:04,  5.58s/it, center_shift=0.000382, iteration=88, tol=0.000100]
+[running kmeans]: 88it [08:04,  5.50s/it, center_shift=0.000382, iteration=88, tol=0.000100]
+[running kmeans]: 88it [08:10,  5.50s/it, center_shift=0.000072, iteration=89, tol=0.000100]
+[running kmeans]: 89it [08:10,  5.52s/it, center_shift=0.000072, iteration=89, tol=0.000100]
+[running kmeans]: 89it [08:10,  5.51s/it, center_shift=0.000072, iteration=89, tol=0.000100]
+[27 14 18 ...  3  0 27]
+idx_attach: tensor([ 50451, 191286, 171759,  86127,  98413, 158830,  42554, 165323, 207733,
+        159162, 129187, 196777,  69064, 183007, 149436, 125249, 171293, 232181,
+        110234,  54764, 117882, 134505,  99841,  54300, 204352, 194935, 169382,
+         40512,  32064, 125612, 203499, 166442, 114661,  20233, 107902, 125207,
+        172411,  98266,   3914,  69370,  74977, 212077,  38971, 154403,    862,
+        193545, 100053, 126103, 133934, 117885,  65188, 138561, 134547, 211041,
+         15793, 221962,  30253,  67116,  10008,  35405,  67011, 227958, 232329,
+        113836,  59086,  12583,  64237,  28897, 162221,  26187, 114309, 105377,
+        179440, 199971, 150588,   5180,  62205, 205085,  73278, 117556, 133490,
+         93630,  97319,  24200, 191002,  87845, 148941,  86531, 101350,  98744,
+        215639, 136879,  31011, 139063,  84999, 222306,  16651, 217788, 127578,
+        154197, 214473,  11255, 198543,  48461, 191577, 174855, 170386, 137380,
+         49495,  77439, 216496, 178940,  20866, 122625,  94268,  10929, 176219,
+         43393,  67497,  27617,  22883, 153670, 187313, 196163, 213477,  56900,
+          5484,  96884,   2737, 117237, 127867, 155818,  50435, 165858, 231571,
+         46598,  40278, 165663,  85625, 197111, 121674, 195925,  37531,  40033,
+         65619,  36024,  91950, 150844,  23104, 151351, 198802, 100325, 165880,
+         74539, 139796, 158554,  69472, 227326, 231059, 136141, 159396, 169218,
+         63848,  27247, 128012,  68966,  98293,  35672,  19042,  18689,  60401,
+        109276, 144064,  92632, 165172,  35001,  96574,  48367, 232871,  23041,
+        180821,   9663,  35348, 117003, 140191,  23386], device='cuda:3')
+Traceback (most recent call last):
+  File "run_adaptive.py", line 210, in <module>
+    model.fit(data.x, train_edge_index, None, data.y, idx_train,idx_attach, unlabeled_idx)
+  File "/home/mfl5681/project-backdoor/Backdoor/models/backdoor.py", line 347, in fit
+    loss_inner.backward()
+  File "/home/mfl5681/anaconda3/envs/py38_torch120/lib/python3.8/site-packages/torch/_tensor.py", line 396, in backward
+    torch.autograd.backward(self, gradient, retain_graph, create_graph, inputs=inputs)
+  File "/home/mfl5681/anaconda3/envs/py38_torch120/lib/python3.8/site-packages/torch/autograd/__init__.py", line 173, in backward
+    Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+RuntimeError: CUDA out of memory. Tried to allocate 2.31 GiB (GPU 3; 47.54 GiB total capacity; 15.02 GiB already allocated; 2.11 GiB free; 18.80 GiB reserved in total by PyTorch) If reserved memory is >> allocated memory try setting max_split_size_mb to avoid fragmentation.  See documentation for Memory Management and PYTORCH_CUDA_ALLOC_CONF

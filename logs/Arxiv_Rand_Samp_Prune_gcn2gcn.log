@@ -1,0 +1,11 @@
+Namespace(attack_method='Rand_Samp', cuda=True, dataset='ogbn-arxiv', debug=True, defense_mode='prune', device_id=2, dis_weight=1, dropout=0.5, epochs=200, evaluate_mode='overall', hidden=64, homo_boost_thrd=0.5, homo_loss_weight=0, inner=1, lr=0.01, model='GCN', no_cuda=False, prune_thr=0.3, seed=10, selection_method='none', target_class=0, target_loss_weight=1, test_model='GCN', thrd=0.5, train_lr=0.02, trigger_prob=0.5, trigger_size=3, trojan_epochs=200, vs_ratio=0.001, weight_decay=0.0005)
+Length of training set: 33868
+Training benign model Finished!
+Total time elapsed: 42.1309s
+Benign CA: 0.6624
+precent of left attach nodes: 1.000
+target class rate on Vs: 0.0074
+accuracy on clean test nodes: 0.6613
+ASR: 0.0019
+Flip ASR: 0.0012/16875 nodes
+CA: 0.6608
