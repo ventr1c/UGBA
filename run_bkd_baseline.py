@@ -1,15 +1,10 @@
-#!/usr/bin/env python
-# coding: utf-8
 
 # In[1]: 
 
-
-import time
 import argparse
 import numpy as np
 import torch
 from torch_geometric.datasets import Planetoid,Reddit2,Flickr
-from torch_geometric.utils import to_dense_adj,dense_to_sparse
 
 from ogb.nodeproppred import PygNodePropPredDataset
 from help_funcs import prune_unrelated_edge,prune_unrelated_edge_isolated
@@ -22,12 +17,10 @@ parser.add_argument('--debug', action='store_true',
         default=True, help='debug mode')
 parser.add_argument('--no-cuda', action='store_true', default=False,
                     help='Disables CUDA training.')
-parser.add_argument('--seed', type=int, default=10, help='Random seed.')
-parser.add_argument('--model', type=str, default='GCN', help='model',
-                    choices=['GCN','GAT','GraphSage','GIN'])
+parser.add_argument('--seed', type=int, default=11, help='Random seed.')
 parser.add_argument('--dataset', type=str, default='ogbn-arxiv', 
                     help='Dataset',
-                    choices=['Cora','Citeseer','Pubmed','PPI','Flickr','ogbn-arxiv','Reddit','Reddit2','Yelp'])
+                    choices=['Cora','Citeseer','Pubmed','PPI','Flickr','ogbn-arxiv','Reddit','Reddit2'])
 
 parser.add_argument('--weight_decay', type=float, default=5e-4,
                     help='Weight decay (L2 loss on parameters).')
@@ -43,7 +36,9 @@ parser.add_argument('--train_lr', type=float, default=0.01,
                     help='Initial learning rate.')
 parser.add_argument('--trigger_size', type=int, default=3,
                     help='tirgger_size')
-parser.add_argument('--vs_ratio', type=float, default=0.005,
+parser.add_argument('--vs_ratio', type=float, default=0.05,
+                    help="ratio of poisoning nodes relative to the full graph")
+parser.add_argument('--vs_size', type=int, default=160,
                     help="ratio of poisoning nodes relative to the full graph")
 # defense setting
 parser.add_argument('--defense_mode', type=str, default="none",
@@ -51,12 +46,12 @@ parser.add_argument('--defense_mode', type=str, default="none",
                     help="Mode of defense")
 parser.add_argument('--prune_thr', type=float, default=0.15,
                     help="Threshold of prunning edges")
-parser.add_argument('--attack_method', type=str, default='None',
+parser.add_argument('--attack_method', type=str, default='Rand_Gene',
                     choices=['Rand_Gene','Rand_Samp','Basic','None'],
                     help='Method to select idx_attach for training trojan model (none means randomly select)')
 parser.add_argument('--trigger_prob', type=float, default=0.5,
                     help="The probability to generate the trigger's edges in random method")
-parser.add_argument('--test_model', type=str, default='GCN',
+parser.add_argument('--test_model', type=str, default='GraphSage',
                     choices=['GCN','GAT','GraphSage','GIN'],
                     help='Model used to attack')
 parser.add_argument('--evaluate_mode', type=str, default='1by1',
@@ -117,20 +112,19 @@ mask_edge_index = data.edge_index[:,torch.bitwise_not(edge_mask)]
 
 from heuristic_selection import obtain_attach_nodes
 
-# filter out the unlabeled nodes except from training nodes and testing nodes, 
-# nonzero() is to get index, flatten is to get 1-d tensor
 unlabeled_idx = (torch.bitwise_not(data.test_mask)&torch.bitwise_not(data.train_mask)).nonzero().flatten()
-size = int((len(data.test_mask)-data.test_mask.sum())*args.vs_ratio)
+size = args.vs_size #int((len(data.test_mask)-data.test_mask.sum())*args.vs_ratio)
 
 idx_attach = obtain_attach_nodes(args,unlabeled_idx,size)
 
 # In[10]:
 # train trigger generator 
-from models.baseline import BaseLine
-model = BaseLine(args,device)
+
 if(args.attack_method == 'Rand_Gene' or args.attack_method == 'Rand_Samp'):
+    from models.baseline import BaseLine
+    model = BaseLine(args,device,data.x)
     # model.fit_rand(data.x, train_edge_index, None, data.y, idx_train,idx_attach, unlabeled_idx)
-    poison_x, poison_edge_index, poison_edge_weights, poison_labels = model.get_poisoned_rand(data.x, train_edge_index, None, data.y, idx_train,idx_attach, unlabeled_idx)
+    poison_x, poison_edge_index, poison_edge_weights, poison_labels = model.get_poisoned_rand(data.x, train_edge_index, data.y,idx_attach)
 elif(args.attack_method == 'None'):
     train_edge_weights = torch.ones([train_edge_index.shape[1]],device=device,dtype=torch.float)
     poison_x, poison_edge_index, poison_edge_weights, poison_labels = data.x.clone(), train_edge_index.clone(), train_edge_weights, data.y.clone()
@@ -181,7 +175,7 @@ for i, idx in enumerate(idx_atk):
     sub_induct_edge_weights = torch.ones([sub_induct_edge_index.shape[1]]).to(device)
     # inject trigger on attack test nodes (idx_atk)'''
     if(args.attack_method == 'Rand_Gene' or args.attack_method == 'Rand_Samp'):
-        induct_x, induct_edge_index,induct_edge_weights = model.inject_trigger_rand(relabeled_node_idx,poison_x[sub_induct_nodeset],sub_induct_edge_index,sub_induct_edge_weights,data.y[sub_induct_nodeset], full_data=False)
+        induct_x, induct_edge_index,induct_edge_weights = model.inject_trigger_rand(relabeled_node_idx,poison_x[sub_induct_nodeset],sub_induct_edge_index)
     elif(args.attack_method == 'None'):
         induct_x, induct_edge_index,induct_edge_weights = poison_x[sub_induct_nodeset],sub_induct_edge_index,sub_induct_edge_weights
 
@@ -194,14 +188,13 @@ for i, idx in enumerate(idx_atk):
     # test_model = test_model.to(device)
     output = test_model(induct_x,induct_edge_index,induct_edge_weights)
     train_attach_rate = (output.argmax(dim=1)[relabeled_node_idx]==args.target_class).float().mean()
-    print("Node {}: {}, Origin Label: {}".format(i, idx, data.y[idx]))
-    print("ASR: {:.4f}".format(train_attach_rate))
+    # print("Node {}: {}, Origin Label: {}".format(i, idx, data.y[idx]))
+    # print("ASR: {:.4f}".format(train_attach_rate))
     asr += train_attach_rate
     if(data.y[idx] != args.target_class):
         flip_asr += train_attach_rate
-    # ca = test_model.test(induct_x,induct_edge_index,induct_edge_weights,data.y,idx_clean_test)
-    # print("CA: {:.4f}".format(ca))
 asr = asr/(idx_atk.shape[0])
 flip_asr = flip_asr/(flip_idx_atk.shape[0])
 print("Overall ASR: {:.4f}".format(asr))
 print("Flip ASR: {:.4f}/{} nodes".format(flip_asr,flip_idx_atk.shape[0]))
+# %%

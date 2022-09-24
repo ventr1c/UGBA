@@ -9,7 +9,7 @@ import argparse
 import numpy as np
 import torch
 
-from torch_geometric.datasets import Planetoid, WebKB, WikipediaNetwork,Reddit,Reddit2,Flickr,Yelp,PPI
+from torch_geometric.datasets import Planetoid,Reddit2,Flickr,PPI
 
 
 # from torch_geometric.loader import DataLoader
