@@ -4,6 +4,7 @@ import numpy as np
 import torch.optim as optim
 from models.backdoor import model_construct
 
+
 def max_norm(data):
     _range = np.max(data) - np.min(data)
     return (data - np.min(data)) / _range
