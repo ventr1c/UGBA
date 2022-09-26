@@ -301,6 +301,7 @@ for test_model in models:
 
     total_overall_asr += overall_asr
     total_overall_ca += overall_ca
+    test_model.to(torch.device('cpu'))
 total_overall_asr = total_overall_asr/len(models)
 total_overall_ca = total_overall_ca/len(models)
 print("Total Overall ASR: {:.4f} ".format(total_overall_asr))
