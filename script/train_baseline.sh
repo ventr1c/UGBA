@@ -7,16 +7,30 @@ do
     do
         for model in ${models[@]};
         do
-            for seed in {15..18}
-            do
-                python -u run_bkd_baseline.py \
-                    --prune_thrd=0.3\
-                    --vs_size=${vs_size}\
-                    --test_model=${model}\
-                    --defense_mode=${defense_mode}\
-                    --seed=${seed} \
-                    --epochs=1000
-            done
+            python -u run_bkd_baseline.py \
+                --prune_thrd=0.8\
+                --attack_method=Rand_Gene\
+                --vs_size=${vs_size}\
+                --test_model=${model}\
+                --defense_mode=${defense_mode}\
+                --epochs=500
+        done    
+    done
+done
+
+for defense_mode in ${defense_modes[@]};
+do 
+    for vs_size in ${sizes[@]};
+    do
+        for model in ${models[@]};
+        do
+            python -u run_bkd_baseline.py \
+                --prune_thrd=0.8\
+                --attack_method=Rand_Samp\
+                --vs_size=${vs_size}\
+                --test_model=${model}\
+                --defense_mode=${defense_mode}\
+                --epochs=500
         done    
     done
 done
