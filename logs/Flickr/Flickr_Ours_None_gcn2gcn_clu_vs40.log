@@ -1,118 +1,21 @@
 nohup: ignoring input
-Namespace(attack_method='Basic', cuda=True, dataset='Flickr', debug=True, defense_mode='none', device_id=0, dis_weight=0.0, dropout=0.5, epochs=200, evaluate_mode='overall', hidden=64, homo_boost_thrd=0.5, homo_loss_weight=1.0, inner=1, lr=0.01, model='GCN', no_cuda=False, prune_thr=0.15, seed=11, selection_method='cluster_degree', target_class=0, target_loss_weight=1, test_model='GCN', thrd=0.5, train_lr=0.02, trigger_prob=0.5, trigger_size=3, trojan_epochs=200, use_vs_number=True, vs_number=40, vs_ratio=0, weight_decay=0.0005)
+Namespace(cuda=True, dataset='Flickr', debug=True, defense_mode='none', device_id=0, dis_weight=0.0, dropout=0.5, epochs=200, evaluate_mode='overall', hidden=64, homo_boost_thrd=0.5, homo_loss_weight=1.0, inner=1, lr=0.01, model='GCN', no_cuda=False, prune_thr=0.15, seed=11, selection_method='cluster_degree', target_class=0, target_loss_weight=1, test_model='GCN', thrd=0.5, train_lr=0.02, trigger_size=3, trojan_epochs=200, use_vs_number=True, vs_number=40, vs_ratio=0, weight_decay=0.0005)
 Length of training set: 17850
-Training benign model Finished!
-Total time elapsed: 11.3575s
-Benign CA: 0.4642
-Length of training set: 17850
-=== training gcn model ===
-Epoch 0, training loss: 1.9797303676605225
-acc_val: 0.2522
-Epoch 10, training loss: 1.6390575170516968
-acc_val: 0.4223
-Epoch 20, training loss: 1.601839542388916
-acc_val: 0.4222
-Epoch 30, training loss: 1.5927623510360718
-acc_val: 0.4222
-Epoch 40, training loss: 1.5892200469970703
-acc_val: 0.4232
-Epoch 50, training loss: 1.5838472843170166
-acc_val: 0.4263
-Epoch 60, training loss: 1.572791576385498
-acc_val: 0.4323
-Epoch 70, training loss: 1.5760722160339355
-acc_val: 0.4638
-Epoch 80, training loss: 1.5332615375518799
-acc_val: 0.4588
-Epoch 90, training loss: 1.5349246263504028
-acc_val: 0.4752
-Epoch 100, training loss: 1.5249422788619995
-acc_val: 0.4822
-Epoch 110, training loss: 1.5232337713241577
-acc_val: 0.4839
-Epoch 120, training loss: 1.5198458433151245
-acc_val: 0.4809
-Epoch 130, training loss: 1.519200325012207
-acc_val: 0.4830
-Epoch 140, training loss: 1.5203919410705566
-acc_val: 0.4770
-Epoch 150, training loss: 1.511557698249817
-acc_val: 0.4866
-Epoch 160, training loss: 1.512039065361023
-acc_val: 0.4902
-Epoch 170, training loss: 1.5125848054885864
-acc_val: 0.4914
-Epoch 180, training loss: 1.5080409049987793
-acc_val: 0.4924
-Epoch 190, training loss: 1.5027308464050293
-acc_val: 0.4924
-=== picking the best model according to the performance on validation ===
-Training encoder Finished!
-Total time elapsed: 10.0672s
-Encoder CA on clean test nodes: 0.5005
-[]
-[]
-[]
-[]
-[    2     3     4 ... 89244 89246 89247]
-6
-running k-means on cuda:0..
-[running kmeans]: 0it [00:00, ?it/s][running kmeans]: 0it [00:00, ?it/s, center_shift=0.036462, iteration=1, tol=0.000100][running kmeans]: 1it [00:00,  7.98it/s, center_shift=0.036462, iteration=1, tol=0.000100][running kmeans]: 1it [00:00,  7.98it/s, center_shift=0.004031, iteration=2, tol=0.000100][running kmeans]: 2it [00:00,  5.21it/s, center_shift=0.004031, iteration=2, tol=0.000100][running kmeans]: 2it [00:00,  5.21it/s, center_shift=0.001204, iteration=3, tol=0.000100][running kmeans]: 3it [00:00,  5.75it/s, center_shift=0.001204, iteration=3, tol=0.000100][running kmeans]: 3it [00:00,  5.75it/s, center_shift=0.000466, iteration=4, tol=0.000100][running kmeans]: 4it [00:00,  6.34it/s, center_shift=0.000466, iteration=4, tol=0.000100][running kmeans]: 4it [00:00,  6.34it/s, center_shift=0.000161, iteration=5, tol=0.000100][running kmeans]: 5it [00:00,  6.62it/s, center_shift=0.000161, iteration=5, tol=0.000100][running kmeans]: 5it [00:00,  6.62it/s, center_shift=0.000033, iteration=6, tol=0.000100][running kmeans]: 6it [00:00,  6.79it/s, center_shift=0.000033, iteration=6, tol=0.000100]
-tensor([0, 0, 0,  ..., 0, 0, 0])
-[]
-[    0     1     6 ... 89245 89248 89249]
-6
-running k-means on cuda:0..
-[running kmeans]: 0it [00:00, ?it/s][running kmeans]: 0it [00:00, ?it/s, center_shift=0.069415, iteration=1, tol=0.000100][running kmeans]: 1it [00:00,  3.15it/s, center_shift=0.069415, iteration=1, tol=0.000100][running kmeans]: 1it [00:00,  3.15it/s, center_shift=0.000255, iteration=2, tol=0.000100][running kmeans]: 2it [00:00,  2.31it/s, center_shift=0.000255, iteration=2, tol=0.000100][running kmeans]: 2it [00:01,  2.31it/s, center_shift=0.001298, iteration=3, tol=0.000100][running kmeans]: 3it [00:01,  2.09it/s, center_shift=0.001298, iteration=3, tol=0.000100][running kmeans]: 3it [00:01,  2.09it/s, center_shift=0.009140, iteration=4, tol=0.000100][running kmeans]: 4it [00:01,  2.28it/s, center_shift=0.009140, iteration=4, tol=0.000100][running kmeans]: 4it [00:02,  2.28it/s, center_shift=0.000634, iteration=5, tol=0.000100][running kmeans]: 5it [00:02,  2.05it/s, center_shift=0.000634, iteration=5, tol=0.000100][running kmeans]: 5it [00:02,  2.05it/s, center_shift=0.000019, iteration=6, tol=0.000100][running kmeans]: 6it [00:02,  2.48it/s, center_shift=0.000019, iteration=6, tol=0.000100][running kmeans]: 6it [00:02,  2.35it/s, center_shift=0.000019, iteration=6, tol=0.000100]
-tensor([0, 1, 0,  ..., 1, 0, 0])
-idx_attach: tensor([18178, 46417, 19478, 72075, 76167, 76993, 55580, 39209, 78480, 24678,
-        79784, 35488, 10752, 27524, 30497, 60374, 60360, 76668, 11576,  3963,
-        34650,  7801, 35715, 23504, 15453,  3045, 20517, 56289,  2577, 21943,
-        57701, 15112, 12690,  6866, 25289, 39602, 45483, 25284,   347, 37370],
-       device='cuda:0')
-Epoch 0, loss_inner: 1.94428, loss_target: 1.91548, homo loss: 0.49177 
-acc_train_clean: 0.3964, ASR_train_attach: 0.0000, ASR_train_outter: 0.0000
-Epoch 10, loss_inner: 1.65623, loss_target: 1.88980, homo loss: 0.00348 
-acc_train_clean: 0.4169, ASR_train_attach: 0.0000, ASR_train_outter: 0.0000
-Epoch 20, loss_inner: 1.63728, loss_target: 1.69472, homo loss: 0.04682 
-acc_train_clean: 0.4169, ASR_train_attach: 0.0000, ASR_train_outter: 0.0000
-Epoch 30, loss_inner: 1.63893, loss_target: 1.67812, homo loss: 0.01149 
-acc_train_clean: 0.4169, ASR_train_attach: 0.0000, ASR_train_outter: 0.0000
-Epoch 40, loss_inner: 1.62876, loss_target: 1.67381, homo loss: 0.00439 
-acc_train_clean: 0.4169, ASR_train_attach: 0.0000, ASR_train_outter: 0.0000
-Epoch 50, loss_inner: 1.62357, loss_target: 1.66357, homo loss: 0.00177 
-acc_train_clean: 0.4169, ASR_train_attach: 0.0000, ASR_train_outter: 0.0000
-Epoch 60, loss_inner: 1.61804, loss_target: 1.65863, homo loss: 0.00313 
-acc_train_clean: 0.4169, ASR_train_attach: 0.0000, ASR_train_outter: 0.0000
-Epoch 70, loss_inner: 1.61228, loss_target: 1.65183, homo loss: 0.00822 
-acc_train_clean: 0.4167, ASR_train_attach: 0.0000, ASR_train_outter: 0.0000
-Epoch 80, loss_inner: 1.60641, loss_target: 1.64274, homo loss: 0.00089 
-acc_train_clean: 0.4168, ASR_train_attach: 0.0000, ASR_train_outter: 0.0000
-Epoch 90, loss_inner: 1.60057, loss_target: 1.63947, homo loss: 0.00131 
-acc_train_clean: 0.4171, ASR_train_attach: 0.0000, ASR_train_outter: 0.0000
-Epoch 100, loss_inner: 1.59511, loss_target: 1.63664, homo loss: 0.00445 
-acc_train_clean: 0.4176, ASR_train_attach: 0.0000, ASR_train_outter: 0.0000
-Epoch 110, loss_inner: 1.58975, loss_target: 1.62886, homo loss: 0.03107 
-acc_train_clean: 0.4184, ASR_train_attach: 0.0000, ASR_train_outter: 0.0000
-Epoch 120, loss_inner: 1.58539, loss_target: 1.63116, homo loss: 0.00366 
-acc_train_clean: 0.4199, ASR_train_attach: 0.0000, ASR_train_outter: 0.0000
-Epoch 130, loss_inner: 1.57850, loss_target: 1.62025, homo loss: 0.00754 
-acc_train_clean: 0.4223, ASR_train_attach: 0.0000, ASR_train_outter: 0.0000
-Epoch 140, loss_inner: 1.57144, loss_target: 1.60963, homo loss: 0.00099 
-acc_train_clean: 0.4287, ASR_train_attach: 0.0000, ASR_train_outter: 0.0000
-Epoch 150, loss_inner: 1.56636, loss_target: 1.61891, homo loss: 0.00789 
-acc_train_clean: 0.4370, ASR_train_attach: 0.0000, ASR_train_outter: 0.0000
-Epoch 160, loss_inner: 1.56022, loss_target: 1.59884, homo loss: 0.00431 
-acc_train_clean: 0.4411, ASR_train_attach: 0.0000, ASR_train_outter: 0.0000
-Epoch 170, loss_inner: 1.55488, loss_target: 1.58945, homo loss: 0.00261 
-acc_train_clean: 0.4444, ASR_train_attach: 0.0000, ASR_train_outter: 0.0000
-Epoch 180, loss_inner: 1.55065, loss_target: 1.58637, homo loss: 0.00180 
-acc_train_clean: 0.4475, ASR_train_attach: 0.0000, ASR_train_outter: 0.0000
-Epoch 190, loss_inner: 1.54786, loss_target: 1.58306, homo loss: 0.00133 
-acc_train_clean: 0.4551, ASR_train_attach: 0.0000, ASR_train_outter: 0.0000
-precent of left attach nodes: 1.000
-target class rate on Vs: 0.0000
-accuracy on clean test nodes: 0.4632
-ASR: 0.0000
-Flip ASR: 0.0000/8336 nodes
-CA: 0.4643
+Traceback (most recent call last):
+  File "run_adaptive.py", line 145, in <module>
+    benign_model.fit(data.x, train_edge_index, None, data.y, idx_train, idx_val,train_iters=args.epochs,verbose=False)
+  File "/home/mfl5681/project-backdoor/Backdoor/models/GCN.py", line 92, in fit
+    self._train_with_val(self.labels, idx_train, idx_val, train_iters, verbose)
+  File "/home/mfl5681/project-backdoor/Backdoor/models/GCN.py", line 123, in _train_with_val
+    output = self.forward(self.features, self.edge_index, self.edge_weight)
+  File "/home/mfl5681/project-backdoor/Backdoor/models/GCN.py", line 49, in forward
+    x = F.relu(conv(x, edge_index,edge_weight))
+  File "/home/mfl5681/anaconda3/envs/py38_torch120/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1130, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/home/mfl5681/anaconda3/envs/py38_torch120/lib/python3.8/site-packages/torch_geometric/nn/conv/gcn_conv.py", line 197, in forward
+    out = self.propagate(edge_index, x=x, edge_weight=edge_weight,
+  File "/home/mfl5681/anaconda3/envs/py38_torch120/lib/python3.8/site-packages/torch_geometric/nn/conv/message_passing.py", line 374, in propagate
+    out = self.message(**msg_kwargs)
+  File "/home/mfl5681/anaconda3/envs/py38_torch120/lib/python3.8/site-packages/torch_geometric/nn/conv/gcn_conv.py", line 206, in message
+    return x_j if edge_weight is None else edge_weight.view(-1, 1) * x_j
+RuntimeError: CUDA out of memory. Tried to allocate 164.00 MiB (GPU 0; 47.54 GiB total capacity; 398.12 MiB already allocated; 94.31 MiB free; 424.00 MiB reserved in total by PyTorch) If reserved memory is >> allocated memory try setting max_split_size_mb to avoid fragmentation.  See documentation for Memory Management and PYTORCH_CUDA_ALLOC_CONF

@@ -1,8 +1,9 @@
+from random import random
 import torch 
 import torch.nn.functional as F
 import numpy as np
 import torch.optim as optim
-from models.backdoor import model_construct
+from models.construct import model_construct
 
 
 def max_norm(data):
@@ -303,7 +304,7 @@ def obtain_attach_nodes_by_cluster_degree_all(args,edge_index,y_pred,cluster_cen
     candidate_nid_index = np.argsort(dis_score)
     # print(candidate_nid_index,node_idxs)
     sorted_node_idex = np.array(node_idxs[candidate_nid_index])
-    selected_nodes = sorted_node_idex[:size]
+    selected_nodes = sorted_node_idex
     return selected_nodes
     each_selected_num = int(size/len(label_list)-1)
     last_seleced_num = size - each_selected_num*(len(label_list)-2)
@@ -335,7 +336,8 @@ def obtain_attach_nodes_by_cluster_degree_all(args,edge_index,y_pred,cluster_cen
 import os
 import time
 from sklearn_extra import cluster
-from kmeans_pytorch import kmeans, kmeans_predict
+from sklearn.cluster import KMeans
+# from kmeans_pytorch import kmeans, kmeans_predict
 
 def cluster_distance_selection(args,data,idx_train,idx_val,idx_clean_test,unlabeled_idx,train_edge_index,size,device):
     encoder_modelpath = './modelpath/{}_{}_benign.pth'.format('GCN_Encoder', args.dataset)
@@ -391,7 +393,11 @@ def cluster_degree_selection(args,data,idx_train,idx_val,idx_clean_test,unlabele
         kmedoids.fit(encoder_x[seen_node_idx].detach().cpu().numpy())
         cluster_centers = kmedoids.cluster_centers_
     else:
-        _, cluster_centers = kmeans(X=encoder_x[seen_node_idx], num_clusters=nclass, distance='euclidean', device=device)
+        # _, cluster_centers = kmeans(X=encoder_x[seen_node_idx], num_clusters=nclass, distance='euclidean', device=device)
+        kmeans = KMeans(n_clusters=nclass,random_state=1)
+        kmeans.fit(encoder_x[seen_node_idx].detach().cpu().numpy())
+        cluster_centers = kmeans.cluster_centers_
+        y_pred = kmeans.predict(encoder_x.cpu().numpy())
     # kmedoids = cluster.KMedoids(n_clusters=nclass,method='pam')
     # kmedoids.fit(encoder_x[seen_node_idx].detach().cpu().numpy())
     # cluster_centers = kmedoids.cluster_centers_
@@ -454,11 +460,12 @@ def obtain_attach_nodes_by_cluster_degree_single(args,edge_index,y_pred,cluster_
     candidate_nid_index = np.argsort(dis_score)
     # print(candidate_nid_index,node_idxs)
     sorted_node_idex = np.array(node_idxs[candidate_nid_index])
-    selected_nodes = sorted_node_idex[:size]
+    # selected_nodes = sorted_node_idex[:size]
+    selected_nodes = sorted_node_idex
     print("selected_nodes",sorted_node_idex,selected_nodes)
     return selected_nodes
 
-def cluster_degree_selection_seperate(args,data,idx_train,idx_val,idx_clean_test,unlabeled_idx,train_edge_index,size,device):
+def cluster_degree_selection_seperate_old(args,data,idx_train,idx_val,idx_clean_test,unlabeled_idx,train_edge_index,size,device):
     gcn_encoder = model_construct(args,'GCN_Encoder',data,device).to(device) 
     t_total = time.time()
     # edge_weights = torch.ones([data.edge_index.shape[1]],device=device,dtype=torch.float)
@@ -508,6 +515,7 @@ def cluster_degree_selection_seperate(args,data,idx_train,idx_val,idx_clean_test
             sing_idx_attach = obtain_attach_nodes_by_cluster_degree_single(args,train_edge_index,cluster_ids_x,sing_center,cand_idx_sing_class,encoder_x,last_class_size).astype(int)
         idx_attach = np.concatenate((idx_attach,sing_idx_attach))
     return idx_attach
+
 def cluster_degree_selection_seperate_fixed(args,data,idx_train,idx_val,idx_clean_test,unlabeled_idx,train_edge_index,size,device):
     gcn_encoder = model_construct(args,'GCN_Encoder',data,device).to(device) 
     t_total = time.time()
@@ -541,16 +549,114 @@ def cluster_degree_selection_seperate_fixed(args,data,idx_train,idx_val,idx_clea
     each_class_size = int(size/(nclass-1))
     idx_attach = np.array([])
     for label in range(nclass):
+        if(label == args.target_class):
+            continue
+
+        if(label != nclass-1):
+            sing_class_size = each_class_size
+        else:
+            last_class_size= size - len(idx_attach)
+            sing_class_size = last_class_size
         idx_sing_class = (y_pred == label).nonzero()[0]
         # print(encoder_x[idx_sing_class])
         # print((y_pred == label).nonzero()[0])
-        print(idx_sing_class)
+        print("idx_sing_class",idx_sing_class)
         if(len(idx_sing_class) == 0):
             continue
-        print(each_class_size)
+        print("current_class_size",sing_class_size)
         # cluster_ids_x, sing_center = kmeans(X=encoder_x[idx_sing_class], num_clusters=2, distance='euclidean', device=device)
         # cluster_ids_x = kmeans_predict(encoder_x[idx_sing_class],sing_center, 'euclidean', device=device)
-        kmedoids = cluster.KMedoids(n_clusters=2,method='pam')
+        # kmedoids = cluster.KMedoids(n_clusters=2,method='pam')
+        selected_nodes_path = "./selected_nodes/{}/Seperate/seed{}/class_{}.txt".format(args.dataset,args.seed,label)
+        if(os.path.exists(selected_nodes_path)):
+            print(selected_nodes_path)
+            sing_idx_attach = np.loadtxt(selected_nodes_path, delimiter=',')
+            print(sing_idx_attach)
+            sing_idx_attach = sing_idx_attach[:sing_class_size]
+            idx_attach = np.concatenate((idx_attach,sing_idx_attach))
+        else:
+            kmedoids = KMeans(n_clusters=2,random_state=1)
+            kmedoids.fit(encoder_x[idx_sing_class].detach().cpu().numpy())
+            sing_center = kmedoids.cluster_centers_
+            cluster_ids_x = kmedoids.predict(encoder_x[idx_sing_class].cpu().numpy())
+            cand_idx_sing_class = np.array(list(set(unlabeled_idx.cpu().tolist())&set(idx_sing_class)))
+            if(label != nclass - 1):
+                sing_idx_attach = obtain_attach_nodes_by_cluster_degree_single(args,train_edge_index,cluster_ids_x,sing_center,cand_idx_sing_class,encoder_x,each_class_size).astype(int)
+                selected_nodes_foldpath = "./selected_nodes/{}/Seperate/seed{}".format(args.dataset,args.seed)
+                if(not os.path.exists(selected_nodes_foldpath)):
+                    os.makedirs(selected_nodes_foldpath)
+                selected_nodes_path = "./selected_nodes/{}/Seperate/seed{}/class_{}.txt".format(args.dataset,args.seed,label)
+                if(not os.path.exists(selected_nodes_path)):
+                    np.savetxt(selected_nodes_path,sing_idx_attach)
+                else:
+                    sing_idx_attach = np.loadtxt(selected_nodes_path, delimiter=',')
+                sing_idx_attach = sing_idx_attach[:each_class_size]
+            else:
+                last_class_size= size - len(idx_attach)
+                sing_idx_attach = obtain_attach_nodes_by_cluster_degree_single(args,train_edge_index,cluster_ids_x,sing_center,cand_idx_sing_class,encoder_x,last_class_size).astype(int)
+                selected_nodes_path = "./selected_nodes/{}/Seperate/seed{}/class_{}.txt".format(args.dataset,args.seed,label)
+                np.savetxt(selected_nodes_path,sing_idx_attach)
+                if(not os.path.exists(selected_nodes_path)):
+                    np.savetxt(selected_nodes_path,sing_idx_attach)
+                else:
+                    sing_idx_attach = np.loadtxt(selected_nodes_path, delimiter=',')
+                sing_idx_attach = sing_idx_attach[:each_class_size]
+            idx_attach = np.concatenate((idx_attach,sing_idx_attach))
+
+        # cluster_centers.append(sing_center)
+
+
+    # idx_attach = obtain_attach_nodes_by_cluster_degree(args,train_edge_index,y_pred,cluster_centers,unlabeled_idx.cpu().tolist(),encoder_x,size).astype(int)
+    # idx_attach = obtain_attach_nodes_by_cluster_degree_all(args,train_edge_index,y_pred,cluster_centers,unlabeled_idx.cpu().tolist(),encoder_x,size).astype(int)
+    
+    return idx_attach
+
+def cluster_degree_selection_seperate_fixed1(args,data,idx_train,idx_val,idx_clean_test,unlabeled_idx,train_edge_index,size,device):
+    gcn_encoder = model_construct(args,'GCN_Encoder',data,device).to(device) 
+    t_total = time.time()
+    # edge_weights = torch.ones([data.edge_index.shape[1]],device=device,dtype=torch.float)
+    print("Length of training set: {}".format(len(idx_train)))
+    gcn_encoder.fit(data.x, train_edge_index, None, data.y, idx_train, idx_val,train_iters=args.epochs,verbose=True)
+    print("Training encoder Finished!")
+    print("Total time elapsed: {:.4f}s".format(time.time() - t_total))
+
+    encoder_clean_test_ca = gcn_encoder.test(data.x, data.edge_index, None, data.y,idx_clean_test)
+    print("Encoder CA on clean test nodes: {:.4f}".format(encoder_clean_test_ca))
+    # from sklearn import cluster
+    seen_node_idx = torch.concat([idx_train,unlabeled_idx])
+    nclass = np.unique(data.y.cpu().numpy()).shape[0]
+    encoder_x = gcn_encoder.get_h(data.x, train_edge_index,None).clone().detach()
+
+    # if(args.dataset == 'Cora' or args.dataset == 'Citeseer'):
+    #     kmedoids = cluster.KMedoids(n_clusters=nclass,method='pam')
+    #     kmedoids.fit(encoder_x[seen_node_idx].detach().cpu().numpy())
+    #     cluster_centers = kmedoids.cluster_centers_
+    # else:
+    #     _, cluster_centers = kmeans(X=encoder_x[seen_node_idx], num_clusters=nclass, distance='euclidean', device=device)
+
+    # kmedoids = cluster.KMedoids(n_clusters=nclass,method='pam')
+    # kmedoids.fit(encoder_x[seen_node_idx].detach().cpu().numpy())
+    # cluster_centers = kmedoids.cluster_centers_
+
+    encoder_output = gcn_encoder(data.x,train_edge_index,None)
+    y_pred = np.array(encoder_output.argmax(dim=1).cpu()).astype(int)
+    cluster_centers = []
+    each_class_size = int(size/(nclass-1))
+    idx_attach = np.array([])
+    for label in range(nclass):
+        if(label == args.target_class):
+            continue
+        idx_sing_class = (y_pred == label).nonzero()[0]
+        # print(encoder_x[idx_sing_class])
+        # print((y_pred == label).nonzero()[0])
+        print("idx_sing_class",idx_sing_class)
+        if(len(idx_sing_class) == 0):
+            continue
+        print("each_class_size",each_class_size)
+        # cluster_ids_x, sing_center = kmeans(X=encoder_x[idx_sing_class], num_clusters=2, distance='euclidean', device=device)
+        # cluster_ids_x = kmeans_predict(encoder_x[idx_sing_class],sing_center, 'euclidean', device=device)
+        # kmedoids = cluster.KMedoids(n_clusters=2,method='pam')
+        kmedoids = KMeans(n_clusters=2,random_state=1)
         kmedoids.fit(encoder_x[idx_sing_class].detach().cpu().numpy())
         sing_center = kmedoids.cluster_centers_
         cluster_ids_x = kmedoids.predict(encoder_x[idx_sing_class].cpu().numpy())
@@ -560,6 +666,80 @@ def cluster_degree_selection_seperate_fixed(args,data,idx_train,idx_val,idx_clea
         else:
             last_class_size= size - len(idx_attach)
             sing_idx_attach = obtain_attach_nodes_by_cluster_degree_single(args,train_edge_index,cluster_ids_x,sing_center,cand_idx_sing_class,encoder_x,last_class_size).astype(int)
+        idx_attach = np.concatenate((idx_attach,sing_idx_attach))
+
+        # cluster_centers.append(sing_center)
+
+
+    # idx_attach = obtain_attach_nodes_by_cluster_degree(args,train_edge_index,y_pred,cluster_centers,unlabeled_idx.cpu().tolist(),encoder_x,size).astype(int)
+    # idx_attach = obtain_attach_nodes_by_cluster_degree_all(args,train_edge_index,y_pred,cluster_centers,unlabeled_idx.cpu().tolist(),encoder_x,size).astype(int)
+    
+    return idx_attach
+
+def cluster_degree_selection_seperate(args,data,idx_train,idx_val,idx_clean_test,unlabeled_idx,train_edge_index,size,device):
+    gcn_encoder = model_construct(args,'GCN_Encoder',data,device).to(device) 
+    t_total = time.time()
+    # edge_weights = torch.ones([data.edge_index.shape[1]],device=device,dtype=torch.float)
+    print("Length of training set: {}".format(len(idx_train)))
+    gcn_encoder.fit(data.x, train_edge_index, None, data.y, idx_train, idx_val,train_iters=args.epochs,verbose=True)
+    print("Training encoder Finished!")
+    print("Total time elapsed: {:.4f}s".format(time.time() - t_total))
+
+    encoder_clean_test_ca = gcn_encoder.test(data.x, data.edge_index, None, data.y,idx_clean_test)
+    print("Encoder CA on clean test nodes: {:.4f}".format(encoder_clean_test_ca))
+    # from sklearn import cluster
+    seen_node_idx = torch.concat([idx_train,unlabeled_idx])
+    nclass = np.unique(data.y.cpu().numpy()).shape[0]
+    encoder_x = gcn_encoder.get_h(data.x, train_edge_index,None).clone().detach()
+
+    # if(args.dataset == 'Cora' or args.dataset == 'Citeseer'):
+    #     kmedoids = cluster.KMedoids(n_clusters=nclass,method='pam')
+    #     kmedoids.fit(encoder_x[seen_node_idx].detach().cpu().numpy())
+    #     cluster_centers = kmedoids.cluster_centers_
+    # else:
+    #     _, cluster_centers = kmeans(X=encoder_x[seen_node_idx], num_clusters=nclass, distance='euclidean', device=device)
+
+    # kmedoids = cluster.KMedoids(n_clusters=nclass,method='pam')
+    # kmedoids.fit(encoder_x[seen_node_idx].detach().cpu().numpy())
+    # cluster_centers = kmedoids.cluster_centers_
+
+    encoder_output = gcn_encoder(data.x,train_edge_index,None)
+    y_pred = np.array(encoder_output.argmax(dim=1).cpu()).astype(int)
+    cluster_centers = []
+    each_class_size = int(size/(nclass-1))
+    idx_attach = np.array([])
+    print("each_class_size",each_class_size)
+    for label in range(nclass):
+        if(label == args.target_class):
+            continue
+        if(label != nclass - 1):
+            single_size = each_class_size
+        else:
+            last_class_size= size - len(idx_attach)
+            single_size = last_class_size
+        idx_sing_class = (y_pred == label).nonzero()[0]
+        # print(encoder_x[idx_sing_class])
+        # print((y_pred == label).nonzero()[0])
+        print("idx_sing_class",idx_sing_class)
+        if(len(idx_sing_class) == 0):
+            continue
+        print("current_class_size",single_size)
+        # cluster_ids_x, sing_center = kmeans(X=encoder_x[idx_sing_class], num_clusters=2, distance='euclidean', device=device)
+        # cluster_ids_x = kmeans_predict(encoder_x[idx_sing_class],sing_center, 'euclidean', device=device)
+        # kmedoids = cluster.KMedoids(n_clusters=2,method='pam')
+        kmedoids = KMeans(n_clusters=single_size,random_state=1)
+        kmedoids.fit(encoder_x[idx_sing_class].detach().cpu().numpy())
+        sing_center = kmedoids.cluster_centers_
+        cluster_ids_x = kmedoids.predict(encoder_x[idx_sing_class].cpu().numpy())
+        cand_idx_sing_class = np.array(list(set(unlabeled_idx.cpu().tolist())&set(idx_sing_class)))
+
+        sing_idx_attach = obtain_attach_nodes_by_cluster_degree_single(args, train_edge_index,cluster_ids_x,sing_center,cand_idx_sing_class,encoder_x, single_size).astype(int)
+
+        # if(label != nclass - 1):
+        #     sing_idx_attach = obtain_attach_nodes_by_cluster_degree_single(args,train_edge_index,cluster_ids_x,sing_center,cand_idx_sing_class,encoder_x,each_class_size).astype(int)
+        # else:
+        #     last_class_size= size - len(idx_attach)
+        #     sing_idx_attach = obtain_attach_nodes_by_cluster_degree_single(args,train_edge_index,cluster_ids_x,sing_center,cand_idx_sing_class,encoder_x,last_class_size).astype(int)
         idx_attach = np.concatenate((idx_attach,sing_idx_attach))
 
         # cluster_centers.append(sing_center)

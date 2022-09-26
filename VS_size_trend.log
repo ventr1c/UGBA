@@ -43,3 +43,15 @@ Our_Prune, Cluster_all, 1by1, homo_weight=1, dis_weight=1
 0, 0.9598, 0.8904, 0.9045, 0.9087 (loss)
 WithoutSelection_Prune, Cluster_all, 1by1, homo_weight=1, dis_weight=1 Seed =11
 0, 0.6183, 0.8956, 0.9458, 0.9518
+
+09/24:
+Our_None, KMeans Cluster_seperate, 1by1, homo_weight=1, dis_weight=1, seed = 11
+0.9295, 0.9873, 0.9980, 0.9980, 0.8382, 0.9610, 0.9944, 0.9970, 0.9163
+WithoutSelection_None, Cluster_seperate, 1by1, homo_weight=1, dis_weight=1 Seed =11
+0.8793, 0.9057, 0.9194, 0.9346, 0.9975, 0.9625, 0.9681, 0.9320, 0.9326
+
+Our_Prune, Cluster_seperate, 1by1, homo_weight=3, dis_weight=1
+0.2257, 0.8910, 0.8423, 0.5314, 0.9031, 0.8697, 0.2373, 0.8824, 0.4123 (homo3)
+0.2165, 0.8251, 0.7683, 0.6354, 0.7845, 0.6374, 0.6207, 0.8093, 0.7541 (homo1)
+WithoutSelection_Prune, Cluster_all, 1by1, homo_weight=1, dis_weight=1 Seed =11
+0.6212, 0.5649, 0.5634, 0.7561, 0.4741, 0.8352, 0.7667, 0.4914, 0.6080
