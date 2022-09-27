@@ -1,4 +1,5 @@
 #%%
+from curses import noraw
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
@@ -25,9 +26,9 @@ class GIN(GCN,nn.Module):
         self.lr = lr
         self.weight_decay = weight_decay
 
-        self.gc1 = GCNConv(nfeat, nhid, bias=True,add_self_loops=True)
+        self.gc1 = GCNConv(nfeat, nhid, bias=True,add_self_loops=True,normalize=False)
         self.h1 = Linear(nhid,nhid)
-        self.gc2 = GCNConv(nhid, nhid, bias=True,add_self_loops=True)
+        self.gc2 = GCNConv(nhid, nhid, bias=True,add_self_loops=True,normalize=False)
         self.h2 = Linear(nhid,nclass)
 
         self.output = None
