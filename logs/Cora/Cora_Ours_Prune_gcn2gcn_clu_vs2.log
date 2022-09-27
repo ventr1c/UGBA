@@ -1,0 +1,37 @@
+nohup: ignoring input
+run_adaptive.py:8: DeprecationWarning: the imp module is deprecated in favour of importlib; see the module's documentation for alternative uses
+  import imp
+Namespace(cuda=True, dataset='Cora', debug=True, defense_mode='prune', device_id=2, dis_weight=0.0, dropout=0.5, epochs=200, evaluate_mode='1by1', hidden=32, homo_boost_thrd=0.5, homo_loss_weight=100.0, inner=1, lr=0.01, model='GCN', no_cuda=False, prune_thr=0.1, seed=10, selection_method='cluster_degree', target_class=0, target_loss_weight=1, test_model='GCN', thrd=0.5, train_lr=0.01, trigger_size=3, trojan_epochs=2000, use_vs_number=True, vs_number=3, vs_ratio=0, weight_decay=0.0005)
+#Attach Nodes:3
+./selected_nodes/Cora/Overall/seed10/nodes.txt
+idx_attach: tensor([ 647, 2286,  826], device='cuda:2')
+Epoch 0, loss_inner: 1.94622, loss_target: 1.93523, homo loss: 0.49906 
+acc_train_clean: 0.1054, ASR_train_attach: 0.0000, ASR_train_outter: 0.0019
+Epoch 10, loss_inner: 1.76740, loss_target: 1.11843, homo loss: 0.24227 
+acc_train_clean: 0.3124, ASR_train_attach: 1.0000, ASR_train_outter: 0.9612
+Epoch 20, loss_inner: 1.62667, loss_target: 1.55194, homo loss: 0.02243 
+acc_train_clean: 0.2957, ASR_train_attach: 0.6667, ASR_train_outter: 0.4485
+Epoch 30, loss_inner: 1.43408, loss_target: 0.82467, homo loss: 0.00006 
+acc_train_clean: 0.4750, ASR_train_attach: 1.0000, ASR_train_outter: 0.9981
+Epoch 40, loss_inner: 1.22185, loss_target: 0.67120, homo loss: 0.00000 
+acc_train_clean: 0.7153, ASR_train_attach: 1.0000, ASR_train_outter: 0.9573
+Epoch 50, loss_inner: 1.00682, loss_target: 0.61046, homo loss: 0.00021 
+acc_train_clean: 0.8281, ASR_train_attach: 1.0000, ASR_train_outter: 0.9262
+Epoch 60, loss_inner: 0.81998, loss_target: 0.47097, homo loss: 0.00000 
+acc_train_clean: 0.9039, ASR_train_attach: 1.0000, ASR_train_outter: 0.9612
+Epoch 70, loss_inner: 0.67308, loss_target: 0.36619, homo loss: 0.00002 
+acc_train_clean: 0.9242, ASR_train_attach: 1.0000, ASR_train_outter: 1.0000
+Epoch 80, loss_inner: 0.57185, loss_target: 0.58474, homo loss: 0.00074 
+acc_train_clean: 0.9372, ASR_train_attach: 1.0000, ASR_train_outter: 1.0000
+Epoch 90, loss_inner: 0.49771, loss_target: 0.31328, homo loss: 0.00005 
+acc_train_clean: 0.9482, ASR_train_attach: 1.0000, ASR_train_outter: 0.9767
+Epoch 100, loss_inner: 0.44489, loss_target: 0.26884, homo loss: 0.00000 
+acc_train_clean: 0.9538, ASR_train_attach: 1.0000, ASR_train_outter: 0.9922
+Epoch 110, loss_inner: 0.40581, loss_target: 0.24131, homo loss: 0.00000 
+acc_train_clean: 0.9575, ASR_train_attach: 1.0000, ASR_train_outter: 0.9942
+Epoch 120, loss_inner: 0.38212, loss_target: 0.93475, homo loss: 0.04991 
+acc_train_clean: 0.9612, ASR_train_attach: 1.0000, ASR_train_outter: 1.0000
+Epoch 130, loss_inner: 0.35845, loss_target: 0.30405, homo loss: 0.00011 
+acc_train_clean: 0.9612, ASR_train_attach: 1.0000, ASR_train_outter: 1.0000
+Epoch 140, loss_inner: 0.33475, loss_target: 0.22297, homo loss: 0.00000 
+acc_train_clean: 0.9686, ASR_train_attach: 1.0000, ASR_train_outter: 0.9922

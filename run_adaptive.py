@@ -5,12 +5,13 @@
 # In[1]: 
 
 
+import imp
 import time
 import argparse
 import numpy as np
 import torch
 
-from torch_geometric.datasets import Planetoid, WebKB, WikipediaNetwork,Reddit,Reddit2,Flickr,Yelp,PPI
+from torch_geometric.datasets import Planetoid,Reddit2,Flickr,PPI
 
 
 # from torch_geometric.loader import DataLoader
@@ -23,10 +24,10 @@ parser.add_argument('--debug', action='store_true',
         default=True, help='debug mode')
 parser.add_argument('--no-cuda', action='store_true', default=False,
                     help='Disables CUDA training.')
-parser.add_argument('--seed', type=int, default=11, help='Random seed.')
+parser.add_argument('--seed', type=int, default=10, help='Random seed.')
 parser.add_argument('--model', type=str, default='GCN', help='model',
                     choices=['GCN','GAT','GraphSage','GIN'])
-parser.add_argument('--dataset', type=str, default='Pubmed', 
+parser.add_argument('--dataset', type=str, default='ogbn-arxiv', 
                     help='Dataset',
                     choices=['Cora','Citeseer','Pubmed','PPI','Flickr','ogbn-arxiv','Reddit','Reddit2','Yelp'])
 parser.add_argument('--train_lr', type=float, default=0.01,
@@ -40,7 +41,7 @@ parser.add_argument('--target_class', type=int, default=0)
 parser.add_argument('--dropout', type=float, default=0.5,
                     help='Dropout rate (1 - keep probability).')
 parser.add_argument('--epochs', type=int,  default=200, help='Number of epochs to train benign and backdoor model.')
-parser.add_argument('--trojan_epochs', type=int,  default=200, help='Number of epochs to train trigger generator.')
+parser.add_argument('--trojan_epochs', type=int,  default=400, help='Number of epochs to train trigger generator.')
 parser.add_argument('--inner', type=int,  default=1, help='Number of inner')
 # backdoor setting
 parser.add_argument('--lr', type=float, default=0.01,
@@ -54,16 +55,16 @@ parser.add_argument('--vs_ratio', type=float, default=0,
 parser.add_argument('--vs_number', type=int, default=0,
                     help="number of poisoning nodes relative to the full graph")
 # defense setting
-parser.add_argument('--defense_mode', type=str, default="none",
+parser.add_argument('--defense_mode', type=str, default="prune",
                     choices=['prune', 'isolate', 'none'],
                     help="Mode of defense")
-parser.add_argument('--prune_thr', type=float, default=0.15,
+parser.add_argument('--prune_thr', type=float, default=0.8,
                     help="Threshold of prunning edges")
 parser.add_argument('--target_loss_weight', type=float, default=1,
                     help="Weight of optimize outter trigger generator")
-parser.add_argument('--homo_loss_weight', type=float, default=0,
+parser.add_argument('--homo_loss_weight', type=float, default=100,
                     help="Weight of optimize similarity loss")
-parser.add_argument('--homo_boost_thrd', type=float, default=0.5,
+parser.add_argument('--homo_boost_thrd', type=float, default=0.8,
                     help="Threshold of increase similarity")
 # attack setting
 parser.add_argument('--dis_weight', type=float, default=1,
@@ -130,31 +131,12 @@ data.edge_index = to_undirected(data.edge_index)
 train_edge_index,_, edge_mask = subgraph(torch.bitwise_not(data.test_mask),data.edge_index,relabel_nodes=False)
 mask_edge_index = data.edge_index[:,torch.bitwise_not(edge_mask)]
 
-# In[6]: 
-import os
-from models.construct import model_construct
-benign_modelpath = './modelpath/{}_{}_benign.pth'.format(args.model, args.dataset)
-if(os.path.exists(benign_modelpath)):
-    benign_model = torch.load(benign_modelpath, map_location=device).to(device)
-    print("Loading benign {} model Finished!".format(args.model))
-else:
-    benign_model = model_construct(args,args.model,data,device).to(device) 
-    t_total = time.time()
-    print("Length of training set: {}".format(len(idx_train)))
-    benign_model.fit(data.x, train_edge_index, None, data.y, idx_train, idx_val,train_iters=args.epochs,verbose=False)
-    print("Training benign model Finished!")
-    print("Total time elapsed: {:.4f}s".format(time.time() - t_total))
-    # Save trained model
-    # torch.save(benign_model, benign_modelpath)
-    # print("Benign model saved at {}".format(benign_modelpath))
-benign_ca = benign_model.test(data.x, data.edge_index, None, data.y,idx_clean_test)
-print("Benign CA: {:.4f}".format(benign_ca))
-benign_model = benign_model.cpu()
 
 # In[9]:
 
 from sklearn_extra import cluster
 from models.backdoor import Backdoor
+from models.construct import model_construct
 import heuristic_selection as hs
 
 # from kmeans_pytorch import kmeans, kmeans_predict
@@ -169,14 +151,11 @@ print("#Attach Nodes:{}".format(size))
 # here is randomly select poison nodes from unlabeled nodes
 if(args.selection_method == 'none'):
     idx_attach = hs.obtain_attach_nodes(args,unlabeled_idx,size)
-elif(args.selection_method == 'loss' or args.selection_method == 'conf'):
-    idx_attach = hs.obtain_attach_nodes_by_influential(args,benign_model,unlabeled_idx.cpu().tolist(),data.x,train_edge_index,None,data.y,device,size,selected_way=args.selection_method)
-    idx_attach = torch.LongTensor(idx_attach).to(device)
 elif(args.selection_method == 'cluster'):
     idx_attach = hs.cluster_distance_selection(args,data,idx_train,idx_val,idx_clean_test,unlabeled_idx,train_edge_index,size,device)
     idx_attach = torch.LongTensor(idx_attach).to(device)
 elif(args.selection_method == 'cluster_degree'):
-    if(args.dataset == 'Cora' or args.dataset == 'Pubmed'):
+    if(args.dataset == 'Pubmed'):
         idx_attach = hs.cluster_degree_selection_seperate_fixed(args,data,idx_train,idx_val,idx_clean_test,unlabeled_idx,train_edge_index,size,device)
     else:
         idx_attach = hs.cluster_degree_selection(args,data,idx_train,idx_val,idx_clean_test,unlabeled_idx,train_edge_index,size,device)
@@ -192,10 +171,10 @@ model.fit(data.x, train_edge_index, None, data.y, idx_train,idx_attach, unlabele
 poison_x, poison_edge_index, poison_edge_weights, poison_labels = model.get_poisoned()
 
 if(args.defense_mode == 'prune'):
-    poison_edge_index,poison_edge_weights = prune_unrelated_edge(args,poison_edge_index,poison_edge_weights,poison_x,device,False)
+    poison_edge_index,poison_edge_weights = prune_unrelated_edge(args,poison_edge_index,poison_edge_weights,poison_x,device,large_graph=False)
     bkd_tn_nodes = torch.cat([idx_train,idx_attach]).to(device)
 elif(args.defense_mode == 'isolate'):
-    poison_edge_index,poison_edge_weights,rel_nodes = prune_unrelated_edge_isolated(args,poison_edge_index,poison_edge_weights,poison_x,device,False)
+    poison_edge_index,poison_edge_weights,rel_nodes = prune_unrelated_edge_isolated(args,poison_edge_index,poison_edge_weights,poison_x,device,large_graph=False)
     bkd_tn_nodes = torch.cat([idx_train,idx_attach]).tolist()
     bkd_tn_nodes = torch.LongTensor(list(set(bkd_tn_nodes) - set(rel_nodes))).to(device)
 else:
@@ -253,21 +232,22 @@ for test_model in models:
                 ori_node_idx = sub_induct_nodeset[sub_mapping]
                 relabeled_node_idx = sub_mapping
                 sub_induct_edge_weights = torch.ones([sub_induct_edge_index.shape[1]]).to(device)
-                # inject trigger on attack test nodes (idx_atk)'''
-                induct_x, induct_edge_index,induct_edge_weights = model.inject_trigger(relabeled_node_idx,poison_x[sub_induct_nodeset],sub_induct_edge_index,sub_induct_edge_weights,device)
-                induct_x, induct_edge_index,induct_edge_weights = induct_x.clone().detach(), induct_edge_index.clone().detach(),induct_edge_weights.clone().detach()
-                # # do pruning in test datas'''
-                if(args.defense_mode == 'prune' or args.defense_mode == 'isolate'):
-                    induct_edge_index,induct_edge_weights = prune_unrelated_edge(args,induct_edge_index,induct_edge_weights,induct_x,device,False)
-                # attack evaluation
+                with torch.no_grad():
+                    # inject trigger on attack test nodes (idx_atk)'''
+                    induct_x, induct_edge_index,induct_edge_weights = model.inject_trigger(relabeled_node_idx,poison_x[sub_induct_nodeset],sub_induct_edge_index,sub_induct_edge_weights,device)
+                    induct_x, induct_edge_index,induct_edge_weights = induct_x.clone().detach(), induct_edge_index.clone().detach(),induct_edge_weights.clone().detach()
+                    # # do pruning in test datas'''
+                    if(args.defense_mode == 'prune' or args.defense_mode == 'isolate'):
+                        induct_edge_index,induct_edge_weights = prune_unrelated_edge(args,induct_edge_index,induct_edge_weights,induct_x,device,False)
+                    # attack evaluation
 
-                output = test_model(induct_x,induct_edge_index,induct_edge_weights)
-                train_attach_rate = (output.argmax(dim=1)[relabeled_node_idx]==args.target_class).float().mean()
-                # print("Node {}: {}, Origin Label: {}".format(i, idx, data.y[idx]))
-                # print("ASR: {:.4f}".format(train_attach_rate))
-                asr += train_attach_rate
-                if(data.y[idx] != args.target_class):
-                    flip_asr += train_attach_rate
+                    output = test_model(induct_x,induct_edge_index,induct_edge_weights)
+                    train_attach_rate = (output.argmax(dim=1)[relabeled_node_idx]==args.target_class).float().mean()
+                    # print("Node {}: {}, Origin Label: {}".format(i, idx, data.y[idx]))
+                    # print("ASR: {:.4f}".format(train_attach_rate))
+                    asr += train_attach_rate
+                    if(data.y[idx] != args.target_class):
+                        flip_asr += train_attach_rate
             asr = asr/(idx_atk.shape[0])
             flip_asr = flip_asr/(flip_idx_atk.shape[0])
             print("Overall ASR: {:.4f}".format(asr))

@@ -374,6 +374,12 @@ def cluster_distance_selection(args,data,idx_train,idx_val,idx_clean_test,unlabe
     return idx_attach
 
 def cluster_degree_selection(args,data,idx_train,idx_val,idx_clean_test,unlabeled_idx,train_edge_index,size,device):
+    selected_nodes_path = "./selected_nodes/{}/Overall/seed{}/nodes.txt".format(args.dataset,args.seed)
+    if(os.path.exists(selected_nodes_path)):
+        print(selected_nodes_path)
+        idx_attach = np.loadtxt(selected_nodes_path, delimiter=',').astype(int)
+        idx_attach = idx_attach[:size]
+        return idx_attach
     gcn_encoder = model_construct(args,'GCN_Encoder',data,device).to(device) 
     t_total = time.time()
     # edge_weights = torch.ones([data.edge_index.shape[1]],device=device,dtype=torch.float)
@@ -415,8 +421,15 @@ def cluster_degree_selection(args,data,idx_train,idx_val,idx_clean_test,unlabele
 
     # idx_attach = obtain_attach_nodes_by_cluster_degree(args,train_edge_index,y_pred,cluster_centers,unlabeled_idx.cpu().tolist(),encoder_x,size).astype(int)
     idx_attach = obtain_attach_nodes_by_cluster_degree_all(args,train_edge_index,y_pred,cluster_centers,unlabeled_idx.cpu().tolist(),encoder_x,size).astype(int)
-    
-    
+    selected_nodes_foldpath = "./selected_nodes/{}/Overall/seed{}".format(args.dataset,args.seed)
+    if(not os.path.exists(selected_nodes_foldpath)):
+        os.makedirs(selected_nodes_foldpath)
+    selected_nodes_path = "./selected_nodes/{}/Overall/seed{}/nodes.txt".format(args.dataset,args.seed)
+    if(not os.path.exists(selected_nodes_path)):
+        np.savetxt(selected_nodes_path,idx_attach)
+    else:
+        idx_attach = np.loadtxt(selected_nodes_path, delimiter=',').astype(int)
+    idx_attach = idx_attach[:size]
     return idx_attach
 
 def obtain_attach_nodes_by_cluster_degree_single(args,edge_index,y_pred,cluster_centers,node_idxs,x,size):

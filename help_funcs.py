@@ -13,9 +13,9 @@ def edge_sim_analysis(edge_index, features):
     return sims
 
 def prune_unrelated_edge(args,edge_index,edge_weights,x,device,large_graph=True):
-    edge_index = edge_index[:,edge_weights>0.0].to(device).clone().detach()
-    edge_weights = edge_weights[edge_weights>0.0].to(device).clone().detach()
-    x = x.to(device).clone().detach()
+    edge_index = edge_index[:,edge_weights>0.0].to(device)
+    edge_weights = edge_weights[edge_weights>0.0].to(device)
+    x = x.to(device)
     # calculate edge simlarity
     if(large_graph):
         edge_sims = torch.tensor([],dtype=float).cpu()
@@ -34,17 +34,15 @@ def prune_unrelated_edge(args,edge_index,edge_weights,x,device,large_graph=True)
     else:
         edge_sims = F.cosine_similarity(x[edge_index[0]],x[edge_index[1]])
     # find dissimilar edges and remote them
-    dissim_edges_index = np.where(edge_sims.cpu()<=args.prune_thr)[0]
-    edge_weights[dissim_edges_index] = 0
     # update structure
-    updated_edge_index = edge_index[:,edge_weights>0.0]
-    updated_edge_weights = edge_weights[edge_weights>0.0]
+    updated_edge_index = edge_index[:,edge_sims>args.prune_thr]
+    updated_edge_weights = edge_weights[edge_sims>args.prune_thr]
     return updated_edge_index,updated_edge_weights
 
 def prune_unrelated_edge_isolated(args,edge_index,edge_weights,x,device,large_graph=True):
-    edge_index = edge_index[:,edge_weights>0.0].to(device).clone().detach()
-    edge_weights = edge_weights[edge_weights>0.0].to(device).clone().detach()
-    x = x.to(device).clone().detach()
+    edge_index = edge_index[:,edge_weights>0.0].to(device)
+    edge_weights = edge_weights[edge_weights>0.0].to(device)
+    x = x.to(device)
     # calculate edge simlarity
     if(large_graph):
         edge_sims = torch.tensor([],dtype=float).cpu()
