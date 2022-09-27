@@ -218,7 +218,7 @@ class Backdoor:
                 
                 loss_inner.backward()
                 optimizer_shadow.step()
-                optimizer_trigger.zero_grad()
+                optimizer_trigger.step()
 
         self.trojan.eval()
 
