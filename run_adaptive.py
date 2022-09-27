@@ -185,6 +185,7 @@ elif(args.selection_method == 'cluster_degree'):
     idx_attach = torch.LongTensor(idx_attach).to(device)
 print("idx_attach: {}".format(idx_attach))
 unlabeled_idx = torch.tensor(list(set(unlabeled_idx.cpu().numpy()) - set(idx_attach.cpu().numpy()))).to(device)
+print(unlabeled_idx)
 # In[10]:
 # train trigger generator 
 model = Backdoor(args,device)
@@ -294,6 +295,9 @@ for test_model in models:
         
         overall_asr += asr
         overall_ca += clean_acc
+
+        test_model = test_model.cpu()
+        
     overall_asr = overall_asr/len(seeds)
     overall_ca = overall_ca/len(seeds)
     print("Overall ASR: {:.4f} ({} model, Seed: {})".format(overall_asr, args.test_model, args.seed))
