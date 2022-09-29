@@ -163,8 +163,6 @@ class Backdoor:
         edge_index = edge_index.cpu()
         edge_weight = edge_weight.cpu()
         return update_feat, update_edge_index, update_edge_weights
-
-
     def fit(self, features, edge_index, edge_weight, labels, idx_train, idx_attach,idx_unlabeled):
 
         args = self.args
@@ -182,7 +180,6 @@ class Backdoor:
                          dropout=0.0, device=self.device).to(self.device)
         # initalize a trojanNet to generate trigger
         self.trojan = GraphTrojanNet(self.device, features.shape[1], args.trigger_size, layernum=2).to(self.device)
-        self.homo_loss = HomoLoss(self.args,self.device)
 
         optimizer_shadow = optim.Adam(self.shadow_model.parameters(), lr=args.lr, weight_decay=args.weight_decay)
         optimizer_trigger = optim.Adam(self.trojan.parameters(), lr=args.lr, weight_decay=args.weight_decay)
@@ -207,12 +204,13 @@ class Backdoor:
             for j in range(self.args.inner):
 
                 optimizer_shadow.zero_grad()
+                optimizer_trigger.zero_grad()
                 trojan_feat, trojan_weights = self.trojan(features[idx_attach],args.thrd) # may revise the process of generate
                 trojan_weights = torch.cat([torch.ones([len(trojan_feat),1],dtype=torch.float,device=self.device),trojan_weights],dim=1)
                 trojan_weights = trojan_weights.flatten()
                 trojan_feat = trojan_feat.view([-1,features.shape[1]])
-                poison_edge_weights = torch.cat([edge_weight,trojan_weights,trojan_weights]).detach() # repeat trojan weights beacuse of undirected edge
-                poison_x = torch.cat([features,trojan_feat]).detach()
+                poison_edge_weights = torch.cat([edge_weight,trojan_weights,trojan_weights]) # repeat trojan weights beacuse of undirected edge
+                poison_x = torch.cat([features,trojan_feat])
 
                 output = self.shadow_model(poison_x, poison_edge_index, poison_edge_weights)
                 
@@ -220,64 +218,118 @@ class Backdoor:
                 
                 loss_inner.backward()
                 optimizer_shadow.step()
+                optimizer_trigger.step()
 
-            
-            acc_train_clean = utils.accuracy(output[idx_train], self.labels[idx_train])
-            acc_train_attach = utils.accuracy(output[idx_attach], self.labels[idx_attach])
-            
-            # involve unlabeled nodes in outter optimization
-            self.trojan.eval()
-            optimizer_trigger.zero_grad()
-
-            rs = np.random.RandomState(self.args.seed)
-            idx_outter = torch.cat([idx_attach,idx_unlabeled[rs.choice(len(idx_unlabeled),size=1024,replace=False)]])
-
-            trojan_feat, trojan_weights = self.trojan(features[idx_outter],self.args.thrd) # may revise the process of generate
-        
-            trojan_weights = torch.cat([torch.ones([len(idx_outter),1],dtype=torch.float,device=self.device),trojan_weights],dim=1)
-            trojan_weights = trojan_weights.flatten()
-
-            trojan_feat = trojan_feat.view([-1,features.shape[1]])
-
-            trojan_edge = self.get_trojan_edge(len(features),idx_outter,self.args.trigger_size).to(self.device)
-
-            update_edge_weights = torch.cat([edge_weight,trojan_weights,trojan_weights])
-            update_feat = torch.cat([features,trojan_feat])
-            update_edge_index = torch.cat([edge_index,trojan_edge],dim=1)
-
-            output = self.shadow_model(update_feat, update_edge_index, update_edge_weights)
-
-            labels_outter = labels.clone()
-            labels_outter[idx_outter] = args.target_class
-            loss_target = self.args.target_loss_weight *F.nll_loss(output[torch.cat([idx_train,idx_outter])],
-                                    labels_outter[torch.cat([idx_train,idx_outter])])
-            loss_homo = 0.0
-
-            if(self.args.homo_loss_weight > 0):
-                loss_homo = self.homo_loss(trojan_edge[:,:int(trojan_edge.shape[1]/2)],\
-                                            trojan_weights,\
-                                            update_feat,\
-                                            self.args.homo_boost_thrd)
-            
-            loss_outter = loss_target + self.args.homo_loss_weight * loss_homo
-
-            loss_outter.backward()
-            optimizer_trigger.step()
-            acc_train_outter =(output[idx_outter].argmax(dim=1)==args.target_class).float().mean()
-
-            if loss_outter<loss_best:
-                self.weights = deepcopy(self.trojan.state_dict())
-                loss_best = float(loss_outter)
-
-            if args.debug and i % 10 == 0:
-                print('Epoch {}, loss_inner: {:.5f}, loss_target: {:.5f}, homo loss: {:.5f} '\
-                        .format(i, loss_inner, loss_target, loss_homo))
-                print("acc_train_clean: {:.4f}, ASR_train_attach: {:.4f}, ASR_train_outter: {:.4f}"\
-                        .format(acc_train_clean,acc_train_attach,acc_train_outter))
-        if args.debug:
-            print("load best weight based on the loss outter")
-        self.trojan.load_state_dict(self.weights)
         self.trojan.eval()
+
+    # def fit(self, features, edge_index, edge_weight, labels, idx_train, idx_attach,idx_unlabeled):
+
+    #     args = self.args
+    #     if edge_weight is None:
+    #         edge_weight = torch.ones([edge_index.shape[1]],device=self.device,dtype=torch.float)
+    #     self.idx_attach = idx_attach
+    #     self.features = features
+    #     self.edge_index = edge_index
+    #     self.edge_weights = edge_weight
+        
+    #     # initial a shadow model
+    #     self.shadow_model = GCN(nfeat=features.shape[1],
+    #                      nhid=self.args.hidden,
+    #                      nclass=labels.max().item() + 1,
+    #                      dropout=0.0, device=self.device).to(self.device)
+    #     # initalize a trojanNet to generate trigger
+    #     self.trojan = GraphTrojanNet(self.device, features.shape[1], args.trigger_size, layernum=2).to(self.device)
+    #     self.homo_loss = HomoLoss(self.args,self.device)
+
+    #     optimizer_shadow = optim.Adam(self.shadow_model.parameters(), lr=args.lr, weight_decay=args.weight_decay)
+    #     optimizer_trigger = optim.Adam(self.trojan.parameters(), lr=args.lr, weight_decay=args.weight_decay)
+
+    
+    #     # change the labels of the poisoned node to the target class
+    #     self.labels = labels.clone()
+    #     self.labels[idx_attach] = args.target_class
+
+    #     # get the trojan edges, which include the target-trigger edge and the edges among trigger
+    #     trojan_edge = self.get_trojan_edge(len(features),idx_attach,args.trigger_size).to(self.device)
+
+    #     # update the poisoned graph's edge index
+    #     poison_edge_index = torch.cat([edge_index,trojan_edge],dim=1)
+
+
+    #     # furture change it to bilevel optimization
+        
+    #     loss_best = 1e8
+    #     for i in range(args.trojan_epochs):
+    #         self.trojan.train()
+    #         for j in range(self.args.inner):
+
+    #             optimizer_shadow.zero_grad()
+    #             trojan_feat, trojan_weights = self.trojan(features[idx_attach],args.thrd) # may revise the process of generate
+    #             trojan_weights = torch.cat([torch.ones([len(trojan_feat),1],dtype=torch.float,device=self.device),trojan_weights],dim=1)
+    #             trojan_weights = trojan_weights.flatten()
+    #             trojan_feat = trojan_feat.view([-1,features.shape[1]])
+    #             poison_edge_weights = torch.cat([edge_weight,trojan_weights,trojan_weights]).detach() # repeat trojan weights beacuse of undirected edge
+    #             poison_x = torch.cat([features,trojan_feat]).detach()
+
+    #             output = self.shadow_model(poison_x, poison_edge_index, poison_edge_weights)
+                
+    #             loss_inner = F.nll_loss(output[torch.cat([idx_train,idx_attach])], self.labels[torch.cat([idx_train,idx_attach])]) # add our adaptive loss
+                
+    #             loss_inner.backward()
+    #             optimizer_shadow.step()
+
+            
+    #         acc_train_clean = utils.accuracy(output[idx_train], self.labels[idx_train])
+    #         acc_train_attach = utils.accuracy(output[idx_attach], self.labels[idx_attach])
+            
+    #         # involve unlabeled nodes in outter optimization
+    #         self.trojan.eval()
+    #         optimizer_trigger.zero_grad()
+
+    #         rs = np.random.RandomState(self.args.seed)
+    #         # idx_outter = torch.cat([idx_attach,idx_unlabeled[rs.choice(len(idx_unlabeled),size=512,replace=False)]])
+    #         idx_outter = idx_attach
+
+    #         trojan_feat, trojan_weights = self.trojan(features[idx_outter],self.args.thrd) # may revise the process of generate
+        
+    #         trojan_weights = torch.cat([torch.ones([len(idx_outter),1],dtype=torch.float,device=self.device),trojan_weights],dim=1)
+    #         trojan_weights = trojan_weights.flatten()
+
+    #         trojan_feat = trojan_feat.view([-1,features.shape[1]])
+
+    #         trojan_edge = self.get_trojan_edge(len(features),idx_outter,self.args.trigger_size).to(self.device)
+
+    #         update_edge_weights = torch.cat([edge_weight,trojan_weights,trojan_weights])
+    #         update_feat = torch.cat([features,trojan_feat])
+    #         update_edge_index = torch.cat([edge_index,trojan_edge],dim=1)
+
+    #         output = self.shadow_model(update_feat, update_edge_index, update_edge_weights)
+
+    #         labels_outter = labels.clone()
+    #         labels_outter[idx_outter] = args.target_class
+    #         loss_target = F.nll_loss(output[torch.cat([idx_train,idx_outter])],
+    #                                 labels_outter[torch.cat([idx_train,idx_outter])])
+
+            
+    #         loss_outter = loss_target
+
+    #         loss_outter.backward()
+    #         optimizer_trigger.step()
+    #         acc_train_outter =(output[idx_outter].argmax(dim=1)==args.target_class).float().mean()
+
+    #         if loss_outter<loss_best:
+    #             self.weights = deepcopy(self.trojan.state_dict())
+    #             loss_best = float(loss_outter)
+
+    #         if args.debug and i % 10 == 0:
+    #             print('Epoch {}, loss_inner: {:.5f}, loss_target: {:.5f} '\
+    #                     .format(i, loss_inner, loss_target))
+    #             print("acc_train_clean: {:.4f}, ASR_train_attach: {:.4f}, ASR_train_outter: {:.4f}"\
+    #                     .format(acc_train_clean,acc_train_attach,acc_train_outter))
+    #     if args.debug:
+    #         print("load best weight based on the loss outter")
+    #     self.trojan.load_state_dict(self.weights)
+    #     self.trojan.eval()
 
         # torch.cuda.empty_cache()
 

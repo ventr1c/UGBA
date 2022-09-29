@@ -1,22 +1,30 @@
-models=(GCN GraphSage)
-sizes=(80 160 240 320 400 480)
+models=(GCN GraphSage GAT)
 defense_modes=(none prune isolate)
+# for defense_mode in ${defense_modes[@]};
+# do 
+#     for model in ${models[@]};
+#     do
+#         python -u run_bkd_baseline.py \
+#             --prune_thrd=0.2\
+#             --attack_method=Rand_Gene\
+#             --vs_size=40\
+#             --test_model=${model}\
+#             --defense_mode=${defense_mode}\
+#             --epochs=200\
+#             --dataset=Pubmed
+#     done    
+# done
+
 for defense_mode in ${defense_modes[@]};
 do 
-    for vs_size in ${sizes[@]};
+    for model in ${models[@]};
     do
-        for model in ${models[@]};
-        do
-            for seed in {15..18}
-            do
-                python -u run_bkd_baseline.py \
-                    --prune_thrd=0.3\
-                    --vs_size=${vs_size}\
-                    --test_model=${model}\
-                    --defense_mode=${defense_mode}\
-                    --seed=${seed} \
-                    --epochs=1000
-            done
-        done    
-    done
+        python -u run_GTA.py \
+            --prune_thr=0.2\
+            --vs_size=40\
+            --test_model=${model}\
+            --defense_mode=${defense_mode}\
+            --epochs=200\
+            --dataset=Pubmed
+    done    
 done

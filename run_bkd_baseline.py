@@ -18,7 +18,7 @@ parser.add_argument('--debug', action='store_true',
 parser.add_argument('--no-cuda', action='store_true', default=False,
                     help='Disables CUDA training.')
 parser.add_argument('--seed', type=int, default=15, help='Random seed.')
-parser.add_argument('--dataset', type=str, default='ogbn-arxiv', 
+parser.add_argument('--dataset', type=str, default='Pubmed', 
                     help='Dataset',
                     choices=['Cora','Citeseer','Pubmed','PPI','Flickr','ogbn-arxiv','Reddit','Reddit2'])
 parser.add_argument('--weight_decay', type=float, default=5e-4,
@@ -28,7 +28,7 @@ parser.add_argument('--hidden', type=int, default=32,
 parser.add_argument('--target_class', type=int, default=0)
 parser.add_argument('--dropout', type=float, default=0.5,
                     help='Dropout rate (1 - keep probability).')
-parser.add_argument('--epochs', type=int,  default=500, help='Number of epochs to train benign and backdoor model.')
+parser.add_argument('--epochs', type=int,  default=1000, help='Number of epochs to train benign and backdoor model.')
 # backdoor setting
 parser.add_argument('--train_lr', type=float, default=0.01,
                     help='Initial learning rate.')
@@ -36,13 +36,13 @@ parser.add_argument('--trigger_size', type=int, default=3,
                     help='tirgger_size')
 parser.add_argument('--vs_ratio', type=float, default=0.05,
                     help="ratio of poisoning nodes relative to the full graph")
-parser.add_argument('--vs_size', type=int, default=480,
+parser.add_argument('--vs_size', type=int, default=40,
                     help="ratio of poisoning nodes relative to the full graph")
 # defense setting
 parser.add_argument('--defense_mode', type=str, default="none",
                     choices=['prune', 'isolate', 'none'],
                     help="Mode of defense")
-parser.add_argument('--prune_thr', type=float, default=0.8,
+parser.add_argument('--prune_thr', type=float, default=0.1,
                     help="Threshold of prunning edges")
 parser.add_argument('--attack_method', type=str, default='Rand_Gene',
                     choices=['Rand_Gene','Rand_Samp','Basic','None'],
@@ -106,8 +106,9 @@ train_edge_index,_, edge_mask = subgraph(torch.bitwise_not(data.test_mask),data.
 mask_edge_index = data.edge_index[:,torch.bitwise_not(edge_mask)]
 
 # In[6]: 
-
-for seed in range(15,18):
+result_asr = []
+result_acc = []
+for seed in range(10,20):
     args.seed =seed
     np.random.seed(args.seed)
     torch.manual_seed(args.seed)
@@ -199,4 +200,9 @@ for seed in range(15,18):
             ASR.append(train_attach_rate)
     ASR = torch.cat(ASR).float().mean()
     print("ASR: {:.4f}".format(ASR))
+    result_asr.append(float(ASR))
+    result_acc.append(float(clean_acc))
+
+print('The final ASR:{:.5f}, {:.5f}, Accuracy:{:.5f}, {:.5f}'\
+            .format(np.average(result_asr),np.std(result_asr),np.average(result_acc),np.std(result_acc)))
 # %%
