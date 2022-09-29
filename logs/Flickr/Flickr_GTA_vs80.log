@@ -1,0 +1,145 @@
+nohup: ignoring input
+run_GTA.py:7: DeprecationWarning: the imp module is deprecated in favour of importlib; see the module's documentation for alternative uses
+  import imp
+Namespace(cuda=True, dataset='Flickr', debug=False, defense_mode='none', device_id=0, dis_weight=1, dropout=0.5, epochs=200, evaluate_mode='1by1', hidden=64, homo_loss_weight=0, inner=1, lr=0.01, model='GCN', no_cuda=False, prune_thr=0.4, seed=10, selection_method='none', target_class=0, test_model='GCN', thrd=0.5, train_lr=0.02, trigger_size=3, trojan_epochs=400, vs_size=80, weight_decay=0.0005)
+#Attach Nodes:80
+precent of left attach nodes: 1.000
+target class rate on Vs: 1.0000
+accuracy on clean test nodes: 0.4465
+Overall ASR: 0.9999
+Flip ASR: 0.9999/8360 nodes
+precent of left attach nodes: 1.000
+target class rate on Vs: 0.9875
+accuracy on clean test nodes: 0.4502
+Overall ASR: 0.9975
+Flip ASR: 0.9975/8360 nodes
+precent of left attach nodes: 1.000
+target class rate on Vs: 1.0000
+accuracy on clean test nodes: 0.4477
+Overall ASR: 0.9999
+Flip ASR: 0.9999/8360 nodes
+precent of left attach nodes: 1.000
+target class rate on Vs: 0.9875
+accuracy on clean test nodes: 0.4543
+Overall ASR: 0.9996
+Flip ASR: 0.9995/8360 nodes
+precent of left attach nodes: 1.000
+target class rate on Vs: 0.9875
+accuracy on clean test nodes: 0.4515
+Overall ASR: 0.9999
+Flip ASR: 0.9999/8360 nodes
+The final ASR:0.99935, 0.00092, Accuracy:0.45006, 0.00278
+run_GTA.py:7: DeprecationWarning: the imp module is deprecated in favour of importlib; see the module's documentation for alternative uses
+  import imp
+Namespace(cuda=True, dataset='Flickr', debug=False, defense_mode='none', device_id=0, dis_weight=1, dropout=0.5, epochs=200, evaluate_mode='1by1', hidden=64, homo_loss_weight=0, inner=1, lr=0.01, model='GCN', no_cuda=False, prune_thr=0.4, seed=10, selection_method='none', target_class=0, test_model='GraphSage', thrd=0.5, train_lr=0.02, trigger_size=3, trojan_epochs=400, vs_size=80, weight_decay=0.0005)
+#Attach Nodes:80
+precent of left attach nodes: 1.000
+target class rate on Vs: 0.9875
+accuracy on clean test nodes: 0.4798
+Overall ASR: 0.9994
+Flip ASR: 0.9995/8360 nodes
+precent of left attach nodes: 1.000
+target class rate on Vs: 0.9750
+accuracy on clean test nodes: 0.4796
+Overall ASR: 0.9985
+Flip ASR: 0.9986/8360 nodes
+precent of left attach nodes: 1.000
+target class rate on Vs: 1.0000
+accuracy on clean test nodes: 0.4847
+Overall ASR: 0.9971
+Flip ASR: 0.9971/8360 nodes
+precent of left attach nodes: 1.000
+target class rate on Vs: 0.9750
+accuracy on clean test nodes: 0.4774
+Overall ASR: 0.9950
+Flip ASR: 0.9949/8360 nodes
+precent of left attach nodes: 1.000
+target class rate on Vs: 0.9875
+accuracy on clean test nodes: 0.4772
+Overall ASR: 0.9974
+Flip ASR: 0.9975/8360 nodes
+The final ASR:0.99749, 0.00152, Accuracy:0.47973, 0.00270
+run_GTA.py:7: DeprecationWarning: the imp module is deprecated in favour of importlib; see the module's documentation for alternative uses
+  import imp
+Namespace(cuda=True, dataset='Flickr', debug=False, defense_mode='none', device_id=0, dis_weight=1, dropout=0.5, epochs=200, evaluate_mode='1by1', hidden=64, homo_loss_weight=0, inner=1, lr=0.01, model='GCN', no_cuda=False, prune_thr=0.4, seed=10, selection_method='none', target_class=0, test_model='GAT', thrd=0.5, train_lr=0.02, trigger_size=3, trojan_epochs=400, vs_size=80, weight_decay=0.0005)
+#Attach Nodes:80
+precent of left attach nodes: 1.000
+/home/project-graph-backdoor/Backdoor/models/GAT.py:61: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  self.labels = torch.tensor(labels, dtype=torch.long)
+target class rate on Vs: 0.9000
+accuracy on clean test nodes: 0.4371
+Overall ASR: 0.9489
+Flip ASR: 0.9488/8360 nodes
+precent of left attach nodes: 1.000
+target class rate on Vs: 0.8250
+accuracy on clean test nodes: 0.4501
+Overall ASR: 0.7322
+Flip ASR: 0.7312/8360 nodes
+precent of left attach nodes: 1.000
+target class rate on Vs: 0.8875
+accuracy on clean test nodes: 0.4362
+Overall ASR: 0.6596
+Flip ASR: 0.6597/8360 nodes
+precent of left attach nodes: 1.000
+target class rate on Vs: 1.0000
+accuracy on clean test nodes: 0.4329
+Overall ASR: 0.0065
+Flip ASR: 0.0065/8360 nodes
+precent of left attach nodes: 1.000
+target class rate on Vs: 0.9625
+accuracy on clean test nodes: 0.4453
+Overall ASR: 0.9648
+Flip ASR: 0.9644/8360 nodes
+The final ASR:0.66241, 0.34889, Accuracy:0.44031, 0.00635
+run_GTA.py:7: DeprecationWarning: the imp module is deprecated in favour of importlib; see the module's documentation for alternative uses
+  import imp
+Namespace(cuda=True, dataset='Flickr', debug=False, defense_mode='prune', device_id=0, dis_weight=1, dropout=0.5, epochs=200, evaluate_mode='1by1', hidden=64, homo_loss_weight=0, inner=1, lr=0.01, model='GCN', no_cuda=False, prune_thr=0.4, seed=10, selection_method='none', target_class=0, test_model='GCN', thrd=0.5, train_lr=0.02, trigger_size=3, trojan_epochs=400, vs_size=80, weight_decay=0.0005)
+#Attach Nodes:80
+precent of left attach nodes: 1.000
+target class rate on Vs: 0.0000
+accuracy on clean test nodes: 0.4193
+Overall ASR: 0.0000
+Flip ASR: 0.0000/8360 nodes
+precent of left attach nodes: 1.000
+target class rate on Vs: 0.0000
+accuracy on clean test nodes: 0.4151
+Overall ASR: 0.0000
+Flip ASR: 0.0000/8360 nodes
+precent of left attach nodes: 1.000
+target class rate on Vs: 0.0000
+accuracy on clean test nodes: 0.4155
+Overall ASR: 0.0000
+Flip ASR: 0.0000/8360 nodes
+precent of left attach nodes: 1.000
+target class rate on Vs: 0.0000
+accuracy on clean test nodes: 0.4186
+Overall ASR: 0.0000
+Flip ASR: 0.0000/8360 nodes
+precent of left attach nodes: 1.000
+target class rate on Vs: 0.0000
+accuracy on clean test nodes: 0.4149
+Overall ASR: 0.0000
+Flip ASR: 0.0000/8360 nodes
+The final ASR:0.00000, 0.00000, Accuracy:0.41667, 0.00187
+run_GTA.py:7: DeprecationWarning: the imp module is deprecated in favour of importlib; see the module's documentation for alternative uses
+  import imp
+Namespace(cuda=True, dataset='Flickr', debug=False, defense_mode='prune', device_id=0, dis_weight=1, dropout=0.5, epochs=200, evaluate_mode='1by1', hidden=64, homo_loss_weight=0, inner=1, lr=0.01, model='GCN', no_cuda=False, prune_thr=0.4, seed=10, selection_method='none', target_class=0, test_model='GraphSage', thrd=0.5, train_lr=0.02, trigger_size=3, trojan_epochs=400, vs_size=80, weight_decay=0.0005)
+#Attach Nodes:80
+precent of left attach nodes: 1.000
+target class rate on Vs: 0.0000
+accuracy on clean test nodes: 0.4592
+Overall ASR: 0.0000
+Flip ASR: 0.0000/8360 nodes
+precent of left attach nodes: 1.000
+target class rate on Vs: 0.0000
+accuracy on clean test nodes: 0.4624
+Overall ASR: 0.0000
+Flip ASR: 0.0000/8360 nodes
+precent of left attach nodes: 1.000
+target class rate on Vs: 0.0000
+accuracy on clean test nodes: 0.4555
+Overall ASR: 0.0000
+Flip ASR: 0.0000/8360 nodes
+precent of left attach nodes: 1.000
+target class rate on Vs: 0.0000
+accuracy on clean test nodes: 0.4598

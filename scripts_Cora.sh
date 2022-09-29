@@ -82,3 +82,7 @@ nohup python -u run_adaptive.py --dataset 'Cora' --model 'GCN' --test_model 'GCN
 nohup python -u run_adaptive.py --dataset 'Cora' --model 'GCN' --test_model 'GCN' --use_vs_number --vs_number 10 --attack_method 'Basic' --defense_mode 'none' --trojan_epochs 400 --prune_thr 0.1 --homo_loss_weight 50 --homo_boost_thrd 0.5 --dis_weight -1 --selection_method 'cluster_degree' --device_id 2 --evaluate_mode '1by1' > ./logs/Cora/Cora_Ours_None_gcn2gcn_clu_vs10_1.log 2>&1 &
 nohup python -u run_adaptive.py --dataset 'Cora' --model 'GCN' --test_model 'GCN' --use_vs_number --vs_number 10 --attack_method 'Basic' --defense_mode 'prune' --trojan_epochs 400 --prune_thr 0.1 --homo_loss_weight 50 --homo_boost_thrd 0.5 --dis_weight -1 --selection_method 'cluster_degree' --device_id 2 --evaluate_mode '1by1' > ./logs/Cora/Cora_Ours_Prune_gcn2gcn_clu_vs10.log 2>&1 &
 nohup python -u run_adaptive.py --dataset 'Cora' --model 'GCN' --test_model 'GCN' --use_vs_number --vs_number 10 --attack_method 'Basic' --defense_mode 'isolate' --trojan_epochs 400 --prune_thr 0.1 --homo_loss_weight 50 --homo_boost_thrd 0.5 --dis_weight -1 --selection_method 'cluster_degree' --device_id 2 --evaluate_mode '1by1' > ./logs/Cora/Cora_Ours_Isolate_gcn2gcn_clu_vs10.log 2>&1 &
+
+
+# Attack: GTA
+python -u run_GTA.py --prune_thr=0.1 --vs_size=10 --test_model= --defense_mode=${defense_mode} --epochs=200 --dataset=Cora

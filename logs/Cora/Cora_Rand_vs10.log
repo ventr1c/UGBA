@@ -1,0 +1,756 @@
+Namespace(attack_method='Rand_Gene', cuda=True, dataset='Cora', debug=False, defense_mode='none', device_id=0, dropout=0.5, epochs=200, evaluate_mode='1by1', hidden=32, no_cuda=False, prune_thr=0.1, seed=15, target_class=0, test_model='GCN', train_lr=0.01, trigger_prob=0.5, trigger_size=3, vs_ratio=0.05, vs_size=10, weight_decay=0.0005)
+Rand generate the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.8407
+ASR: 0.4059
+Rand generate the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.8333
+ASR: 0.4649
+Rand generate the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.8074
+ASR: 0.2989
+Rand generate the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.8259
+ASR: 0.4207
+Rand generate the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.8407
+ASR: 0.5387
+Rand generate the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.8370
+ASR: 0.3469
+Rand generate the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.8407
+ASR: 0.4244
+Rand generate the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.8481
+ASR: 0.4391
+Rand generate the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.8370
+ASR: 0.3579
+Rand generate the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.8407
+ASR: 0.3137
+The final ASR:0.40111, 0.06951, Accuracy:0.83519, 0.01077
+Namespace(attack_method='Rand_Gene', cuda=True, dataset='Cora', debug=False, defense_mode='none', device_id=0, dropout=0.5, epochs=200, evaluate_mode='1by1', hidden=32, no_cuda=False, prune_thr=0.1, seed=15, target_class=0, test_model='GraphSage', train_lr=0.01, trigger_prob=0.5, trigger_size=3, vs_ratio=0.05, vs_size=10, weight_decay=0.0005)
+Rand generate the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.8185
+ASR: 0.4613
+Rand generate the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.8481
+ASR: 0.5055
+Rand generate the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.8370
+ASR: 0.4207
+Rand generate the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.8222
+ASR: 0.4539
+Rand generate the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.8222
+ASR: 0.3764
+Rand generate the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.8444
+ASR: 0.3358
+Rand generate the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.8259
+ASR: 0.4096
+Rand generate the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.8185
+ASR: 0.3948
+Rand generate the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.8074
+ASR: 0.3653
+Rand generate the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.8222
+ASR: 0.3173
+The final ASR:0.40406, 0.05558, Accuracy:0.82667, 0.01204
+Namespace(attack_method='Rand_Gene', cuda=True, dataset='Cora', debug=False, defense_mode='none', device_id=0, dropout=0.5, epochs=200, evaluate_mode='1by1', hidden=32, no_cuda=False, prune_thr=0.1, seed=15, target_class=0, test_model='GAT', train_lr=0.01, trigger_prob=0.5, trigger_size=3, vs_ratio=0.05, vs_size=10, weight_decay=0.0005)
+Rand generate the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.8407
+ASR: 0.4686
+Rand generate the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.8519
+ASR: 0.6052
+Rand generate the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.8222
+ASR: 0.2804
+Rand generate the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.8444
+ASR: 0.5092
+Rand generate the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.8444
+ASR: 0.8339
+Rand generate the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.8667
+ASR: 0.2325
+Rand generate the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.8296
+ASR: 0.5535
+Rand generate the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.8481
+ASR: 0.6125
+Rand generate the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.8444
+ASR: 0.3026
+Rand generate the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.8481
+ASR: 0.3137
+The final ASR:0.47122, 0.18010, Accuracy:0.84407, 0.01141
+Namespace(attack_method='Rand_Gene', cuda=True, dataset='Cora', debug=False, defense_mode='prune', device_id=0, dropout=0.5, epochs=200, evaluate_mode='1by1', hidden=32, no_cuda=False, prune_thr=0.1, seed=15, target_class=0, test_model='GCN', train_lr=0.01, trigger_prob=0.5, trigger_size=3, vs_ratio=0.05, vs_size=10, weight_decay=0.0005)
+Rand generate the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.8185
+ASR: 0.2030
+Rand generate the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.8370
+ASR: 0.1956
+Rand generate the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.8370
+ASR: 0.1476
+Rand generate the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.8259
+ASR: 0.2546
+Rand generate the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.8333
+ASR: 0.1845
+Rand generate the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.8407
+ASR: 0.2066
+Rand generate the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.8407
+ASR: 0.2066
+Rand generate the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.8444
+ASR: 0.1808
+Rand generate the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.8185
+ASR: 0.2177
+Rand generate the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.8370
+ASR: 0.1919
+The final ASR:0.19889, 0.02612, Accuracy:0.83333, 0.00876
+Namespace(attack_method='Rand_Gene', cuda=True, dataset='Cora', debug=False, defense_mode='prune', device_id=0, dropout=0.5, epochs=200, evaluate_mode='1by1', hidden=32, no_cuda=False, prune_thr=0.1, seed=15, target_class=0, test_model='GraphSage', train_lr=0.01, trigger_prob=0.5, trigger_size=3, vs_ratio=0.05, vs_size=10, weight_decay=0.0005)
+Rand generate the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.8222
+ASR: 0.2066
+Rand generate the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.8222
+ASR: 0.1882
+Rand generate the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.8333
+ASR: 0.1771
+Rand generate the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.8074
+ASR: 0.3026
+Rand generate the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.8148
+ASR: 0.1734
+Rand generate the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.8481
+ASR: 0.2030
+Rand generate the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.8259
+ASR: 0.1882
+Rand generate the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.8333
+ASR: 0.1734
+Rand generate the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.8148
+ASR: 0.1993
+Rand generate the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.8222
+ASR: 0.1771
+The final ASR:0.19889, 0.03647, Accuracy:0.82444, 0.01101
+Namespace(attack_method='Rand_Gene', cuda=True, dataset='Cora', debug=False, defense_mode='prune', device_id=0, dropout=0.5, epochs=200, evaluate_mode='1by1', hidden=32, no_cuda=False, prune_thr=0.1, seed=15, target_class=0, test_model='GAT', train_lr=0.01, trigger_prob=0.5, trigger_size=3, vs_ratio=0.05, vs_size=10, weight_decay=0.0005)
+Rand generate the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.8333
+ASR: 0.1993
+Rand generate the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.8296
+ASR: 0.1845
+Rand generate the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.8444
+ASR: 0.1292
+Rand generate the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.8519
+ASR: 0.2731
+Rand generate the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.8407
+ASR: 0.1624
+Rand generate the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.8333
+ASR: 0.1993
+Rand generate the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.8333
+ASR: 0.1882
+Rand generate the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.8407
+ASR: 0.1661
+Rand generate the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.8333
+ASR: 0.2103
+Rand generate the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.8407
+ASR: 0.1808
+The final ASR:0.18930, 0.03555, Accuracy:0.83815, 0.00643
+Namespace(attack_method='Rand_Gene', cuda=True, dataset='Cora', debug=False, defense_mode='isolate', device_id=0, dropout=0.5, epochs=200, evaluate_mode='1by1', hidden=32, no_cuda=False, prune_thr=0.1, seed=15, target_class=0, test_model='GCN', train_lr=0.01, trigger_prob=0.5, trigger_size=3, vs_ratio=0.05, vs_size=10, weight_decay=0.0005)
+Rand generate the trigger
+precent of left attach nodes: 0.100
+accuracy on clean test nodes: 0.8185
+ASR: 0.2177
+Rand generate the trigger
+precent of left attach nodes: 0.000
+accuracy on clean test nodes: 0.8148
+ASR: 0.2103
+Rand generate the trigger
+precent of left attach nodes: 0.000
+accuracy on clean test nodes: 0.8000
+ASR: 0.1181
+Rand generate the trigger
+precent of left attach nodes: 0.200
+accuracy on clean test nodes: 0.8037
+ASR: 0.2288
+Rand generate the trigger
+precent of left attach nodes: 0.000
+accuracy on clean test nodes: 0.8074
+ASR: 0.1624
+Rand generate the trigger
+precent of left attach nodes: 0.100
+accuracy on clean test nodes: 0.8148
+ASR: 0.2066
+Rand generate the trigger
+precent of left attach nodes: 0.200
+accuracy on clean test nodes: 0.8296
+ASR: 0.2066
+Rand generate the trigger
+precent of left attach nodes: 0.000
+accuracy on clean test nodes: 0.8111
+ASR: 0.1476
+Rand generate the trigger
+precent of left attach nodes: 0.100
+accuracy on clean test nodes: 0.8296
+ASR: 0.2214
+Rand generate the trigger
+precent of left attach nodes: 0.000
+accuracy on clean test nodes: 0.8037
+ASR: 0.1661
+The final ASR:0.18856, 0.03537, Accuracy:0.81333, 0.00983
+Namespace(attack_method='Rand_Gene', cuda=True, dataset='Cora', debug=False, defense_mode='isolate', device_id=0, dropout=0.5, epochs=200, evaluate_mode='1by1', hidden=32, no_cuda=False, prune_thr=0.1, seed=15, target_class=0, test_model='GraphSage', train_lr=0.01, trigger_prob=0.5, trigger_size=3, vs_ratio=0.05, vs_size=10, weight_decay=0.0005)
+Rand generate the trigger
+precent of left attach nodes: 0.100
+accuracy on clean test nodes: 0.7815
+ASR: 0.2030
+Rand generate the trigger
+precent of left attach nodes: 0.000
+accuracy on clean test nodes: 0.7778
+ASR: 0.1402
+Rand generate the trigger
+precent of left attach nodes: 0.000
+accuracy on clean test nodes: 0.7815
+ASR: 0.1328
+Rand generate the trigger
+precent of left attach nodes: 0.200
+accuracy on clean test nodes: 0.8037
+ASR: 0.2177
+Rand generate the trigger
+precent of left attach nodes: 0.000
+accuracy on clean test nodes: 0.7889
+ASR: 0.1402
+Rand generate the trigger
+precent of left attach nodes: 0.100
+accuracy on clean test nodes: 0.7963
+ASR: 0.2214
+Rand generate the trigger
+precent of left attach nodes: 0.200
+accuracy on clean test nodes: 0.7963
+ASR: 0.1771
+Rand generate the trigger
+precent of left attach nodes: 0.000
+accuracy on clean test nodes: 0.7889
+ASR: 0.1550
+Rand generate the trigger
+precent of left attach nodes: 0.100
+accuracy on clean test nodes: 0.7963
+ASR: 0.1661
+Rand generate the trigger
+precent of left attach nodes: 0.000
+accuracy on clean test nodes: 0.7815
+ASR: 0.1402
+The final ASR:0.16937, 0.03215, Accuracy:0.78926, 0.00819
+Namespace(attack_method='Rand_Gene', cuda=True, dataset='Cora', debug=False, defense_mode='isolate', device_id=0, dropout=0.5, epochs=200, evaluate_mode='1by1', hidden=32, no_cuda=False, prune_thr=0.1, seed=15, target_class=0, test_model='GAT', train_lr=0.01, trigger_prob=0.5, trigger_size=3, vs_ratio=0.05, vs_size=10, weight_decay=0.0005)
+Rand generate the trigger
+precent of left attach nodes: 0.100
+accuracy on clean test nodes: 0.8222
+ASR: 0.2177
+Rand generate the trigger
+precent of left attach nodes: 0.000
+accuracy on clean test nodes: 0.8185
+ASR: 0.1624
+Rand generate the trigger
+precent of left attach nodes: 0.000
+accuracy on clean test nodes: 0.8185
+ASR: 0.1181
+Rand generate the trigger
+precent of left attach nodes: 0.200
+accuracy on clean test nodes: 0.8333
+ASR: 0.2509
+Rand generate the trigger
+precent of left attach nodes: 0.000
+accuracy on clean test nodes: 0.8074
+ASR: 0.1587
+Rand generate the trigger
+precent of left attach nodes: 0.100
+accuracy on clean test nodes: 0.8185
+ASR: 0.1550
+Rand generate the trigger
+precent of left attach nodes: 0.200
+accuracy on clean test nodes: 0.8111
+ASR: 0.1771
+Rand generate the trigger
+precent of left attach nodes: 0.000
+accuracy on clean test nodes: 0.8037
+ASR: 0.1476
+Rand generate the trigger
+precent of left attach nodes: 0.100
+accuracy on clean test nodes: 0.8111
+ASR: 0.1439
+Rand generate the trigger
+precent of left attach nodes: 0.000
+accuracy on clean test nodes: 0.8148
+ASR: 0.1365
+The final ASR:0.16679, 0.03766, Accuracy:0.81593, 0.00795
+Namespace(attack_method='Rand_Samp', cuda=True, dataset='Cora', debug=False, defense_mode='none', device_id=0, dropout=0.5, epochs=200, evaluate_mode='1by1', hidden=32, no_cuda=False, prune_thr=0.1, seed=15, target_class=0, test_model='GCN', train_lr=0.01, trigger_prob=0.5, trigger_size=3, vs_ratio=0.05, vs_size=10, weight_decay=0.0005)
+Rand sample the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.8444
+ASR: 0.3764
+Rand sample the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.8481
+ASR: 0.3321
+Rand sample the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.8407
+ASR: 0.3173
+Rand sample the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.8148
+ASR: 0.3063
+Rand sample the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.8407
+ASR: 0.3432
+Rand sample the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.8481
+ASR: 0.3690
+Rand sample the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.8259
+ASR: 0.3838
+Rand sample the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.8519
+ASR: 0.3690
+Rand sample the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.8444
+ASR: 0.3063
+Rand sample the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.8296
+ASR: 0.2768
+The final ASR:0.33801, 0.03427, Accuracy:0.83889, 0.01114
+Namespace(attack_method='Rand_Samp', cuda=True, dataset='Cora', debug=False, defense_mode='none', device_id=0, dropout=0.5, epochs=200, evaluate_mode='1by1', hidden=32, no_cuda=False, prune_thr=0.1, seed=15, target_class=0, test_model='GraphSage', train_lr=0.01, trigger_prob=0.5, trigger_size=3, vs_ratio=0.05, vs_size=10, weight_decay=0.0005)
+Rand sample the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.8222
+ASR: 0.3542
+Rand sample the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.8185
+ASR: 0.3321
+Rand sample the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.8185
+ASR: 0.4059
+Rand sample the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.8333
+ASR: 0.3801
+Rand sample the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.8333
+ASR: 0.3173
+Rand sample the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.8593
+ASR: 0.3100
+Rand sample the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.8444
+ASR: 0.3948
+Rand sample the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.8259
+ASR: 0.3137
+Rand sample the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.8037
+ASR: 0.3432
+Rand sample the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.8370
+ASR: 0.2731
+The final ASR:0.34244, 0.03970, Accuracy:0.82963, 0.01472
+Namespace(attack_method='Rand_Samp', cuda=True, dataset='Cora', debug=False, defense_mode='none', device_id=0, dropout=0.5, epochs=200, evaluate_mode='1by1', hidden=32, no_cuda=False, prune_thr=0.1, seed=15, target_class=0, test_model='GAT', train_lr=0.01, trigger_prob=0.5, trigger_size=3, vs_ratio=0.05, vs_size=10, weight_decay=0.0005)
+Rand sample the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.8704
+ASR: 0.3100
+Rand sample the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.8667
+ASR: 0.2804
+Rand sample the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.8444
+ASR: 0.3875
+Rand sample the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.8296
+ASR: 0.3911
+Rand sample the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.8630
+ASR: 0.4465
+Rand sample the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.8630
+ASR: 0.2841
+Rand sample the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.8370
+ASR: 0.5683
+Rand sample the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.8630
+ASR: 0.4059
+Rand sample the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.8593
+ASR: 0.3026
+Rand sample the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.8481
+ASR: 0.3026
+The final ASR:0.36790, 0.08674, Accuracy:0.85444, 0.01305
+Namespace(attack_method='Rand_Samp', cuda=True, dataset='Cora', debug=False, defense_mode='prune', device_id=0, dropout=0.5, epochs=200, evaluate_mode='1by1', hidden=32, no_cuda=False, prune_thr=0.1, seed=15, target_class=0, test_model='GCN', train_lr=0.01, trigger_prob=0.5, trigger_size=3, vs_ratio=0.05, vs_size=10, weight_decay=0.0005)
+Rand sample the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.8185
+ASR: 0.1993
+Rand sample the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.8407
+ASR: 0.1697
+Rand sample the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.8370
+ASR: 0.1550
+Rand sample the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.8259
+ASR: 0.1513
+Rand sample the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.8370
+ASR: 0.1845
+Rand sample the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.8444
+ASR: 0.1513
+Rand sample the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.8407
+ASR: 0.2177
+Rand sample the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.8111
+ASR: 0.1587
+Rand sample the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.8185
+ASR: 0.1439
+Rand sample the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.8407
+ASR: 0.1808
+The final ASR:0.17122, 0.02276, Accuracy:0.83148, 0.01126
+Namespace(attack_method='Rand_Samp', cuda=True, dataset='Cora', debug=False, defense_mode='prune', device_id=0, dropout=0.5, epochs=200, evaluate_mode='1by1', hidden=32, no_cuda=False, prune_thr=0.1, seed=15, target_class=0, test_model='GraphSage', train_lr=0.01, trigger_prob=0.5, trigger_size=3, vs_ratio=0.05, vs_size=10, weight_decay=0.0005)
+Rand sample the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.8074
+ASR: 0.2066
+Rand sample the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.8148
+ASR: 0.1771
+Rand sample the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.8333
+ASR: 0.1661
+Rand sample the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.8222
+ASR: 0.1624
+Rand sample the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.8333
+ASR: 0.1771
+Rand sample the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.8333
+ASR: 0.1624
+Rand sample the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.8185
+ASR: 0.2030
+Rand sample the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.8296
+ASR: 0.1587
+Rand sample the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.8111
+ASR: 0.1439
+Rand sample the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.8037
+ASR: 0.1734
+The final ASR:0.17306, 0.01841, Accuracy:0.82074, 0.01076
+Namespace(attack_method='Rand_Samp', cuda=True, dataset='Cora', debug=False, defense_mode='prune', device_id=0, dropout=0.5, epochs=200, evaluate_mode='1by1', hidden=32, no_cuda=False, prune_thr=0.1, seed=15, target_class=0, test_model='GAT', train_lr=0.01, trigger_prob=0.5, trigger_size=3, vs_ratio=0.05, vs_size=10, weight_decay=0.0005)
+Rand sample the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.8259
+ASR: 0.1845
+Rand sample the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.8444
+ASR: 0.1181
+Rand sample the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.8407
+ASR: 0.1476
+Rand sample the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.8296
+ASR: 0.1513
+Rand sample the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.8407
+ASR: 0.1808
+Rand sample the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.8556
+ASR: 0.1255
+Rand sample the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.8333
+ASR: 0.1956
+Rand sample the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.8370
+ASR: 0.1624
+Rand sample the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.8222
+ASR: 0.1439
+Rand sample the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.8444
+ASR: 0.1587
+The final ASR:0.15683, 0.02376, Accuracy:0.83741, 0.00944
+Namespace(attack_method='Rand_Samp', cuda=True, dataset='Cora', debug=False, defense_mode='isolate', device_id=0, dropout=0.5, epochs=200, evaluate_mode='1by1', hidden=32, no_cuda=False, prune_thr=0.1, seed=15, target_class=0, test_model='GCN', train_lr=0.01, trigger_prob=0.5, trigger_size=3, vs_ratio=0.05, vs_size=10, weight_decay=0.0005)
+Rand sample the trigger
+precent of left attach nodes: 0.200
+accuracy on clean test nodes: 0.8370
+ASR: 0.2288
+Rand sample the trigger
+precent of left attach nodes: 0.100
+accuracy on clean test nodes: 0.8148
+ASR: 0.1513
+Rand sample the trigger
+precent of left attach nodes: 0.000
+accuracy on clean test nodes: 0.8000
+ASR: 0.1365
+Rand sample the trigger
+precent of left attach nodes: 0.000
+accuracy on clean test nodes: 0.8000
+ASR: 0.1624
+Rand sample the trigger
+precent of left attach nodes: 0.200
+accuracy on clean test nodes: 0.8185
+ASR: 0.1845
+Rand sample the trigger
+precent of left attach nodes: 0.000
+accuracy on clean test nodes: 0.7963
+ASR: 0.1292
+Rand sample the trigger
+precent of left attach nodes: 0.000
+accuracy on clean test nodes: 0.8185
+ASR: 0.1587
+Rand sample the trigger
+precent of left attach nodes: 0.000
+accuracy on clean test nodes: 0.8185
+ASR: 0.1697
+Rand sample the trigger
+precent of left attach nodes: 0.000
+accuracy on clean test nodes: 0.8259
+ASR: 0.1624
+Rand sample the trigger
+precent of left attach nodes: 0.300
+accuracy on clean test nodes: 0.8037
+ASR: 0.1808
+The final ASR:0.16642, 0.02653, Accuracy:0.81333, 0.01242
+Namespace(attack_method='Rand_Samp', cuda=True, dataset='Cora', debug=False, defense_mode='isolate', device_id=0, dropout=0.5, epochs=200, evaluate_mode='1by1', hidden=32, no_cuda=False, prune_thr=0.1, seed=15, target_class=0, test_model='GraphSage', train_lr=0.01, trigger_prob=0.5, trigger_size=3, vs_ratio=0.05, vs_size=10, weight_decay=0.0005)
+Rand sample the trigger
+precent of left attach nodes: 0.200
+accuracy on clean test nodes: 0.7815
+ASR: 0.2066
+Rand sample the trigger
+precent of left attach nodes: 0.100
+accuracy on clean test nodes: 0.7889
+ASR: 0.1661
+Rand sample the trigger
+precent of left attach nodes: 0.000
+accuracy on clean test nodes: 0.7815
+ASR: 0.1550
+Rand sample the trigger
+precent of left attach nodes: 0.000
+accuracy on clean test nodes: 0.7926
+ASR: 0.1402
+Rand sample the trigger
+precent of left attach nodes: 0.200
+accuracy on clean test nodes: 0.7852
+ASR: 0.1587
+Rand sample the trigger
+precent of left attach nodes: 0.000
+accuracy on clean test nodes: 0.7815
+ASR: 0.1513
+Rand sample the trigger
+precent of left attach nodes: 0.000
+accuracy on clean test nodes: 0.7963
+ASR: 0.1587
+Rand sample the trigger
+precent of left attach nodes: 0.000
+accuracy on clean test nodes: 0.7926
+ASR: 0.1771
+Rand sample the trigger
+precent of left attach nodes: 0.000
+accuracy on clean test nodes: 0.7963
+ASR: 0.1513
+Rand sample the trigger
+precent of left attach nodes: 0.300
+accuracy on clean test nodes: 0.7852
+ASR: 0.1734
+The final ASR:0.16384, 0.01764, Accuracy:0.78815, 0.00569
+Namespace(attack_method='Rand_Samp', cuda=True, dataset='Cora', debug=False, defense_mode='isolate', device_id=0, dropout=0.5, epochs=200, evaluate_mode='1by1', hidden=32, no_cuda=False, prune_thr=0.1, seed=15, target_class=0, test_model='GAT', train_lr=0.01, trigger_prob=0.5, trigger_size=3, vs_ratio=0.05, vs_size=10, weight_decay=0.0005)
+Rand sample the trigger
+precent of left attach nodes: 0.200
+accuracy on clean test nodes: 0.8222
+ASR: 0.2140
+Rand sample the trigger
+precent of left attach nodes: 0.100
+accuracy on clean test nodes: 0.8037
+ASR: 0.1107
+Rand sample the trigger
+precent of left attach nodes: 0.000
+accuracy on clean test nodes: 0.8148
+ASR: 0.1365
+Rand sample the trigger
+precent of left attach nodes: 0.000
+accuracy on clean test nodes: 0.8037
+ASR: 0.1439
+Rand sample the trigger
+precent of left attach nodes: 0.200
+accuracy on clean test nodes: 0.8259
+ASR: 0.1808
+Rand sample the trigger
+precent of left attach nodes: 0.000
+accuracy on clean test nodes: 0.8037
+ASR: 0.1402
+Rand sample the trigger
+precent of left attach nodes: 0.000
+accuracy on clean test nodes: 0.8148
+ASR: 0.1144
+Rand sample the trigger
+precent of left attach nodes: 0.000
+accuracy on clean test nodes: 0.8000
+ASR: 0.1402
+Rand sample the trigger
+precent of left attach nodes: 0.000
+accuracy on clean test nodes: 0.8333
+ASR: 0.1439
+Rand sample the trigger
+precent of left attach nodes: 0.300
+accuracy on clean test nodes: 0.7926
+ASR: 0.1365
+The final ASR:0.14613, 0.02888, Accuracy:0.81148, 0.01222
