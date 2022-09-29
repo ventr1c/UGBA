@@ -1,434 +1,0 @@
-nohup: ignoring input
-Namespace(attack_method='Basic', cuda=True, dataset='ogbn-arxiv', debug=True, defense_mode='prune', device_id=2, dis_weight=1.0, dropout=0.5, epochs=200, evaluate_mode='overall', hidden=64, homo_boost_thrd=0.5, homo_loss_weight=3.0, inner=1, lr=0.01, model='GCN', no_cuda=False, prune_thr=0.3, seed=11, selection_method='cluster_degree', target_class=0, target_loss_weight=1, test_model='GCN', thrd=0.5, train_lr=0.02, trigger_prob=0.5, trigger_size=3, trojan_epochs=200, use_vs_number=False, vs_number=0, vs_ratio=0.001, weight_decay=0.0005)
-Length of training set: 33868
-Training benign model Finished!
-Total time elapsed: 9.8669s
-Benign CA: 0.6679
-Length of training set: 33868
-=== training gcn model ===
-Epoch 0, training loss: 3.680744171142578
-acc_val: 0.1306
-Epoch 10, training loss: 2.764761447906494
-acc_val: 0.2969
-Epoch 20, training loss: 2.2360146045684814
-acc_val: 0.4128
-Epoch 30, training loss: 1.9630273580551147
-acc_val: 0.5069
-Epoch 40, training loss: 1.8154135942459106
-acc_val: 0.5446
-Epoch 50, training loss: 1.727574110031128
-acc_val: 0.5759
-Epoch 60, training loss: 1.6555591821670532
-acc_val: 0.5908
-Epoch 70, training loss: 1.616611361503601
-acc_val: 0.5993
-Epoch 80, training loss: 1.5765115022659302
-acc_val: 0.6049
-Epoch 90, training loss: 1.559578776359558
-acc_val: 0.6168
-Epoch 100, training loss: 1.5475660562515259
-acc_val: 0.6176
-Epoch 110, training loss: 1.5187716484069824
-acc_val: 0.6256
-Epoch 120, training loss: 1.4993541240692139
-acc_val: 0.6272
-Epoch 130, training loss: 1.4929198026657104
-acc_val: 0.6296
-Epoch 140, training loss: 1.484585165977478
-acc_val: 0.6322
-Epoch 150, training loss: 1.4825383424758911
-acc_val: 0.6359
-Epoch 160, training loss: 1.4661210775375366
-acc_val: 0.6362
-Epoch 170, training loss: 1.4678218364715576
-acc_val: 0.6309
-Epoch 180, training loss: 1.4522066116333008
-acc_val: 0.6364
-Epoch 190, training loss: 1.4429738521575928
-acc_val: 0.6417
-=== picking the best model according to the performance on validation ===
-Training encoder Finished!
-Total time elapsed: 10.9645s
-Encoder CA on clean test nodes: 0.6484
-running k-means on cuda:2..
-[running kmeans]: 0it [00:00, ?it/s][running kmeans]: 0it [00:04, ?it/s, center_shift=1684.164917, iteration=1, tol=0.000100][running kmeans]: 1it [00:04,  4.09s/it, center_shift=1684.164917, iteration=1, tol=0.000100][running kmeans]: 1it [00:06,  4.09s/it, center_shift=278.770020, iteration=2, tol=0.000100] [running kmeans]: 2it [00:06,  3.23s/it, center_shift=278.770020, iteration=2, tol=0.000100][running kmeans]: 2it [00:09,  3.23s/it, center_shift=109.750069, iteration=3, tol=0.000100][running kmeans]: 3it [00:09,  3.16s/it, center_shift=109.750069, iteration=3, tol=0.000100][running kmeans]: 3it [00:14,  3.16s/it, center_shift=47.349476, iteration=4, tol=0.000100] [running kmeans]: 4it [00:14,  3.88s/it, center_shift=47.349476, iteration=4, tol=0.000100][running kmeans]: 4it [00:18,  3.88s/it, center_shift=23.910955, iteration=5, tol=0.000100][running kmeans]: 5it [00:18,  4.00s/it, center_shift=23.910955, iteration=5, tol=0.000100][running kmeans]: 5it [00:21,  4.00s/it, center_shift=15.833948, iteration=6, tol=0.000100][running kmeans]: 6it [00:21,  3.58s/it, center_shift=15.833948, iteration=6, tol=0.000100][running kmeans]: 6it [00:26,  3.58s/it, center_shift=11.860132, iteration=7, tol=0.000100][running kmeans]: 7it [00:26,  3.85s/it, center_shift=11.860132, iteration=7, tol=0.000100][running kmeans]: 7it [00:29,  3.85s/it, center_shift=10.059397, iteration=8, tol=0.000100][running kmeans]: 8it [00:29,  3.59s/it, center_shift=10.059397, iteration=8, tol=0.000100][running kmeans]: 8it [00:33,  3.59s/it, center_shift=8.326233, iteration=9, tol=0.000100] [running kmeans]: 9it [00:33,  3.70s/it, center_shift=8.326233, iteration=9, tol=0.000100][running kmeans]: 9it [00:35,  3.70s/it, center_shift=7.290569, iteration=10, tol=0.000100][running kmeans]: 10it [00:35,  3.38s/it, center_shift=7.290569, iteration=10, tol=0.000100][running kmeans]: 10it [00:38,  3.38s/it, center_shift=7.518243, iteration=11, tol=0.000100][running kmeans]: 11it [00:38,  3.30s/it, center_shift=7.518243, iteration=11, tol=0.000100][running kmeans]: 11it [00:42,  3.30s/it, center_shift=6.421911, iteration=12, tol=0.000100][running kmeans]: 12it [00:42,  3.36s/it, center_shift=6.421911, iteration=12, tol=0.000100][running kmeans]: 12it [00:45,  3.36s/it, center_shift=6.115805, iteration=13, tol=0.000100][running kmeans]: 13it [00:45,  3.43s/it, center_shift=6.115805, iteration=13, tol=0.000100][running kmeans]: 13it [00:49,  3.43s/it, center_shift=5.451739, iteration=14, tol=0.000100][running kmeans]: 14it [00:49,  3.32s/it, center_shift=5.451739, iteration=14, tol=0.000100][running kmeans]: 14it [00:52,  3.32s/it, center_shift=5.072601, iteration=15, tol=0.000100][running kmeans]: 15it [00:52,  3.29s/it, center_shift=5.072601, iteration=15, tol=0.000100][running kmeans]: 15it [00:55,  3.29s/it, center_shift=5.194030, iteration=16, tol=0.000100][running kmeans]: 16it [00:55,  3.41s/it, center_shift=5.194030, iteration=16, tol=0.000100][running kmeans]: 16it [00:59,  3.41s/it, center_shift=4.131082, iteration=17, tol=0.000100][running kmeans]: 17it [00:59,  3.57s/it, center_shift=4.131082, iteration=17, tol=0.000100][running kmeans]: 17it [01:04,  3.57s/it, center_shift=3.736835, iteration=18, tol=0.000100][running kmeans]: 18it [01:04,  3.79s/it, center_shift=3.736835, iteration=18, tol=0.000100][running kmeans]: 18it [01:07,  3.79s/it, center_shift=3.603422, iteration=19, tol=0.000100][running kmeans]: 19it [01:07,  3.69s/it, center_shift=3.603422, iteration=19, tol=0.000100][running kmeans]: 19it [01:11,  3.69s/it, center_shift=2.791394, iteration=20, tol=0.000100][running kmeans]: 20it [01:11,  3.84s/it, center_shift=2.791394, iteration=20, tol=0.000100][running kmeans]: 20it [01:15,  3.84s/it, center_shift=1.957863, iteration=21, tol=0.000100][running kmeans]: 21it [01:15,  3.71s/it, center_shift=1.957863, iteration=21, tol=0.000100][running kmeans]: 21it [01:17,  3.71s/it, center_shift=1.412781, iteration=22, tol=0.000100][running kmeans]: 22it [01:17,  3.35s/it, center_shift=1.412781, iteration=22, tol=0.000100][running kmeans]: 22it [01:20,  3.35s/it, center_shift=1.587139, iteration=23, tol=0.000100][running kmeans]: 23it [01:20,  3.25s/it, center_shift=1.587139, iteration=23, tol=0.000100][running kmeans]: 23it [01:23,  3.25s/it, center_shift=1.133538, iteration=24, tol=0.000100][running kmeans]: 24it [01:23,  3.16s/it, center_shift=1.133538, iteration=24, tol=0.000100][running kmeans]: 24it [01:28,  3.16s/it, center_shift=0.932197, iteration=25, tol=0.000100][running kmeans]: 25it [01:28,  3.71s/it, center_shift=0.932197, iteration=25, tol=0.000100][running kmeans]: 25it [01:32,  3.71s/it, center_shift=0.927883, iteration=26, tol=0.000100][running kmeans]: 26it [01:32,  3.78s/it, center_shift=0.927883, iteration=26, tol=0.000100][running kmeans]: 26it [01:36,  3.78s/it, center_shift=0.544863, iteration=27, tol=0.000100][running kmeans]: 27it [01:36,  3.91s/it, center_shift=0.544863, iteration=27, tol=0.000100][running kmeans]: 27it [01:40,  3.91s/it, center_shift=0.727988, iteration=28, tol=0.000100][running kmeans]: 28it [01:40,  3.77s/it, center_shift=0.727988, iteration=28, tol=0.000100][running kmeans]: 28it [01:43,  3.77s/it, center_shift=0.917965, iteration=29, tol=0.000100][running kmeans]: 29it [01:43,  3.72s/it, center_shift=0.917965, iteration=29, tol=0.000100][running kmeans]: 29it [01:47,  3.72s/it, center_shift=0.991107, iteration=30, tol=0.000100][running kmeans]: 30it [01:47,  3.77s/it, center_shift=0.991107, iteration=30, tol=0.000100][running kmeans]: 30it [01:51,  3.77s/it, center_shift=0.831888, iteration=31, tol=0.000100][running kmeans]: 31it [01:51,  3.87s/it, center_shift=0.831888, iteration=31, tol=0.000100][running kmeans]: 31it [01:55,  3.87s/it, center_shift=1.045903, iteration=32, tol=0.000100][running kmeans]: 32it [01:55,  3.89s/it, center_shift=1.045903, iteration=32, tol=0.000100][running kmeans]: 32it [01:58,  3.89s/it, center_shift=0.831723, iteration=33, tol=0.000100][running kmeans]: 33it [01:58,  3.51s/it, center_shift=0.831723, iteration=33, tol=0.000100][running kmeans]: 33it [02:01,  3.51s/it, center_shift=0.593934, iteration=34, tol=0.000100][running kmeans]: 34it [02:01,  3.33s/it, center_shift=0.593934, iteration=34, tol=0.000100][running kmeans]: 34it [02:05,  3.33s/it, center_shift=0.449673, iteration=35, tol=0.000100][running kmeans]: 35it [02:05,  3.66s/it, center_shift=0.449673, iteration=35, tol=0.000100][running kmeans]: 35it [02:09,  3.66s/it, center_shift=0.417822, iteration=36, tol=0.000100][running kmeans]: 36it [02:09,  3.52s/it, center_shift=0.417822, iteration=36, tol=0.000100][running kmeans]: 36it [02:12,  3.52s/it, center_shift=0.423164, iteration=37, tol=0.000100][running kmeans]: 37it [02:12,  3.38s/it, center_shift=0.423164, iteration=37, tol=0.000100][running kmeans]: 37it [02:14,  3.38s/it, center_shift=0.446184, iteration=38, tol=0.000100][running kmeans]: 38it [02:14,  3.14s/it, center_shift=0.446184, iteration=38, tol=0.000100][running kmeans]: 38it [02:17,  3.14s/it, center_shift=0.397002, iteration=39, tol=0.000100][running kmeans]: 39it [02:17,  3.12s/it, center_shift=0.397002, iteration=39, tol=0.000100][running kmeans]: 39it [02:19,  3.12s/it, center_shift=0.263526, iteration=40, tol=0.000100][running kmeans]: 40it [02:19,  2.82s/it, center_shift=0.263526, iteration=40, tol=0.000100][running kmeans]: 40it [02:22,  2.82s/it, center_shift=0.147109, iteration=41, tol=0.000100][running kmeans]: 41it [02:22,  2.75s/it, center_shift=0.147109, iteration=41, tol=0.000100][running kmeans]: 41it [02:25,  2.75s/it, center_shift=0.140684, iteration=42, tol=0.000100][running kmeans]: 42it [02:25,  2.87s/it, center_shift=0.140684, iteration=42, tol=0.000100][running kmeans]: 42it [02:29,  2.87s/it, center_shift=0.319843, iteration=43, tol=0.000100][running kmeans]: 43it [02:29,  3.15s/it, center_shift=0.319843, iteration=43, tol=0.000100][running kmeans]: 43it [02:32,  3.15s/it, center_shift=0.241436, iteration=44, tol=0.000100][running kmeans]: 44it [02:32,  2.99s/it, center_shift=0.241436, iteration=44, tol=0.000100][running kmeans]: 44it [02:34,  2.99s/it, center_shift=0.202369, iteration=45, tol=0.000100][running kmeans]: 45it [02:34,  2.94s/it, center_shift=0.202369, iteration=45, tol=0.000100][running kmeans]: 45it [02:39,  2.94s/it, center_shift=0.117161, iteration=46, tol=0.000100][running kmeans]: 46it [02:39,  3.35s/it, center_shift=0.117161, iteration=46, tol=0.000100][running kmeans]: 46it [02:43,  3.35s/it, center_shift=0.087207, iteration=47, tol=0.000100][running kmeans]: 47it [02:43,  3.51s/it, center_shift=0.087207, iteration=47, tol=0.000100][running kmeans]: 47it [02:45,  3.51s/it, center_shift=0.097916, iteration=48, tol=0.000100][running kmeans]: 48it [02:45,  3.26s/it, center_shift=0.097916, iteration=48, tol=0.000100][running kmeans]: 48it [02:49,  3.26s/it, center_shift=0.162592, iteration=49, tol=0.000100][running kmeans]: 49it [02:49,  3.30s/it, center_shift=0.162592, iteration=49, tol=0.000100][running kmeans]: 49it [02:53,  3.30s/it, center_shift=0.164789, iteration=50, tol=0.000100][running kmeans]: 50it [02:53,  3.59s/it, center_shift=0.164789, iteration=50, tol=0.000100][running kmeans]: 50it [02:56,  3.59s/it, center_shift=0.106709, iteration=51, tol=0.000100][running kmeans]: 51it [02:56,  3.53s/it, center_shift=0.106709, iteration=51, tol=0.000100][running kmeans]: 51it [02:58,  3.53s/it, center_shift=0.092167, iteration=52, tol=0.000100][running kmeans]: 52it [02:58,  3.09s/it, center_shift=0.092167, iteration=52, tol=0.000100][running kmeans]: 52it [03:01,  3.09s/it, center_shift=0.063764, iteration=53, tol=0.000100][running kmeans]: 53it [03:01,  3.01s/it, center_shift=0.063764, iteration=53, tol=0.000100][running kmeans]: 53it [03:05,  3.01s/it, center_shift=0.065629, iteration=54, tol=0.000100][running kmeans]: 54it [03:05,  3.26s/it, center_shift=0.065629, iteration=54, tol=0.000100][running kmeans]: 54it [03:10,  3.26s/it, center_shift=0.105716, iteration=55, tol=0.000100][running kmeans]: 55it [03:10,  3.74s/it, center_shift=0.105716, iteration=55, tol=0.000100][running kmeans]: 55it [03:15,  3.74s/it, center_shift=0.092983, iteration=56, tol=0.000100][running kmeans]: 56it [03:15,  4.28s/it, center_shift=0.092983, iteration=56, tol=0.000100][running kmeans]: 56it [03:19,  4.28s/it, center_shift=0.050240, iteration=57, tol=0.000100][running kmeans]: 57it [03:19,  4.13s/it, center_shift=0.050240, iteration=57, tol=0.000100][running kmeans]: 57it [03:25,  4.13s/it, center_shift=0.052104, iteration=58, tol=0.000100][running kmeans]: 58it [03:25,  4.52s/it, center_shift=0.052104, iteration=58, tol=0.000100][running kmeans]: 58it [03:28,  4.52s/it, center_shift=0.049878, iteration=59, tol=0.000100][running kmeans]: 59it [03:28,  4.05s/it, center_shift=0.049878, iteration=59, tol=0.000100][running kmeans]: 59it [03:32,  4.05s/it, center_shift=0.045850, iteration=60, tol=0.000100][running kmeans]: 60it [03:32,  4.11s/it, center_shift=0.045850, iteration=60, tol=0.000100][running kmeans]: 60it [03:36,  4.11s/it, center_shift=0.149498, iteration=61, tol=0.000100][running kmeans]: 61it [03:36,  4.03s/it, center_shift=0.149498, iteration=61, tol=0.000100][running kmeans]: 61it [03:39,  4.03s/it, center_shift=0.044579, iteration=62, tol=0.000100][running kmeans]: 62it [03:39,  3.81s/it, center_shift=0.044579, iteration=62, tol=0.000100][running kmeans]: 62it [03:43,  3.81s/it, center_shift=0.043951, iteration=63, tol=0.000100][running kmeans]: 63it [03:43,  4.01s/it, center_shift=0.043951, iteration=63, tol=0.000100][running kmeans]: 63it [03:48,  4.01s/it, center_shift=0.030566, iteration=64, tol=0.000100][running kmeans]: 64it [03:48,  4.09s/it, center_shift=0.030566, iteration=64, tol=0.000100][running kmeans]: 64it [03:51,  4.09s/it, center_shift=0.029970, iteration=65, tol=0.000100][running kmeans]: 65it [03:51,  3.97s/it, center_shift=0.029970, iteration=65, tol=0.000100][running kmeans]: 65it [03:55,  3.97s/it, center_shift=0.093041, iteration=66, tol=0.000100][running kmeans]: 66it [03:55,  4.01s/it, center_shift=0.093041, iteration=66, tol=0.000100][running kmeans]: 66it [03:59,  4.01s/it, center_shift=0.099121, iteration=67, tol=0.000100][running kmeans]: 67it [03:59,  3.97s/it, center_shift=0.099121, iteration=67, tol=0.000100][running kmeans]: 67it [04:04,  3.97s/it, center_shift=0.038036, iteration=68, tol=0.000100][running kmeans]: 68it [04:04,  4.18s/it, center_shift=0.038036, iteration=68, tol=0.000100][running kmeans]: 68it [04:09,  4.18s/it, center_shift=0.047922, iteration=69, tol=0.000100][running kmeans]: 69it [04:09,  4.52s/it, center_shift=0.047922, iteration=69, tol=0.000100][running kmeans]: 69it [04:14,  4.52s/it, center_shift=0.036416, iteration=70, tol=0.000100][running kmeans]: 70it [04:14,  4.50s/it, center_shift=0.036416, iteration=70, tol=0.000100][running kmeans]: 70it [04:17,  4.50s/it, center_shift=0.034356, iteration=71, tol=0.000100][running kmeans]: 71it [04:17,  4.15s/it, center_shift=0.034356, iteration=71, tol=0.000100][running kmeans]: 71it [04:22,  4.15s/it, center_shift=0.037192, iteration=72, tol=0.000100][running kmeans]: 72it [04:22,  4.28s/it, center_shift=0.037192, iteration=72, tol=0.000100][running kmeans]: 72it [04:27,  4.28s/it, center_shift=0.035516, iteration=73, tol=0.000100][running kmeans]: 73it [04:27,  4.46s/it, center_shift=0.035516, iteration=73, tol=0.000100][running kmeans]: 73it [04:31,  4.46s/it, center_shift=0.032091, iteration=74, tol=0.000100][running kmeans]: 74it [04:31,  4.32s/it, center_shift=0.032091, iteration=74, tol=0.000100][running kmeans]: 74it [04:35,  4.32s/it, center_shift=0.025198, iteration=75, tol=0.000100][running kmeans]: 75it [04:35,  4.45s/it, center_shift=0.025198, iteration=75, tol=0.000100][running kmeans]: 75it [04:40,  4.45s/it, center_shift=0.025159, iteration=76, tol=0.000100][running kmeans]: 76it [04:40,  4.38s/it, center_shift=0.025159, iteration=76, tol=0.000100][running kmeans]: 76it [04:44,  4.38s/it, center_shift=0.026382, iteration=77, tol=0.000100][running kmeans]: 77it [04:44,  4.34s/it, center_shift=0.026382, iteration=77, tol=0.000100][running kmeans]: 77it [04:48,  4.34s/it, center_shift=0.023273, iteration=78, tol=0.000100][running kmeans]: 78it [04:48,  4.37s/it, center_shift=0.023273, iteration=78, tol=0.000100][running kmeans]: 78it [04:53,  4.37s/it, center_shift=0.020744, iteration=79, tol=0.000100][running kmeans]: 79it [04:53,  4.38s/it, center_shift=0.020744, iteration=79, tol=0.000100][running kmeans]: 79it [04:57,  4.38s/it, center_shift=0.019496, iteration=80, tol=0.000100][running kmeans]: 80it [04:57,  4.24s/it, center_shift=0.019496, iteration=80, tol=0.000100][running kmeans]: 80it [05:02,  4.24s/it, center_shift=0.014754, iteration=81, tol=0.000100][running kmeans]: 81it [05:02,  4.46s/it, center_shift=0.014754, iteration=81, tol=0.000100][running kmeans]: 81it [05:06,  4.46s/it, center_shift=0.009713, iteration=82, tol=0.000100][running kmeans]: 82it [05:06,  4.58s/it, center_shift=0.009713, iteration=82, tol=0.000100][running kmeans]: 82it [05:11,  4.58s/it, center_shift=0.005664, iteration=83, tol=0.000100][running kmeans]: 83it [05:11,  4.66s/it, center_shift=0.005664, iteration=83, tol=0.000100][running kmeans]: 83it [05:16,  4.66s/it, center_shift=0.007111, iteration=84, tol=0.000100][running kmeans]: 84it [05:16,  4.76s/it, center_shift=0.007111, iteration=84, tol=0.000100][running kmeans]: 84it [05:21,  4.76s/it, center_shift=0.005164, iteration=85, tol=0.000100][running kmeans]: 85it [05:21,  4.69s/it, center_shift=0.005164, iteration=85, tol=0.000100][running kmeans]: 85it [05:25,  4.69s/it, center_shift=0.004304, iteration=86, tol=0.000100][running kmeans]: 86it [05:25,  4.49s/it, center_shift=0.004304, iteration=86, tol=0.000100][running kmeans]: 86it [05:30,  4.49s/it, center_shift=0.003330, iteration=87, tol=0.000100][running kmeans]: 87it [05:30,  4.59s/it, center_shift=0.003330, iteration=87, tol=0.000100][running kmeans]: 87it [05:34,  4.59s/it, center_shift=0.002533, iteration=88, tol=0.000100][running kmeans]: 88it [05:34,  4.52s/it, center_shift=0.002533, iteration=88, tol=0.000100][running kmeans]: 88it [05:38,  4.52s/it, center_shift=0.001720, iteration=89, tol=0.000100][running kmeans]: 89it [05:38,  4.47s/it, center_shift=0.001720, iteration=89, tol=0.000100][running kmeans]: 89it [05:42,  4.47s/it, center_shift=0.001363, iteration=90, tol=0.000100][running kmeans]: 90it [05:42,  4.31s/it, center_shift=0.001363, iteration=90, tol=0.000100][running kmeans]: 90it [05:47,  4.31s/it, center_shift=0.000831, iteration=91, tol=0.000100][running kmeans]: 91it [05:47,  4.36s/it, center_shift=0.000831, iteration=91, tol=0.000100][running kmeans]: 91it [05:51,  4.36s/it, center_shift=0.000515, iteration=92, tol=0.000100][running kmeans]: 92it [05:51,  4.39s/it, center_shift=0.000515, iteration=92, tol=0.000100][running kmeans]: 92it [05:56,  4.39s/it, center_shift=0.000725, iteration=93, tol=0.000100][running kmeans]: 93it [05:56,  4.52s/it, center_shift=0.000725, iteration=93, tol=0.000100][running kmeans]: 93it [06:00,  4.52s/it, center_shift=0.001193, iteration=94, tol=0.000100][running kmeans]: 94it [06:00,  4.48s/it, center_shift=0.001193, iteration=94, tol=0.000100][running kmeans]: 94it [06:04,  4.48s/it, center_shift=0.001965, iteration=95, tol=0.000100][running kmeans]: 95it [06:04,  4.13s/it, center_shift=0.001965, iteration=95, tol=0.000100][running kmeans]: 95it [06:09,  4.13s/it, center_shift=0.001667, iteration=96, tol=0.000100][running kmeans]: 96it [06:09,  4.33s/it, center_shift=0.001667, iteration=96, tol=0.000100][running kmeans]: 96it [06:12,  4.33s/it, center_shift=0.001523, iteration=97, tol=0.000100][running kmeans]: 97it [06:12,  4.21s/it, center_shift=0.001523, iteration=97, tol=0.000100][running kmeans]: 97it [06:15,  4.21s/it, center_shift=0.000737, iteration=98, tol=0.000100][running kmeans]: 98it [06:15,  3.68s/it, center_shift=0.000737, iteration=98, tol=0.000100][running kmeans]: 98it [06:17,  3.68s/it, center_shift=0.000558, iteration=99, tol=0.000100][running kmeans]: 99it [06:17,  3.07s/it, center_shift=0.000558, iteration=99, tol=0.000100][running kmeans]: 99it [06:18,  3.07s/it, center_shift=0.000610, iteration=100, tol=0.000100][running kmeans]: 100it [06:18,  2.59s/it, center_shift=0.000610, iteration=100, tol=0.000100][running kmeans]: 100it [06:20,  2.59s/it, center_shift=0.000838, iteration=101, tol=0.000100][running kmeans]: 101it [06:20,  2.28s/it, center_shift=0.000838, iteration=101, tol=0.000100][running kmeans]: 101it [06:20,  2.28s/it, center_shift=0.001077, iteration=102, tol=0.000100][running kmeans]: 102it [06:20,  1.83s/it, center_shift=0.001077, iteration=102, tol=0.000100][running kmeans]: 102it [06:21,  1.83s/it, center_shift=0.001239, iteration=103, tol=0.000100][running kmeans]: 103it [06:21,  1.39s/it, center_shift=0.001239, iteration=103, tol=0.000100][running kmeans]: 103it [06:21,  1.39s/it, center_shift=0.001278, iteration=104, tol=0.000100][running kmeans]: 104it [06:21,  1.08s/it, center_shift=0.001278, iteration=104, tol=0.000100][running kmeans]: 104it [06:22,  1.08s/it, center_shift=0.000990, iteration=105, tol=0.000100][running kmeans]: 105it [06:22,  1.11it/s, center_shift=0.000990, iteration=105, tol=0.000100][running kmeans]: 105it [06:22,  1.11it/s, center_shift=0.001295, iteration=106, tol=0.000100][running kmeans]: 106it [06:22,  1.37it/s, center_shift=0.001295, iteration=106, tol=0.000100][running kmeans]: 106it [06:23,  1.37it/s, center_shift=0.002957, iteration=107, tol=0.000100][running kmeans]: 107it [06:23,  1.22it/s, center_shift=0.002957, iteration=107, tol=0.000100][running kmeans]: 107it [06:24,  1.22it/s, center_shift=0.001736, iteration=108, tol=0.000100][running kmeans]: 108it [06:24,  1.04it/s, center_shift=0.001736, iteration=108, tol=0.000100][running kmeans]: 108it [06:25,  1.04it/s, center_shift=0.000525, iteration=109, tol=0.000100][running kmeans]: 109it [06:25,  1.00it/s, center_shift=0.000525, iteration=109, tol=0.000100][running kmeans]: 109it [06:30,  1.00it/s, center_shift=0.000255, iteration=110, tol=0.000100][running kmeans]: 110it [06:30,  2.14s/it, center_shift=0.000255, iteration=110, tol=0.000100][running kmeans]: 110it [06:35,  2.14s/it, center_shift=0.000392, iteration=111, tol=0.000100][running kmeans]: 111it [06:35,  2.99s/it, center_shift=0.000392, iteration=111, tol=0.000100][running kmeans]: 111it [06:38,  2.99s/it, center_shift=0.000193, iteration=112, tol=0.000100][running kmeans]: 112it [06:38,  2.96s/it, center_shift=0.000193, iteration=112, tol=0.000100][running kmeans]: 112it [06:41,  2.96s/it, center_shift=0.000347, iteration=113, tol=0.000100][running kmeans]: 113it [06:41,  3.05s/it, center_shift=0.000347, iteration=113, tol=0.000100][running kmeans]: 113it [06:46,  3.05s/it, center_shift=0.000336, iteration=114, tol=0.000100][running kmeans]: 114it [06:46,  3.61s/it, center_shift=0.000336, iteration=114, tol=0.000100][running kmeans]: 114it [06:51,  3.61s/it, center_shift=0.000876, iteration=115, tol=0.000100][running kmeans]: 115it [06:51,  3.94s/it, center_shift=0.000876, iteration=115, tol=0.000100][running kmeans]: 115it [06:55,  3.94s/it, center_shift=0.000314, iteration=116, tol=0.000100][running kmeans]: 116it [06:55,  4.07s/it, center_shift=0.000314, iteration=116, tol=0.000100][running kmeans]: 116it [06:59,  4.07s/it, center_shift=0.000109, iteration=117, tol=0.000100][running kmeans]: 117it [06:59,  4.13s/it, center_shift=0.000109, iteration=117, tol=0.000100][running kmeans]: 117it [07:04,  4.13s/it, center_shift=0.000082, iteration=118, tol=0.000100][running kmeans]: 118it [07:04,  4.26s/it, center_shift=0.000082, iteration=118, tol=0.000100][running kmeans]: 118it [07:04,  3.60s/it, center_shift=0.000082, iteration=118, tol=0.000100][ 4 28 28 ... 30 24  8]
-[ 5.2231812  6.7605     5.1271906 ...  2.7809668 16.657965   3.4249644] [131074 163848 131098 ... 163828 131063  32760]
-[ 5.2231812  6.7605     5.1271906 ...  2.7809668 16.657965   3.4249644] [ 79873 114689 100871  77320 128010  51212 164364 100892 136736  73251
- 145959 160295 141354   2602  93749 127033  95289   5181  98367  27711
-  70720  48709 125515 159311 123985  45657  49757  74848  19044  75366
-  15978 104556 105069  79982 164466 126071  35963  44157  65662   5760
-  34946 117890  74375 133256 158344 159882  31880  81035  24199 151694
- 109710 121488  67729 136850 138900 146070  31894  78998  23194  71837
-  43165 120479  67233 140961 120484 165540 136361 145069 131761  22706
- 157362  55988 137723  74937  63166 138434 106178   9416  34505  53964
- 146127 127184 143569 137426 137427 162002  45781 145623 103129  22238
- 149215 134374 120043 103148  61678  60144  26865  44784  32498 126707
- 134899  59125 114423 108280  50425   5381   7430  67848    776  73480
- 151820 103692  24332  57104  82706  79634 148251  83739  46365  95520
- 105249  41250 165155 131367 157691 131370  41264  17203 154932 161076
-  29501 167742  70463 133957  75077  48969  31050  34125 147282  46419
- 104791 103771   5476 107879  36715  44397 156526  96623  40815 134514
-  47475  37752 165754   2428 105855  55174 119175  72583  68488  40330
- 161670  69515  69005  11664  45457 160145 113553  44434 132503  23964
- 168349  54685  65443 157604   9126  30715  97192   5034 102827  32171
- 157613 160688 159152  11699 121268 133556  30134 156087  75700  50106
- 129470 141246 131523  66504   3543  56288 137697  75401    996  68581
-   3556 126951  96747 140267  47086  36849 131060  21493  48634 122875
- 138751]
-[ 5.2231812  6.7605     5.1271906 ...  2.7809668 16.657965   3.4249644] [     0 147461      8 ...  65524  81911  32763]
-[ 5.2231812  6.7605     5.1271906 ...  2.7809668 16.657965   3.4249644] [122881 163842  73735 ... 155637  65530  98301]
-[ 5.2231812  6.7605     5.1271906 ...  2.7809668 16.657965   3.4249644] [ 23042  90119  10761  51727  98832 156689  67094 123928  30746 124459
- 162884  74309 139849  68195    100  12902  17000  11894  19062 158342
-  84619  55960  46748 125085 155810 104099  31920  46259 160436  37566
-  29888  91841  28359   7881 116943  19152  32464    219 156385  70382
-  92401 144630  45830  31500  87826 162578  50970    287  15647  42271
- 128799  99623  42280  75560  67882  28459  14125  13619 122163  57653
- 124214  71992 111944  53597  61792  42854 147302 139632  46969 159105
-  61830  78214 162202 157600 168865  22447 117685  84919  95162 132027
- 158138  92607    448  62913 123841  59844  49098 112588 154065  70098
- 114644 140761 138722 168933   3050  39919]
-[ 5.2231812  6.7605     5.1271906 ...  2.7809668 16.657965   3.4249644] [ 65536  49152  16386 ...  57333  16381 131070]
-[ 5.2231812  6.7605     5.1271906 ...  2.7809668 16.657965   3.4249644] [ 98304 114688 114693 ...  16352  98280 131069]
-[ 5.2231812  6.7605     5.1271906 ...  2.7809668 16.657965   3.4249644] [106497  57345  90115 ...  16378  32764 147453]
-[ 5.2231812  6.7605     5.1271906 ...  2.7809668 16.657965   3.4249644] [157022 137445  62118  24016  63993 122618 131293  74686]
-[ 5.2231812  6.7605     5.1271906 ...  2.7809668 16.657965   3.4249644] []
-[ 5.2231812  6.7605     5.1271906 ...  2.7809668 16.657965   3.4249644] [163844  98309  32776 ... 163832 163835 131071]
-[ 5.2231812  6.7605     5.1271906 ...  2.7809668 16.657965   3.4249644] [ 36867  90117  90120  45071 104468 135195 135196 147485 143395  40998
- 135228   2119   8269 131156 157789  90207 139360  26731  94324  34938
- 159867 157820 155779 112772  90247 135312 135313  57504 114855  12466
-  39097  30909  16577  43201  51409 139473  65748  94434  14563 143592
- 104686 162033 102649 162041 114943 112897  10507 121102  18720  45349
-  22827  71980  20782 121138 145718 100673 143692  51535  63842  96613
-  39276  43372 102765 117107  45428 151934  74114  12688  31125  43419
-  45500 113104  92639  78304  43492 135656  31215 104946 109046   8711
- 119307  49682  29211 123426  53795  29221 148005  27177  29226 160297
-    566  14905  96825 160319  92739   2631  92749  62060 152181 127614
-  31372  82572  55953 168593 111273  88746  72363  94893   4782  90801
-  92858  58052  17098  84686   2775  92897 123623  29428  66293 142069
- 109307  37628  27405 154383 121617  33558  58134 115481  11041  23332
-  97061  88875 107307  70452  80698 152378 142149 160590   9049  29545
-  56179 103289 125829 164749 144277  60311 127897  19356  56222  97182
-   5025 138158  66485  56246  74680  43974 115658 152522  35789  80867
-  50152  25588  52212  29733 111660  15408  58423 148540  93247  42053
-  89163 130126  44111  83025 162898  44115   9300 152664  62556 150622
-  68710  25704  70761  21619 148613  66699  46230 160919   5281  19620
- 144572   7361 117955  70864  68837 144624  38134 122111  81152 154879
-  79107  25871  46360  99609  50467  42276  91471  91474 150886  54631
-   9576  34156  64881 148855 159103 136583  40333  54674 128413  13731
- 161189 105896 122299 112060 157115  71115  89548 146898 105943  32218
-  85468 157151  54756 155110  52714  42480  22001  46578 136690  93694
-   5633  11778  50700  11800 103962  71205  63019  38444 126536  42576
- 130647  69210  24157 153183 145004   3702 149112 157312  26246  91787
-  36495 159376 165525  93849  46767 155317  44735  83668 110302 120542
- 110317  38643 157427  85760  59141 118543  46871   5915 139036 120611
-  61228  40753 161597  94015  61258 128847 147294  98149  12136  75628
-  98166 141184 141192 141203  53149  14239  47010  94118 163756  49079
-  20413   6079 135112 135124 114649  75740  71647  40931 104432 106491
-  38910]
-[ 5.2231812  6.7605     5.1271906 ...  2.7809668 16.657965   3.4249644] [ 53249  57346  16388 ...  88057 126970   8190]
-[ 5.2231812  6.7605     5.1271906 ...  2.7809668 16.657965   3.4249644] [116736 112641  14341  22538  53259 122892 126987 159757 100367 145418
-  40978 114709  65558  55319  53270  86046  90142 155682  96290  16420
-  22564  90150  24615     42 116781  53294  94257 161842  61491 137270
-  59447  98360  75832 129085  59469  49231  96339  59477  55381  71767
- 159833  65630  88158  88170  75883 135275 143471  26737   2165   2173
- 127103   6273  75907 116868  67720  26764  41102  16527 120976 127123
- 149655 131224  30872  55451  47267  39076 104615 131241  67753 100521
-  45228  41136  32948 168117   2231  20663  28857  18620  49344  90304
-  28865  10439  82120  22728  22733  82126  57551  73936  22736 129246
-  63713  55523  84196  24806  84198 131304  92391  63722  88298  88299
- 145648  28913  14577  41203 151797  73974  92406 164089  57594  76027
- 104698 141565 104703  98560 102657  82178 129281  37125  30982  55559
- 129288 149770  24844  53520  28945  20754 110866  63762  10519  98585
-  63770  47387   2335 123168  37154  61730  37156 141605  61733  22822
-  55590 145705 104749  53551 100656 127281  12597  69943 102713  53566
- 145727  16705  24898  63817  12619 151883  24912 115027  90452   8533
-  82264  61785 162136 135515   8540  49507  33125  82277  90470  26986
- 129386  37229  78193  24946  47473  43380  88437  47479 147836  33152
-  33153  35202  22914  16772 106885  74118  39303  47496 129415  84362
-  16779 135562 160140 137608   6541  47506  43411  70037  70044  27040
- 137633  61858 151973  57770  20909 166318 121264  57778 141747    439
-  35255  43448  31159  88506 156092    446 125376  14785  84419  70083
-  35269 129478 168393 125386 147917  16853   4565 121301 109018  63962
-  57822 121314    488 160233  29162  35307 162283  94701  37360 168434
-  90612  70132  35319  45563 102910  35328 111106 104963 166407 137738
-  29197 113170  39446  72215  37402 102940 102941 164382  64028  39455
- 104990  76322  14882  35364 141861 115237  33321 148009  78385  18998
-  57911  27192 166456  55866  80444 139838  35390  86593  80455 113224
-  66121 141897 164428  66125 107084  35406 135757  16977  59986 148052
-    598  92758 143958 137819   4700  76381  94813  62048  80482 139875
-  14947  88674  16998  94824 135784 156266  80488 129642  96877  25198
-  88687 129651 156278  39544 143993 148093 103037 115329  41603  98948
-  94853  74374 129686  33431 103063 146072 152218  84635  29340  25245
-  27299 141987  76454  51879 119463  10922 123563 127661  47789 168624
-  55986  94899 127669  17078  27318  51900  76477 160444  86718  88768
-  82625  21185  53953 111297 135875  60102  27335 168647 168648  53961
- 162499 113349 146122 117456  58067 146132 135893  99031  90840  60125
- 119518  76516 137959  70377 131822  84723  25333  27383  90872  84727
-  45821  74497 135937  97037 131854 131857 135953  66323 109343  54047
-   4897  47911  21293  49966  72496    819  37683 127797  58166  29494
-  64310  66362  27453 113471  13122 111427  43845  74566   4937  41802
- 133963  13130  70474 154443  95060  37717 109398  17239   2904  54104
- 107356  90973 105311 113504  88929 115554 109415  90984 107370  68459
-  74604 156524  88941 113519 156528  27504   7025 105329  76662 148343
-  62328  70520 156540 127871 107392 115585 109440 160642  23425 113539
-  52105 101258 144266  56204  50061   9105 148369  84881 117652 111505
-  62358  80788  80790  86937  47809  27549 103325 160670  76704  91041
- 107425 150434 103328  21413  82854  50087 134054 127909 121761 105381
-  54188 105386  80814  17329  56242  39862 115639 103352  76731 148414
- 150463  43973 162759 150473 109518  11215  35791 101328  48083 168916
-  87000 101338  35805  11230  78813 103391    994  62436  11237  19432
- 156653  62447  91125 101365  35835 101373  44030 115716 130053  41991
- 119815  13321  50187  29713  42005   1046  66582  23573  87065 105495
-  72735 115744  82977  35876 168997 164902 121898  46128 103474 162866
-   3136 111682  68676  19526  66631  31818  80973  52303  93271 136286
-  19551 121951  40033  15462  91239 162921  29804 119920  97393  46194
-  58484  78964 119925 144500  46199  13433  78969   7287  40055 162935
-  15483 167039 156800 146558  27781 136330  58509  83087  91283 126099
-  76948   7318  46231 132249  50333  64670  64677 103600  27825 142513
-  33972 132276  29877   1209  15547 113852  19649 138433 165061  56521
-  46282 169162 142540  56525 113871 101584 115933 101598  81121  79074
- 117988  62697 124140  13555 118006  60669 142589  64766   7423  95494
-  32006 109833 150796 115981 154892 128275  42262  66838 148760 152856
- 167195  91422  68895 120096  56609 146723  77092  93476 103718 146726
-  48423  56616   9514   5424  54577 120115 107833  32061  17737 116041
- 107852  93517 148815 126287 128335 152911   1363  30033  77143  75101
- 101726 114016  75108 161132  87408 105840  91514 150906 138620  68989
-  77182  42367  46464  52609 132482 128388 118149 109958  89477  97673
-  87434 126350 152975 107924 165269 150940  42397 118175  58784  28065
-  48546  52643 152995  83365 157093 132521 114089 157103 112049  75187
- 130484  75191 132536 130488  81338 124348 165310  36287 112062  99777
-  52673   9667  71103  83397  36294  21956 144842 150987   3532 112075
- 112076  56782  11733  24022  71130 157147 128475 155102 118239  93664
- 136674 105956  46568  99821 165358  58873   3580  50685  83456  42498
- 157187 142855  42506  19979 151060  11797  48663  60952 106009  71194
-  46619  87579  26141 167453 120358  44583 130601 165418 106026  32300
-  42541  56877 132655 165423  73265 134706 132659 112187  75326 157246
-  60991 151104  38466 130622 132677 161349  13900 153171  79447  65111
- 151131  91741  85600  20069 104041  97899  73325  69231 104047 102001
- 118386 130672  50806 126582  52855 108153  22138 114294   9854 114307
- 122501  52873  52874  50829  81549 126607 155280 126609 161434  13979
-  16033  97958 122535  18088 104106 143019  89770  48812   1711   9903
-  18099  22195  40628 130743  89784  40635  85693 157374  71357  71358
- 110273  38591  32446 104132   5829 143046  14023  48837  16071  97992
-  48846 165587  14035 167637  71379  79578 167644  98012  46819 165606
- 145126 167656 102121  81640 141035  40685  67313 165617   9971  73459
-  48885  73463 145144  55033 106233 161532  16125  48896 145164 141069
-  69389  24333 118547 124693 116502  63257  14106  38683  55068 145182
-  59168 141088  36644 153387  12076 167725  85806  81709 159536 143154
- 141108 161590 122678 165689  42812 104252   7998  75583 149312 112453
-  42824  91977 102217 139082  38736 147281  10068 163670 116567 100184
-  61274  12124 161628  42846  63328   1891  59237  40807  42857  94061
- 102254  79725 132978 102259  51062  32634  69503  94080  28546 155522
-  30596  40845 141198 157585  20371  96150 100251  36763 124829   6048
-  71584 149411  42917 124838  53158 100264  40872  28586  30638 153519
-  26544 128945   4018 122802  98227  98228 116662  77754  42940 159677
-  71622   1991  14280  14286  38867 116701  92126  40927  53218 100325
- 108517  92137   6122  96236  26606 122863 137200 163824  55283  51188
-  63476 139254]
-[ 5.2231812  6.7605     5.1271906 ...  2.7809668 16.657965   3.4249644] [152576 146437  53254 126471 110088  80395 137229  87565 138765  66576
-   8210  99347 164884  62995  98838  46102  26648  86041 140313  23068
- 107555 151077 104489 137257 133167  31792  28723 103987 128053  28213
- 139321  49213  71751 122953 155209  31307  68176     82 155733  87637
- 114775  15961  26203  28766  15455 136289  14434   6755 158817 127078
-  19048 137322 114798  83055  84080  23152 115312  32883 132208 167541
- 134264 127096  72825 165500 136319  71807 138369  82047 153732  50820
- 127110 135307  24716  25236  89748 120474  21663  56999  70824  98476
- 147631 129201 152241  55990    183 155832  31934 132800 149186 112324
- 127687  82121  69834 104650  37068  60109 149710  79056  75987  98521
-  14557  31967  34527    225  67295  41187  12522  39146  84715  77034
-  81642  88815  54003 101625  16634  95493  45325 151821 164110 116495
- 100114  56596  91413  50968  69401 167198 112929  23331  98091  34093
-  38190 159025  49981  52030  74562 105282 117060 133453 158029  98639
-  19278  37716  81748  48989 124255  17253  67944  63849 161129  56173
-  62319 100721  80255  91008  39298  18819 107402 125834  34188 106383
- 102289 108947  41875  11156  32661 141720 159643  29100  19373  33203
- 130996  61877    441  23998  75200  35265  62401  28609 162757 128457
- 163273  76748  31182 116175  28623  73169 106962  62418  30681  35808
-  32736  41444 141802 114669 108527  71152  40436 112628  46582 122870
-  55801  43514 125436 148477   2558]
-[ 5.2231812  6.7605     5.1271906 ...  2.7809668 16.657965   3.4249644] [131076  40967     13 ... 139251 122873 155646]
-[ 5.2231812  6.7605     5.1271906 ...  2.7809668 16.657965   3.4249644] [ 32769 163841  98305 ... 163830  65526  98300]
-[ 5.2231812  6.7605     5.1271906 ...  2.7809668 16.657965   3.4249644] [ 10241  45060   3077 160775 119303  30732  88588 149006  73746 141330
-  63508 150036  10263  39448  21529 123418 129563 130076  85534  51743
-  64544 105505 113186 107043 155166  96805  66086  44070 135208 158248
- 155690  81963 112684  14381  47657    558 162351  46123  95786  36930
-  26691  39492 131141  37958  63560  64074 107595  40525 127054 137297
-  66642  52307 155734  74841  91227 134235  98399 126047  20065  65124
-  12390  58470  19560  30825  84585  85097   6765  54391 137847 103033
- 144506  78458  30842 118907  48252 155774 105088  47233 107646 115837
-  26241  50828 147601  54931 151187  88725 109717  10908 148125 118432
- 152737  43170  36514 164516 159909   3236   1699  36520   2220  80044
-   5295  89777  45746 123061   3256   2233  62137 129721 160958  52415
-  29376  89281  94413  24270  98511 150736  41682  43731  72915  62676
- 156886  66776 139483 142043  46299  40157  50397 140511 160482 166627
-  65768  84201  23274  64746 106220  97005   1261 152815  43760  35057
- 166129   5870  65272 124153 101114 124671 111360 112386  40197 102662
- 144137  19210  97034 162569 105738 169226 160527 163594   7950  19218
-  96014  26388  38676  28438 160024 138008 138010  51483  34072 132377
-  32028  75037 126239  91931 153372  44830  28447 130849 118054  93988
- 155432  68395 111404   5421 145196 103727 155954  59699  75059  63797
- 159027 101927 135993 151867  62781  63807  81216  53062 140103  19783
-  81735  58186  55110  73542  37709  46925  55631 151376  61777 104786
-   2899 116052  24185  65361 147802  13658 100187   8029    350  52574
- 116062   9568 112994 164706  56164 115557  29030 103463 165218  72041
- 103783 163682 112491  24428  19825 150387 149363 102261  23420 125309
-  53629  28542 163715 133508   5508 126344  70537 110472   7565 127375
-  67986  65426  16276 140922  15768  20890 136090  37790  83871 115617
- 111011  27044 135593  83883  23468 106925  48045 165804  81328  61357
-  91571 120245  99254   2487  73655 157625 167355  70076 156605  37826
- 129987  83396  90569 126921 154571 160718 102865  98258  33236  78804
-  38868  49109 156636  30693  40422  83942 119786 138219  26092 109551
- 165872 133106  81400 114681 142330 166399]
-[ 5.2231812  6.7605     5.1271906 ...  2.7809668 16.657965   3.4249644] [139264  90114  73732 ...  73716  49140  16379]
-[ 5.2231812  6.7605     5.1271906 ...  2.7809668 16.657965   3.4249644] [122883  81924  81931 ... 114685 147454 106495]
-[ 5.2231812  6.7605     5.1271906 ...  2.7809668 16.657965   3.4249644] [     1      2 163843 ...  32759 131066  32767]
-[ 5.2231812  6.7605     5.1271906 ...  2.7809668 16.657965   3.4249644] [ 98306 163847  65544 ... 163821  32752  65529]
-[ 5.2231812  6.7605     5.1271906 ...  2.7809668 16.657965   3.4249644] [  1024  54786 152579   7685  71177  23050  81933  35359  72736 124448
-  96291 120355  99367  55338  71722  33323   8749 106542  34863  79919
-  89135  86068  12853 138805 116280 162362 144443  33342  85571 110663
-  31815 155207 124489  77387 133712 124498 161876  77909  95828 126550
-  90200 135256 119384  42583  48732 140382   4193 134242  94823 144487
- 131689 121452 110701 129645  13423 155244 126065  57972  95863  53879
- 134777  56956  69757  40062 161407  74883  81028 144005 129158 153219
- 155270  32907  61582  64654  26254  67730  53907 129172  58518 160407
-  35992  58010 102042 103580  69277  21151  90783  79010  63141 101542
- 134315  47788   7340  22188 156335  79026  64697 144569  30913  60609
- 106177  48324  10952 143563 158411  41677 101587 165075  69335  95455
- 159968 102114 157925  44262 156399  54513  49394  49396 147702  54520
- 107257  22267  73980 153858  67844 148743 166155  33549   3856  45329
-   2324  22808 131864 108826  38171 119068 103197  20248  97567  42778
-  18208  16674  90402  35628  97069  10544  89904 119090  66355  40759
-  94008  90427  47423  91455  61761 123209 141643 152910 120654  55119
- 131921 144213 159573  87383 122200  25946  16219 132956 161119 119648
-  41825 102756  10598 163174  52072  63338  33131 137069  77166 118640
-  18289  23410  28018  26482 106871 129400  47480  21370  91010 118146
-  49541 123782 117127  29064  76679 160650 143237  45964 103309  44428
-  38796  51091  76183  90008  76185  41882  12702  79263 148895  70050
-  29092 131492 147878 146856  77228 168878  55730 134578 143796  41909
-  14264 156089  61882 154043 134073  55234  16323  79300  79810 166343
-   2504   1995 136140 134607  22479 118737 132052  28628  50648  69080
- 110042  42977  82914  35299  11235  33253 111077  77283 139237  50666
- 101866  11246   8687  75250 107509 122871  77817  76284]
-[ 5.2231812  6.7605     5.1271906 ...  2.7809668 16.657965   3.4249644] [41196]
-[ 5.2231812  6.7605     5.1271906 ...  2.7809668 16.657965   3.4249644] [ 78507   2283 163758   6128 135254]
-[ 5.2231812  6.7605     5.1271906 ...  2.7809668 16.657965   3.4249644] [ 32768  65537  32770 ... 131067 131068  32765]
-[ 5.2231812  6.7605     5.1271906 ...  2.7809668 16.657965   3.4249644] [ 49160     11 106521 ...  81904  24571  90111]
-[ 5.2231812  6.7605     5.1271906 ...  2.7809668 16.657965   3.4249644] [155671  71708 127014  12327  30759 108591 106548 157751 137280   6210
- 104515 149570 143436  55379  84053 147541 122967  12376  88154  49251
- 157807  26743 151677   2176  88193  71816 151699  37012 149662  55457
- 110756  12453 110757  55463 139429 125103 149680 110776  43194  10428
- 102588 125116 133312 151750  35022  41166 106710   4312 157915  88284
-  86246 100582  16617    241  49401   2298 127226 110843  14593  71938
-  43269  84238  80143  16656  82192 160015 112915  86293    278 129304
-  88345  49435  20764 157982 166177 112934  24871  45351   2346  90416
-  43316   8501  47412  24887  59703 110900 166196  43323 110907    318
- 102724  10567  82247 110920 117075 112981 125269  20826  41310 117088
-  22883 149862   8556  53616  63857  20852 143736  76153 147838  80260
- 102791 164232  12681  65930 131465  43405  63887 147856  78227 100756
-  47511 156056 156058  55709  37285 135589 168362 160179 166325  59832
- 102840  27072   6597  39376  39377 139730  39385 145881  57831 115177
- 104939  16876  35309 156155 145916  98818 156163 100873  16909  57872
- 141840 125460 119327  37408  68128 145954  61990  96806  49704  66089
- 148012 113198 115246 119344  47668  64052  37431    572 162369  29263
-  98896  16983 158296  31321 160344    610   4710  64106  10864   2673
-  70258  31348  62077 135807  57985 111237  51847  58001 162453  25244
-  78494  86688 133794 162470 113321  23210   4779  47790  25266  41656
- 101048 127674 154299  19136  41664  99011  25286  94918 135879 105161
-  58058 156361  84701  33502  13024  72421  13030 133861  33516  23277
-   4849  90869 107258  37630 111367 125703  27413  51991  68382  76575
-  13089  58155 115500   2861  11056  41779  35639  43834  62271  23360
- 158529 162638 107359  11114  54124  76658 101237 121718  25474  35718
- 123791    912  66451  66459   2974 162720  58275 109476 127910    935
-   2990 152494  54205 107456  70596 107460 105415   7113  78794 140237
- 166863  39894  19421 132062  35816 111594 136176  17394 125940  29685
- 144372  35831  15351 125946  64507  48124 111616 148482  50182  46091
- 168990 103459 123940  87081   1066  13359  93235 150587 123966  74819
- 152644  25670 134219  62542 136270 146512  31828 101461  58454 101463
- 134234 169050  66654  80993  13412 101477  44135  44136 158825 119916
- 138354  99453  64639  83071   1167  58511 158868  40089  85152  15525
-  17574 117928 128168  58538 132268   5296 122032 142512  25779  31923
- 146608   1212  33982  29889 113859  19652  64708  83141 120004 122055
-  19663  27857  91352 126168  79066   5346  31975  42219  23789   7406
-  72952 163064 142588 118016  54541  99599  97554  50451  60695  25881
- 126233  77084  58658 136486 161062   7469   1326 142641 138547  81208
-   9531  79164 120124   3401  48459  93518  19794 165206 116057 134506
-  13676 165230  62832 138608  19827  52595  46454  48504   1401 122236
- 128382  83331 122246  87433 101769  42381  69010 130466 161193 148906
- 116139  15788  75180 142766 159149  83377  91572  23991 150970 112065
- 167361  71109  15817   3530  83402 157134 118226 153046  91607 165342
-  24032  11749 134630  83431 108008  67055  91632  75256  19963  19964
-  73219  19972 110084  89608 128530  95768 134683  79390 142878   3616
-  30241  71206 132648  40492 153134  54831  65071  67121  91702 122428
-  77373  26183 134731  73294   1615 126545  11860  93780  13911 120407
- 124503   1630  85602  22115  48740  18022 120425 157289  61036  11885
-  22129  52853  81525  69239  42628  69257  50827  83598  46737  40594
-  16022  42651  11933 155299 143029 108214 161463  38589  14013  40639
-  65217  11972  61132  16081  34513 124628 136921   9949  61149  69342
- 122595  30439  93930  34539 106222  98034  63223 104185  16122  42751
-  36610  57092  12039  81673  63242  77579  38671  32536   7964 145193
-  16170 137002 165698 116547  44870  40787  48982  26462  59236 100196
- 100200 106344 163689 118635  55149  63345 108414   1923 155529  16268
- 118668 130962  92052 135065  36761 112538 157597  59295   6049 114594
-  53169 143287  75705  65468  53186 116681  81866 143306  59341  96215
-  22489  73691 104412 128993  94200  47099  90108]
-[ 5.2231812  6.7605     5.1271906 ...  2.7809668 16.657965   3.4249644] [143361  40971  47118 ...  86007  45048  47103]
-[ 5.2231812  6.7605     5.1271906 ...  2.7809668 16.657965   3.4249644] [155224  24750]
-idx_attach: tensor([131050,  95019, 162865, 102827,  74375,  72583,  36393, 108794,  37367,
-        104962,  77040,  25547,  45830, 111944, 157600,  88333,  57333,  29308,
-        128549,  56271,  64460, 141485,  69265,  85867,  24016, 131293,  62118,
-        148646, 159966, 111157,  68837, 135656, 127614,  70597, 115166, 151539,
-        148815,   9105, 137738, 108527, 136319,    225,  36827, 129496,  84602,
-         81060,  73534, 112559,  80044,  52307,  96014,  22978,  59508,  54810,
-         73549,   6316, 155061,  97479,  40165, 138644, 146906, 164700, 127569,
-         47788, 106177,  13423,  41196, 135254,  78507,   6128,  54116,  26685,
-         75750,  27785,  36024, 135748, 127674,   6597, 148482,  50855, 168699,
-         13136, 155224,  24750], device='cuda:2')
-Epoch 0, loss_inner: 3.72614, loss_target: 3.53635, homo loss: 0.61826 
-acc_train_clean: 0.0115, ASR_train_attach: 0.0000, ASR_train_outter: 0.0000
-Epoch 10, loss_inner: 2.88681, loss_target: 2.92546, homo loss: 0.00009 
-acc_train_clean: 0.2826, ASR_train_attach: 0.0000, ASR_train_outter: 0.0000
-Epoch 20, loss_inner: 2.49649, loss_target: 2.46504, homo loss: 0.00285 
-acc_train_clean: 0.3291, ASR_train_attach: 0.0238, ASR_train_outter: 0.0017
-Epoch 30, loss_inner: 2.08821, loss_target: 2.04702, homo loss: 0.00013 
-acc_train_clean: 0.4703, ASR_train_attach: 0.9286, ASR_train_outter: 0.6007
-Epoch 40, loss_inner: 1.77408, loss_target: 1.73584, homo loss: 0.00021 
-acc_train_clean: 0.5363, ASR_train_attach: 0.9881, ASR_train_outter: 0.8725
-Epoch 50, loss_inner: 1.56823, loss_target: 1.53569, homo loss: 0.00013 
-acc_train_clean: 0.5759, ASR_train_attach: 0.9881, ASR_train_outter: 0.9530
-Epoch 60, loss_inner: 1.43948, loss_target: 1.41331, homo loss: 0.00003 
-acc_train_clean: 0.5998, ASR_train_attach: 0.9881, ASR_train_outter: 0.9564
-Epoch 70, loss_inner: 1.35518, loss_target: 1.33166, homo loss: 0.00000 
-acc_train_clean: 0.6154, ASR_train_attach: 1.0000, ASR_train_outter: 0.9715
-Epoch 80, loss_inner: 1.29338, loss_target: 1.27117, homo loss: 0.00000 
-acc_train_clean: 0.6284, ASR_train_attach: 1.0000, ASR_train_outter: 0.9849
-Epoch 90, loss_inner: 1.24961, loss_target: 1.22894, homo loss: 0.00000 
-acc_train_clean: 0.6390, ASR_train_attach: 1.0000, ASR_train_outter: 0.9866
-Epoch 100, loss_inner: 1.21881, loss_target: 1.19955, homo loss: 0.00000 
-acc_train_clean: 0.6463, ASR_train_attach: 1.0000, ASR_train_outter: 0.9866
-Epoch 110, loss_inner: 1.19705, loss_target: 1.17870, homo loss: 0.00000 
-acc_train_clean: 0.6521, ASR_train_attach: 1.0000, ASR_train_outter: 0.9899
-Epoch 120, loss_inner: 1.18110, loss_target: 1.16280, homo loss: 0.00000 
-acc_train_clean: 0.6558, ASR_train_attach: 1.0000, ASR_train_outter: 0.9899
-Epoch 130, loss_inner: 1.16983, loss_target: 1.15271, homo loss: 0.00000 
-acc_train_clean: 0.6585, ASR_train_attach: 1.0000, ASR_train_outter: 0.9899
-Epoch 140, loss_inner: 1.16042, loss_target: 1.14311, homo loss: 0.00000 
-acc_train_clean: 0.6616, ASR_train_attach: 1.0000, ASR_train_outter: 0.9916
-Epoch 150, loss_inner: 1.15137, loss_target: 1.13523, homo loss: 0.00001 
-acc_train_clean: 0.6633, ASR_train_attach: 1.0000, ASR_train_outter: 0.9916
-Epoch 160, loss_inner: 1.15415, loss_target: 1.17734, homo loss: 0.00031 
-acc_train_clean: 0.6654, ASR_train_attach: 1.0000, ASR_train_outter: 0.9899
-Epoch 170, loss_inner: 1.14972, loss_target: 1.16467, homo loss: 0.00016 
-acc_train_clean: 0.6668, ASR_train_attach: 1.0000, ASR_train_outter: 0.9866
-Epoch 180, loss_inner: 1.18607, loss_target: 1.20390, homo loss: 0.00017 
-acc_train_clean: 0.6570, ASR_train_attach: 1.0000, ASR_train_outter: 0.9983
-Epoch 190, loss_inner: 1.16024, loss_target: 1.15934, homo loss: 0.00025 
-acc_train_clean: 0.6666, ASR_train_attach: 1.0000, ASR_train_outter: 0.9916
-precent of left attach nodes: 1.000
-target class rate on Vs: 1.0000
-accuracy on clean test nodes: 0.6561
-
-/home/mfl5681/project-backdoor/Backdoor/heuristic_selection.py:9: RuntimeWarning: invalid value encountered in divide
-  return (data - np.min(data)) / _range
-ASR: 0.9966
-Flip ASR: 0.9966/16868 nodes
-CA: 0.6431

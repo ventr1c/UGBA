@@ -126,3 +126,75 @@ Flip ASR: 0.8674/1554 nodes
 Namespace(cuda=True, dataset='Pubmed', debug=True, defense_mode='prune', device_id=3, dis_weight=0.0, dropout=0.5, epochs=200, evaluate_mode='1by1', hidden=32, homo_boost_thrd=0.5, homo_loss_weight=2.0, inner=1, lr=0.01, model='GCN', no_cuda=False, prune_thr=0.2, seed=80, selection_method='cluster_degree', target_class=0, target_loss_weight=1, test_model='GCN', thrd=0.5, train_lr=0.01, trigger_size=3, trojan_epochs=200, use_vs_number=True, vs_number=120, vs_ratio=0, weight_decay=0.0005)
 target class rate on Vs: 0.9750
 accuracy on clean test nodes: 0.8564
+/home/mfl5681/project-backdoor/Backdoor/models/GAT.py:61: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  self.labels = torch.tensor(labels, dtype=torch.long)
+Overall ASR: 0.9138
+Flip ASR: 0.8919/1554 nodes
+Namespace(cuda=True, dataset='Pubmed', debug=True, defense_mode='prune', device_id=3, dis_weight=0.0, dropout=0.5, epochs=200, evaluate_mode='1by1', hidden=32, homo_boost_thrd=0.5, homo_loss_weight=2.0, inner=1, lr=0.01, model='GCN', no_cuda=False, prune_thr=0.2, seed=91, selection_method='cluster_degree', target_class=0, target_loss_weight=1, test_model='GCN', thrd=0.5, train_lr=0.01, trigger_size=3, trojan_epochs=200, use_vs_number=True, vs_number=120, vs_ratio=0, weight_decay=0.0005)
+target class rate on Vs: 0.9750
+accuracy on clean test nodes: 0.8524
+Overall ASR: 0.9204
+Flip ASR: 0.9003/1554 nodes
+Namespace(cuda=True, dataset='Pubmed', debug=True, defense_mode='prune', device_id=3, dis_weight=0.0, dropout=0.5, epochs=200, evaluate_mode='1by1', hidden=32, homo_boost_thrd=0.5, homo_loss_weight=2.0, inner=1, lr=0.01, model='GCN', no_cuda=False, prune_thr=0.2, seed=337, selection_method='cluster_degree', target_class=0, target_loss_weight=1, test_model='GCN', thrd=0.5, train_lr=0.01, trigger_size=3, trojan_epochs=200, use_vs_number=True, vs_number=120, vs_ratio=0, weight_decay=0.0005)
+target class rate on Vs: 0.9667
+accuracy on clean test nodes: 0.8554
+Overall ASR: 0.9031
+Flip ASR: 0.8790/1554 nodes
+Overall ASR: 0.9073 (GCN model, Seed: 337)
+Overall Clean Accuracy: 0.8536
+Namespace(cuda=True, dataset='Pubmed', debug=True, defense_mode='prune', device_id=3, dis_weight=0.0, dropout=0.5, epochs=200, evaluate_mode='1by1', hidden=32, homo_boost_thrd=0.5, homo_loss_weight=2.0, inner=1, lr=0.01, model='GCN', no_cuda=False, prune_thr=0.2, seed=260, selection_method='cluster_degree', target_class=0, target_loss_weight=1, test_model='GAT', thrd=0.5, train_lr=0.01, trigger_size=3, trojan_epochs=200, use_vs_number=True, vs_number=120, vs_ratio=0, weight_decay=0.0005)
+target class rate on Vs: 0.9667
+accuracy on clean test nodes: 0.8311
+Overall ASR: 0.8950
+Flip ASR: 0.8713/1554 nodes
+Namespace(cuda=True, dataset='Pubmed', debug=True, defense_mode='prune', device_id=3, dis_weight=0.0, dropout=0.5, epochs=200, evaluate_mode='1by1', hidden=32, homo_boost_thrd=0.5, homo_loss_weight=2.0, inner=1, lr=0.01, model='GCN', no_cuda=False, prune_thr=0.2, seed=66, selection_method='cluster_degree', target_class=0, target_loss_weight=1, test_model='GAT', thrd=0.5, train_lr=0.01, trigger_size=3, trojan_epochs=200, use_vs_number=True, vs_number=120, vs_ratio=0, weight_decay=0.0005)
+target class rate on Vs: 0.9500
+accuracy on clean test nodes: 0.8326
+Overall ASR: 0.8707
+Flip ASR: 0.8404/1554 nodes
+Namespace(cuda=True, dataset='Pubmed', debug=True, defense_mode='prune', device_id=3, dis_weight=0.0, dropout=0.5, epochs=200, evaluate_mode='1by1', hidden=32, homo_boost_thrd=0.5, homo_loss_weight=2.0, inner=1, lr=0.01, model='GCN', no_cuda=False, prune_thr=0.2, seed=441, selection_method='cluster_degree', target_class=0, target_loss_weight=1, test_model='GAT', thrd=0.5, train_lr=0.01, trigger_size=3, trojan_epochs=200, use_vs_number=True, vs_number=120, vs_ratio=0, weight_decay=0.0005)
+target class rate on Vs: 0.9583
+accuracy on clean test nodes: 0.8321
+Overall ASR: 0.8783
+Flip ASR: 0.8501/1554 nodes
+Namespace(cuda=True, dataset='Pubmed', debug=True, defense_mode='prune', device_id=3, dis_weight=0.0, dropout=0.5, epochs=200, evaluate_mode='1by1', hidden=32, homo_boost_thrd=0.5, homo_loss_weight=2.0, inner=1, lr=0.01, model='GCN', no_cuda=False, prune_thr=0.2, seed=443, selection_method='cluster_degree', target_class=0, target_loss_weight=1, test_model='GAT', thrd=0.5, train_lr=0.01, trigger_size=3, trojan_epochs=200, use_vs_number=True, vs_number=120, vs_ratio=0, weight_decay=0.0005)
+target class rate on Vs: 1.0000
+accuracy on clean test nodes: 0.8285
+Overall ASR: 0.9655
+Flip ASR: 0.9569/1554 nodes
+Namespace(cuda=True, dataset='Pubmed', debug=True, defense_mode='prune', device_id=3, dis_weight=0.0, dropout=0.5, epochs=200, evaluate_mode='1by1', hidden=32, homo_boost_thrd=0.5, homo_loss_weight=2.0, inner=1, lr=0.01, model='GCN', no_cuda=False, prune_thr=0.2, seed=63, selection_method='cluster_degree', target_class=0, target_loss_weight=1, test_model='GAT', thrd=0.5, train_lr=0.01, trigger_size=3, trojan_epochs=200, use_vs_number=True, vs_number=120, vs_ratio=0, weight_decay=0.0005)
+target class rate on Vs: 0.9250
+accuracy on clean test nodes: 0.8295
+Overall ASR: 0.7880
+Flip ASR: 0.7413/1554 nodes
+Overall ASR: 0.8795 (GAT model, Seed: 63)
+Overall Clean Accuracy: 0.8307
+Namespace(cuda=True, dataset='Pubmed', debug=True, defense_mode='prune', device_id=3, dis_weight=0.0, dropout=0.5, epochs=200, evaluate_mode='1by1', hidden=32, homo_boost_thrd=0.5, homo_loss_weight=2.0, inner=1, lr=0.01, model='GCN', no_cuda=False, prune_thr=0.2, seed=44, selection_method='cluster_degree', target_class=0, target_loss_weight=1, test_model='GraphSage', thrd=0.5, train_lr=0.01, trigger_size=3, trojan_epochs=200, use_vs_number=True, vs_number=120, vs_ratio=0, weight_decay=0.0005)
+target class rate on Vs: 0.9417
+accuracy on clean test nodes: 0.8610
+Overall ASR: 0.8631
+Flip ASR: 0.8301/1554 nodes
+Namespace(cuda=True, dataset='Pubmed', debug=True, defense_mode='prune', device_id=3, dis_weight=0.0, dropout=0.5, epochs=200, evaluate_mode='1by1', hidden=32, homo_boost_thrd=0.5, homo_loss_weight=2.0, inner=1, lr=0.01, model='GCN', no_cuda=False, prune_thr=0.2, seed=116, selection_method='cluster_degree', target_class=0, target_loss_weight=1, test_model='GraphSage', thrd=0.5, train_lr=0.01, trigger_size=3, trojan_epochs=200, use_vs_number=True, vs_number=120, vs_ratio=0, weight_decay=0.0005)
+target class rate on Vs: 0.9500
+accuracy on clean test nodes: 0.8625
+Overall ASR: 0.8717
+Flip ASR: 0.8404/1554 nodes
+Namespace(cuda=True, dataset='Pubmed', debug=True, defense_mode='prune', device_id=3, dis_weight=0.0, dropout=0.5, epochs=200, evaluate_mode='1by1', hidden=32, homo_boost_thrd=0.5, homo_loss_weight=2.0, inner=1, lr=0.01, model='GCN', no_cuda=False, prune_thr=0.2, seed=139, selection_method='cluster_degree', target_class=0, target_loss_weight=1, test_model='GraphSage', thrd=0.5, train_lr=0.01, trigger_size=3, trojan_epochs=200, use_vs_number=True, vs_number=120, vs_ratio=0, weight_decay=0.0005)
+target class rate on Vs: 0.9417
+accuracy on clean test nodes: 0.8600
+Overall ASR: 0.8616
+Flip ASR: 0.8282/1554 nodes
+Namespace(cuda=True, dataset='Pubmed', debug=True, defense_mode='prune', device_id=3, dis_weight=0.0, dropout=0.5, epochs=200, evaluate_mode='1by1', hidden=32, homo_boost_thrd=0.5, homo_loss_weight=2.0, inner=1, lr=0.01, model='GCN', no_cuda=False, prune_thr=0.2, seed=215, selection_method='cluster_degree', target_class=0, target_loss_weight=1, test_model='GraphSage', thrd=0.5, train_lr=0.01, trigger_size=3, trojan_epochs=200, use_vs_number=True, vs_number=120, vs_ratio=0, weight_decay=0.0005)
+target class rate on Vs: 0.9417
+accuracy on clean test nodes: 0.8605
+Overall ASR: 0.8707
+Flip ASR: 0.8398/1554 nodes
+Namespace(cuda=True, dataset='Pubmed', debug=True, defense_mode='prune', device_id=3, dis_weight=0.0, dropout=0.5, epochs=200, evaluate_mode='1by1', hidden=32, homo_boost_thrd=0.5, homo_loss_weight=2.0, inner=1, lr=0.01, model='GCN', no_cuda=False, prune_thr=0.2, seed=338, selection_method='cluster_degree', target_class=0, target_loss_weight=1, test_model='GraphSage', thrd=0.5, train_lr=0.01, trigger_size=3, trojan_epochs=200, use_vs_number=True, vs_number=120, vs_ratio=0, weight_decay=0.0005)
+target class rate on Vs: 0.9417
+accuracy on clean test nodes: 0.8640
+Overall ASR: 0.8697
+Flip ASR: 0.8385/1554 nodes
+Overall ASR: 0.8673 (GraphSage model, Seed: 338)
+Overall Clean Accuracy: 0.8616
+Total Overall ASR: 0.8847 
+Total Clean Accuracy: 0.8486

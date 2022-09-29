@@ -1,4 +1,6 @@
 #%%
+from copy import deepcopy
+from matplotlib.pyplot import get
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
@@ -104,20 +106,29 @@ class Backdoor:
     def __init__(self,args, device):
         self.args = args
         self.device = device
-        self.poison_x = None
-        self.poison_edge_index = None
-        self.poison_edge_weights = None
+        self.weights = None
+        self.trigger_index = self.get_trigger_index(args.trigger_size)
+    
+    def get_trigger_index(self,trigger_size):
+        edge_list = []
+        edge_list.append([0,0])
+        for j in range(trigger_size):
+            for k in range(j):
+                edge_list.append([j,k])
+        edge_index = torch.tensor(edge_list,device=self.device).long().T
+        return edge_index
 
     def get_trojan_edge(self,start, idx_attach, trigger_size):
         edge_list = []
-        for i,idx in enumerate(idx_attach):
-            edge_list.append([idx,start+i*trigger_size])
-            for j in range(trigger_size):
-                for k in range(j):
-                    edge_list.append([start+i*trigger_size+j,start+i*trigger_size+k])
-        
-        edge_index = torch.tensor(edge_list).long().T
+        for idx in idx_attach:
+            edges = self.trigger_index.clone()
+            edges[0,0] = idx
+            edges[1,0] = start
+            edges[:,1:] = edges[:,1:] + start
 
+            edge_list.append(edges)
+            start += trigger_size
+        edge_index = torch.cat(edge_list,dim=1)
         # to undirected
         # row, col = edge_index
         row = torch.cat([edge_index[0], edge_index[1]])
@@ -191,6 +202,7 @@ class Backdoor:
 
         # furture change it to bilevel optimization
         
+        loss_best = 1e8
         for i in range(args.trojan_epochs):
             self.trojan.train()
             for j in range(self.args.inner):
@@ -219,7 +231,7 @@ class Backdoor:
             optimizer_trigger.zero_grad()
 
             rs = np.random.RandomState(self.args.seed)
-            idx_outter = torch.cat([idx_attach,idx_unlabeled[rs.choice(len(idx_unlabeled),size=512,replace=False)]])
+            idx_outter = torch.cat([idx_attach,idx_unlabeled[rs.choice(len(idx_unlabeled),size=1024,replace=False)]])
 
             trojan_feat, trojan_weights = self.trojan(features[idx_outter],self.args.thrd) # may revise the process of generate
         
@@ -253,15 +265,21 @@ class Backdoor:
             loss_outter.backward()
             optimizer_trigger.step()
             acc_train_outter =(output[idx_outter].argmax(dim=1)==args.target_class).float().mean()
-            
+
+            if loss_outter<loss_best:
+                self.weights = deepcopy(self.trojan.state_dict())
+                loss_best = float(loss_outter)
 
             if args.debug and i % 10 == 0:
                 print('Epoch {}, loss_inner: {:.5f}, loss_target: {:.5f}, homo loss: {:.5f} '\
                         .format(i, loss_inner, loss_target, loss_homo))
                 print("acc_train_clean: {:.4f}, ASR_train_attach: {:.4f}, ASR_train_outter: {:.4f}"\
                         .format(acc_train_clean,acc_train_attach,acc_train_outter))
-
+        if args.debug:
+            print("load best weight based on the loss outter")
+        self.trojan.load_state_dict(self.weights)
         self.trojan.eval()
+
         # torch.cuda.empty_cache()
 
     def get_poisoned(self):

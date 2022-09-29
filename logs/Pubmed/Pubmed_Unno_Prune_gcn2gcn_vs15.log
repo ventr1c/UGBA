@@ -1,135 +1,20 @@
 nohup: ignoring input
-Namespace(cuda=True, dataset='Pubmed', debug=True, defense_mode='prune', device_id=1, dis_weight=1.0, dropout=0.5, epochs=200, evaluate_mode='1by1', hidden=32, homo_boost_thrd=0.5, homo_loss_weight=1.0, inner=1, lr=0.01, model='GCN', no_cuda=False, prune_thr=0.3, seed=11, selection_method='none', target_class=0, target_loss_weight=1, test_model='GCN', thrd=0.5, train_lr=0.01, trigger_size=3, trojan_epochs=200, use_vs_number=True, vs_number=15, vs_ratio=0, weight_decay=0.0005)
-Length of training set: 3943
-Training benign model Finished!
-Total time elapsed: 3.6655s
-Benign CA: 0.8554
-#Attach Nodes:15
-idx_attach: tensor([15043, 11176, 18495, 13856,  7735, 17027, 16900, 10353, 15081,  4018,
-         4065, 17271,  1025,  9514,  7970], device='cuda:1')
-Epoch 0, loss_inner: 1.09889, loss_target: 1.09238, homo loss: 0.49577 
-acc_train_clean: 0.3226, ASR_train_attach: 0.0000, ASR_train_outter: 0.0000
-Epoch 10, loss_inner: 0.96700, loss_target: 0.86457, homo loss: 0.24775 
-acc_train_clean: 0.6543, ASR_train_attach: 1.0000, ASR_train_outter: 0.9677
-Epoch 20, loss_inner: 0.82243, loss_target: 0.73417, homo loss: 0.22632 
-acc_train_clean: 0.7581, ASR_train_attach: 1.0000, ASR_train_outter: 0.9943
-Epoch 30, loss_inner: 0.68004, loss_target: 0.62820, homo loss: 0.24232 
-acc_train_clean: 0.8187, ASR_train_attach: 1.0000, ASR_train_outter: 0.9696
-Epoch 40, loss_inner: 0.57590, loss_target: 0.52403, homo loss: 0.23703 
-acc_train_clean: 0.8395, ASR_train_attach: 1.0000, ASR_train_outter: 0.9488
-Epoch 50, loss_inner: 0.51338, loss_target: 0.46751, homo loss: 0.22635 
-acc_train_clean: 0.8494, ASR_train_attach: 1.0000, ASR_train_outter: 0.9564
-Epoch 60, loss_inner: 0.47607, loss_target: 0.43610, homo loss: 0.21034 
-acc_train_clean: 0.8552, ASR_train_attach: 1.0000, ASR_train_outter: 0.9734
-Epoch 70, loss_inner: 0.45264, loss_target: 0.46176, homo loss: 0.23103 
-acc_train_clean: 0.8641, ASR_train_attach: 1.0000, ASR_train_outter: 0.9715
-Epoch 80, loss_inner: 0.43970, loss_target: 0.52901, homo loss: 0.31222 
-acc_train_clean: 0.8620, ASR_train_attach: 1.0000, ASR_train_outter: 0.9981
-Epoch 90, loss_inner: 0.41974, loss_target: 0.39951, homo loss: 0.23717 
-acc_train_clean: 0.8671, ASR_train_attach: 0.9333, ASR_train_outter: 0.9469
-Epoch 100, loss_inner: 0.40587, loss_target: 0.38410, homo loss: 0.20177 
-acc_train_clean: 0.8701, ASR_train_attach: 1.0000, ASR_train_outter: 0.9260
-Epoch 110, loss_inner: 0.39580, loss_target: 0.37129, homo loss: 0.18894 
-acc_train_clean: 0.8722, ASR_train_attach: 1.0000, ASR_train_outter: 0.9431
-Epoch 120, loss_inner: 0.38786, loss_target: 0.35899, homo loss: 0.17659 
-acc_train_clean: 0.8732, ASR_train_attach: 1.0000, ASR_train_outter: 0.9639
-Epoch 130, loss_inner: 0.38177, loss_target: 0.35816, homo loss: 0.17055 
-acc_train_clean: 0.8760, ASR_train_attach: 1.0000, ASR_train_outter: 0.9715
-Epoch 140, loss_inner: 0.37639, loss_target: 0.35164, homo loss: 0.16577 
-acc_train_clean: 0.8778, ASR_train_attach: 1.0000, ASR_train_outter: 0.9677
-Epoch 150, loss_inner: 0.37196, loss_target: 0.37840, homo loss: 0.14121 
-acc_train_clean: 0.8788, ASR_train_attach: 0.8667, ASR_train_outter: 0.8254
-Epoch 160, loss_inner: 0.36761, loss_target: 0.35158, homo loss: 0.15408 
-acc_train_clean: 0.8803, ASR_train_attach: 1.0000, ASR_train_outter: 0.9829
-Epoch 170, loss_inner: 0.36621, loss_target: 0.39591, homo loss: 0.15331 
-acc_train_clean: 0.8800, ASR_train_attach: 0.8000, ASR_train_outter: 0.7647
-Epoch 180, loss_inner: 0.35985, loss_target: 0.34155, homo loss: 0.14483 
-acc_train_clean: 0.8816, ASR_train_attach: 1.0000, ASR_train_outter: 0.9431
-Epoch 190, loss_inner: 0.35677, loss_target: 0.33578, homo loss: 0.13852 
-acc_train_clean: 0.8841, ASR_train_attach: 1.0000, ASR_train_outter: 0.9791
-precent of left attach nodes: 1.000
-Namespace(cuda=True, dataset='Pubmed', debug=True, defense_mode='prune', device_id=1, dis_weight=1.0, dropout=0.5, epochs=200, evaluate_mode='1by1', hidden=32, homo_boost_thrd=0.5, homo_loss_weight=1.0, inner=1, lr=0.01, model='GCN', no_cuda=False, prune_thr=0.3, seed=921, selection_method='none', target_class=0, target_loss_weight=1, test_model='GCN', thrd=0.5, train_lr=0.01, trigger_size=3, trojan_epochs=200, use_vs_number=True, vs_number=15, vs_ratio=0, weight_decay=0.0005)
-target class rate on Vs: 0.6000
-accuracy on clean test nodes: 0.8478
-Overall ASR: 0.5193
-Flip ASR: 0.4080/1554 nodes
-Namespace(cuda=True, dataset='Pubmed', debug=True, defense_mode='prune', device_id=1, dis_weight=1.0, dropout=0.5, epochs=200, evaluate_mode='1by1', hidden=32, homo_boost_thrd=0.5, homo_loss_weight=1.0, inner=1, lr=0.01, model='GCN', no_cuda=False, prune_thr=0.3, seed=703, selection_method='none', target_class=0, target_loss_weight=1, test_model='GCN', thrd=0.5, train_lr=0.01, trigger_size=3, trojan_epochs=200, use_vs_number=True, vs_number=15, vs_ratio=0, weight_decay=0.0005)
-target class rate on Vs: 0.6000
-accuracy on clean test nodes: 0.8539
-Overall ASR: 0.5218
-Flip ASR: 0.4125/1554 nodes
-Namespace(cuda=True, dataset='Pubmed', debug=True, defense_mode='prune', device_id=1, dis_weight=1.0, dropout=0.5, epochs=200, evaluate_mode='1by1', hidden=32, homo_boost_thrd=0.5, homo_loss_weight=1.0, inner=1, lr=0.01, model='GCN', no_cuda=False, prune_thr=0.3, seed=80, selection_method='none', target_class=0, target_loss_weight=1, test_model='GCN', thrd=0.5, train_lr=0.01, trigger_size=3, trojan_epochs=200, use_vs_number=True, vs_number=15, vs_ratio=0, weight_decay=0.0005)
-target class rate on Vs: 0.6000
-accuracy on clean test nodes: 0.8529
-Overall ASR: 0.5228
-Flip ASR: 0.4118/1554 nodes
-Namespace(cuda=True, dataset='Pubmed', debug=True, defense_mode='prune', device_id=1, dis_weight=1.0, dropout=0.5, epochs=200, evaluate_mode='1by1', hidden=32, homo_boost_thrd=0.5, homo_loss_weight=1.0, inner=1, lr=0.01, model='GCN', no_cuda=False, prune_thr=0.3, seed=91, selection_method='none', target_class=0, target_loss_weight=1, test_model='GCN', thrd=0.5, train_lr=0.01, trigger_size=3, trojan_epochs=200, use_vs_number=True, vs_number=15, vs_ratio=0, weight_decay=0.0005)
-target class rate on Vs: 0.6000
-accuracy on clean test nodes: 0.8549
-Overall ASR: 0.5477
-Flip ASR: 0.4408/1554 nodes
-Namespace(cuda=True, dataset='Pubmed', debug=True, defense_mode='prune', device_id=1, dis_weight=1.0, dropout=0.5, epochs=200, evaluate_mode='1by1', hidden=32, homo_boost_thrd=0.5, homo_loss_weight=1.0, inner=1, lr=0.01, model='GCN', no_cuda=False, prune_thr=0.3, seed=337, selection_method='none', target_class=0, target_loss_weight=1, test_model='GCN', thrd=0.5, train_lr=0.01, trigger_size=3, trojan_epochs=200, use_vs_number=True, vs_number=15, vs_ratio=0, weight_decay=0.0005)
-target class rate on Vs: 0.6000
-accuracy on clean test nodes: 0.8498
-Overall ASR: 0.5304
-Flip ASR: 0.4202/1554 nodes
-Overall ASR: 0.5284 (GCN model, Seed: 337)
-Overall Clean Accuracy: 0.8519
-Namespace(cuda=True, dataset='Pubmed', debug=True, defense_mode='prune', device_id=1, dis_weight=1.0, dropout=0.5, epochs=200, evaluate_mode='1by1', hidden=32, homo_boost_thrd=0.5, homo_loss_weight=1.0, inner=1, lr=0.01, model='GCN', no_cuda=False, prune_thr=0.3, seed=260, selection_method='none', target_class=0, target_loss_weight=1, test_model='GAT', thrd=0.5, train_lr=0.01, trigger_size=3, trojan_epochs=200, use_vs_number=True, vs_number=15, vs_ratio=0, weight_decay=0.0005)
-target class rate on Vs: 0.6000
-accuracy on clean test nodes: 0.8366
-Overall ASR: 0.5314
-Flip ASR: 0.4208/1554 nodes
-Namespace(cuda=True, dataset='Pubmed', debug=True, defense_mode='prune', device_id=1, dis_weight=1.0, dropout=0.5, epochs=200, evaluate_mode='1by1', hidden=32, homo_boost_thrd=0.5, homo_loss_weight=1.0, inner=1, lr=0.01, model='GCN', no_cuda=False, prune_thr=0.3, seed=66, selection_method='none', target_class=0, target_loss_weight=1, test_model='GAT', thrd=0.5, train_lr=0.01, trigger_size=3, trojan_epochs=200, use_vs_number=True, vs_number=15, vs_ratio=0, weight_decay=0.0005)
-target class rate on Vs: 0.6000
-accuracy on clean test nodes: 0.8371
-Overall ASR: 0.5248
-Flip ASR: 0.4144/1554 nodes
-/home/mfl5681/project-backdoor/Backdoor/models/GAT.py:61: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor).
-  self.labels = torch.tensor(labels, dtype=torch.long)
-Namespace(cuda=True, dataset='Pubmed', debug=True, defense_mode='prune', device_id=1, dis_weight=1.0, dropout=0.5, epochs=200, evaluate_mode='1by1', hidden=32, homo_boost_thrd=0.5, homo_loss_weight=1.0, inner=1, lr=0.01, model='GCN', no_cuda=False, prune_thr=0.3, seed=441, selection_method='none', target_class=0, target_loss_weight=1, test_model='GAT', thrd=0.5, train_lr=0.01, trigger_size=3, trojan_epochs=200, use_vs_number=True, vs_number=15, vs_ratio=0, weight_decay=0.0005)
-target class rate on Vs: 0.6000
-accuracy on clean test nodes: 0.8361
-Overall ASR: 0.5330
-Flip ASR: 0.4234/1554 nodes
-Namespace(cuda=True, dataset='Pubmed', debug=True, defense_mode='prune', device_id=1, dis_weight=1.0, dropout=0.5, epochs=200, evaluate_mode='1by1', hidden=32, homo_boost_thrd=0.5, homo_loss_weight=1.0, inner=1, lr=0.01, model='GCN', no_cuda=False, prune_thr=0.3, seed=443, selection_method='none', target_class=0, target_loss_weight=1, test_model='GAT', thrd=0.5, train_lr=0.01, trigger_size=3, trojan_epochs=200, use_vs_number=True, vs_number=15, vs_ratio=0, weight_decay=0.0005)
-target class rate on Vs: 0.6000
-accuracy on clean test nodes: 0.8280
-Overall ASR: 0.5380
-Flip ASR: 0.4286/1554 nodes
-Namespace(cuda=True, dataset='Pubmed', debug=True, defense_mode='prune', device_id=1, dis_weight=1.0, dropout=0.5, epochs=200, evaluate_mode='1by1', hidden=32, homo_boost_thrd=0.5, homo_loss_weight=1.0, inner=1, lr=0.01, model='GCN', no_cuda=False, prune_thr=0.3, seed=63, selection_method='none', target_class=0, target_loss_weight=1, test_model='GAT', thrd=0.5, train_lr=0.01, trigger_size=3, trojan_epochs=200, use_vs_number=True, vs_number=15, vs_ratio=0, weight_decay=0.0005)
-target class rate on Vs: 0.6000
-accuracy on clean test nodes: 0.8387
-Overall ASR: 0.5274
-Flip ASR: 0.4170/1554 nodes
-Overall ASR: 0.5309 (GAT model, Seed: 63)
-Overall Clean Accuracy: 0.8353
-Namespace(cuda=True, dataset='Pubmed', debug=True, defense_mode='prune', device_id=1, dis_weight=1.0, dropout=0.5, epochs=200, evaluate_mode='1by1', hidden=32, homo_boost_thrd=0.5, homo_loss_weight=1.0, inner=1, lr=0.01, model='GCN', no_cuda=False, prune_thr=0.3, seed=44, selection_method='none', target_class=0, target_loss_weight=1, test_model='GraphSage', thrd=0.5, train_lr=0.01, trigger_size=3, trojan_epochs=200, use_vs_number=True, vs_number=15, vs_ratio=0, weight_decay=0.0005)
-target class rate on Vs: 0.6000
-accuracy on clean test nodes: 0.8620
-Overall ASR: 0.5294
-Flip ASR: 0.4183/1554 nodes
-Namespace(cuda=True, dataset='Pubmed', debug=True, defense_mode='prune', device_id=1, dis_weight=1.0, dropout=0.5, epochs=200, evaluate_mode='1by1', hidden=32, homo_boost_thrd=0.5, homo_loss_weight=1.0, inner=1, lr=0.01, model='GCN', no_cuda=False, prune_thr=0.3, seed=116, selection_method='none', target_class=0, target_loss_weight=1, test_model='GraphSage', thrd=0.5, train_lr=0.01, trigger_size=3, trojan_epochs=200, use_vs_number=True, vs_number=15, vs_ratio=0, weight_decay=0.0005)
-target class rate on Vs: 0.6000
-accuracy on clean test nodes: 0.8661
-Overall ASR: 0.5325
-Flip ASR: 0.4228/1554 nodes
-Namespace(cuda=True, dataset='Pubmed', debug=True, defense_mode='prune', device_id=1, dis_weight=1.0, dropout=0.5, epochs=200, evaluate_mode='1by1', hidden=32, homo_boost_thrd=0.5, homo_loss_weight=1.0, inner=1, lr=0.01, model='GCN', no_cuda=False, prune_thr=0.3, seed=139, selection_method='none', target_class=0, target_loss_weight=1, test_model='GraphSage', thrd=0.5, train_lr=0.01, trigger_size=3, trojan_epochs=200, use_vs_number=True, vs_number=15, vs_ratio=0, weight_decay=0.0005)
-target class rate on Vs: 0.6000
-accuracy on clean test nodes: 0.8615
-Overall ASR: 0.5284
-Flip ASR: 0.4176/1554 nodes
-Namespace(cuda=True, dataset='Pubmed', debug=True, defense_mode='prune', device_id=1, dis_weight=1.0, dropout=0.5, epochs=200, evaluate_mode='1by1', hidden=32, homo_boost_thrd=0.5, homo_loss_weight=1.0, inner=1, lr=0.01, model='GCN', no_cuda=False, prune_thr=0.3, seed=215, selection_method='none', target_class=0, target_loss_weight=1, test_model='GraphSage', thrd=0.5, train_lr=0.01, trigger_size=3, trojan_epochs=200, use_vs_number=True, vs_number=15, vs_ratio=0, weight_decay=0.0005)
-target class rate on Vs: 0.6000
-accuracy on clean test nodes: 0.8620
-Overall ASR: 0.5335
-Flip ASR: 0.4241/1554 nodes
-Namespace(cuda=True, dataset='Pubmed', debug=True, defense_mode='prune', device_id=1, dis_weight=1.0, dropout=0.5, epochs=200, evaluate_mode='1by1', hidden=32, homo_boost_thrd=0.5, homo_loss_weight=1.0, inner=1, lr=0.01, model='GCN', no_cuda=False, prune_thr=0.3, seed=338, selection_method='none', target_class=0, target_loss_weight=1, test_model='GraphSage', thrd=0.5, train_lr=0.01, trigger_size=3, trojan_epochs=200, use_vs_number=True, vs_number=15, vs_ratio=0, weight_decay=0.0005)
-target class rate on Vs: 0.6000
-accuracy on clean test nodes: 0.8625
-Overall ASR: 0.5325
-Flip ASR: 0.4221/1554 nodes
-Overall ASR: 0.5312 (GraphSage model, Seed: 338)
-Overall Clean Accuracy: 0.8628
-Total Overall ASR: 0.5302 
-Total Clean Accuracy: 0.8500
+run_adaptive.py:8: DeprecationWarning: the imp module is deprecated in favour of importlib; see the module's documentation for alternative uses
+  import imp
+Downloading https://github.com/kimiyoung/planetoid/raw/master/data/ind.pubmed.x
+Downloading https://github.com/kimiyoung/planetoid/raw/master/data/ind.pubmed.tx
+Downloading https://github.com/kimiyoung/planetoid/raw/master/data/ind.pubmed.allx
+Using existing file ind.pubmed.y
+Downloading https://github.com/kimiyoung/planetoid/raw/master/data/ind.pubmed.ty
+Downloading https://github.com/kimiyoung/planetoid/raw/master/data/ind.pubmed.ally
+Downloading https://github.com/kimiyoung/planetoid/raw/master/data/ind.pubmed.graph
+Downloading https://github.com/kimiyoung/planetoid/raw/master/data/ind.pubmed.test.index
+Processing...
+Done!
+Namespace(cuda=True, dataset='Pubmed', debug=True, defense_mode='prune', device_id=1, dis_weight=1.0, dropout=0.5, epochs=200, evaluate_mode='1by1', hidden=32, homo_boost_thrd=0.8, homo_loss_weight=3.0, inner=1, lr=0.01, model='GCN', no_cuda=False, prune_thr=0.2, seed=11, selection_method='none', target_class=0, target_loss_weight=1, test_model='GCN', thrd=0.5, train_lr=0.01, trigger_size=3, trojan_epochs=1000, use_vs_number=True, vs_number=15, vs_ratio=0, weight_decay=0.0005)
+Traceback (most recent call last):
+  File "run_adaptive.py", line 138, in <module>
+    from models.backdoor import Backdoor
+  File "/home/mfl5681/project-backdoor/Backdoor/models/backdoor.py", line 3, in <module>
+    from matplotlib.pyplot import get
+ModuleNotFoundError: No module named 'matplotlib'

@@ -1,0 +1,348 @@
+nohup: ignoring input
+run_adaptive.py:8: DeprecationWarning: the imp module is deprecated in favour of importlib; see the module's documentation for alternative uses
+  import imp
+Namespace(cuda=True, dataset='ogbn-arxiv', debug=True, defense_mode='prune', device_id=1, dis_weight=0.0, dropout=0.5, epochs=200, evaluate_mode='1by1', hidden=32, homo_boost_thrd=0.8, homo_loss_weight=100.0, inner=1, lr=0.01, model='GCN', no_cuda=False, prune_thr=0.8, seed=10, selection_method='cluster_degree', target_class=0, target_loss_weight=1, test_model='GCN', thrd=0.5, train_lr=0.01, trigger_size=3, trojan_epochs=1000, use_vs_number=True, vs_number=480, vs_ratio=0, weight_decay=0.0005)
+#Attach Nodes:480
+./selected_nodes/ogbn-arxiv/Overall/seed10/nodes.txt
+idx_attach: tensor([132437, 159342, 115859,  11103, 127522,  67544,  82569, 161886,  62976,
+         13773,  68963, 144203,  19681,    750, 156733,  86828,  18909,  82685,
+         81700, 164714, 103734,  65352,  47692,  14294, 153213,  78523,   1385,
+         50714, 156839, 144199,  88403,  58221,  56228,  88511,  12909, 156645,
+         93340, 136107,  80139,    622,   1438,   7666, 133129, 127534, 106596,
+        102712,   4269,  55140, 125068, 152827, 135150,  23527,   3609,   6462,
+        121168, 152542,   6165, 126338,  90948,  77520,  47397, 106658,  68636,
+        109074,  69509, 138501,  13873,  20117,  83448,   3102, 143264,  91042,
+         54237,  58770, 165138, 126351,  55671,  99141,  13704, 136218,  16458,
+         43368, 146276,  31105, 112018,  77110, 104399,  46245, 147007,   5821,
+         19313,  91731,  20583, 142204,  80573,   7668,  83587, 128743, 143180,
+         91852,  75911,  65787, 153365, 126297,  39114, 104240,  77327,   4583,
+           512,  48952,  28134,  38432,  10832,  61628, 127678, 138417, 147495,
+         98345,  93057,  33697, 138811, 124659, 133488,  71285,  47676,   1298,
+        167767,  47649, 124811,  39955,  70652, 138116,  94425, 163083,  21820,
+        133451,  73518, 132097,  23608,  13837, 125639,  40347, 163907,   5087,
+          6422, 119164, 165901,   5059,  83768,  27180, 100388,  35462, 116799,
+          3703,   5670,  48904,  68159, 113552, 160597,  96989, 127472, 136647,
+        148726, 125053, 138149, 138315, 141422,  76351,  76598,  59904, 148285,
+         70903, 165759,  39375, 136221, 140976,  63383,  42932,  75075,  71850,
+         73993,  30102,  65808,  62714,  45851,  95186,  36002,  74863,  64652,
+        161830, 145444, 126027,  60679,  73713,  93896, 146527, 169172, 114189,
+         95782,  93842, 148869, 112848,  68654,   4485, 168944, 140981,  72175,
+         45679,  20436,   7628, 115596, 130154, 135469,  14337,  63022,  17599,
+        122842, 103833,  45706,  81303,  13852,  81871, 114723, 142817,  28988,
+         48225,  21674,  34318, 111176, 158279, 146881,  34991,  76669,  13346,
+         17731, 138128, 136891, 117554,  40123,  52955, 103517, 141078,  75105,
+         82512, 168762, 139593, 118896,  12297, 138395,  64922,  55710,  22340,
+         76111,  93384, 111925,   5010,  13015, 116348, 150061, 130103, 141021,
+         64826, 144901, 106175,  92109,  89940,  71933, 144027,  36882,  41628,
+         55044,  12828,  41681,  14340,  23638, 144925,  62265,  35737, 155976,
+        161925,  63089, 135644, 164665,   9848, 124525,  66260,  78580,  66041,
+          4226, 128942,  52300,  86426, 146623,  42022,  64582,  63272, 144613,
+         12980,  93063, 146301, 166120, 109587, 144883,  58222, 119761, 126871,
+        112989,  47264,  44224,  76605, 125250,  85029, 139694, 119661,  82517,
+         10258,   5687,  86843,  93827,  30524, 146837, 142859,   3796, 104188,
+         59645, 150266,  63460, 152939, 132153,  87353, 155538,  28127,  86437,
+           591,  14225, 111064,  72841,  91588, 121367, 129042,  82694, 139395,
+        116755,  46308,  15022,  85320,  72395, 143355, 128020,  15828, 143322,
+         55075,  51976,  81577,  12925,  52480,  77357, 123824, 117210, 101747,
+         38371,  89521, 120166,  15685,  29096,  24361,   9035, 130319,   6402,
+         54168, 138793,  78393,  97894,  85421, 150077, 147429,  30273,  47541,
+        101610, 157814,  45601, 169188, 146774,  52883,  71248, 152946,  56090,
+         48566,  94860,  87246, 155373,  48973, 147804,  56436,  69861, 158491,
+        124225, 157846,  36579,  12832, 105166,  49721, 128954, 148078,  56062,
+        130915,  28744, 155979,  93417,  88471,  39751,  44343,  12516,  53050,
+         23226,  28658,  22922, 139240, 113205,  27673,  41397,  99820,  40770,
+         52043, 140123,   8016, 110285,   9523, 141587,  42198,  41116,  56625,
+         49108, 145426, 143510,  78940,  39641, 103830,  28317, 137361, 113738,
+         95930,  43828,  59183,  10174, 100999,  73621,  70772, 168782,    316,
+         63065,   1216, 150717, 142054,  43635,  42956, 104683, 153366,  55743,
+        159972,  50428,  97269,  99636,  86383, 167276,  30354, 109791, 108465,
+         33452, 167353, 132780, 148658, 140035,  90596,  92925, 148665, 127724,
+         12927,  19694, 108961], device='cuda:1')
+tensor([     1,      2,      3,  ..., 169334, 169336, 169338], device='cuda:1')
+Epoch 0, loss_inner: 3.74859, loss_target: 3.63285, homo loss: 0.80559 
+acc_train_clean: 0.0089, ASR_train_attach: 0.0000, ASR_train_outter: 0.0000
+Epoch 10, loss_inner: 3.04130, loss_target: 3.14435, homo loss: 0.00615 
+acc_train_clean: 0.2734, ASR_train_attach: 0.0000, ASR_train_outter: 0.0000
+Epoch 20, loss_inner: 2.78004, loss_target: 2.75694, homo loss: 0.00100 
+acc_train_clean: 0.2861, ASR_train_attach: 0.0000, ASR_train_outter: 0.0000
+Epoch 30, loss_inner: 2.46919, loss_target: 2.40477, homo loss: 0.00083 
+acc_train_clean: 0.3543, ASR_train_attach: 0.2958, ASR_train_outter: 0.5426
+Epoch 40, loss_inner: 2.15653, loss_target: 2.08261, homo loss: 0.00082 
+acc_train_clean: 0.4407, ASR_train_attach: 0.9437, ASR_train_outter: 0.9089
+Epoch 50, loss_inner: 1.90609, loss_target: 1.83868, homo loss: 0.00092 
+acc_train_clean: 0.5041, ASR_train_attach: 0.9875, ASR_train_outter: 0.9594
+Epoch 60, loss_inner: 1.71945, loss_target: 1.66460, homo loss: 0.00095 
+acc_train_clean: 0.5376, ASR_train_attach: 0.9708, ASR_train_outter: 0.9555
+Epoch 70, loss_inner: 1.58069, loss_target: 1.53252, homo loss: 0.00072 
+acc_train_clean: 0.5667, ASR_train_attach: 0.9896, ASR_train_outter: 0.9621
+Epoch 80, loss_inner: 1.47626, loss_target: 1.43251, homo loss: 0.00059 
+acc_train_clean: 0.5907, ASR_train_attach: 0.9917, ASR_train_outter: 0.9714
+Epoch 90, loss_inner: 1.40506, loss_target: 1.36587, homo loss: 0.00058 
+acc_train_clean: 0.6055, ASR_train_attach: 0.9896, ASR_train_outter: 0.9701
+Epoch 100, loss_inner: 1.35874, loss_target: 1.32193, homo loss: 0.00056 
+acc_train_clean: 0.6135, ASR_train_attach: 0.9938, ASR_train_outter: 0.9787
+Epoch 110, loss_inner: 1.32644, loss_target: 1.29070, homo loss: 0.00055 
+acc_train_clean: 0.6203, ASR_train_attach: 0.9979, ASR_train_outter: 0.9867
+Epoch 120, loss_inner: 1.29833, loss_target: 1.26287, homo loss: 0.00053 
+acc_train_clean: 0.6257, ASR_train_attach: 0.9979, ASR_train_outter: 0.9887
+Epoch 130, loss_inner: 1.27047, loss_target: 1.23612, homo loss: 0.00051 
+acc_train_clean: 0.6339, ASR_train_attach: 0.9979, ASR_train_outter: 0.9914
+Epoch 140, loss_inner: 1.24731, loss_target: 1.21389, homo loss: 0.00048 
+acc_train_clean: 0.6390, ASR_train_attach: 1.0000, ASR_train_outter: 0.9914
+Epoch 150, loss_inner: 1.23008, loss_target: 1.19760, homo loss: 0.00046 
+acc_train_clean: 0.6429, ASR_train_attach: 1.0000, ASR_train_outter: 0.9914
+Epoch 160, loss_inner: 1.21755, loss_target: 1.18542, homo loss: 0.00042 
+acc_train_clean: 0.6442, ASR_train_attach: 1.0000, ASR_train_outter: 0.9914
+Epoch 170, loss_inner: 1.20780, loss_target: 1.17589, homo loss: 0.00039 
+acc_train_clean: 0.6470, ASR_train_attach: 1.0000, ASR_train_outter: 0.9914
+Epoch 180, loss_inner: 1.19959, loss_target: 1.16776, homo loss: 0.00035 
+acc_train_clean: 0.6484, ASR_train_attach: 1.0000, ASR_train_outter: 0.9914
+Epoch 190, loss_inner: 1.19245, loss_target: 1.16081, homo loss: 0.00031 
+acc_train_clean: 0.6501, ASR_train_attach: 1.0000, ASR_train_outter: 0.9914
+Epoch 200, loss_inner: 1.18602, loss_target: 1.15434, homo loss: 0.00026 
+acc_train_clean: 0.6515, ASR_train_attach: 1.0000, ASR_train_outter: 0.9914
+Epoch 210, loss_inner: 1.18016, loss_target: 1.14881, homo loss: 0.00023 
+acc_train_clean: 0.6524, ASR_train_attach: 1.0000, ASR_train_outter: 0.9907
+Epoch 220, loss_inner: 1.17488, loss_target: 1.14435, homo loss: 0.00024 
+acc_train_clean: 0.6536, ASR_train_attach: 1.0000, ASR_train_outter: 0.9840
+Epoch 230, loss_inner: 1.16965, loss_target: 1.13817, homo loss: 0.00023 
+acc_train_clean: 0.6549, ASR_train_attach: 1.0000, ASR_train_outter: 0.9920
+Epoch 240, loss_inner: 1.16494, loss_target: 1.13274, homo loss: 0.00017 
+acc_train_clean: 0.6564, ASR_train_attach: 1.0000, ASR_train_outter: 0.9953
+Epoch 250, loss_inner: 1.16055, loss_target: 1.12904, homo loss: 0.00014 
+acc_train_clean: 0.6571, ASR_train_attach: 1.0000, ASR_train_outter: 0.9927
+Epoch 260, loss_inner: 1.15694, loss_target: 1.12668, homo loss: 0.00020 
+acc_train_clean: 0.6582, ASR_train_attach: 1.0000, ASR_train_outter: 0.9894
+Epoch 270, loss_inner: 1.15273, loss_target: 1.12105, homo loss: 0.00016 
+acc_train_clean: 0.6595, ASR_train_attach: 1.0000, ASR_train_outter: 0.9953
+Epoch 280, loss_inner: 1.14908, loss_target: 1.11767, homo loss: 0.00007 
+acc_train_clean: 0.6602, ASR_train_attach: 1.0000, ASR_train_outter: 0.9927
+Epoch 290, loss_inner: 1.14406, loss_target: 1.11406, homo loss: 0.00033 
+acc_train_clean: 0.6622, ASR_train_attach: 0.9958, ASR_train_outter: 0.9814
+Epoch 300, loss_inner: 1.13792, loss_target: 1.10664, homo loss: 0.00020 
+acc_train_clean: 0.6643, ASR_train_attach: 1.0000, ASR_train_outter: 0.9947
+Epoch 310, loss_inner: 1.13188, loss_target: 1.10009, homo loss: 0.00009 
+acc_train_clean: 0.6659, ASR_train_attach: 1.0000, ASR_train_outter: 0.9967
+Epoch 320, loss_inner: 1.12713, loss_target: 1.09592, homo loss: 0.00004 
+acc_train_clean: 0.6664, ASR_train_attach: 1.0000, ASR_train_outter: 0.9953
+Epoch 330, loss_inner: 1.12346, loss_target: 1.09291, homo loss: 0.00008 
+acc_train_clean: 0.6678, ASR_train_attach: 1.0000, ASR_train_outter: 0.9947
+Epoch 340, loss_inner: 1.12095, loss_target: 1.09239, homo loss: 0.00045 
+acc_train_clean: 0.6685, ASR_train_attach: 0.9979, ASR_train_outter: 0.9880
+Epoch 350, loss_inner: 1.11852, loss_target: 1.09248, homo loss: 0.00050 
+acc_train_clean: 0.6700, ASR_train_attach: 1.0000, ASR_train_outter: 0.9947
+Epoch 360, loss_inner: 1.11672, loss_target: 1.08808, homo loss: 0.00050 
+acc_train_clean: 0.6710, ASR_train_attach: 1.0000, ASR_train_outter: 0.9987
+Epoch 370, loss_inner: 1.11457, loss_target: 1.08623, homo loss: 0.00047 
+acc_train_clean: 0.6714, ASR_train_attach: 1.0000, ASR_train_outter: 0.9987
+Epoch 380, loss_inner: 1.11305, loss_target: 1.08392, homo loss: 0.00047 
+acc_train_clean: 0.6720, ASR_train_attach: 1.0000, ASR_train_outter: 0.9987
+Epoch 390, loss_inner: 1.11165, loss_target: 1.08279, homo loss: 0.00045 
+acc_train_clean: 0.6725, ASR_train_attach: 1.0000, ASR_train_outter: 0.9987
+Epoch 400, loss_inner: 1.11025, loss_target: 1.08112, homo loss: 0.00043 
+acc_train_clean: 0.6728, ASR_train_attach: 1.0000, ASR_train_outter: 0.9987
+Epoch 410, loss_inner: 1.10897, loss_target: 1.07976, homo loss: 0.00041 
+acc_train_clean: 0.6732, ASR_train_attach: 1.0000, ASR_train_outter: 0.9993
+Epoch 420, loss_inner: 1.10786, loss_target: 1.07857, homo loss: 0.00038 
+acc_train_clean: 0.6735, ASR_train_attach: 1.0000, ASR_train_outter: 0.9987
+Epoch 430, loss_inner: 1.10728, loss_target: 1.07859, homo loss: 0.00035 
+acc_train_clean: 0.6728, ASR_train_attach: 1.0000, ASR_train_outter: 0.9993
+Epoch 440, loss_inner: 1.10622, loss_target: 1.07592, homo loss: 0.00029 
+acc_train_clean: 0.6726, ASR_train_attach: 1.0000, ASR_train_outter: 0.9993
+Epoch 450, loss_inner: 1.10501, loss_target: 1.07456, homo loss: 0.00021 
+acc_train_clean: 0.6741, ASR_train_attach: 1.0000, ASR_train_outter: 0.9993
+Epoch 460, loss_inner: 1.10406, loss_target: 1.07336, homo loss: 0.00009 
+acc_train_clean: 0.6745, ASR_train_attach: 1.0000, ASR_train_outter: 0.9987
+Epoch 470, loss_inner: 1.10330, loss_target: 1.07357, homo loss: 0.00007 
+acc_train_clean: 0.6743, ASR_train_attach: 1.0000, ASR_train_outter: 0.9947
+Epoch 480, loss_inner: 1.10255, loss_target: 1.07254, homo loss: 0.00007 
+acc_train_clean: 0.6746, ASR_train_attach: 1.0000, ASR_train_outter: 0.9960
+Epoch 490, loss_inner: 1.10166, loss_target: 1.07089, homo loss: 0.00006 
+acc_train_clean: 0.6749, ASR_train_attach: 1.0000, ASR_train_outter: 0.9987
+Epoch 500, loss_inner: 1.10090, loss_target: 1.07041, homo loss: 0.00008 
+acc_train_clean: 0.6754, ASR_train_attach: 1.0000, ASR_train_outter: 0.9980
+Epoch 510, loss_inner: 1.10165, loss_target: 1.07699, homo loss: 0.00108 
+acc_train_clean: 0.6752, ASR_train_attach: 1.0000, ASR_train_outter: 0.9973
+Epoch 520, loss_inner: 1.09973, loss_target: 1.07242, homo loss: 0.00040 
+acc_train_clean: 0.6758, ASR_train_attach: 1.0000, ASR_train_outter: 0.9960
+Epoch 530, loss_inner: 1.09907, loss_target: 1.07008, homo loss: 0.00042 
+acc_train_clean: 0.6762, ASR_train_attach: 1.0000, ASR_train_outter: 1.0000
+Epoch 540, loss_inner: 1.09830, loss_target: 1.06912, homo loss: 0.00037 
+acc_train_clean: 0.6763, ASR_train_attach: 1.0000, ASR_train_outter: 1.0000
+Epoch 550, loss_inner: 1.09767, loss_target: 1.06786, homo loss: 0.00030 
+acc_train_clean: 0.6763, ASR_train_attach: 1.0000, ASR_train_outter: 1.0000
+Epoch 560, loss_inner: 1.09711, loss_target: 1.06669, homo loss: 0.00017 
+acc_train_clean: 0.6767, ASR_train_attach: 1.0000, ASR_train_outter: 1.0000
+Epoch 570, loss_inner: 1.09781, loss_target: 1.06627, homo loss: 0.00004 
+acc_train_clean: 0.6754, ASR_train_attach: 1.0000, ASR_train_outter: 0.9987
+Epoch 580, loss_inner: 1.09623, loss_target: 1.06558, homo loss: 0.00005 
+acc_train_clean: 0.6764, ASR_train_attach: 1.0000, ASR_train_outter: 0.9973
+Epoch 590, loss_inner: 1.09548, loss_target: 1.06498, homo loss: 0.00010 
+acc_train_clean: 0.6770, ASR_train_attach: 1.0000, ASR_train_outter: 1.0000
+Epoch 600, loss_inner: 1.09516, loss_target: 1.06633, homo loss: 0.00020 
+acc_train_clean: 0.6768, ASR_train_attach: 1.0000, ASR_train_outter: 0.9993
+Epoch 610, loss_inner: 1.09529, loss_target: 1.06964, homo loss: 0.00027 
+acc_train_clean: 0.6772, ASR_train_attach: 1.0000, ASR_train_outter: 1.0000
+Epoch 620, loss_inner: 1.09409, loss_target: 1.06374, homo loss: 0.00017 
+acc_train_clean: 0.6773, ASR_train_attach: 1.0000, ASR_train_outter: 1.0000
+Epoch 630, loss_inner: 1.09356, loss_target: 1.06423, homo loss: 0.00015 
+acc_train_clean: 0.6773, ASR_train_attach: 1.0000, ASR_train_outter: 0.9980
+Epoch 640, loss_inner: 1.09392, loss_target: 1.06562, homo loss: 0.00010 
+acc_train_clean: 0.6765, ASR_train_attach: 1.0000, ASR_train_outter: 0.9987
+Epoch 650, loss_inner: 1.09306, loss_target: 1.06423, homo loss: 0.00014 
+acc_train_clean: 0.6771, ASR_train_attach: 1.0000, ASR_train_outter: 0.9987
+Epoch 660, loss_inner: 1.09419, loss_target: 1.07615, homo loss: 0.00076 
+acc_train_clean: 0.6754, ASR_train_attach: 1.0000, ASR_train_outter: 0.9987
+Epoch 670, loss_inner: 1.09293, loss_target: 1.07170, homo loss: 0.00033 
+acc_train_clean: 0.6765, ASR_train_attach: 1.0000, ASR_train_outter: 1.0000
+Epoch 680, loss_inner: 1.09210, loss_target: 1.06358, homo loss: 0.00028 
+acc_train_clean: 0.6770, ASR_train_attach: 1.0000, ASR_train_outter: 1.0000
+Epoch 690, loss_inner: 1.09147, loss_target: 1.06374, homo loss: 0.00015 
+acc_train_clean: 0.6772, ASR_train_attach: 1.0000, ASR_train_outter: 1.0000
+Epoch 700, loss_inner: 2.00233, loss_target: 2.85020, homo loss: 0.00596 
+acc_train_clean: 0.5309, ASR_train_attach: 1.0000, ASR_train_outter: 0.2241
+Epoch 710, loss_inner: 1.50067, loss_target: 2.75402, homo loss: 0.00390 
+acc_train_clean: 0.5934, ASR_train_attach: 1.0000, ASR_train_outter: 0.0013
+Epoch 720, loss_inner: 2.01008, loss_target: 3.01961, homo loss: 0.00483 
+acc_train_clean: 0.5345, ASR_train_attach: 1.0000, ASR_train_outter: 1.0000
+Epoch 730, loss_inner: 1.65502, loss_target: 2.52862, homo loss: 0.00805 
+acc_train_clean: 0.5379, ASR_train_attach: 1.0000, ASR_train_outter: 0.9947
+Epoch 740, loss_inner: 1.72117, loss_target: 2.50832, homo loss: 0.02242 
+acc_train_clean: 0.5421, ASR_train_attach: 1.0000, ASR_train_outter: 1.0000
+Epoch 750, loss_inner: 2.06119, loss_target: 3.70320, homo loss: 0.03372 
+acc_train_clean: 0.5151, ASR_train_attach: 1.0000, ASR_train_outter: 1.0000
+Epoch 760, loss_inner: 2.23705, loss_target: 12.39007, homo loss: 0.04902 
+acc_train_clean: 0.5084, ASR_train_attach: 1.0000, ASR_train_outter: 0.0000
+Epoch 770, loss_inner: 2.56863, loss_target: 9.44594, homo loss: 0.07838 
+acc_train_clean: 0.4885, ASR_train_attach: 1.0000, ASR_train_outter: 1.0000
+Epoch 780, loss_inner: 3.26621, loss_target: 19.03398, homo loss: 0.13845 
+acc_train_clean: 0.4737, ASR_train_attach: 1.0000, ASR_train_outter: 1.0000
+Epoch 790, loss_inner: 4.80578, loss_target: 20.25499, homo loss: 0.21560 
+acc_train_clean: 0.4357, ASR_train_attach: 1.0000, ASR_train_outter: 1.0000
+Epoch 800, loss_inner: 3.75203, loss_target: 23.63710, homo loss: 0.30012 
+acc_train_clean: 0.4966, ASR_train_attach: 1.0000, ASR_train_outter: 1.0000
+Epoch 810, loss_inner: 3.10665, loss_target: 22.62336, homo loss: 0.29800 
+acc_train_clean: 0.5271, ASR_train_attach: 1.0000, ASR_train_outter: 1.0000
+Epoch 820, loss_inner: 4.84272, loss_target: 86.97319, homo loss: 0.29317 
+acc_train_clean: 0.5320, ASR_train_attach: 1.0000, ASR_train_outter: 0.0000
+Epoch 830, loss_inner: 4.81912, loss_target: 35.02067, homo loss: 0.29890 
+acc_train_clean: 0.5474, ASR_train_attach: 1.0000, ASR_train_outter: 1.0000
+Epoch 840, loss_inner: 3.86406, loss_target: 33.22801, homo loss: 0.28912 
+acc_train_clean: 0.5443, ASR_train_attach: 1.0000, ASR_train_outter: 1.0000
+Epoch 850, loss_inner: 3.18254, loss_target: 49.53622, homo loss: 0.27515 
+acc_train_clean: 0.5409, ASR_train_attach: 1.0000, ASR_train_outter: 1.0000
+Epoch 860, loss_inner: 6.12308, loss_target: 99.58537, homo loss: 0.28667 
+acc_train_clean: 0.5042, ASR_train_attach: 1.0000, ASR_train_outter: 0.0572
+Epoch 870, loss_inner: 4.73464, loss_target: 142.14355, homo loss: 0.28858 
+acc_train_clean: 0.4669, ASR_train_attach: 1.0000, ASR_train_outter: 0.0299
+Epoch 880, loss_inner: 7.40410, loss_target: 85.67990, homo loss: 0.28028 
+acc_train_clean: 0.4032, ASR_train_attach: 1.0000, ASR_train_outter: 0.9801
+Epoch 890, loss_inner: 10.74909, loss_target: 102.88669, homo loss: 0.29666 
+acc_train_clean: 0.4396, ASR_train_attach: 1.0000, ASR_train_outter: 1.0000
+Epoch 900, loss_inner: 5.94279, loss_target: 104.86325, homo loss: 0.30457 
+acc_train_clean: 0.5174, ASR_train_attach: 1.0000, ASR_train_outter: 1.0000
+Epoch 910, loss_inner: 5.07187, loss_target: 75.94024, homo loss: 0.30869 
+acc_train_clean: 0.5417, ASR_train_attach: 1.0000, ASR_train_outter: 1.0000
+Epoch 920, loss_inner: 3.58456, loss_target: 60.17459, homo loss: 0.31216 
+acc_train_clean: 0.5574, ASR_train_attach: 1.0000, ASR_train_outter: 1.0000
+Epoch 930, loss_inner: 6.69765, loss_target: 64.80246, homo loss: 0.31390 
+acc_train_clean: 0.5641, ASR_train_attach: 1.0000, ASR_train_outter: 1.0000
+Epoch 940, loss_inner: 4.56431, loss_target: 50.19376, homo loss: 0.31666 
+acc_train_clean: 0.5684, ASR_train_attach: 1.0000, ASR_train_outter: 1.0000
+Epoch 950, loss_inner: 3.38165, loss_target: 37.77303, homo loss: 0.31749 
+acc_train_clean: 0.5844, ASR_train_attach: 1.0000, ASR_train_outter: 1.0000
+Epoch 960, loss_inner: 3.44952, loss_target: 37.01028, homo loss: 0.32041 
+acc_train_clean: 0.5863, ASR_train_attach: 1.0000, ASR_train_outter: 1.0000
+Epoch 970, loss_inner: 2.51119, loss_target: 18.68505, homo loss: 0.32936 
+acc_train_clean: 0.6018, ASR_train_attach: 1.0000, ASR_train_outter: 1.0000
+Epoch 980, loss_inner: 2.05127, loss_target: 13.58034, homo loss: 0.34216 
+acc_train_clean: 0.5985, ASR_train_attach: 1.0000, ASR_train_outter: 1.0000
+Epoch 990, loss_inner: 1.59505, loss_target: 6.65551, homo loss: 0.35803 
+acc_train_clean: 0.6077, ASR_train_attach: 1.0000, ASR_train_outter: 1.0000
+load best weight based on the loss outter
+precent of left attach nodes: 1.000
+Namespace(cuda=True, dataset='ogbn-arxiv', debug=True, defense_mode='prune', device_id=1, dis_weight=0.0, dropout=0.5, epochs=200, evaluate_mode='1by1', hidden=32, homo_boost_thrd=0.8, homo_loss_weight=100.0, inner=1, lr=0.01, model='GCN', no_cuda=False, prune_thr=0.8, seed=265, selection_method='cluster_degree', target_class=0, target_loss_weight=1, test_model='GCN', thrd=0.5, train_lr=0.01, trigger_size=3, trojan_epochs=1000, use_vs_number=True, vs_number=480, vs_ratio=0, weight_decay=0.0005)
+target class rate on Vs: 0.9896
+accuracy on clean test nodes: 0.6173
+Overall ASR: 0.9510
+Flip ASR: 0.9509/16875 nodes
+Namespace(cuda=True, dataset='ogbn-arxiv', debug=True, defense_mode='prune', device_id=1, dis_weight=0.0, dropout=0.5, epochs=200, evaluate_mode='1by1', hidden=32, homo_boost_thrd=0.8, homo_loss_weight=100.0, inner=1, lr=0.01, model='GCN', no_cuda=False, prune_thr=0.8, seed=125, selection_method='cluster_degree', target_class=0, target_loss_weight=1, test_model='GCN', thrd=0.5, train_lr=0.01, trigger_size=3, trojan_epochs=1000, use_vs_number=True, vs_number=480, vs_ratio=0, weight_decay=0.0005)
+target class rate on Vs: 0.9896
+accuracy on clean test nodes: 0.6171
+Overall ASR: 0.9529
+Flip ASR: 0.9527/16875 nodes
+Namespace(cuda=True, dataset='ogbn-arxiv', debug=True, defense_mode='prune', device_id=1, dis_weight=0.0, dropout=0.5, epochs=200, evaluate_mode='1by1', hidden=32, homo_boost_thrd=0.8, homo_loss_weight=100.0, inner=1, lr=0.01, model='GCN', no_cuda=False, prune_thr=0.8, seed=996, selection_method='cluster_degree', target_class=0, target_loss_weight=1, test_model='GCN', thrd=0.5, train_lr=0.01, trigger_size=3, trojan_epochs=1000, use_vs_number=True, vs_number=480, vs_ratio=0, weight_decay=0.0005)
+target class rate on Vs: 0.9896
+accuracy on clean test nodes: 0.6286
+Overall ASR: 0.9515
+Flip ASR: 0.9513/16875 nodes
+Namespace(cuda=True, dataset='ogbn-arxiv', debug=True, defense_mode='prune', device_id=1, dis_weight=0.0, dropout=0.5, epochs=200, evaluate_mode='1by1', hidden=32, homo_boost_thrd=0.8, homo_loss_weight=100.0, inner=1, lr=0.01, model='GCN', no_cuda=False, prune_thr=0.8, seed=527, selection_method='cluster_degree', target_class=0, target_loss_weight=1, test_model='GCN', thrd=0.5, train_lr=0.01, trigger_size=3, trojan_epochs=1000, use_vs_number=True, vs_number=480, vs_ratio=0, weight_decay=0.0005)
+target class rate on Vs: 0.9896
+accuracy on clean test nodes: 0.6226
+Overall ASR: 0.9519
+Flip ASR: 0.9517/16875 nodes
+Namespace(cuda=True, dataset='ogbn-arxiv', debug=True, defense_mode='prune', device_id=1, dis_weight=0.0, dropout=0.5, epochs=200, evaluate_mode='1by1', hidden=32, homo_boost_thrd=0.8, homo_loss_weight=100.0, inner=1, lr=0.01, model='GCN', no_cuda=False, prune_thr=0.8, seed=320, selection_method='cluster_degree', target_class=0, target_loss_weight=1, test_model='GCN', thrd=0.5, train_lr=0.01, trigger_size=3, trojan_epochs=1000, use_vs_number=True, vs_number=480, vs_ratio=0, weight_decay=0.0005)
+target class rate on Vs: 0.9896
+accuracy on clean test nodes: 0.6167
+Overall ASR: 0.9507
+Flip ASR: 0.9506/16875 nodes
+Overall ASR: 0.9516 (GCN model, Seed: 320)
+Overall Clean Accuracy: 0.6205
+Namespace(cuda=True, dataset='ogbn-arxiv', debug=True, defense_mode='prune', device_id=1, dis_weight=0.0, dropout=0.5, epochs=200, evaluate_mode='1by1', hidden=32, homo_boost_thrd=0.8, homo_loss_weight=100.0, inner=1, lr=0.01, model='GCN', no_cuda=False, prune_thr=0.8, seed=781, selection_method='cluster_degree', target_class=0, target_loss_weight=1, test_model='GAT', thrd=0.5, train_lr=0.01, trigger_size=3, trojan_epochs=1000, use_vs_number=True, vs_number=480, vs_ratio=0, weight_decay=0.0005)
+/home/project-graph-backdoor/Backdoor/models/GAT.py:61: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  self.labels = torch.tensor(labels, dtype=torch.long)
+target class rate on Vs: 0.9896
+accuracy on clean test nodes: 0.6253
+Overall ASR: 0.9565
+Flip ASR: 0.9564/16875 nodes
+Namespace(cuda=True, dataset='ogbn-arxiv', debug=True, defense_mode='prune', device_id=1, dis_weight=0.0, dropout=0.5, epochs=200, evaluate_mode='1by1', hidden=32, homo_boost_thrd=0.8, homo_loss_weight=100.0, inner=1, lr=0.01, model='GCN', no_cuda=False, prune_thr=0.8, seed=706, selection_method='cluster_degree', target_class=0, target_loss_weight=1, test_model='GAT', thrd=0.5, train_lr=0.01, trigger_size=3, trojan_epochs=1000, use_vs_number=True, vs_number=480, vs_ratio=0, weight_decay=0.0005)
+target class rate on Vs: 0.9896
+accuracy on clean test nodes: 0.6268
+Overall ASR: 0.9565
+Flip ASR: 0.9564/16875 nodes
+Namespace(cuda=True, dataset='ogbn-arxiv', debug=True, defense_mode='prune', device_id=1, dis_weight=0.0, dropout=0.5, epochs=200, evaluate_mode='1by1', hidden=32, homo_boost_thrd=0.8, homo_loss_weight=100.0, inner=1, lr=0.01, model='GCN', no_cuda=False, prune_thr=0.8, seed=778, selection_method='cluster_degree', target_class=0, target_loss_weight=1, test_model='GAT', thrd=0.5, train_lr=0.01, trigger_size=3, trojan_epochs=1000, use_vs_number=True, vs_number=480, vs_ratio=0, weight_decay=0.0005)
+target class rate on Vs: 0.9896
+accuracy on clean test nodes: 0.6279
+Overall ASR: 0.9566
+Flip ASR: 0.9564/16875 nodes
+Namespace(cuda=True, dataset='ogbn-arxiv', debug=True, defense_mode='prune', device_id=1, dis_weight=0.0, dropout=0.5, epochs=200, evaluate_mode='1by1', hidden=32, homo_boost_thrd=0.8, homo_loss_weight=100.0, inner=1, lr=0.01, model='GCN', no_cuda=False, prune_thr=0.8, seed=604, selection_method='cluster_degree', target_class=0, target_loss_weight=1, test_model='GAT', thrd=0.5, train_lr=0.01, trigger_size=3, trojan_epochs=1000, use_vs_number=True, vs_number=480, vs_ratio=0, weight_decay=0.0005)
+target class rate on Vs: 0.9896
+accuracy on clean test nodes: 0.6227
+Overall ASR: 0.9566
+Flip ASR: 0.9564/16875 nodes
+Namespace(cuda=True, dataset='ogbn-arxiv', debug=True, defense_mode='prune', device_id=1, dis_weight=0.0, dropout=0.5, epochs=200, evaluate_mode='1by1', hidden=32, homo_boost_thrd=0.8, homo_loss_weight=100.0, inner=1, lr=0.01, model='GCN', no_cuda=False, prune_thr=0.8, seed=133, selection_method='cluster_degree', target_class=0, target_loss_weight=1, test_model='GAT', thrd=0.5, train_lr=0.01, trigger_size=3, trojan_epochs=1000, use_vs_number=True, vs_number=480, vs_ratio=0, weight_decay=0.0005)
+target class rate on Vs: 0.9896
+accuracy on clean test nodes: 0.6247
+Overall ASR: 0.9566
+Flip ASR: 0.9564/16875 nodes
+Overall ASR: 0.9565 (GAT model, Seed: 133)
+Overall Clean Accuracy: 0.6255
+Namespace(cuda=True, dataset='ogbn-arxiv', debug=True, defense_mode='prune', device_id=1, dis_weight=0.0, dropout=0.5, epochs=200, evaluate_mode='1by1', hidden=32, homo_boost_thrd=0.8, homo_loss_weight=100.0, inner=1, lr=0.01, model='GCN', no_cuda=False, prune_thr=0.8, seed=673, selection_method='cluster_degree', target_class=0, target_loss_weight=1, test_model='GraphSage', thrd=0.5, train_lr=0.01, trigger_size=3, trojan_epochs=1000, use_vs_number=True, vs_number=480, vs_ratio=0, weight_decay=0.0005)
+target class rate on Vs: 0.9896
+accuracy on clean test nodes: 0.6223
+Overall ASR: 0.9277
+Flip ASR: 0.9275/16875 nodes
+Namespace(cuda=True, dataset='ogbn-arxiv', debug=True, defense_mode='prune', device_id=1, dis_weight=0.0, dropout=0.5, epochs=200, evaluate_mode='1by1', hidden=32, homo_boost_thrd=0.8, homo_loss_weight=100.0, inner=1, lr=0.01, model='GCN', no_cuda=False, prune_thr=0.8, seed=904, selection_method='cluster_degree', target_class=0, target_loss_weight=1, test_model='GraphSage', thrd=0.5, train_lr=0.01, trigger_size=3, trojan_epochs=1000, use_vs_number=True, vs_number=480, vs_ratio=0, weight_decay=0.0005)
+target class rate on Vs: 0.9896
+accuracy on clean test nodes: 0.6300
+Overall ASR: 0.9344
+Flip ASR: 0.9342/16875 nodes
+Namespace(cuda=True, dataset='ogbn-arxiv', debug=True, defense_mode='prune', device_id=1, dis_weight=0.0, dropout=0.5, epochs=200, evaluate_mode='1by1', hidden=32, homo_boost_thrd=0.8, homo_loss_weight=100.0, inner=1, lr=0.01, model='GCN', no_cuda=False, prune_thr=0.8, seed=56, selection_method='cluster_degree', target_class=0, target_loss_weight=1, test_model='GraphSage', thrd=0.5, train_lr=0.01, trigger_size=3, trojan_epochs=1000, use_vs_number=True, vs_number=480, vs_ratio=0, weight_decay=0.0005)
+target class rate on Vs: 0.9896
+accuracy on clean test nodes: 0.6293
+Overall ASR: 0.9372
+Flip ASR: 0.9371/16875 nodes
+Namespace(cuda=True, dataset='ogbn-arxiv', debug=True, defense_mode='prune', device_id=1, dis_weight=0.0, dropout=0.5, epochs=200, evaluate_mode='1by1', hidden=32, homo_boost_thrd=0.8, homo_loss_weight=100.0, inner=1, lr=0.01, model='GCN', no_cuda=False, prune_thr=0.8, seed=1, selection_method='cluster_degree', target_class=0, target_loss_weight=1, test_model='GraphSage', thrd=0.5, train_lr=0.01, trigger_size=3, trojan_epochs=1000, use_vs_number=True, vs_number=480, vs_ratio=0, weight_decay=0.0005)
+target class rate on Vs: 0.9896
+accuracy on clean test nodes: 0.6343
+Overall ASR: 0.9271
+Flip ASR: 0.9269/16875 nodes
+Namespace(cuda=True, dataset='ogbn-arxiv', debug=True, defense_mode='prune', device_id=1, dis_weight=0.0, dropout=0.5, epochs=200, evaluate_mode='1by1', hidden=32, homo_boost_thrd=0.8, homo_loss_weight=100.0, inner=1, lr=0.01, model='GCN', no_cuda=False, prune_thr=0.8, seed=694, selection_method='cluster_degree', target_class=0, target_loss_weight=1, test_model='GraphSage', thrd=0.5, train_lr=0.01, trigger_size=3, trojan_epochs=1000, use_vs_number=True, vs_number=480, vs_ratio=0, weight_decay=0.0005)
+target class rate on Vs: 0.9896
+accuracy on clean test nodes: 0.6258
+Overall ASR: 0.9359
+Flip ASR: 0.9358/16875 nodes
+Overall ASR: 0.9325 (GraphSage model, Seed: 694)
+Overall Clean Accuracy: 0.6284
+Total Overall ASR: 0.9469 
+Total Clean Accuracy: 0.6248

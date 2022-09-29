@@ -374,7 +374,7 @@ def cluster_distance_selection(args,data,idx_train,idx_val,idx_clean_test,unlabe
     return idx_attach
 
 def cluster_degree_selection(args,data,idx_train,idx_val,idx_clean_test,unlabeled_idx,train_edge_index,size,device):
-    selected_nodes_path = "./selected_nodes/{}/Overall/seed{}/class_{}.txt".format(args.dataset,args.seed,label)
+    selected_nodes_path = "./selected_nodes/{}/Overall/seed{}/nodes.txt".format(args.dataset,args.seed)
     if(os.path.exists(selected_nodes_path)):
         print(selected_nodes_path)
         idx_attach = np.loadtxt(selected_nodes_path, delimiter=',').astype(int)
@@ -398,6 +398,7 @@ def cluster_degree_selection(args,data,idx_train,idx_val,idx_clean_test,unlabele
         kmedoids = cluster.KMedoids(n_clusters=nclass,method='pam')
         kmedoids.fit(encoder_x[seen_node_idx].detach().cpu().numpy())
         cluster_centers = kmedoids.cluster_centers_
+        y_pred = kmedoids.predict(encoder_x.cpu().numpy())
     else:
         # _, cluster_centers = kmeans(X=encoder_x[seen_node_idx], num_clusters=nclass, distance='euclidean', device=device)
         kmeans = KMeans(n_clusters=nclass,random_state=1)
@@ -409,7 +410,7 @@ def cluster_degree_selection(args,data,idx_train,idx_val,idx_clean_test,unlabele
     # cluster_centers = kmedoids.cluster_centers_
 
     encoder_output = gcn_encoder(data.x,train_edge_index,None)
-    y_pred = np.array(encoder_output.argmax(dim=1).cpu()).astype(int)
+    # y_pred = np.array(encoder_output.argmax(dim=1).cpu()).astype(int)
     # cluster_centers = []
     # for label in range(nclass):
     #     idx_sing_class = (y_pred == label).nonzero()[0]
@@ -424,7 +425,7 @@ def cluster_degree_selection(args,data,idx_train,idx_val,idx_clean_test,unlabele
     selected_nodes_foldpath = "./selected_nodes/{}/Overall/seed{}".format(args.dataset,args.seed)
     if(not os.path.exists(selected_nodes_foldpath)):
         os.makedirs(selected_nodes_foldpath)
-    selected_nodes_path = "./selected_nodes/{}/Overall/seed{}/class_{}.txt".format(args.dataset,args.seed,label)
+    selected_nodes_path = "./selected_nodes/{}/Overall/seed{}/nodes.txt".format(args.dataset,args.seed)
     if(not os.path.exists(selected_nodes_path)):
         np.savetxt(selected_nodes_path,idx_attach)
     else:
