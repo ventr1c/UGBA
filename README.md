@@ -1,5 +1,5 @@
 # UGBA: Unnoticeable Backdoor Attack on Graph Neural Networks
-An offical PyTorch implementation of "Unnoticeable Backdoor Attack on Graph Neural Networks" (WWW 2023). [[paper]]()
+An official PyTorch implementation of "Unnoticeable Backdoor Attack on Graph Neural Networks" (WWW 2023). [[paper]]()
 
 ## Content
 - [Unnoticeable Backdoor Attack on Graph Neural Networks](#unnoticeable-backdoor-attack-on-graph-neural-networks)
@@ -26,7 +26,7 @@ An offical PyTorch implementation of "Unnoticeable Backdoor Attack on Graph Neur
 * `./models`: This directory contains the model of UGBA.
 * `./data`: The directory contains the original datasets used in the experiments
 * `./logs`: The directory contains the log of the experimental results 
-* `./scripts`: It contains the scripts to reproduce the major reuslts of our paper.
+* `./script`: It contains the scripts to reproduce the major reuslts of our paper.
 * `./selected_nodes`: This directory contains the selected poisoned nodes for each dataset.
 * `./baseline_atk.py` The framework of baseline node injection attack (i.e., [TDGIA](https://arxiv.org/abs/2106.06663), [AGIA](https://arxiv.org/abs/2202.08057)). 
 * `./run_adaptive.py`: The program to run our UGBA attack.
@@ -56,7 +56,7 @@ bash install.sh
 Graph Neural Networks (GNNs) have achieved promising results in various tasks such as node classification and graph classification. Recent studies find that GNNs are vulnerable to adversarial attacks. However, effective backdoor attacks on graphs are still an open problem. In particular, backdoor attack poisons the graph by attaching triggers and the target class label to a set of nodes in the training graph. The backdoored GNNs trained on the poisoned graph will then be misled to predict test nodes to target class once attached with triggers. Though there are some initial efforts in graph backdoor attacks, our empirical analysis shows that they may require a large attack budget for effective backdoor attacks and the injected triggers can be easily detected and pruned. Therefore, in this paper, we study a novel problem of unnoticeable graph backdoor attacks with limited attack budget. To fully utilize the attack budget, we propose to deliberately select the nodes to inject triggers and target class labels in the poisoning phase. An adaptive trigger generator is deployed to obtain effective triggers that are difficult to be noticed. Extensive experiments on real-world datasets against various defense strategies demonstrate the effectiveness of our proposed method in conducting effective unnoticeable backdoor attacks.
 
 ### Reproduce the Results
-The hyper-parameters settings for the datasets are included in [`train_UGBA.sh`](https://github.com/EnyanDai/Backdoor/blob/minhua/script/train_UGBA.sh) To reproduce the performance reported in the paper, you can run the bash file:
+The hyper-parameters settings for the datasets are included in [`train_UGBA.sh`](https://github.com/ventr1c/Unnoticeable-Backdoor-Attacks-on-Graph-Neural-Networks/blob/main/script/train_UGBA.sh) To reproduce the performance reported in the paper, you can run the bash file:
 ```
 bash script\train_UGBA.sh
 ```
@@ -64,7 +64,7 @@ To get the results of Baselines, you can run the bash file:
 ```
 bash script\train_baseline.sh
 ```
-To see the reproduce experimental results, please check the logs in [`./logs`](https://github.com/EnyanDai/Backdoor/tree/minhua/logs)
+To see the reproduce experimental results, please check the logs in [`./logs`](https://github.com/ventr1c/Unnoticeable-Backdoor-Attacks-on-Graph-Neural-Networks/tree/main/logs)
 ## 4. Compared Methods
 ### Compared with Graph Backdoor Attack Methods
 #### SBA-Samp
