@@ -139,7 +139,9 @@ print("#Attach Nodes:{}".format(size))
 from models.construct import model_construct
 result_asr = []
 result_acc = []
-for seed in range(15,20):
+rs = np.random.RandomState(args.seed)
+seeds = rs.randint(1000,size=5)
+for seed in seeds:
     np.random.seed(seed)
     torch.manual_seed(seed)
     torch.cuda.manual_seed(seed)

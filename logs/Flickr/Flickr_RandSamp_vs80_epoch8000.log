@@ -1,0 +1,877 @@
+nohup: ignoring input
+Namespace(attack_method='Rand_Gene', cuda=True, dataset='Flickr', debug=False, defense_mode='none', device_id=2, dropout=0.5, epochs=8000, evaluate_mode='1by1', hidden=64, no_cuda=False, prune_thr=0.4, seed=15, target_class=0, test_model='GCN', train_lr=0.02, trigger_prob=0.5, trigger_size=3, vs_ratio=0.05, vs_size=80, weight_decay=0.0005)
+Rand generate the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.4670
+ASR: 0.0000
+Rand generate the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.4638
+ASR: 0.0000
+Rand generate the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.4649
+ASR: 0.0000
+Rand generate the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.4696
+ASR: 0.0000
+Rand generate the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.4710
+ASR: 0.0000
+Rand generate the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.4664
+ASR: 0.0000
+Rand generate the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.4658
+ASR: 0.0000
+Rand generate the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.4620
+ASR: 0.0000
+Rand generate the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.4679
+ASR: 0.0000
+Rand generate the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.4630
+ASR: 0.0000
+The final ASR:0.00000, 0.00000, Accuracy:0.46613, 0.00273
+Namespace(attack_method='Rand_Gene', cuda=True, dataset='Flickr', debug=False, defense_mode='none', device_id=2, dropout=0.5, epochs=8000, evaluate_mode='1by1', hidden=64, no_cuda=False, prune_thr=0.4, seed=15, target_class=0, test_model='GraphSage', train_lr=0.02, trigger_prob=0.5, trigger_size=3, vs_ratio=0.05, vs_size=80, weight_decay=0.0005)
+Rand generate the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.4850
+ASR: 0.0000
+Rand generate the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.4843
+ASR: 0.0000
+Rand generate the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.4854
+ASR: 0.0000
+Rand generate the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.4847
+ASR: 0.0000
+Rand generate the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.4847
+ASR: 0.0000
+Rand generate the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.4832
+ASR: 0.0000
+Rand generate the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.4840
+ASR: 0.0000
+Rand generate the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.4844
+ASR: 0.0000
+Rand generate the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.4846
+ASR: 0.0000
+Rand generate the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.4839
+ASR: 0.0000
+The final ASR:0.00000, 0.00000, Accuracy:0.48443, 0.00057
+Namespace(attack_method='Rand_Gene', cuda=True, dataset='Flickr', debug=False, defense_mode='none', device_id=2, dropout=0.5, epochs=8000, evaluate_mode='1by1', hidden=64, no_cuda=False, prune_thr=0.4, seed=15, target_class=0, test_model='GAT', train_lr=0.02, trigger_prob=0.5, trigger_size=3, vs_ratio=0.05, vs_size=80, weight_decay=0.0005)
+Rand generate the trigger
+precent of left attach nodes: 1.000
+/home/project-graph-backdoor/Backdoor/models/GAT.py:61: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  self.labels = torch.tensor(labels, dtype=torch.long)
+accuracy on clean test nodes: 0.4716
+ASR: 0.0000
+Rand generate the trigger
+precent of left attach nodes: 1.000
+/home/project-graph-backdoor/Backdoor/models/GAT.py:61: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  self.labels = torch.tensor(labels, dtype=torch.long)
+accuracy on clean test nodes: 0.4680
+ASR: 0.0000
+Rand generate the trigger
+precent of left attach nodes: 1.000
+/home/project-graph-backdoor/Backdoor/models/GAT.py:61: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  self.labels = torch.tensor(labels, dtype=torch.long)
+accuracy on clean test nodes: 0.4711
+ASR: 0.0000
+Rand generate the trigger
+precent of left attach nodes: 1.000
+/home/project-graph-backdoor/Backdoor/models/GAT.py:61: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  self.labels = torch.tensor(labels, dtype=torch.long)
+accuracy on clean test nodes: 0.4641
+ASR: 0.0000
+Rand generate the trigger
+precent of left attach nodes: 1.000
+/home/project-graph-backdoor/Backdoor/models/GAT.py:61: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  self.labels = torch.tensor(labels, dtype=torch.long)
+accuracy on clean test nodes: 0.4690
+ASR: 0.0000
+Rand generate the trigger
+precent of left attach nodes: 1.000
+/home/project-graph-backdoor/Backdoor/models/GAT.py:61: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  self.labels = torch.tensor(labels, dtype=torch.long)
+accuracy on clean test nodes: 0.4686
+ASR: 0.0000
+Rand generate the trigger
+precent of left attach nodes: 1.000
+/home/project-graph-backdoor/Backdoor/models/GAT.py:61: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  self.labels = torch.tensor(labels, dtype=torch.long)
+accuracy on clean test nodes: 0.4652
+ASR: 0.0000
+Rand generate the trigger
+precent of left attach nodes: 1.000
+/home/project-graph-backdoor/Backdoor/models/GAT.py:61: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  self.labels = torch.tensor(labels, dtype=torch.long)
+accuracy on clean test nodes: 0.4708
+ASR: 0.0000
+Rand generate the trigger
+precent of left attach nodes: 1.000
+/home/project-graph-backdoor/Backdoor/models/GAT.py:61: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  self.labels = torch.tensor(labels, dtype=torch.long)
+accuracy on clean test nodes: 0.4689
+ASR: 0.0000
+Rand generate the trigger
+precent of left attach nodes: 1.000
+/home/project-graph-backdoor/Backdoor/models/GAT.py:61: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  self.labels = torch.tensor(labels, dtype=torch.long)
+accuracy on clean test nodes: 0.4617
+ASR: 0.0000
+The final ASR:0.00000, 0.00000, Accuracy:0.46791, 0.00308
+Namespace(attack_method='Rand_Gene', cuda=True, dataset='Flickr', debug=False, defense_mode='prune', device_id=2, dropout=0.5, epochs=8000, evaluate_mode='1by1', hidden=64, no_cuda=False, prune_thr=0.4, seed=15, target_class=0, test_model='GCN', train_lr=0.02, trigger_prob=0.5, trigger_size=3, vs_ratio=0.05, vs_size=80, weight_decay=0.0005)
+Rand generate the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.4404
+ASR: 0.0000
+Rand generate the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.4445
+ASR: 0.0000
+Rand generate the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.4418
+ASR: 0.0000
+Rand generate the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.4410
+ASR: 0.0000
+Rand generate the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.4379
+ASR: 0.0000
+Rand generate the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.4429
+ASR: 0.0000
+Rand generate the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.4412
+ASR: 0.0000
+Rand generate the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.4446
+ASR: 0.0000
+Rand generate the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.4402
+ASR: 0.0000
+Rand generate the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.4428
+ASR: 0.0000
+The final ASR:0.00000, 0.00000, Accuracy:0.44174, 0.00195
+Namespace(attack_method='Rand_Gene', cuda=True, dataset='Flickr', debug=False, defense_mode='prune', device_id=2, dropout=0.5, epochs=8000, evaluate_mode='1by1', hidden=64, no_cuda=False, prune_thr=0.4, seed=15, target_class=0, test_model='GraphSage', train_lr=0.02, trigger_prob=0.5, trigger_size=3, vs_ratio=0.05, vs_size=80, weight_decay=0.0005)
+Rand generate the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.4672
+ASR: 0.0000
+Rand generate the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.4685
+ASR: 0.0000
+Rand generate the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.4669
+ASR: 0.0000
+Rand generate the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.4678
+ASR: 0.0000
+Rand generate the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.4668
+ASR: 0.0000
+Rand generate the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.4672
+ASR: 0.0000
+Rand generate the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.4673
+ASR: 0.0000
+Rand generate the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.4664
+ASR: 0.0000
+Rand generate the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.4678
+ASR: 0.0000
+Rand generate the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.4666
+ASR: 0.0000
+The final ASR:0.00000, 0.00000, Accuracy:0.46725, 0.00059
+Namespace(attack_method='Rand_Gene', cuda=True, dataset='Flickr', debug=False, defense_mode='prune', device_id=2, dropout=0.5, epochs=8000, evaluate_mode='1by1', hidden=64, no_cuda=False, prune_thr=0.4, seed=15, target_class=0, test_model='GAT', train_lr=0.02, trigger_prob=0.5, trigger_size=3, vs_ratio=0.05, vs_size=80, weight_decay=0.0005)
+Rand generate the trigger
+precent of left attach nodes: 1.000
+/home/project-graph-backdoor/Backdoor/models/GAT.py:61: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  self.labels = torch.tensor(labels, dtype=torch.long)
+accuracy on clean test nodes: 0.4418
+ASR: 0.0000
+Rand generate the trigger
+precent of left attach nodes: 1.000
+/home/project-graph-backdoor/Backdoor/models/GAT.py:61: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  self.labels = torch.tensor(labels, dtype=torch.long)
+accuracy on clean test nodes: 0.4299
+ASR: 0.0000
+Rand generate the trigger
+precent of left attach nodes: 1.000
+/home/project-graph-backdoor/Backdoor/models/GAT.py:61: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  self.labels = torch.tensor(labels, dtype=torch.long)
+accuracy on clean test nodes: 0.4084
+ASR: 0.0000
+Rand generate the trigger
+precent of left attach nodes: 1.000
+/home/project-graph-backdoor/Backdoor/models/GAT.py:61: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  self.labels = torch.tensor(labels, dtype=torch.long)
+accuracy on clean test nodes: 0.4084
+ASR: 0.0000
+Rand generate the trigger
+precent of left attach nodes: 1.000
+/home/project-graph-backdoor/Backdoor/models/GAT.py:61: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  self.labels = torch.tensor(labels, dtype=torch.long)
+accuracy on clean test nodes: 0.4037
+ASR: 0.0000
+Rand generate the trigger
+precent of left attach nodes: 1.000
+/home/project-graph-backdoor/Backdoor/models/GAT.py:61: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  self.labels = torch.tensor(labels, dtype=torch.long)
+accuracy on clean test nodes: 0.4037
+ASR: 0.0000
+Rand generate the trigger
+precent of left attach nodes: 1.000
+/home/project-graph-backdoor/Backdoor/models/GAT.py:61: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  self.labels = torch.tensor(labels, dtype=torch.long)
+accuracy on clean test nodes: 0.4038
+ASR: 0.0000
+Rand generate the trigger
+precent of left attach nodes: 1.000
+/home/project-graph-backdoor/Backdoor/models/GAT.py:61: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  self.labels = torch.tensor(labels, dtype=torch.long)
+accuracy on clean test nodes: 0.4038
+ASR: 0.0000
+Rand generate the trigger
+precent of left attach nodes: 1.000
+/home/project-graph-backdoor/Backdoor/models/GAT.py:61: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  self.labels = torch.tensor(labels, dtype=torch.long)
+accuracy on clean test nodes: 0.4037
+ASR: 0.0000
+Rand generate the trigger
+precent of left attach nodes: 1.000
+/home/project-graph-backdoor/Backdoor/models/GAT.py:61: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  self.labels = torch.tensor(labels, dtype=torch.long)
+accuracy on clean test nodes: 0.4064
+ASR: 0.0000
+The final ASR:0.00000, 0.00000, Accuracy:0.41136, 0.01266
+Namespace(attack_method='Rand_Gene', cuda=True, dataset='Flickr', debug=False, defense_mode='isolate', device_id=2, dropout=0.5, epochs=8000, evaluate_mode='1by1', hidden=64, no_cuda=False, prune_thr=0.4, seed=15, target_class=0, test_model='GCN', train_lr=0.02, trigger_prob=0.5, trigger_size=3, vs_ratio=0.05, vs_size=80, weight_decay=0.0005)
+Rand generate the trigger
+precent of left attach nodes: 0.000
+accuracy on clean test nodes: 0.4588
+ASR: 0.0000
+Rand generate the trigger
+precent of left attach nodes: 0.000
+accuracy on clean test nodes: 0.4562
+ASR: 0.0000
+Rand generate the trigger
+precent of left attach nodes: 0.000
+accuracy on clean test nodes: 0.4548
+ASR: 0.0000
+Rand generate the trigger
+precent of left attach nodes: 0.000
+accuracy on clean test nodes: 0.4538
+ASR: 0.0000
+Rand generate the trigger
+precent of left attach nodes: 0.000
+accuracy on clean test nodes: 0.4515
+ASR: 0.0000
+Rand generate the trigger
+precent of left attach nodes: 0.000
+accuracy on clean test nodes: 0.4541
+ASR: 0.0000
+Rand generate the trigger
+precent of left attach nodes: 0.000
+accuracy on clean test nodes: 0.4549
+ASR: 0.0000
+Rand generate the trigger
+precent of left attach nodes: 0.000
+accuracy on clean test nodes: 0.4562
+ASR: 0.0000
+Rand generate the trigger
+precent of left attach nodes: 0.000
+accuracy on clean test nodes: 0.4567
+ASR: 0.0000
+Rand generate the trigger
+precent of left attach nodes: 0.000
+accuracy on clean test nodes: 0.4549
+ASR: 0.0000
+The final ASR:0.00000, 0.00000, Accuracy:0.45520, 0.00186
+Namespace(attack_method='Rand_Gene', cuda=True, dataset='Flickr', debug=False, defense_mode='isolate', device_id=2, dropout=0.5, epochs=8000, evaluate_mode='1by1', hidden=64, no_cuda=False, prune_thr=0.4, seed=15, target_class=0, test_model='GraphSage', train_lr=0.02, trigger_prob=0.5, trigger_size=3, vs_ratio=0.05, vs_size=80, weight_decay=0.0005)
+Rand generate the trigger
+precent of left attach nodes: 0.000
+accuracy on clean test nodes: 0.4478
+ASR: 0.0000
+Rand generate the trigger
+precent of left attach nodes: 0.000
+accuracy on clean test nodes: 0.4430
+ASR: 0.0000
+Rand generate the trigger
+precent of left attach nodes: 0.000
+accuracy on clean test nodes: 0.4418
+ASR: 0.0000
+Rand generate the trigger
+precent of left attach nodes: 0.000
+accuracy on clean test nodes: 0.4379
+ASR: 0.0000
+Rand generate the trigger
+precent of left attach nodes: 0.000
+accuracy on clean test nodes: 0.4453
+ASR: 0.0000
+Rand generate the trigger
+precent of left attach nodes: 0.000
+accuracy on clean test nodes: 0.4404
+ASR: 0.0000
+Rand generate the trigger
+precent of left attach nodes: 0.000
+accuracy on clean test nodes: 0.4473
+ASR: 0.0000
+Rand generate the trigger
+precent of left attach nodes: 0.000
+accuracy on clean test nodes: 0.4396
+ASR: 0.0000
+Rand generate the trigger
+precent of left attach nodes: 0.000
+accuracy on clean test nodes: 0.4472
+ASR: 0.0000
+Rand generate the trigger
+precent of left attach nodes: 0.000
+accuracy on clean test nodes: 0.4483
+ASR: 0.0000
+The final ASR:0.00000, 0.00000, Accuracy:0.44385, 0.00362
+Namespace(attack_method='Rand_Gene', cuda=True, dataset='Flickr', debug=False, defense_mode='isolate', device_id=2, dropout=0.5, epochs=8000, evaluate_mode='1by1', hidden=64, no_cuda=False, prune_thr=0.4, seed=15, target_class=0, test_model='GAT', train_lr=0.02, trigger_prob=0.5, trigger_size=3, vs_ratio=0.05, vs_size=80, weight_decay=0.0005)
+Rand generate the trigger
+precent of left attach nodes: 0.000
+/home/project-graph-backdoor/Backdoor/models/GAT.py:61: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  self.labels = torch.tensor(labels, dtype=torch.long)
+accuracy on clean test nodes: 0.4604
+ASR: 0.0000
+Rand generate the trigger
+precent of left attach nodes: 0.000
+/home/project-graph-backdoor/Backdoor/models/GAT.py:61: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  self.labels = torch.tensor(labels, dtype=torch.long)
+accuracy on clean test nodes: 0.4607
+ASR: 0.0000
+Rand generate the trigger
+precent of left attach nodes: 0.000
+/home/project-graph-backdoor/Backdoor/models/GAT.py:61: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  self.labels = torch.tensor(labels, dtype=torch.long)
+accuracy on clean test nodes: 0.4568
+ASR: 0.0000
+Rand generate the trigger
+precent of left attach nodes: 0.000
+/home/project-graph-backdoor/Backdoor/models/GAT.py:61: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  self.labels = torch.tensor(labels, dtype=torch.long)
+accuracy on clean test nodes: 0.4501
+ASR: 0.0000
+Rand generate the trigger
+precent of left attach nodes: 0.000
+/home/project-graph-backdoor/Backdoor/models/GAT.py:61: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  self.labels = torch.tensor(labels, dtype=torch.long)
+accuracy on clean test nodes: 0.4605
+ASR: 0.0000
+Rand generate the trigger
+precent of left attach nodes: 0.000
+/home/project-graph-backdoor/Backdoor/models/GAT.py:61: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  self.labels = torch.tensor(labels, dtype=torch.long)
+accuracy on clean test nodes: 0.4538
+ASR: 0.0000
+Rand generate the trigger
+precent of left attach nodes: 0.000
+/home/project-graph-backdoor/Backdoor/models/GAT.py:61: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  self.labels = torch.tensor(labels, dtype=torch.long)
+accuracy on clean test nodes: 0.4651
+ASR: 0.0000
+Rand generate the trigger
+precent of left attach nodes: 0.000
+/home/project-graph-backdoor/Backdoor/models/GAT.py:61: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  self.labels = torch.tensor(labels, dtype=torch.long)
+accuracy on clean test nodes: 0.4683
+ASR: 0.0000
+Rand generate the trigger
+precent of left attach nodes: 0.000
+/home/project-graph-backdoor/Backdoor/models/GAT.py:61: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  self.labels = torch.tensor(labels, dtype=torch.long)
+accuracy on clean test nodes: 0.4610
+ASR: 0.0000
+Rand generate the trigger
+precent of left attach nodes: 0.000
+/home/project-graph-backdoor/Backdoor/models/GAT.py:61: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  self.labels = torch.tensor(labels, dtype=torch.long)
+accuracy on clean test nodes: 0.4680
+ASR: 0.0000
+The final ASR:0.00000, 0.00000, Accuracy:0.46047, 0.00554
+Namespace(attack_method='Rand_Samp', cuda=True, dataset='Flickr', debug=False, defense_mode='none', device_id=2, dropout=0.5, epochs=8000, evaluate_mode='1by1', hidden=64, no_cuda=False, prune_thr=0.4, seed=15, target_class=0, test_model='GCN', train_lr=0.02, trigger_prob=0.5, trigger_size=3, vs_ratio=0.05, vs_size=80, weight_decay=0.0005)
+Rand sample the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.4636
+ASR: 0.0000
+Rand sample the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.4642
+ASR: 0.0000
+Rand sample the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.4644
+ASR: 0.0000
+Rand sample the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.4666
+ASR: 0.0000
+Rand sample the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.4718
+ASR: 0.0000
+Rand sample the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.4652
+ASR: 0.0000
+Rand sample the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.4700
+ASR: 0.0000
+Rand sample the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.4673
+ASR: 0.0000
+Rand sample the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.4714
+ASR: 0.0000
+Rand sample the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.4654
+ASR: 0.0000
+The final ASR:0.00000, 0.00000, Accuracy:0.46700, 0.00289
+Namespace(attack_method='Rand_Samp', cuda=True, dataset='Flickr', debug=False, defense_mode='none', device_id=2, dropout=0.5, epochs=8000, evaluate_mode='1by1', hidden=64, no_cuda=False, prune_thr=0.4, seed=15, target_class=0, test_model='GraphSage', train_lr=0.02, trigger_prob=0.5, trigger_size=3, vs_ratio=0.05, vs_size=80, weight_decay=0.0005)
+Rand sample the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.4838
+ASR: 0.0000
+Rand sample the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.4863
+ASR: 0.0000
+Rand sample the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.4844
+ASR: 0.0000
+Rand sample the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.4841
+ASR: 0.0000
+Rand sample the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.4850
+ASR: 0.0000
+Rand sample the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.4865
+ASR: 0.0000
+Rand sample the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.4843
+ASR: 0.0000
+Rand sample the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.4848
+ASR: 0.0000
+Rand sample the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.4844
+ASR: 0.0000
+Rand sample the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.4831
+ASR: 0.0000
+The final ASR:0.00000, 0.00000, Accuracy:0.48467, 0.00099
+Namespace(attack_method='Rand_Samp', cuda=True, dataset='Flickr', debug=False, defense_mode='none', device_id=2, dropout=0.5, epochs=8000, evaluate_mode='1by1', hidden=64, no_cuda=False, prune_thr=0.4, seed=15, target_class=0, test_model='GAT', train_lr=0.02, trigger_prob=0.5, trigger_size=3, vs_ratio=0.05, vs_size=80, weight_decay=0.0005)
+Rand sample the trigger
+precent of left attach nodes: 1.000
+/home/project-graph-backdoor/Backdoor/models/GAT.py:61: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  self.labels = torch.tensor(labels, dtype=torch.long)
+accuracy on clean test nodes: 0.4688
+ASR: 0.0000
+Rand sample the trigger
+precent of left attach nodes: 1.000
+/home/project-graph-backdoor/Backdoor/models/GAT.py:61: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  self.labels = torch.tensor(labels, dtype=torch.long)
+accuracy on clean test nodes: 0.4682
+ASR: 0.0000
+Rand sample the trigger
+precent of left attach nodes: 1.000
+/home/project-graph-backdoor/Backdoor/models/GAT.py:61: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  self.labels = torch.tensor(labels, dtype=torch.long)
+accuracy on clean test nodes: 0.4720
+ASR: 0.0000
+Rand sample the trigger
+precent of left attach nodes: 1.000
+/home/project-graph-backdoor/Backdoor/models/GAT.py:61: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  self.labels = torch.tensor(labels, dtype=torch.long)
+accuracy on clean test nodes: 0.4679
+ASR: 0.0000
+Rand sample the trigger
+precent of left attach nodes: 1.000
+/home/project-graph-backdoor/Backdoor/models/GAT.py:61: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  self.labels = torch.tensor(labels, dtype=torch.long)
+accuracy on clean test nodes: 0.4678
+ASR: 0.0000
+Rand sample the trigger
+precent of left attach nodes: 1.000
+/home/project-graph-backdoor/Backdoor/models/GAT.py:61: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  self.labels = torch.tensor(labels, dtype=torch.long)
+accuracy on clean test nodes: 0.4710
+ASR: 0.0000
+Rand sample the trigger
+precent of left attach nodes: 1.000
+/home/project-graph-backdoor/Backdoor/models/GAT.py:61: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  self.labels = torch.tensor(labels, dtype=torch.long)
+accuracy on clean test nodes: 0.4673
+ASR: 0.0000
+Rand sample the trigger
+precent of left attach nodes: 1.000
+/home/project-graph-backdoor/Backdoor/models/GAT.py:61: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  self.labels = torch.tensor(labels, dtype=torch.long)
+accuracy on clean test nodes: 0.4707
+ASR: 0.0000
+Rand sample the trigger
+precent of left attach nodes: 1.000
+/home/project-graph-backdoor/Backdoor/models/GAT.py:61: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  self.labels = torch.tensor(labels, dtype=torch.long)
+accuracy on clean test nodes: 0.4703
+ASR: 0.0000
+Rand sample the trigger
+precent of left attach nodes: 1.000
+/home/project-graph-backdoor/Backdoor/models/GAT.py:61: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  self.labels = torch.tensor(labels, dtype=torch.long)
+accuracy on clean test nodes: 0.4698
+ASR: 0.0000
+The final ASR:0.00000, 0.00000, Accuracy:0.46939, 0.00152
+Namespace(attack_method='Rand_Samp', cuda=True, dataset='Flickr', debug=False, defense_mode='prune', device_id=2, dropout=0.5, epochs=8000, evaluate_mode='1by1', hidden=64, no_cuda=False, prune_thr=0.4, seed=15, target_class=0, test_model='GCN', train_lr=0.02, trigger_prob=0.5, trigger_size=3, vs_ratio=0.05, vs_size=80, weight_decay=0.0005)
+Rand sample the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.4397
+ASR: 0.0000
+Rand sample the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.4407
+ASR: 0.0000
+Rand sample the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.4391
+ASR: 0.0000
+Rand sample the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.4403
+ASR: 0.0000
+Rand sample the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.4439
+ASR: 0.0000
+Rand sample the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.4400
+ASR: 0.0000
+Rand sample the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.4402
+ASR: 0.0000
+Rand sample the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.4459
+ASR: 0.0000
+Rand sample the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.4410
+ASR: 0.0000
+Rand sample the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.4401
+ASR: 0.0000
+The final ASR:0.00000, 0.00000, Accuracy:0.44110, 0.00203
+Namespace(attack_method='Rand_Samp', cuda=True, dataset='Flickr', debug=False, defense_mode='prune', device_id=2, dropout=0.5, epochs=8000, evaluate_mode='1by1', hidden=64, no_cuda=False, prune_thr=0.4, seed=15, target_class=0, test_model='GraphSage', train_lr=0.02, trigger_prob=0.5, trigger_size=3, vs_ratio=0.05, vs_size=80, weight_decay=0.0005)
+Rand sample the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.4675
+ASR: 0.0000
+Rand sample the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.4667
+ASR: 0.0000
+Rand sample the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.4662
+ASR: 0.0000
+Rand sample the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.4672
+ASR: 0.0000
+Rand sample the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.4664
+ASR: 0.0000
+Rand sample the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.4681
+ASR: 0.0000
+Rand sample the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.4689
+ASR: 0.0000
+Rand sample the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.4668
+ASR: 0.0000
+Rand sample the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.4690
+ASR: 0.0000
+Rand sample the trigger
+precent of left attach nodes: 1.000
+accuracy on clean test nodes: 0.4659
+ASR: 0.0000
+The final ASR:0.00000, 0.00000, Accuracy:0.46727, 0.00104
+Namespace(attack_method='Rand_Samp', cuda=True, dataset='Flickr', debug=False, defense_mode='prune', device_id=2, dropout=0.5, epochs=8000, evaluate_mode='1by1', hidden=64, no_cuda=False, prune_thr=0.4, seed=15, target_class=0, test_model='GAT', train_lr=0.02, trigger_prob=0.5, trigger_size=3, vs_ratio=0.05, vs_size=80, weight_decay=0.0005)
+Rand sample the trigger
+precent of left attach nodes: 1.000
+/home/project-graph-backdoor/Backdoor/models/GAT.py:61: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  self.labels = torch.tensor(labels, dtype=torch.long)
+accuracy on clean test nodes: 0.4130
+ASR: 0.0000
+Rand sample the trigger
+precent of left attach nodes: 1.000
+/home/project-graph-backdoor/Backdoor/models/GAT.py:61: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  self.labels = torch.tensor(labels, dtype=torch.long)
+accuracy on clean test nodes: 0.4099
+ASR: 0.0000
+Rand sample the trigger
+precent of left attach nodes: 1.000
+/home/project-graph-backdoor/Backdoor/models/GAT.py:61: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  self.labels = torch.tensor(labels, dtype=torch.long)
+accuracy on clean test nodes: 0.4233
+ASR: 0.0000
+Rand sample the trigger
+precent of left attach nodes: 1.000
+/home/project-graph-backdoor/Backdoor/models/GAT.py:61: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  self.labels = torch.tensor(labels, dtype=torch.long)
+accuracy on clean test nodes: 0.4123
+ASR: 0.0000
+Rand sample the trigger
+precent of left attach nodes: 1.000
+/home/project-graph-backdoor/Backdoor/models/GAT.py:61: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  self.labels = torch.tensor(labels, dtype=torch.long)
+accuracy on clean test nodes: 0.4064
+ASR: 0.0000
+Rand sample the trigger
+precent of left attach nodes: 1.000
+/home/project-graph-backdoor/Backdoor/models/GAT.py:61: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  self.labels = torch.tensor(labels, dtype=torch.long)
+accuracy on clean test nodes: 0.4049
+ASR: 0.0000
+Rand sample the trigger
+precent of left attach nodes: 1.000
+/home/project-graph-backdoor/Backdoor/models/GAT.py:61: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  self.labels = torch.tensor(labels, dtype=torch.long)
+accuracy on clean test nodes: 0.4299
+ASR: 0.0000
+Rand sample the trigger
+precent of left attach nodes: 1.000
+/home/project-graph-backdoor/Backdoor/models/GAT.py:61: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  self.labels = torch.tensor(labels, dtype=torch.long)
+accuracy on clean test nodes: 0.4066
+ASR: 0.0000
+Rand sample the trigger
+precent of left attach nodes: 1.000
+/home/project-graph-backdoor/Backdoor/models/GAT.py:61: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  self.labels = torch.tensor(labels, dtype=torch.long)
+accuracy on clean test nodes: 0.4093
+ASR: 0.0000
+Rand sample the trigger
+precent of left attach nodes: 1.000
+/home/project-graph-backdoor/Backdoor/models/GAT.py:61: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  self.labels = torch.tensor(labels, dtype=torch.long)
+accuracy on clean test nodes: 0.4062
+ASR: 0.0000
+The final ASR:0.00000, 0.00000, Accuracy:0.41218, 0.00778
+Namespace(attack_method='Rand_Samp', cuda=True, dataset='Flickr', debug=False, defense_mode='isolate', device_id=2, dropout=0.5, epochs=8000, evaluate_mode='1by1', hidden=64, no_cuda=False, prune_thr=0.4, seed=15, target_class=0, test_model='GCN', train_lr=0.02, trigger_prob=0.5, trigger_size=3, vs_ratio=0.05, vs_size=80, weight_decay=0.0005)
+Rand sample the trigger
+precent of left attach nodes: 0.000
+accuracy on clean test nodes: 0.4546
+ASR: 0.0000
+Rand sample the trigger
+precent of left attach nodes: 0.000
+accuracy on clean test nodes: 0.4556
+ASR: 0.0000
+Rand sample the trigger
+precent of left attach nodes: 0.000
+accuracy on clean test nodes: 0.4605
+ASR: 0.0000
+Rand sample the trigger
+precent of left attach nodes: 0.000
+accuracy on clean test nodes: 0.4567
+ASR: 0.0000
+Rand sample the trigger
+precent of left attach nodes: 0.000
+accuracy on clean test nodes: 0.4556
+ASR: 0.0000
+Rand sample the trigger
+precent of left attach nodes: 0.000
+accuracy on clean test nodes: 0.4541
+ASR: 0.0000
+Rand sample the trigger
+precent of left attach nodes: 0.000
+accuracy on clean test nodes: 0.4527
+ASR: 0.0000
+Rand sample the trigger
+precent of left attach nodes: 0.000
+accuracy on clean test nodes: 0.4548
+ASR: 0.0000
+Rand sample the trigger
+precent of left attach nodes: 0.000
+accuracy on clean test nodes: 0.4595
+ASR: 0.0000
+Rand sample the trigger
+precent of left attach nodes: 0.000
+accuracy on clean test nodes: 0.4534
+ASR: 0.0000
+The final ASR:0.00000, 0.00000, Accuracy:0.45574, 0.00240
+Namespace(attack_method='Rand_Samp', cuda=True, dataset='Flickr', debug=False, defense_mode='isolate', device_id=2, dropout=0.5, epochs=8000, evaluate_mode='1by1', hidden=64, no_cuda=False, prune_thr=0.4, seed=15, target_class=0, test_model='GraphSage', train_lr=0.02, trigger_prob=0.5, trigger_size=3, vs_ratio=0.05, vs_size=80, weight_decay=0.0005)
+Rand sample the trigger
+precent of left attach nodes: 0.000
+accuracy on clean test nodes: 0.4478
+ASR: 0.0000
+Rand sample the trigger
+precent of left attach nodes: 0.000
+accuracy on clean test nodes: 0.4430
+ASR: 0.0000
+Rand sample the trigger
+precent of left attach nodes: 0.000
+accuracy on clean test nodes: 0.4413
+ASR: 0.0000
+Rand sample the trigger
+precent of left attach nodes: 0.000
+accuracy on clean test nodes: 0.4379
+ASR: 0.0000
+Rand sample the trigger
+precent of left attach nodes: 0.000
+accuracy on clean test nodes: 0.4455
+ASR: 0.0000
+Rand sample the trigger
+precent of left attach nodes: 0.000
+accuracy on clean test nodes: 0.4404
+ASR: 0.0000
+Rand sample the trigger
+precent of left attach nodes: 0.000
+accuracy on clean test nodes: 0.4473
+ASR: 0.0000
+Rand sample the trigger
+precent of left attach nodes: 0.000
+accuracy on clean test nodes: 0.4396
+ASR: 0.0000
+Rand sample the trigger
+precent of left attach nodes: 0.000
+accuracy on clean test nodes: 0.4472
+ASR: 0.0000
+Rand sample the trigger
+precent of left attach nodes: 0.000
+accuracy on clean test nodes: 0.4483
+ASR: 0.0000
+The final ASR:0.00000, 0.00000, Accuracy:0.44383, 0.00366
+Namespace(attack_method='Rand_Samp', cuda=True, dataset='Flickr', debug=False, defense_mode='isolate', device_id=2, dropout=0.5, epochs=8000, evaluate_mode='1by1', hidden=64, no_cuda=False, prune_thr=0.4, seed=15, target_class=0, test_model='GAT', train_lr=0.02, trigger_prob=0.5, trigger_size=3, vs_ratio=0.05, vs_size=80, weight_decay=0.0005)
+Rand sample the trigger
+precent of left attach nodes: 0.000
+/home/project-graph-backdoor/Backdoor/models/GAT.py:61: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  self.labels = torch.tensor(labels, dtype=torch.long)
+accuracy on clean test nodes: 0.4668
+ASR: 0.0000
+Rand sample the trigger
+precent of left attach nodes: 0.000
+/home/project-graph-backdoor/Backdoor/models/GAT.py:61: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  self.labels = torch.tensor(labels, dtype=torch.long)
+accuracy on clean test nodes: 0.4666
+ASR: 0.0000
+Rand sample the trigger
+precent of left attach nodes: 0.000
+/home/project-graph-backdoor/Backdoor/models/GAT.py:61: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  self.labels = torch.tensor(labels, dtype=torch.long)
+accuracy on clean test nodes: 0.4687
+ASR: 0.0000
+Rand sample the trigger
+precent of left attach nodes: 0.000
+/home/project-graph-backdoor/Backdoor/models/GAT.py:61: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  self.labels = torch.tensor(labels, dtype=torch.long)
+accuracy on clean test nodes: 0.4554
+ASR: 0.0000
+Rand sample the trigger
+precent of left attach nodes: 0.000
+/home/project-graph-backdoor/Backdoor/models/GAT.py:61: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  self.labels = torch.tensor(labels, dtype=torch.long)
+accuracy on clean test nodes: 0.4607
+ASR: 0.0000
+Rand sample the trigger
+precent of left attach nodes: 0.000
+/home/project-graph-backdoor/Backdoor/models/GAT.py:61: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  self.labels = torch.tensor(labels, dtype=torch.long)
+accuracy on clean test nodes: 0.4489
+ASR: 0.0000
+Rand sample the trigger
+precent of left attach nodes: 0.000
+/home/project-graph-backdoor/Backdoor/models/GAT.py:61: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  self.labels = torch.tensor(labels, dtype=torch.long)
+accuracy on clean test nodes: 0.4589
+ASR: 0.0000
+Rand sample the trigger
+precent of left attach nodes: 0.000
+/home/project-graph-backdoor/Backdoor/models/GAT.py:61: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  self.labels = torch.tensor(labels, dtype=torch.long)
+accuracy on clean test nodes: 0.4608
+ASR: 0.0000
+Rand sample the trigger
+precent of left attach nodes: 0.000
+/home/project-graph-backdoor/Backdoor/models/GAT.py:61: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  self.labels = torch.tensor(labels, dtype=torch.long)
+accuracy on clean test nodes: 0.4629
+ASR: 0.0000
+Rand sample the trigger
+precent of left attach nodes: 0.000
+/home/project-graph-backdoor/Backdoor/models/GAT.py:61: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  self.labels = torch.tensor(labels, dtype=torch.long)
+accuracy on clean test nodes: 0.4562
+ASR: 0.0000
+The final ASR:0.00000, 0.00000, Accuracy:0.46058, 0.00576

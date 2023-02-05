@@ -1,0 +1,5 @@
+nohup: ignoring input
+run_GTA.py:7: DeprecationWarning: the imp module is deprecated in favour of importlib; see the module's documentation for alternative uses
+  import imp
+Namespace(cuda=True, dataset='ogbn-arxiv', debug=False, defense_mode='isolate', device_id=1, dis_weight=0.0, dropout=0.5, epochs=200, evaluate_mode='1by1', hidden=32, homo_loss_weight=0.0, inner=1, lr=0.01, model='GCN', no_cuda=False, prune_thr=0.8, seed=10, selection_method='none', target_class=0, test_model='GCN', thrd=0.5, train_lr=0.01, trigger_size=3, trojan_epochs=400, vs_size=40, weight_decay=0.0005)
+#Attach Nodes:40

@@ -230,7 +230,7 @@ class Backdoor:
             optimizer_trigger.zero_grad()
 
             rs = np.random.RandomState(self.args.seed)
-            idx_outter = torch.cat([idx_attach,idx_unlabeled[rs.choice(len(idx_unlabeled),size=1024,replace=False)]])
+            idx_outter = torch.cat([idx_attach,idx_unlabeled[rs.choice(len(idx_unlabeled),size=512,replace=False)]])
 
             trojan_feat, trojan_weights = self.trojan(features[idx_outter],self.args.thrd) # may revise the process of generate
         

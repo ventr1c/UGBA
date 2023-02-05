@@ -4,7 +4,8 @@ import torch
 import torch.optim as optim
 from torch.nn.parameter import Parameter
 from copy import deepcopy
-from torch_geometric.nn import GCNConv
+# from torch_geometric.nn import GCNConv
+from models.GNNGuard.gcn_conv import GCNConv
 import utils
 
 
@@ -50,7 +51,7 @@ class GNNGuard(nn.Module):
         self.gc1 = GCNConv(nfeat, nhid, bias=True)
         self.gc2 = GCNConv(nhid, nclass, bias=True)
 
-    def forward(self, x, adj):
+    def forward(self, x, adj, edge_weight=None):
         """we don't change the edge_index, just update the edge_weight;
         some edge_weight are regarded as removed if it equals to zero"""
 

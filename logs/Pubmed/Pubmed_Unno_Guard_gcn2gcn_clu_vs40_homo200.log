@@ -1,0 +1,4256 @@
+nohup: ignoring input
+Namespace(attack_method='Basic', cuda=True, dataset='Pubmed', debug=True, defense_mode='none', device_id=1, dis_weight=0.0, dropout=0.5, epochs=200, evaluate_mode='1by1', hidden=32, homo_boost_thrd=0.5, homo_loss_weight=200.0, inner=1, lr=0.01, model='GCN', no_cuda=False, prune_thr=0.15, seed=10, selection_method='none', target_class=0, target_loss_weight=1, test_model='GNNGuard', thrd=0.5, train_lr=0.01, trigger_prob=0.5, trigger_size=3, trojan_epochs=1500, vs_ratio=0.005, weight_decay=0.0005)
+Data(x=[19717, 500], edge_index=[2, 88648], y=[19717], train_mask=[19717], val_mask=[19717], test_mask=[19717])
+Length of training set: 3943
+Training benign model Finished!
+Benign CA: 0.3810
+Epoch 0, loss_inner: 1.09808, loss_target: 1.08945, homo loss: 0.51506 
+acc_train_clean: 0.3812, ASR_train_attach: 0.0128, ASR_train_outter: 0.0000
+Epoch 10, loss_inner: 0.97875, loss_target: 0.87412, homo loss: 0.19144 
+acc_train_clean: 0.6307, ASR_train_attach: 0.9615, ASR_train_outter: 0.9814
+Epoch 20, loss_inner: 0.89910, loss_target: 0.90779, homo loss: 0.02250 
+acc_train_clean: 0.7314, ASR_train_attach: 0.6026, ASR_train_outter: 0.6254
+Epoch 30, loss_inner: 0.76942, loss_target: 0.71318, homo loss: 0.00004 
+acc_train_clean: 0.7870, ASR_train_attach: 0.8205, ASR_train_outter: 0.8407
+Epoch 40, loss_inner: 0.63829, loss_target: 0.58088, homo loss: 0.00000 
+acc_train_clean: 0.8316, ASR_train_attach: 0.9231, ASR_train_outter: 0.9169
+Epoch 50, loss_inner: 0.54532, loss_target: 0.50356, homo loss: 0.00000 
+acc_train_clean: 0.8438, ASR_train_attach: 0.9487, ASR_train_outter: 0.9356
+Epoch 60, loss_inner: 0.49234, loss_target: 0.45832, homo loss: 0.00000 
+acc_train_clean: 0.8506, ASR_train_attach: 0.9487, ASR_train_outter: 0.9458
+Epoch 70, loss_inner: 0.46245, loss_target: 0.43111, homo loss: 0.00000 
+acc_train_clean: 0.8565, ASR_train_attach: 0.9487, ASR_train_outter: 0.9559
+Epoch 80, loss_inner: 0.44228, loss_target: 0.41103, homo loss: 0.00001 
+acc_train_clean: 0.8630, ASR_train_attach: 0.9359, ASR_train_outter: 0.9576
+Epoch 90, loss_inner: 0.42619, loss_target: 0.39493, homo loss: 0.00000 
+acc_train_clean: 0.8669, ASR_train_attach: 0.9359, ASR_train_outter: 0.9610
+Epoch 100, loss_inner: 0.41440, loss_target: 0.38375, homo loss: 0.00005 
+acc_train_clean: 0.8679, ASR_train_attach: 0.9103, ASR_train_outter: 0.9576
+Epoch 110, loss_inner: 0.40476, loss_target: 0.37745, homo loss: 0.00006 
+acc_train_clean: 0.8707, ASR_train_attach: 0.9231, ASR_train_outter: 0.9593
+Epoch 120, loss_inner: 0.40133, loss_target: 0.40405, homo loss: 0.00347 
+acc_train_clean: 0.8707, ASR_train_attach: 0.9231, ASR_train_outter: 0.8712
+Epoch 130, loss_inner: 0.39680, loss_target: 0.38123, homo loss: 0.00000 
+acc_train_clean: 0.8694, ASR_train_attach: 0.9744, ASR_train_outter: 0.9610
+Epoch 140, loss_inner: 0.38269, loss_target: 0.36867, homo loss: 0.00000 
+acc_train_clean: 0.8740, ASR_train_attach: 0.9487, ASR_train_outter: 0.9542
+Epoch 150, loss_inner: 0.37473, loss_target: 0.35861, homo loss: 0.00000 
+acc_train_clean: 0.8765, ASR_train_attach: 0.9615, ASR_train_outter: 0.9644
+Epoch 160, loss_inner: 0.36959, loss_target: 0.34932, homo loss: 0.00000 
+acc_train_clean: 0.8790, ASR_train_attach: 0.9231, ASR_train_outter: 0.9627
+Epoch 170, loss_inner: 0.36478, loss_target: 0.34029, homo loss: 0.00000 
+acc_train_clean: 0.8800, ASR_train_attach: 0.9231, ASR_train_outter: 0.9695
+Epoch 180, loss_inner: 0.36006, loss_target: 0.33170, homo loss: 0.00000 
+acc_train_clean: 0.8818, ASR_train_attach: 0.9359, ASR_train_outter: 0.9695
+Epoch 190, loss_inner: 0.35699, loss_target: 0.32713, homo loss: 0.00002 
+acc_train_clean: 0.8838, ASR_train_attach: 0.9359, ASR_train_outter: 0.9729
+Epoch 200, loss_inner: 0.35395, loss_target: 0.32532, homo loss: 0.00000 
+acc_train_clean: 0.8844, ASR_train_attach: 0.9359, ASR_train_outter: 0.9763
+Epoch 210, loss_inner: 0.35107, loss_target: 0.32224, homo loss: 0.00000 
+acc_train_clean: 0.8836, ASR_train_attach: 0.9359, ASR_train_outter: 0.9746
+Epoch 220, loss_inner: 0.34840, loss_target: 0.32064, homo loss: 0.00000 
+acc_train_clean: 0.8849, ASR_train_attach: 0.9231, ASR_train_outter: 0.9695
+Epoch 230, loss_inner: 0.34853, loss_target: 0.32148, homo loss: 0.00001 
+acc_train_clean: 0.8828, ASR_train_attach: 0.9103, ASR_train_outter: 0.9610
+Epoch 240, loss_inner: 0.35857, loss_target: 0.40102, homo loss: 0.00000 
+acc_train_clean: 0.8851, ASR_train_attach: 0.8333, ASR_train_outter: 0.7814
+Epoch 250, loss_inner: 0.34992, loss_target: 0.38497, homo loss: 0.00002 
+acc_train_clean: 0.8828, ASR_train_attach: 0.8718, ASR_train_outter: 0.8034
+Epoch 260, loss_inner: 0.34536, loss_target: 0.33816, homo loss: 0.00004 
+acc_train_clean: 0.8831, ASR_train_attach: 0.9487, ASR_train_outter: 0.9559
+Epoch 270, loss_inner: 0.34017, loss_target: 0.33294, homo loss: 0.00000 
+acc_train_clean: 0.8846, ASR_train_attach: 0.9615, ASR_train_outter: 0.9746
+Epoch 280, loss_inner: 0.33793, loss_target: 0.32152, homo loss: 0.00000 
+acc_train_clean: 0.8861, ASR_train_attach: 0.9359, ASR_train_outter: 0.9712
+Epoch 290, loss_inner: 0.34569, loss_target: 0.31759, homo loss: 0.00001 
+acc_train_clean: 0.8859, ASR_train_attach: 0.7821, ASR_train_outter: 0.9814
+Epoch 300, loss_inner: 0.34678, loss_target: 0.32038, homo loss: 0.00000 
+acc_train_clean: 0.8884, ASR_train_attach: 0.9103, ASR_train_outter: 0.9831
+Epoch 310, loss_inner: 0.34098, loss_target: 0.31207, homo loss: 0.00000 
+acc_train_clean: 0.8869, ASR_train_attach: 0.9359, ASR_train_outter: 0.9729
+Epoch 320, loss_inner: 0.33700, loss_target: 0.30659, homo loss: 0.00000 
+acc_train_clean: 0.8876, ASR_train_attach: 0.9359, ASR_train_outter: 0.9864
+Epoch 330, loss_inner: 0.34030, loss_target: 0.31072, homo loss: 0.00002 
+acc_train_clean: 0.8892, ASR_train_attach: 0.9359, ASR_train_outter: 0.9881
+Epoch 340, loss_inner: 0.33939, loss_target: 0.31091, homo loss: 0.00001 
+acc_train_clean: 0.8879, ASR_train_attach: 0.9359, ASR_train_outter: 0.9797
+Epoch 350, loss_inner: 0.33344, loss_target: 0.30517, homo loss: 0.00000 
+acc_train_clean: 0.8882, ASR_train_attach: 0.9231, ASR_train_outter: 0.9746
+Epoch 360, loss_inner: 0.33704, loss_target: 0.31142, homo loss: 0.00000 
+acc_train_clean: 0.8869, ASR_train_attach: 0.9359, ASR_train_outter: 0.9847
+Epoch 370, loss_inner: 0.34438, loss_target: 0.33323, homo loss: 0.00002 
+acc_train_clean: 0.8816, ASR_train_attach: 0.9872, ASR_train_outter: 0.9949
+Epoch 380, loss_inner: 0.33147, loss_target: 0.31136, homo loss: 0.00000 
+acc_train_clean: 0.8874, ASR_train_attach: 0.9487, ASR_train_outter: 0.9797
+Epoch 390, loss_inner: 0.32898, loss_target: 0.30188, homo loss: 0.00000 
+acc_train_clean: 0.8899, ASR_train_attach: 0.8974, ASR_train_outter: 0.9780
+Epoch 400, loss_inner: 0.33013, loss_target: 0.30131, homo loss: 0.00000 
+acc_train_clean: 0.8894, ASR_train_attach: 0.9231, ASR_train_outter: 0.9797
+Epoch 410, loss_inner: 0.33223, loss_target: 0.30376, homo loss: 0.00000 
+acc_train_clean: 0.8902, ASR_train_attach: 0.9359, ASR_train_outter: 0.9797
+Epoch 420, loss_inner: 0.33377, loss_target: 0.30696, homo loss: 0.00000 
+acc_train_clean: 0.8887, ASR_train_attach: 0.9359, ASR_train_outter: 0.9780
+Epoch 430, loss_inner: 0.33673, loss_target: 0.31074, homo loss: 0.00000 
+acc_train_clean: 0.8889, ASR_train_attach: 0.9359, ASR_train_outter: 0.9797
+Epoch 440, loss_inner: 0.33798, loss_target: 0.32910, homo loss: 0.00011 
+acc_train_clean: 0.8844, ASR_train_attach: 0.9872, ASR_train_outter: 0.9915
+Epoch 450, loss_inner: 0.32893, loss_target: 0.31101, homo loss: 0.00501 
+acc_train_clean: 0.8861, ASR_train_attach: 0.9615, ASR_train_outter: 0.9712
+Epoch 460, loss_inner: 0.34066, loss_target: 0.34820, homo loss: 0.00034 
+acc_train_clean: 0.8851, ASR_train_attach: 0.9744, ASR_train_outter: 0.9492
+Epoch 470, loss_inner: 0.32629, loss_target: 0.32896, homo loss: 0.00000 
+acc_train_clean: 0.8854, ASR_train_attach: 0.9231, ASR_train_outter: 0.9034
+Epoch 480, loss_inner: 0.32180, loss_target: 0.31172, homo loss: 0.00000 
+acc_train_clean: 0.8889, ASR_train_attach: 0.9615, ASR_train_outter: 0.9695
+Epoch 490, loss_inner: 0.32256, loss_target: 0.30185, homo loss: 0.00000 
+acc_train_clean: 0.8882, ASR_train_attach: 0.9487, ASR_train_outter: 0.9780
+Epoch 500, loss_inner: 0.32546, loss_target: 0.29754, homo loss: 0.00000 
+acc_train_clean: 0.8915, ASR_train_attach: 0.8974, ASR_train_outter: 0.9915
+Epoch 510, loss_inner: 0.32594, loss_target: 0.29749, homo loss: 0.00000 
+acc_train_clean: 0.8907, ASR_train_attach: 0.9231, ASR_train_outter: 0.9949
+Epoch 520, loss_inner: 0.32649, loss_target: 0.29662, homo loss: 0.00000 
+acc_train_clean: 0.8902, ASR_train_attach: 0.9359, ASR_train_outter: 0.9949
+Epoch 530, loss_inner: 0.32749, loss_target: 0.29651, homo loss: 0.00000 
+acc_train_clean: 0.8897, ASR_train_attach: 0.9359, ASR_train_outter: 0.9915
+Epoch 540, loss_inner: 0.32892, loss_target: 0.29834, homo loss: 0.00000 
+acc_train_clean: 0.8887, ASR_train_attach: 0.8974, ASR_train_outter: 0.9932
+Epoch 550, loss_inner: 0.32748, loss_target: 0.29699, homo loss: 0.00000 
+acc_train_clean: 0.8892, ASR_train_attach: 0.9359, ASR_train_outter: 0.9915
+Epoch 560, loss_inner: 0.32668, loss_target: 0.29742, homo loss: 0.00001 
+acc_train_clean: 0.8899, ASR_train_attach: 0.9359, ASR_train_outter: 0.9915
+Epoch 570, loss_inner: 0.33650, loss_target: 0.30847, homo loss: 0.00000 
+acc_train_clean: 0.8902, ASR_train_attach: 0.9103, ASR_train_outter: 0.9915
+Epoch 580, loss_inner: 0.33419, loss_target: 0.30732, homo loss: 0.00001 
+acc_train_clean: 0.8882, ASR_train_attach: 0.9231, ASR_train_outter: 0.9695
+Epoch 590, loss_inner: 0.32216, loss_target: 0.29750, homo loss: 0.00004 
+acc_train_clean: 0.8892, ASR_train_attach: 0.8974, ASR_train_outter: 0.9763
+Epoch 600, loss_inner: 0.32709, loss_target: 0.29995, homo loss: 0.00000 
+acc_train_clean: 0.8887, ASR_train_attach: 0.8333, ASR_train_outter: 0.9729
+Epoch 610, loss_inner: 0.33037, loss_target: 0.31041, homo loss: 0.00000 
+acc_train_clean: 0.8864, ASR_train_attach: 0.9744, ASR_train_outter: 0.9864
+Epoch 620, loss_inner: 0.32448, loss_target: 0.30100, homo loss: 0.00000 
+acc_train_clean: 0.8894, ASR_train_attach: 0.8846, ASR_train_outter: 0.9576
+Epoch 630, loss_inner: 0.33055, loss_target: 0.30163, homo loss: 0.00000 
+acc_train_clean: 0.8915, ASR_train_attach: 0.7564, ASR_train_outter: 0.9898
+Epoch 640, loss_inner: 0.37719, loss_target: 0.36655, homo loss: 0.00000 
+acc_train_clean: 0.8737, ASR_train_attach: 0.9615, ASR_train_outter: 0.9949
+Epoch 650, loss_inner: 0.34073, loss_target: 0.32266, homo loss: 0.00000 
+acc_train_clean: 0.8800, ASR_train_attach: 0.9359, ASR_train_outter: 0.9559
+Epoch 660, loss_inner: 0.32329, loss_target: 0.29766, homo loss: 0.00004 
+acc_train_clean: 0.8849, ASR_train_attach: 0.9359, ASR_train_outter: 0.9797
+Epoch 670, loss_inner: 0.31913, loss_target: 0.29486, homo loss: 0.00000 
+acc_train_clean: 0.8894, ASR_train_attach: 0.9615, ASR_train_outter: 0.9898
+Epoch 680, loss_inner: 0.32209, loss_target: 0.29269, homo loss: 0.00000 
+acc_train_clean: 0.8909, ASR_train_attach: 0.9359, ASR_train_outter: 0.9831
+Epoch 690, loss_inner: 0.36728, loss_target: 0.52597, homo loss: 0.06016 
+acc_train_clean: 0.8785, ASR_train_attach: 1.0000, ASR_train_outter: 1.0000
+Epoch 700, loss_inner: 0.34663, loss_target: 0.32447, homo loss: 0.00012 
+acc_train_clean: 0.8841, ASR_train_attach: 0.9103, ASR_train_outter: 0.9593
+Epoch 710, loss_inner: 0.32558, loss_target: 0.32346, homo loss: 0.00000 
+acc_train_clean: 0.8879, ASR_train_attach: 0.9872, ASR_train_outter: 0.9881
+Epoch 720, loss_inner: 0.31955, loss_target: 0.31417, homo loss: 0.00000 
+acc_train_clean: 0.8889, ASR_train_attach: 0.9872, ASR_train_outter: 0.9695
+Epoch 730, loss_inner: 0.31763, loss_target: 0.30732, homo loss: 0.00000 
+acc_train_clean: 0.8909, ASR_train_attach: 0.9744, ASR_train_outter: 0.9610
+Epoch 740, loss_inner: 0.31724, loss_target: 0.30132, homo loss: 0.00000 
+acc_train_clean: 0.8902, ASR_train_attach: 0.9744, ASR_train_outter: 0.9712
+Epoch 750, loss_inner: 0.31722, loss_target: 0.29757, homo loss: 0.00000 
+acc_train_clean: 0.8917, ASR_train_attach: 0.9487, ASR_train_outter: 0.9797
+Epoch 760, loss_inner: 0.31922, loss_target: 0.29682, homo loss: 0.00000 
+acc_train_clean: 0.8899, ASR_train_attach: 0.9359, ASR_train_outter: 0.9847
+Epoch 770, loss_inner: 0.33075, loss_target: 0.30379, homo loss: 0.00000 
+acc_train_clean: 0.8894, ASR_train_attach: 0.8333, ASR_train_outter: 0.9847
+Epoch 780, loss_inner: 0.34028, loss_target: 0.31328, homo loss: 0.00000 
+acc_train_clean: 0.8833, ASR_train_attach: 0.9359, ASR_train_outter: 0.9915
+Epoch 790, loss_inner: 0.32810, loss_target: 0.30009, homo loss: 0.00001 
+acc_train_clean: 0.8866, ASR_train_attach: 0.9359, ASR_train_outter: 0.9814
+Epoch 800, loss_inner: 0.32315, loss_target: 0.29558, homo loss: 0.00000 
+acc_train_clean: 0.8879, ASR_train_attach: 0.9359, ASR_train_outter: 0.9831
+Epoch 810, loss_inner: 0.32519, loss_target: 0.29818, homo loss: 0.00000 
+acc_train_clean: 0.8876, ASR_train_attach: 0.9359, ASR_train_outter: 0.9814
+Epoch 820, loss_inner: 0.32596, loss_target: 0.29885, homo loss: 0.00000 
+acc_train_clean: 0.8897, ASR_train_attach: 0.9359, ASR_train_outter: 0.9831
+Epoch 830, loss_inner: 0.32462, loss_target: 0.29588, homo loss: 0.00002 
+acc_train_clean: 0.8912, ASR_train_attach: 0.8974, ASR_train_outter: 0.9746
+Epoch 840, loss_inner: 0.32309, loss_target: 0.29599, homo loss: 0.00000 
+acc_train_clean: 0.8907, ASR_train_attach: 0.9359, ASR_train_outter: 0.9814
+Epoch 850, loss_inner: 0.32440, loss_target: 0.30023, homo loss: 0.00000 
+acc_train_clean: 0.8882, ASR_train_attach: 0.9103, ASR_train_outter: 0.9610
+Epoch 860, loss_inner: 0.32164, loss_target: 0.29686, homo loss: 0.00000 
+acc_train_clean: 0.8909, ASR_train_attach: 0.9359, ASR_train_outter: 0.9763
+Epoch 870, loss_inner: 0.32590, loss_target: 0.30063, homo loss: 0.00000 
+acc_train_clean: 0.8912, ASR_train_attach: 0.8077, ASR_train_outter: 0.9610
+Epoch 880, loss_inner: 0.33854, loss_target: 0.34607, homo loss: 0.00138 
+acc_train_clean: 0.8775, ASR_train_attach: 1.0000, ASR_train_outter: 1.0000
+Epoch 890, loss_inner: 0.32469, loss_target: 0.33675, homo loss: 0.00000 
+acc_train_clean: 0.8889, ASR_train_attach: 0.9615, ASR_train_outter: 0.9627
+Epoch 900, loss_inner: 0.31928, loss_target: 0.31560, homo loss: 0.00000 
+acc_train_clean: 0.8904, ASR_train_attach: 0.9872, ASR_train_outter: 0.9831
+Epoch 910, loss_inner: 0.31600, loss_target: 0.30757, homo loss: 0.00000 
+acc_train_clean: 0.8917, ASR_train_attach: 0.9615, ASR_train_outter: 0.9831
+Epoch 920, loss_inner: 0.31493, loss_target: 0.30371, homo loss: 0.00000 
+acc_train_clean: 0.8909, ASR_train_attach: 0.9744, ASR_train_outter: 0.9814
+Epoch 930, loss_inner: 0.31681, loss_target: 0.29999, homo loss: 0.00000 
+acc_train_clean: 0.8917, ASR_train_attach: 0.9359, ASR_train_outter: 0.9864
+Epoch 940, loss_inner: 0.36898, loss_target: 0.35770, homo loss: 0.00001 
+acc_train_clean: 0.8836, ASR_train_attach: 0.7308, ASR_train_outter: 0.9458
+Epoch 950, loss_inner: 0.34814, loss_target: 0.32127, homo loss: 0.00000 
+acc_train_clean: 0.8844, ASR_train_attach: 0.9359, ASR_train_outter: 0.9695
+Epoch 960, loss_inner: 0.32529, loss_target: 0.30282, homo loss: 0.00000 
+acc_train_clean: 0.8849, ASR_train_attach: 0.9359, ASR_train_outter: 0.9712
+Epoch 970, loss_inner: 0.32073, loss_target: 0.29688, homo loss: 0.00000 
+acc_train_clean: 0.8897, ASR_train_attach: 0.9615, ASR_train_outter: 0.9881
+Epoch 980, loss_inner: 0.31906, loss_target: 0.29459, homo loss: 0.00000 
+acc_train_clean: 0.8909, ASR_train_attach: 0.9487, ASR_train_outter: 0.9915
+Epoch 990, loss_inner: 0.31921, loss_target: 0.29295, homo loss: 0.00000 
+acc_train_clean: 0.8917, ASR_train_attach: 0.9231, ASR_train_outter: 0.9898
+Epoch 1000, loss_inner: 0.32389, loss_target: 0.29823, homo loss: 0.00000 
+acc_train_clean: 0.8925, ASR_train_attach: 0.8974, ASR_train_outter: 0.9932
+Epoch 1010, loss_inner: 0.37000, loss_target: 0.34804, homo loss: 0.00000 
+acc_train_clean: 0.8778, ASR_train_attach: 0.9231, ASR_train_outter: 0.9932
+Epoch 1020, loss_inner: 0.34607, loss_target: 0.32380, homo loss: 0.00000 
+acc_train_clean: 0.8818, ASR_train_attach: 0.9359, ASR_train_outter: 0.9932
+Epoch 1030, loss_inner: 0.32453, loss_target: 0.30089, homo loss: 0.00000 
+acc_train_clean: 0.8864, ASR_train_attach: 0.9359, ASR_train_outter: 0.9644
+Epoch 1040, loss_inner: 0.32069, loss_target: 0.29442, homo loss: 0.00000 
+acc_train_clean: 0.8887, ASR_train_attach: 0.9359, ASR_train_outter: 0.9864
+Epoch 1050, loss_inner: 0.32623, loss_target: 0.29701, homo loss: 0.00000 
+acc_train_clean: 0.8917, ASR_train_attach: 0.8846, ASR_train_outter: 0.9966
+Epoch 1060, loss_inner: 0.34783, loss_target: 0.32261, homo loss: 0.00000 
+acc_train_clean: 0.8864, ASR_train_attach: 0.7179, ASR_train_outter: 0.9271
+Epoch 1070, loss_inner: 0.32972, loss_target: 0.30174, homo loss: 0.00000 
+acc_train_clean: 0.8897, ASR_train_attach: 0.9103, ASR_train_outter: 0.9661
+Epoch 1080, loss_inner: 0.32152, loss_target: 0.29395, homo loss: 0.00000 
+acc_train_clean: 0.8894, ASR_train_attach: 0.9359, ASR_train_outter: 0.9729
+Epoch 1090, loss_inner: 0.32490, loss_target: 0.29391, homo loss: 0.00004 
+acc_train_clean: 0.8912, ASR_train_attach: 0.8205, ASR_train_outter: 0.9678
+Epoch 1100, loss_inner: 0.32248, loss_target: 0.29332, homo loss: 0.00005 
+acc_train_clean: 0.8912, ASR_train_attach: 0.8974, ASR_train_outter: 0.9746
+Epoch 1110, loss_inner: 0.32297, loss_target: 0.29402, homo loss: 0.00015 
+acc_train_clean: 0.8902, ASR_train_attach: 0.8846, ASR_train_outter: 0.9695
+Epoch 1120, loss_inner: 0.34958, loss_target: 0.41203, homo loss: 0.02927 
+acc_train_clean: 0.8750, ASR_train_attach: 1.0000, ASR_train_outter: 1.0000
+Epoch 1130, loss_inner: 0.32840, loss_target: 0.31762, homo loss: 0.00009 
+acc_train_clean: 0.8876, ASR_train_attach: 0.9359, ASR_train_outter: 0.9814
+Epoch 1140, loss_inner: 0.32099, loss_target: 0.30864, homo loss: 0.00000 
+acc_train_clean: 0.8907, ASR_train_attach: 0.9103, ASR_train_outter: 0.9780
+Epoch 1150, loss_inner: 0.31742, loss_target: 0.29826, homo loss: 0.00001 
+acc_train_clean: 0.8915, ASR_train_attach: 0.9231, ASR_train_outter: 0.9678
+Epoch 1160, loss_inner: 0.31943, loss_target: 0.29925, homo loss: 0.00000 
+acc_train_clean: 0.8887, ASR_train_attach: 0.9487, ASR_train_outter: 0.9915
+Epoch 1170, loss_inner: 0.32395, loss_target: 0.29855, homo loss: 0.00000 
+acc_train_clean: 0.8912, ASR_train_attach: 0.9231, ASR_train_outter: 0.9864
+Epoch 1180, loss_inner: 0.32399, loss_target: 0.29793, homo loss: 0.00000 
+acc_train_clean: 0.8907, ASR_train_attach: 0.9231, ASR_train_outter: 0.9814
+Epoch 1190, loss_inner: 0.32562, loss_target: 0.29885, homo loss: 0.00000 
+acc_train_clean: 0.8897, ASR_train_attach: 0.9231, ASR_train_outter: 0.9864
+Epoch 1200, loss_inner: 0.32655, loss_target: 0.30124, homo loss: 0.00001 
+acc_train_clean: 0.8897, ASR_train_attach: 0.9487, ASR_train_outter: 0.9763
+Epoch 1210, loss_inner: 0.32503, loss_target: 0.30341, homo loss: 0.00000 
+acc_train_clean: 0.8884, ASR_train_attach: 0.9487, ASR_train_outter: 0.9881
+Epoch 1220, loss_inner: 0.32383, loss_target: 0.30047, homo loss: 0.00000 
+acc_train_clean: 0.8897, ASR_train_attach: 0.9487, ASR_train_outter: 0.9831
+Epoch 1230, loss_inner: 0.32256, loss_target: 0.29796, homo loss: 0.00000 
+acc_train_clean: 0.8909, ASR_train_attach: 0.9487, ASR_train_outter: 0.9847
+Epoch 1240, loss_inner: 0.32414, loss_target: 0.29913, homo loss: 0.00002 
+acc_train_clean: 0.8902, ASR_train_attach: 0.9231, ASR_train_outter: 0.9797
+Epoch 1250, loss_inner: 0.32737, loss_target: 0.31133, homo loss: 0.00001 
+acc_train_clean: 0.8876, ASR_train_attach: 0.9744, ASR_train_outter: 0.9915
+Epoch 1260, loss_inner: 0.32361, loss_target: 0.30108, homo loss: 0.00000 
+acc_train_clean: 0.8889, ASR_train_attach: 0.9103, ASR_train_outter: 0.9678
+Epoch 1270, loss_inner: 0.32122, loss_target: 0.29538, homo loss: 0.00001 
+acc_train_clean: 0.8894, ASR_train_attach: 0.8974, ASR_train_outter: 0.9729
+Epoch 1280, loss_inner: 0.31896, loss_target: 0.29516, homo loss: 0.00000 
+acc_train_clean: 0.8915, ASR_train_attach: 0.9615, ASR_train_outter: 0.9864
+Epoch 1290, loss_inner: 0.32639, loss_target: 0.32210, homo loss: 0.00360 
+acc_train_clean: 0.8879, ASR_train_attach: 1.0000, ASR_train_outter: 1.0000
+Epoch 1300, loss_inner: 0.32603, loss_target: 0.33722, homo loss: 0.00003 
+acc_train_clean: 0.8859, ASR_train_attach: 0.8974, ASR_train_outter: 0.9407
+Epoch 1310, loss_inner: 0.32223, loss_target: 0.31596, homo loss: 0.00020 
+acc_train_clean: 0.8912, ASR_train_attach: 0.9231, ASR_train_outter: 0.9746
+Epoch 1320, loss_inner: 0.33037, loss_target: 0.31285, homo loss: 0.00003 
+acc_train_clean: 0.8945, ASR_train_attach: 0.7564, ASR_train_outter: 0.9949
+Epoch 1330, loss_inner: 0.34280, loss_target: 0.32579, homo loss: 0.00000 
+acc_train_clean: 0.8876, ASR_train_attach: 0.8590, ASR_train_outter: 0.9949
+Epoch 1340, loss_inner: 0.34011, loss_target: 0.32028, homo loss: 0.00000 
+acc_train_clean: 0.8838, ASR_train_attach: 0.9744, ASR_train_outter: 0.9915
+Epoch 1350, loss_inner: 0.32580, loss_target: 0.30302, homo loss: 0.00000 
+acc_train_clean: 0.8856, ASR_train_attach: 0.9744, ASR_train_outter: 0.9881
+Epoch 1360, loss_inner: 0.32232, loss_target: 0.29496, homo loss: 0.00000 
+acc_train_clean: 0.8884, ASR_train_attach: 0.9487, ASR_train_outter: 0.9881
+Epoch 1370, loss_inner: 0.32167, loss_target: 0.29332, homo loss: 0.00000 
+acc_train_clean: 0.8897, ASR_train_attach: 0.9487, ASR_train_outter: 0.9966
+Epoch 1380, loss_inner: 0.34962, loss_target: 0.31919, homo loss: 0.00009 
+acc_train_clean: 0.8915, ASR_train_attach: 0.6795, ASR_train_outter: 0.9407
+Epoch 1390, loss_inner: 0.32723, loss_target: 0.29934, homo loss: 0.00000 
+acc_train_clean: 0.8884, ASR_train_attach: 0.9359, ASR_train_outter: 0.9831
+Epoch 1400, loss_inner: 0.32022, loss_target: 0.29445, homo loss: 0.00000 
+acc_train_clean: 0.8907, ASR_train_attach: 0.9103, ASR_train_outter: 0.9695
+Epoch 1410, loss_inner: 0.32123, loss_target: 0.29207, homo loss: 0.00000 
+acc_train_clean: 0.8917, ASR_train_attach: 0.8846, ASR_train_outter: 0.9780
+Epoch 1420, loss_inner: 0.32308, loss_target: 0.30504, homo loss: 0.00000 
+acc_train_clean: 0.8902, ASR_train_attach: 0.9744, ASR_train_outter: 0.9932
+Epoch 1430, loss_inner: 0.32074, loss_target: 0.29212, homo loss: 0.00001 
+acc_train_clean: 0.8915, ASR_train_attach: 0.8590, ASR_train_outter: 0.9949
+Epoch 1440, loss_inner: 0.32093, loss_target: 0.29733, homo loss: 0.00000 
+acc_train_clean: 0.8915, ASR_train_attach: 0.9359, ASR_train_outter: 0.9966
+Epoch 1450, loss_inner: 0.31977, loss_target: 0.29100, homo loss: 0.00000 
+acc_train_clean: 0.8925, ASR_train_attach: 0.9359, ASR_train_outter: 0.9881
+Epoch 1460, loss_inner: 0.31973, loss_target: 0.29151, homo loss: 0.00000 
+acc_train_clean: 0.8922, ASR_train_attach: 0.9231, ASR_train_outter: 0.9949
+Epoch 1470, loss_inner: 0.32063, loss_target: 0.29189, homo loss: 0.00000 
+acc_train_clean: 0.8925, ASR_train_attach: 0.9103, ASR_train_outter: 0.9915
+Epoch 1480, loss_inner: 0.31801, loss_target: 0.29460, homo loss: 0.00001 
+acc_train_clean: 0.8920, ASR_train_attach: 0.9487, ASR_train_outter: 0.9644
+Epoch 1490, loss_inner: 0.31663, loss_target: 0.29533, homo loss: 0.00000 
+acc_train_clean: 0.8925, ASR_train_attach: 0.8974, ASR_train_outter: 0.9559
+load best weight based on the loss outter
+precent of left attach nodes: 1.000
+target class rate on Vs: 0.3205
+target class rate on Vs: 1.0000
+accuracy on clean test nodes: 0.8168
+Node 0: 9852
+ASR: 0.0000
+Node 1: 9858
+ASR: 1.0000
+Node 2: 9860
+ASR: 0.0000
+Node 3: 9864
+ASR: 0.0000
+Node 4: 9873
+ASR: 0.0000
+Node 5: 9874
+ASR: 1.0000
+Node 6: 9879
+ASR: 0.0000
+Node 7: 9890
+ASR: 0.0000
+Node 8: 9891
+ASR: 0.0000
+Node 9: 9894
+ASR: 1.0000
+Node 10: 9895
+ASR: 0.0000
+Node 11: 9902
+ASR: 0.0000
+Node 12: 9905
+ASR: 0.0000
+Node 13: 9907
+ASR: 0.0000
+Node 14: 9911
+ASR: 0.0000
+Node 15: 9912
+ASR: 0.0000
+Node 16: 9919
+ASR: 0.0000
+Node 17: 9922
+ASR: 0.0000
+Node 18: 9924
+ASR: 0.0000
+Node 19: 9927
+ASR: 0.0000
+Node 20: 9933
+ASR: 0.0000
+Node 21: 9944
+ASR: 1.0000
+Node 22: 9945
+ASR: 0.0000
+Node 23: 9948
+ASR: 0.0000
+Node 24: 9954
+ASR: 1.0000
+Node 25: 9956
+ASR: 1.0000
+Node 26: 9958
+ASR: 0.0000
+Node 27: 9961
+ASR: 0.0000
+Node 28: 9962
+ASR: 0.0000
+Node 29: 9966
+ASR: 1.0000
+Node 30: 9969
+ASR: 0.0000
+Node 31: 9971
+ASR: 0.0000
+Node 32: 9973
+ASR: 0.0000
+Node 33: 9979
+ASR: 0.0000
+Node 34: 9980
+ASR: 0.0000
+Node 35: 9985
+ASR: 0.0000
+Node 36: 9988
+ASR: 0.0000
+Node 37: 9995
+ASR: 0.0000
+Node 38: 9996
+ASR: 0.0000
+Node 39: 10008
+ASR: 0.0000
+Node 40: 10010
+ASR: 0.0000
+Node 41: 10020
+ASR: 0.0000
+Node 42: 10021
+ASR: 1.0000
+Node 43: 10023
+ASR: 0.0000
+Node 44: 10024
+ASR: 0.0000
+Node 45: 10028
+ASR: 0.0000
+Node 46: 10030
+ASR: 0.0000
+Node 47: 10035
+ASR: 0.0000
+Node 48: 10041
+ASR: 0.0000
+Node 49: 10053
+ASR: 1.0000
+Node 50: 10058
+ASR: 0.0000
+Node 51: 10062
+ASR: 0.0000
+Node 52: 10064
+ASR: 1.0000
+Node 53: 10066
+ASR: 0.0000
+Node 54: 10067
+ASR: 0.0000
+Node 55: 10068
+ASR: 0.0000
+Node 56: 10069
+ASR: 0.0000
+Node 57: 10070
+ASR: 1.0000
+Node 58: 10082
+ASR: 1.0000
+Node 59: 10083
+ASR: 0.0000
+Node 60: 10091
+ASR: 0.0000
+Node 61: 10092
+ASR: 0.0000
+Node 62: 10097
+ASR: 0.0000
+Node 63: 10101
+ASR: 1.0000
+Node 64: 10110
+ASR: 0.0000
+Node 65: 10115
+ASR: 0.0000
+Node 66: 10116
+ASR: 0.0000
+Node 67: 10118
+ASR: 1.0000
+Node 68: 10121
+ASR: 0.0000
+Node 69: 10123
+ASR: 1.0000
+Node 70: 10128
+ASR: 0.0000
+Node 71: 10133
+ASR: 0.0000
+Node 72: 10143
+ASR: 1.0000
+Node 73: 10155
+ASR: 0.0000
+Node 74: 10157
+ASR: 0.0000
+Node 75: 10160
+ASR: 0.0000
+Node 76: 10162
+ASR: 0.0000
+Node 77: 10174
+ASR: 0.0000
+Node 78: 10175
+ASR: 0.0000
+Node 79: 10177
+ASR: 0.0000
+Node 80: 10178
+ASR: 0.0000
+Node 81: 10182
+ASR: 0.0000
+Node 82: 10183
+ASR: 0.0000
+Node 83: 10194
+ASR: 0.0000
+Node 84: 10195
+ASR: 0.0000
+Node 85: 10198
+ASR: 0.0000
+Node 86: 10202
+ASR: 0.0000
+Node 87: 10232
+ASR: 1.0000
+Node 88: 10235
+ASR: 0.0000
+Node 89: 10237
+ASR: 0.0000
+Node 90: 10241
+ASR: 0.0000
+Node 91: 10242
+ASR: 0.0000
+Node 92: 10243
+ASR: 0.0000
+Node 93: 10249
+ASR: 0.0000
+Node 94: 10257
+ASR: 0.0000
+Node 95: 10259
+ASR: 0.0000
+Node 96: 10264
+ASR: 0.0000
+Node 97: 10269
+ASR: 0.0000
+Node 98: 10270
+ASR: 0.0000
+Node 99: 10279
+ASR: 0.0000
+Node 100: 10286
+ASR: 0.0000
+Node 101: 10289
+ASR: 0.0000
+Node 102: 10296
+ASR: 0.0000
+Node 103: 10298
+ASR: 0.0000
+Node 104: 10306
+ASR: 0.0000
+Node 105: 10314
+ASR: 0.0000
+Node 106: 10317
+ASR: 0.0000
+Node 107: 10318
+ASR: 0.0000
+Node 108: 10321
+ASR: 0.0000
+Node 109: 10323
+ASR: 0.0000
+Node 110: 10324
+ASR: 0.0000
+Node 111: 10325
+ASR: 0.0000
+Node 112: 10335
+ASR: 0.0000
+Node 113: 10339
+ASR: 0.0000
+Node 114: 10348
+ASR: 1.0000
+Node 115: 10354
+ASR: 0.0000
+Node 116: 10355
+ASR: 0.0000
+Node 117: 10359
+ASR: 0.0000
+Node 118: 10362
+ASR: 0.0000
+Node 119: 10365
+ASR: 0.0000
+Node 120: 10366
+ASR: 0.0000
+Node 121: 10370
+ASR: 0.0000
+Node 122: 10375
+ASR: 1.0000
+Node 123: 10381
+ASR: 0.0000
+Node 124: 10382
+ASR: 1.0000
+Node 125: 10385
+ASR: 0.0000
+Node 126: 10387
+ASR: 0.0000
+Node 127: 10390
+ASR: 0.0000
+Node 128: 10392
+ASR: 0.0000
+Node 129: 10393
+ASR: 0.0000
+Node 130: 10400
+ASR: 0.0000
+Node 131: 10407
+ASR: 0.0000
+Node 132: 10409
+ASR: 1.0000
+Node 133: 10415
+ASR: 0.0000
+Node 134: 10416
+ASR: 1.0000
+Node 135: 10421
+ASR: 0.0000
+Node 136: 10432
+ASR: 1.0000
+Node 137: 10441
+ASR: 0.0000
+Node 138: 10442
+ASR: 1.0000
+Node 139: 10449
+ASR: 0.0000
+Node 140: 10464
+ASR: 0.0000
+Node 141: 10465
+ASR: 1.0000
+Node 142: 10472
+ASR: 0.0000
+Node 143: 10476
+ASR: 0.0000
+Node 144: 10480
+ASR: 1.0000
+Node 145: 10486
+ASR: 1.0000
+Node 146: 10491
+ASR: 0.0000
+Node 147: 10493
+ASR: 0.0000
+Node 148: 10496
+ASR: 0.0000
+Node 149: 10497
+ASR: 0.0000
+Node 150: 10498
+ASR: 0.0000
+Node 151: 10501
+ASR: 0.0000
+Node 152: 10507
+ASR: 1.0000
+Node 153: 10511
+ASR: 0.0000
+Node 154: 10512
+ASR: 0.0000
+Node 155: 10516
+ASR: 1.0000
+Node 156: 10520
+ASR: 0.0000
+Node 157: 10527
+ASR: 0.0000
+Node 158: 10529
+ASR: 0.0000
+Node 159: 10545
+ASR: 0.0000
+Node 160: 10549
+ASR: 0.0000
+Node 161: 10552
+ASR: 0.0000
+Node 162: 10560
+ASR: 0.0000
+Node 163: 10562
+ASR: 0.0000
+Node 164: 10565
+ASR: 1.0000
+Node 165: 10581
+ASR: 1.0000
+Node 166: 10584
+ASR: 0.0000
+Node 167: 10585
+ASR: 0.0000
+Node 168: 10590
+ASR: 0.0000
+Node 169: 10595
+ASR: 0.0000
+Node 170: 10601
+ASR: 0.0000
+Node 171: 10612
+ASR: 1.0000
+Node 172: 10619
+ASR: 0.0000
+Node 173: 10621
+ASR: 0.0000
+Node 174: 10625
+ASR: 0.0000
+Node 175: 10630
+ASR: 0.0000
+Node 176: 10633
+ASR: 0.0000
+Node 177: 10640
+ASR: 0.0000
+Node 178: 10643
+ASR: 0.0000
+Node 179: 10649
+ASR: 0.0000
+Node 180: 10652
+ASR: 0.0000
+Node 181: 10660
+ASR: 0.0000
+Node 182: 10665
+ASR: 0.0000
+Node 183: 10666
+ASR: 0.0000
+Node 184: 10671
+ASR: 1.0000
+Node 185: 10675
+ASR: 0.0000
+Node 186: 10676
+ASR: 0.0000
+Node 187: 10680
+ASR: 0.0000
+Node 188: 10684
+ASR: 0.0000
+Node 189: 10686
+ASR: 0.0000
+Node 190: 10696
+ASR: 1.0000
+Node 191: 10706
+ASR: 0.0000
+Node 192: 10710
+ASR: 0.0000
+Node 193: 10711
+ASR: 0.0000
+Node 194: 10712
+ASR: 0.0000
+Node 195: 10718
+ASR: 0.0000
+Node 196: 10720
+ASR: 0.0000
+Node 197: 10733
+ASR: 0.0000
+Node 198: 10735
+ASR: 0.0000
+Node 199: 10749
+ASR: 0.0000
+Node 200: 10754
+ASR: 0.0000
+Node 201: 10755
+ASR: 0.0000
+Node 202: 10761
+ASR: 0.0000
+Node 203: 10768
+ASR: 0.0000
+Node 204: 10770
+ASR: 0.0000
+Node 205: 10776
+ASR: 0.0000
+Node 206: 10786
+ASR: 1.0000
+Node 207: 10791
+ASR: 0.0000
+Node 208: 10792
+ASR: 0.0000
+Node 209: 10793
+ASR: 1.0000
+Node 210: 10800
+ASR: 0.0000
+Node 211: 10801
+ASR: 0.0000
+Node 212: 10802
+ASR: 0.0000
+Node 213: 10803
+ASR: 0.0000
+Node 214: 10806
+ASR: 1.0000
+Node 215: 10816
+ASR: 1.0000
+Node 216: 10818
+ASR: 0.0000
+Node 217: 10820
+ASR: 0.0000
+Node 218: 10827
+ASR: 1.0000
+Node 219: 10829
+ASR: 1.0000
+Node 220: 10844
+ASR: 0.0000
+Node 221: 10845
+ASR: 0.0000
+Node 222: 10847
+ASR: 1.0000
+Node 223: 10856
+ASR: 0.0000
+Node 224: 10858
+ASR: 0.0000
+Node 225: 10860
+ASR: 1.0000
+Node 226: 10861
+ASR: 0.0000
+Node 227: 10862
+ASR: 0.0000
+Node 228: 10865
+ASR: 1.0000
+Node 229: 10878
+ASR: 0.0000
+Node 230: 10879
+ASR: 0.0000
+Node 231: 10894
+ASR: 0.0000
+Node 232: 10898
+ASR: 0.0000
+Node 233: 10906
+ASR: 1.0000
+Node 234: 10911
+ASR: 0.0000
+Node 235: 10914
+ASR: 0.0000
+Node 236: 10929
+ASR: 1.0000
+Node 237: 10935
+ASR: 0.0000
+Node 238: 10936
+ASR: 0.0000
+Node 239: 10944
+ASR: 1.0000
+Node 240: 10966
+ASR: 0.0000
+Node 241: 10970
+ASR: 0.0000
+Node 242: 10975
+ASR: 0.0000
+Node 243: 10978
+ASR: 0.0000
+Node 244: 10987
+ASR: 0.0000
+Node 245: 10989
+ASR: 0.0000
+Node 246: 10995
+ASR: 0.0000
+Node 247: 11003
+ASR: 0.0000
+Node 248: 11008
+ASR: 0.0000
+Node 249: 11017
+ASR: 0.0000
+Node 250: 11033
+ASR: 1.0000
+Node 251: 11035
+ASR: 0.0000
+Node 252: 11044
+ASR: 1.0000
+Node 253: 11045
+ASR: 0.0000
+Node 254: 11051
+ASR: 0.0000
+Node 255: 11052
+ASR: 0.0000
+Node 256: 11056
+ASR: 0.0000
+Node 257: 11062
+ASR: 0.0000
+Node 258: 11064
+ASR: 0.0000
+Node 259: 11065
+ASR: 0.0000
+Node 260: 11081
+ASR: 1.0000
+Node 261: 11082
+ASR: 0.0000
+Node 262: 11085
+ASR: 0.0000
+Node 263: 11094
+ASR: 0.0000
+Node 264: 11095
+ASR: 0.0000
+Node 265: 11098
+ASR: 1.0000
+Node 266: 11099
+ASR: 1.0000
+Node 267: 11104
+ASR: 0.0000
+Node 268: 11108
+ASR: 0.0000
+Node 269: 11109
+ASR: 0.0000
+Node 270: 11115
+ASR: 1.0000
+Node 271: 11117
+ASR: 0.0000
+Node 272: 11120
+ASR: 0.0000
+Node 273: 11124
+ASR: 0.0000
+Node 274: 11131
+ASR: 1.0000
+Node 275: 11132
+ASR: 1.0000
+Node 276: 11133
+ASR: 0.0000
+Node 277: 11149
+ASR: 0.0000
+Node 278: 11156
+ASR: 0.0000
+Node 279: 11158
+ASR: 0.0000
+Node 280: 11161
+ASR: 0.0000
+Node 281: 11162
+ASR: 0.0000
+Node 282: 11164
+ASR: 0.0000
+Node 283: 11165
+ASR: 0.0000
+Node 284: 11177
+ASR: 0.0000
+Node 285: 11178
+ASR: 0.0000
+Node 286: 11180
+ASR: 0.0000
+Node 287: 11190
+ASR: 0.0000
+Node 288: 11198
+ASR: 0.0000
+Node 289: 11200
+ASR: 0.0000
+Node 290: 11203
+ASR: 0.0000
+Node 291: 11205
+ASR: 0.0000
+Node 292: 11207
+ASR: 0.0000
+Node 293: 11222
+ASR: 0.0000
+Node 294: 11233
+ASR: 1.0000
+Node 295: 11235
+ASR: 0.0000
+Node 296: 11237
+ASR: 0.0000
+Node 297: 11238
+ASR: 1.0000
+Node 298: 11241
+ASR: 0.0000
+Node 299: 11247
+ASR: 1.0000
+Node 300: 11248
+ASR: 0.0000
+Node 301: 11259
+ASR: 0.0000
+Node 302: 11262
+ASR: 0.0000
+Node 303: 11276
+ASR: 0.0000
+Node 304: 11280
+ASR: 0.0000
+Node 305: 11298
+ASR: 0.0000
+Node 306: 11302
+ASR: 0.0000
+Node 307: 11305
+ASR: 0.0000
+Node 308: 11307
+ASR: 0.0000
+Node 309: 11313
+ASR: 0.0000
+Node 310: 11314
+ASR: 1.0000
+Node 311: 11316
+ASR: 0.0000
+Node 312: 11321
+ASR: 0.0000
+Node 313: 11328
+ASR: 1.0000
+Node 314: 11367
+ASR: 0.0000
+Node 315: 11369
+ASR: 0.0000
+Node 316: 11371
+ASR: 0.0000
+Node 317: 11373
+ASR: 0.0000
+Node 318: 11378
+ASR: 0.0000
+Node 319: 11379
+ASR: 1.0000
+Node 320: 11384
+ASR: 0.0000
+Node 321: 11391
+ASR: 0.0000
+Node 322: 11397
+ASR: 0.0000
+Node 323: 11398
+ASR: 0.0000
+Node 324: 11400
+ASR: 0.0000
+Node 325: 11407
+ASR: 0.0000
+Node 326: 11410
+ASR: 1.0000
+Node 327: 11415
+ASR: 1.0000
+Node 328: 11421
+ASR: 0.0000
+Node 329: 11422
+ASR: 0.0000
+Node 330: 11426
+ASR: 1.0000
+Node 331: 11429
+ASR: 0.0000
+Node 332: 11431
+ASR: 0.0000
+Node 333: 11437
+ASR: 0.0000
+Node 334: 11438
+ASR: 1.0000
+Node 335: 11441
+ASR: 1.0000
+Node 336: 11443
+ASR: 0.0000
+Node 337: 11445
+ASR: 0.0000
+Node 338: 11457
+ASR: 0.0000
+Node 339: 11476
+ASR: 1.0000
+Node 340: 11480
+ASR: 0.0000
+Node 341: 11482
+ASR: 0.0000
+Node 342: 11486
+ASR: 0.0000
+Node 343: 11492
+ASR: 0.0000
+Node 344: 11493
+ASR: 0.0000
+Node 345: 11498
+ASR: 0.0000
+Node 346: 11511
+ASR: 0.0000
+Node 347: 11519
+ASR: 0.0000
+Node 348: 11522
+ASR: 0.0000
+Node 349: 11523
+ASR: 0.0000
+Node 350: 11537
+ASR: 0.0000
+Node 351: 11539
+ASR: 0.0000
+Node 352: 11540
+ASR: 0.0000
+Node 353: 11546
+ASR: 0.0000
+Node 354: 11550
+ASR: 0.0000
+Node 355: 11551
+ASR: 0.0000
+Node 356: 11552
+ASR: 0.0000
+Node 357: 11553
+ASR: 0.0000
+Node 358: 11557
+ASR: 0.0000
+Node 359: 11558
+ASR: 0.0000
+Node 360: 11560
+ASR: 0.0000
+Node 361: 11565
+ASR: 0.0000
+Node 362: 11580
+ASR: 1.0000
+Node 363: 11584
+ASR: 0.0000
+Node 364: 11589
+ASR: 0.0000
+Node 365: 11591
+ASR: 0.0000
+Node 366: 11601
+ASR: 0.0000
+Node 367: 11604
+ASR: 1.0000
+Node 368: 11606
+ASR: 0.0000
+Node 369: 11613
+ASR: 0.0000
+Node 370: 11621
+ASR: 1.0000
+Node 371: 11630
+ASR: 0.0000
+Node 372: 11631
+ASR: 0.0000
+Node 373: 11632
+ASR: 0.0000
+Node 374: 11635
+ASR: 0.0000
+Node 375: 11638
+ASR: 0.0000
+Node 376: 11641
+ASR: 0.0000
+Node 377: 11666
+ASR: 0.0000
+Node 378: 11675
+ASR: 1.0000
+Node 379: 11676
+ASR: 0.0000
+Node 380: 11692
+ASR: 0.0000
+Node 381: 11696
+ASR: 0.0000
+Node 382: 11700
+ASR: 0.0000
+Node 383: 11701
+ASR: 0.0000
+Node 384: 11705
+ASR: 1.0000
+Node 385: 11709
+ASR: 0.0000
+Node 386: 11716
+ASR: 0.0000
+Node 387: 11720
+ASR: 0.0000
+Node 388: 11724
+ASR: 1.0000
+Node 389: 11725
+ASR: 0.0000
+Node 390: 11739
+ASR: 0.0000
+Node 391: 11751
+ASR: 0.0000
+Node 392: 11763
+ASR: 0.0000
+Node 393: 11777
+ASR: 1.0000
+Node 394: 11782
+ASR: 0.0000
+Node 395: 11783
+ASR: 0.0000
+Node 396: 11785
+ASR: 1.0000
+Node 397: 11792
+ASR: 0.0000
+Node 398: 11795
+ASR: 0.0000
+Node 399: 11797
+ASR: 0.0000
+Node 400: 11798
+ASR: 0.0000
+Node 401: 11801
+ASR: 1.0000
+Node 402: 11804
+ASR: 0.0000
+Node 403: 11805
+ASR: 0.0000
+Node 404: 11807
+ASR: 1.0000
+Node 405: 11812
+ASR: 0.0000
+Node 406: 11815
+ASR: 1.0000
+Node 407: 11820
+ASR: 1.0000
+Node 408: 11822
+ASR: 0.0000
+Node 409: 11823
+ASR: 0.0000
+Node 410: 11847
+ASR: 0.0000
+Node 411: 11851
+ASR: 0.0000
+Node 412: 11852
+ASR: 1.0000
+Node 413: 11856
+ASR: 1.0000
+Node 414: 11861
+ASR: 0.0000
+Node 415: 11864
+ASR: 1.0000
+Node 416: 11868
+ASR: 0.0000
+Node 417: 11870
+ASR: 0.0000
+Node 418: 11872
+ASR: 0.0000
+Node 419: 11873
+ASR: 0.0000
+Node 420: 11877
+ASR: 0.0000
+Node 421: 11879
+ASR: 1.0000
+Node 422: 11881
+ASR: 0.0000
+Node 423: 11884
+ASR: 0.0000
+Node 424: 11901
+ASR: 0.0000
+Node 425: 11919
+ASR: 0.0000
+Node 426: 11923
+ASR: 0.0000
+Node 427: 11926
+ASR: 0.0000
+Node 428: 11934
+ASR: 0.0000
+Node 429: 11936
+ASR: 0.0000
+Node 430: 11937
+ASR: 1.0000
+Node 431: 11949
+ASR: 1.0000
+Node 432: 11951
+ASR: 0.0000
+Node 433: 11954
+ASR: 0.0000
+Node 434: 11957
+ASR: 0.0000
+Node 435: 11962
+ASR: 0.0000
+Node 436: 11969
+ASR: 0.0000
+Node 437: 11972
+ASR: 0.0000
+Node 438: 11974
+ASR: 1.0000
+Node 439: 11981
+ASR: 1.0000
+Node 440: 11987
+ASR: 0.0000
+Node 441: 11992
+ASR: 1.0000
+Node 442: 12012
+ASR: 0.0000
+Node 443: 12016
+ASR: 0.0000
+Node 444: 12018
+ASR: 0.0000
+Node 445: 12019
+ASR: 0.0000
+Node 446: 12021
+ASR: 0.0000
+Node 447: 12030
+ASR: 1.0000
+Node 448: 12035
+ASR: 1.0000
+Node 449: 12037
+ASR: 0.0000
+Node 450: 12047
+ASR: 0.0000
+Node 451: 12049
+ASR: 0.0000
+Node 452: 12050
+ASR: 0.0000
+Node 453: 12051
+ASR: 1.0000
+Node 454: 12054
+ASR: 0.0000
+Node 455: 12064
+ASR: 0.0000
+Node 456: 12072
+ASR: 0.0000
+Node 457: 12073
+ASR: 1.0000
+Node 458: 12074
+ASR: 1.0000
+Node 459: 12080
+ASR: 0.0000
+Node 460: 12081
+ASR: 0.0000
+Node 461: 12083
+ASR: 0.0000
+Node 462: 12085
+ASR: 0.0000
+Node 463: 12099
+ASR: 0.0000
+Node 464: 12107
+ASR: 1.0000
+Node 465: 12118
+ASR: 1.0000
+Node 466: 12124
+ASR: 0.0000
+Node 467: 12128
+ASR: 0.0000
+Node 468: 12129
+ASR: 0.0000
+Node 469: 12137
+ASR: 0.0000
+Node 470: 12139
+ASR: 0.0000
+Node 471: 12140
+ASR: 0.0000
+Node 472: 12149
+ASR: 0.0000
+Node 473: 12152
+ASR: 0.0000
+Node 474: 12153
+ASR: 0.0000
+Node 475: 12154
+ASR: 1.0000
+Node 476: 12163
+ASR: 0.0000
+Node 477: 12164
+ASR: 0.0000
+Node 478: 12165
+ASR: 0.0000
+Node 479: 12168
+ASR: 0.0000
+Node 480: 12169
+ASR: 0.0000
+Node 481: 12170
+ASR: 0.0000
+Node 482: 12171
+ASR: 0.0000
+Node 483: 12174
+ASR: 0.0000
+Node 484: 12183
+ASR: 0.0000
+Node 485: 12187
+ASR: 0.0000
+Node 486: 12189
+ASR: 0.0000
+Node 487: 12197
+ASR: 0.0000
+Node 488: 12212
+ASR: 0.0000
+Node 489: 12217
+ASR: 0.0000
+Node 490: 12232
+ASR: 0.0000
+Node 491: 12236
+ASR: 1.0000
+Node 492: 12241
+ASR: 0.0000
+Node 493: 12250
+ASR: 0.0000
+Node 494: 12251
+ASR: 0.0000
+Node 495: 12253
+ASR: 0.0000
+Node 496: 12259
+ASR: 0.0000
+Node 497: 12260
+ASR: 1.0000
+Node 498: 12261
+ASR: 1.0000
+Node 499: 12263
+ASR: 0.0000
+Node 500: 12264
+ASR: 0.0000
+Node 501: 12265
+ASR: 1.0000
+Node 502: 12273
+ASR: 1.0000
+Node 503: 12278
+ASR: 0.0000
+Node 504: 12279
+ASR: 0.0000
+Node 505: 12284
+ASR: 0.0000
+Node 506: 12290
+ASR: 1.0000
+Node 507: 12291
+ASR: 0.0000
+Node 508: 12292
+ASR: 1.0000
+Node 509: 12293
+ASR: 0.0000
+Node 510: 12296
+ASR: 1.0000
+Node 511: 12302
+ASR: 0.0000
+Node 512: 12313
+ASR: 0.0000
+Node 513: 12318
+ASR: 0.0000
+Node 514: 12323
+ASR: 0.0000
+Node 515: 12326
+ASR: 0.0000
+Node 516: 12338
+ASR: 0.0000
+Node 517: 12342
+ASR: 1.0000
+Node 518: 12344
+ASR: 0.0000
+Node 519: 12347
+ASR: 0.0000
+Node 520: 12353
+ASR: 0.0000
+Node 521: 12354
+ASR: 0.0000
+Node 522: 12362
+ASR: 0.0000
+Node 523: 12363
+ASR: 1.0000
+Node 524: 12367
+ASR: 0.0000
+Node 525: 12368
+ASR: 0.0000
+Node 526: 12388
+ASR: 0.0000
+Node 527: 12408
+ASR: 0.0000
+Node 528: 12410
+ASR: 0.0000
+Node 529: 12411
+ASR: 0.0000
+Node 530: 12413
+ASR: 1.0000
+Node 531: 12417
+ASR: 1.0000
+Node 532: 12421
+ASR: 0.0000
+Node 533: 12423
+ASR: 0.0000
+Node 534: 12424
+ASR: 0.0000
+Node 535: 12427
+ASR: 0.0000
+Node 536: 12430
+ASR: 1.0000
+Node 537: 12443
+ASR: 0.0000
+Node 538: 12447
+ASR: 0.0000
+Node 539: 12450
+ASR: 0.0000
+Node 540: 12453
+ASR: 0.0000
+Node 541: 12454
+ASR: 0.0000
+Node 542: 12455
+ASR: 0.0000
+Node 543: 12460
+ASR: 1.0000
+Node 544: 12461
+ASR: 1.0000
+Node 545: 12463
+ASR: 0.0000
+Node 546: 12470
+ASR: 0.0000
+Node 547: 12478
+ASR: 0.0000
+Node 548: 12482
+ASR: 1.0000
+Node 549: 12486
+ASR: 1.0000
+Node 550: 12489
+ASR: 0.0000
+Node 551: 12494
+ASR: 0.0000
+Node 552: 12497
+ASR: 0.0000
+Node 553: 12503
+ASR: 0.0000
+Node 554: 12512
+ASR: 0.0000
+Node 555: 12516
+ASR: 0.0000
+Node 556: 12521
+ASR: 0.0000
+Node 557: 12525
+ASR: 1.0000
+Node 558: 12528
+ASR: 0.0000
+Node 559: 12530
+ASR: 0.0000
+Node 560: 12539
+ASR: 0.0000
+Node 561: 12542
+ASR: 0.0000
+Node 562: 12551
+ASR: 0.0000
+Node 563: 12556
+ASR: 0.0000
+Node 564: 12560
+ASR: 1.0000
+Node 565: 12564
+ASR: 0.0000
+Node 566: 12567
+ASR: 0.0000
+Node 567: 12577
+ASR: 0.0000
+Node 568: 12578
+ASR: 1.0000
+Node 569: 12581
+ASR: 1.0000
+Node 570: 12583
+ASR: 0.0000
+Node 571: 12586
+ASR: 0.0000
+Node 572: 12589
+ASR: 0.0000
+Node 573: 12599
+ASR: 0.0000
+Node 574: 12600
+ASR: 0.0000
+Node 575: 12601
+ASR: 0.0000
+Node 576: 12602
+ASR: 1.0000
+Node 577: 12605
+ASR: 0.0000
+Node 578: 12614
+ASR: 0.0000
+Node 579: 12623
+ASR: 0.0000
+Node 580: 12625
+ASR: 0.0000
+Node 581: 12626
+ASR: 0.0000
+Node 582: 12629
+ASR: 0.0000
+Node 583: 12636
+ASR: 0.0000
+Node 584: 12641
+ASR: 1.0000
+Node 585: 12642
+ASR: 1.0000
+Node 586: 12659
+ASR: 1.0000
+Node 587: 12668
+ASR: 0.0000
+Node 588: 12669
+ASR: 0.0000
+Node 589: 12674
+ASR: 0.0000
+Node 590: 12686
+ASR: 0.0000
+Node 591: 12687
+ASR: 0.0000
+Node 592: 12696
+ASR: 0.0000
+Node 593: 12698
+ASR: 0.0000
+Node 594: 12701
+ASR: 0.0000
+Node 595: 12717
+ASR: 0.0000
+Node 596: 12720
+ASR: 0.0000
+Node 597: 12722
+ASR: 0.0000
+Node 598: 12723
+ASR: 0.0000
+Node 599: 12725
+ASR: 0.0000
+Node 600: 12726
+ASR: 0.0000
+Node 601: 12733
+ASR: 0.0000
+Node 602: 12736
+ASR: 0.0000
+Node 603: 12742
+ASR: 1.0000
+Node 604: 12751
+ASR: 0.0000
+Node 605: 12754
+ASR: 0.0000
+Node 606: 12757
+ASR: 0.0000
+Node 607: 12770
+ASR: 0.0000
+Node 608: 12780
+ASR: 1.0000
+Node 609: 12785
+ASR: 0.0000
+Node 610: 12789
+ASR: 0.0000
+Node 611: 12799
+ASR: 1.0000
+Node 612: 12807
+ASR: 0.0000
+Node 613: 12818
+ASR: 0.0000
+Node 614: 12821
+ASR: 0.0000
+Node 615: 12828
+ASR: 0.0000
+Node 616: 12835
+ASR: 1.0000
+Node 617: 12836
+ASR: 0.0000
+Node 618: 12840
+ASR: 0.0000
+Node 619: 12845
+ASR: 0.0000
+Node 620: 12860
+ASR: 1.0000
+Node 621: 12862
+ASR: 0.0000
+Node 622: 12863
+ASR: 0.0000
+Node 623: 12872
+ASR: 0.0000
+Node 624: 12875
+ASR: 0.0000
+Node 625: 12878
+ASR: 0.0000
+Node 626: 12885
+ASR: 0.0000
+Node 627: 12886
+ASR: 0.0000
+Node 628: 12893
+ASR: 0.0000
+Node 629: 12894
+ASR: 1.0000
+Node 630: 12899
+ASR: 1.0000
+Node 631: 12908
+ASR: 1.0000
+Node 632: 12909
+ASR: 0.0000
+Node 633: 12930
+ASR: 0.0000
+Node 634: 12932
+ASR: 0.0000
+Node 635: 12935
+ASR: 0.0000
+Node 636: 12946
+ASR: 0.0000
+Node 637: 12947
+ASR: 0.0000
+Node 638: 12949
+ASR: 1.0000
+Node 639: 12951
+ASR: 0.0000
+Node 640: 12955
+ASR: 1.0000
+Node 641: 12956
+ASR: 1.0000
+Node 642: 12958
+ASR: 1.0000
+Node 643: 12963
+ASR: 0.0000
+Node 644: 12971
+ASR: 0.0000
+Node 645: 12974
+ASR: 0.0000
+Node 646: 12978
+ASR: 0.0000
+Node 647: 12984
+ASR: 0.0000
+Node 648: 12986
+ASR: 0.0000
+Node 649: 12991
+ASR: 0.0000
+Node 650: 12992
+ASR: 1.0000
+Node 651: 12997
+ASR: 0.0000
+Node 652: 13004
+ASR: 0.0000
+Node 653: 13008
+ASR: 1.0000
+Node 654: 13010
+ASR: 1.0000
+Node 655: 13014
+ASR: 0.0000
+Node 656: 13018
+ASR: 0.0000
+Node 657: 13022
+ASR: 0.0000
+Node 658: 13028
+ASR: 0.0000
+Node 659: 13030
+ASR: 1.0000
+Node 660: 13032
+ASR: 0.0000
+Node 661: 13036
+ASR: 0.0000
+Node 662: 13038
+ASR: 0.0000
+Node 663: 13040
+ASR: 0.0000
+Node 664: 13043
+ASR: 0.0000
+Node 665: 13047
+ASR: 0.0000
+Node 666: 13048
+ASR: 0.0000
+Node 667: 13054
+ASR: 0.0000
+Node 668: 13056
+ASR: 0.0000
+Node 669: 13063
+ASR: 0.0000
+Node 670: 13064
+ASR: 1.0000
+Node 671: 13079
+ASR: 0.0000
+Node 672: 13080
+ASR: 0.0000
+Node 673: 13084
+ASR: 0.0000
+Node 674: 13086
+ASR: 0.0000
+Node 675: 13090
+ASR: 0.0000
+Node 676: 13093
+ASR: 1.0000
+Node 677: 13096
+ASR: 0.0000
+Node 678: 13103
+ASR: 0.0000
+Node 679: 13122
+ASR: 0.0000
+Node 680: 13128
+ASR: 0.0000
+Node 681: 13129
+ASR: 0.0000
+Node 682: 13136
+ASR: 1.0000
+Node 683: 13137
+ASR: 0.0000
+Node 684: 13143
+ASR: 1.0000
+Node 685: 13160
+ASR: 0.0000
+Node 686: 13168
+ASR: 0.0000
+Node 687: 13169
+ASR: 0.0000
+Node 688: 13171
+ASR: 0.0000
+Node 689: 13174
+ASR: 0.0000
+Node 690: 13177
+ASR: 0.0000
+Node 691: 13182
+ASR: 1.0000
+Node 692: 13186
+ASR: 0.0000
+Node 693: 13190
+ASR: 0.0000
+Node 694: 13201
+ASR: 0.0000
+Node 695: 13204
+ASR: 1.0000
+Node 696: 13205
+ASR: 0.0000
+Node 697: 13214
+ASR: 0.0000
+Node 698: 13220
+ASR: 0.0000
+Node 699: 13224
+ASR: 1.0000
+Node 700: 13230
+ASR: 0.0000
+Node 701: 13231
+ASR: 1.0000
+Node 702: 13239
+ASR: 0.0000
+Node 703: 13244
+ASR: 0.0000
+Node 704: 13246
+ASR: 1.0000
+Node 705: 13247
+ASR: 0.0000
+Node 706: 13259
+ASR: 0.0000
+Node 707: 13260
+ASR: 0.0000
+Node 708: 13262
+ASR: 1.0000
+Node 709: 13275
+ASR: 0.0000
+Node 710: 13281
+ASR: 0.0000
+Node 711: 13283
+ASR: 0.0000
+Node 712: 13284
+ASR: 0.0000
+Node 713: 13287
+ASR: 0.0000
+Node 714: 13288
+ASR: 0.0000
+Node 715: 13290
+ASR: 0.0000
+Node 716: 13302
+ASR: 0.0000
+Node 717: 13303
+ASR: 0.0000
+Node 718: 13305
+ASR: 0.0000
+Node 719: 13312
+ASR: 0.0000
+Node 720: 13319
+ASR: 0.0000
+Node 721: 13330
+ASR: 0.0000
+Node 722: 13333
+ASR: 0.0000
+Node 723: 13339
+ASR: 0.0000
+Node 724: 13341
+ASR: 0.0000
+Node 725: 13345
+ASR: 0.0000
+Node 726: 13362
+ASR: 0.0000
+Node 727: 13364
+ASR: 0.0000
+Node 728: 13366
+ASR: 0.0000
+Node 729: 13376
+ASR: 0.0000
+Node 730: 13378
+ASR: 1.0000
+Node 731: 13394
+ASR: 1.0000
+Node 732: 13395
+ASR: 0.0000
+Node 733: 13397
+ASR: 0.0000
+Node 734: 13401
+ASR: 0.0000
+Node 735: 13402
+ASR: 0.0000
+Node 736: 13403
+ASR: 0.0000
+Node 737: 13417
+ASR: 1.0000
+Node 738: 13421
+ASR: 1.0000
+Node 739: 13424
+ASR: 0.0000
+Node 740: 13426
+ASR: 0.0000
+Node 741: 13431
+ASR: 1.0000
+Node 742: 13443
+ASR: 0.0000
+Node 743: 13445
+ASR: 0.0000
+Node 744: 13448
+ASR: 0.0000
+Node 745: 13452
+ASR: 0.0000
+Node 746: 13462
+ASR: 0.0000
+Node 747: 13467
+ASR: 0.0000
+Node 748: 13470
+ASR: 0.0000
+Node 749: 13472
+ASR: 0.0000
+Node 750: 13475
+ASR: 1.0000
+Node 751: 13480
+ASR: 1.0000
+Node 752: 13487
+ASR: 1.0000
+Node 753: 13496
+ASR: 0.0000
+Node 754: 13499
+ASR: 1.0000
+Node 755: 13515
+ASR: 0.0000
+Node 756: 13518
+ASR: 0.0000
+Node 757: 13535
+ASR: 0.0000
+Node 758: 13536
+ASR: 1.0000
+Node 759: 13543
+ASR: 1.0000
+Node 760: 13544
+ASR: 0.0000
+Node 761: 13550
+ASR: 0.0000
+Node 762: 13551
+ASR: 0.0000
+Node 763: 13560
+ASR: 0.0000
+Node 764: 13564
+ASR: 0.0000
+Node 765: 13566
+ASR: 0.0000
+Node 766: 13584
+ASR: 1.0000
+Node 767: 13590
+ASR: 0.0000
+Node 768: 13592
+ASR: 0.0000
+Node 769: 13593
+ASR: 0.0000
+Node 770: 13599
+ASR: 0.0000
+Node 771: 13607
+ASR: 0.0000
+Node 772: 13613
+ASR: 0.0000
+Node 773: 13626
+ASR: 0.0000
+Node 774: 13633
+ASR: 0.0000
+Node 775: 13638
+ASR: 0.0000
+Node 776: 13639
+ASR: 0.0000
+Node 777: 13641
+ASR: 0.0000
+Node 778: 13646
+ASR: 1.0000
+Node 779: 13657
+ASR: 0.0000
+Node 780: 13665
+ASR: 0.0000
+Node 781: 13668
+ASR: 0.0000
+Node 782: 13670
+ASR: 0.0000
+Node 783: 13687
+ASR: 0.0000
+Node 784: 13697
+ASR: 0.0000
+Node 785: 13698
+ASR: 0.0000
+Node 786: 13699
+ASR: 0.0000
+Node 787: 13700
+ASR: 1.0000
+Node 788: 13702
+ASR: 0.0000
+Node 789: 13704
+ASR: 0.0000
+Node 790: 13705
+ASR: 0.0000
+Node 791: 13707
+ASR: 0.0000
+Node 792: 13708
+ASR: 0.0000
+Node 793: 13713
+ASR: 0.0000
+Node 794: 13716
+ASR: 1.0000
+Node 795: 13719
+ASR: 0.0000
+Node 796: 13724
+ASR: 1.0000
+Node 797: 13728
+ASR: 0.0000
+Node 798: 13732
+ASR: 0.0000
+Node 799: 13737
+ASR: 0.0000
+Node 800: 13746
+ASR: 0.0000
+Node 801: 13748
+ASR: 0.0000
+Node 802: 13753
+ASR: 0.0000
+Node 803: 13772
+ASR: 0.0000
+Node 804: 13774
+ASR: 0.0000
+Node 805: 13794
+ASR: 0.0000
+Node 806: 13804
+ASR: 0.0000
+Node 807: 13806
+ASR: 0.0000
+Node 808: 13807
+ASR: 0.0000
+Node 809: 13808
+ASR: 0.0000
+Node 810: 13812
+ASR: 0.0000
+Node 811: 13816
+ASR: 0.0000
+Node 812: 13819
+ASR: 0.0000
+Node 813: 13826
+ASR: 0.0000
+Node 814: 13834
+ASR: 1.0000
+Node 815: 13835
+ASR: 1.0000
+Node 816: 13836
+ASR: 0.0000
+Node 817: 13839
+ASR: 1.0000
+Node 818: 13842
+ASR: 0.0000
+Node 819: 13843
+ASR: 1.0000
+Node 820: 13860
+ASR: 0.0000
+Node 821: 13862
+ASR: 0.0000
+Node 822: 13868
+ASR: 0.0000
+Node 823: 13874
+ASR: 0.0000
+Node 824: 13878
+ASR: 0.0000
+Node 825: 13879
+ASR: 0.0000
+Node 826: 13880
+ASR: 1.0000
+Node 827: 13881
+ASR: 1.0000
+Node 828: 13883
+ASR: 1.0000
+Node 829: 13889
+ASR: 0.0000
+Node 830: 13891
+ASR: 0.0000
+Node 831: 13892
+ASR: 0.0000
+Node 832: 13895
+ASR: 1.0000
+Node 833: 13901
+ASR: 0.0000
+Node 834: 13914
+ASR: 1.0000
+Node 835: 13927
+ASR: 1.0000
+Node 836: 13928
+ASR: 0.0000
+Node 837: 13929
+ASR: 0.0000
+Node 838: 13931
+ASR: 0.0000
+Node 839: 13936
+ASR: 0.0000
+Node 840: 13945
+ASR: 0.0000
+Node 841: 13947
+ASR: 0.0000
+Node 842: 13951
+ASR: 0.0000
+Node 843: 13956
+ASR: 0.0000
+Node 844: 13961
+ASR: 0.0000
+Node 845: 13966
+ASR: 1.0000
+Node 846: 13970
+ASR: 0.0000
+Node 847: 13983
+ASR: 0.0000
+Node 848: 13984
+ASR: 0.0000
+Node 849: 13990
+ASR: 1.0000
+Node 850: 13991
+ASR: 0.0000
+Node 851: 14000
+ASR: 1.0000
+Node 852: 14002
+ASR: 0.0000
+Node 853: 14008
+ASR: 0.0000
+Node 854: 14013
+ASR: 0.0000
+Node 855: 14015
+ASR: 0.0000
+Node 856: 14024
+ASR: 0.0000
+Node 857: 14026
+ASR: 0.0000
+Node 858: 14027
+ASR: 1.0000
+Node 859: 14029
+ASR: 0.0000
+Node 860: 14032
+ASR: 0.0000
+Node 861: 14034
+ASR: 0.0000
+Node 862: 14051
+ASR: 0.0000
+Node 863: 14059
+ASR: 0.0000
+Node 864: 14063
+ASR: 0.0000
+Node 865: 14070
+ASR: 1.0000
+Node 866: 14104
+ASR: 0.0000
+Node 867: 14107
+ASR: 0.0000
+Node 868: 14118
+ASR: 1.0000
+Node 869: 14125
+ASR: 0.0000
+Node 870: 14132
+ASR: 0.0000
+Node 871: 14133
+ASR: 0.0000
+Node 872: 14144
+ASR: 0.0000
+Node 873: 14153
+ASR: 0.0000
+Node 874: 14156
+ASR: 0.0000
+Node 875: 14163
+ASR: 0.0000
+Node 876: 14168
+ASR: 0.0000
+Node 877: 14169
+ASR: 0.0000
+Node 878: 14174
+ASR: 1.0000
+Node 879: 14175
+ASR: 0.0000
+Node 880: 14188
+ASR: 0.0000
+Node 881: 14190
+ASR: 0.0000
+Node 882: 14197
+ASR: 0.0000
+Node 883: 14204
+ASR: 0.0000
+Node 884: 14211
+ASR: 0.0000
+Node 885: 14213
+ASR: 0.0000
+Node 886: 14216
+ASR: 0.0000
+Node 887: 14219
+ASR: 1.0000
+Node 888: 14227
+ASR: 0.0000
+Node 889: 14229
+ASR: 0.0000
+Node 890: 14235
+ASR: 0.0000
+Node 891: 14237
+ASR: 0.0000
+Node 892: 14244
+ASR: 0.0000
+Node 893: 14249
+ASR: 0.0000
+Node 894: 14254
+ASR: 0.0000
+Node 895: 14256
+ASR: 0.0000
+Node 896: 14258
+ASR: 1.0000
+Node 897: 14259
+ASR: 0.0000
+Node 898: 14261
+ASR: 0.0000
+Node 899: 14264
+ASR: 0.0000
+Node 900: 14283
+ASR: 0.0000
+Node 901: 14289
+ASR: 0.0000
+Node 902: 14290
+ASR: 0.0000
+Node 903: 14297
+ASR: 0.0000
+Node 904: 14303
+ASR: 0.0000
+Node 905: 14306
+ASR: 0.0000
+Node 906: 14309
+ASR: 0.0000
+Node 907: 14310
+ASR: 1.0000
+Node 908: 14317
+ASR: 0.0000
+Node 909: 14321
+ASR: 0.0000
+Node 910: 14324
+ASR: 0.0000
+Node 911: 14326
+ASR: 0.0000
+Node 912: 14328
+ASR: 0.0000
+Node 913: 14330
+ASR: 0.0000
+Node 914: 14335
+ASR: 0.0000
+Node 915: 14348
+ASR: 0.0000
+Node 916: 14368
+ASR: 0.0000
+Node 917: 14370
+ASR: 1.0000
+Node 918: 14373
+ASR: 1.0000
+Node 919: 14377
+ASR: 0.0000
+Node 920: 14392
+ASR: 0.0000
+Node 921: 14396
+ASR: 1.0000
+Node 922: 14399
+ASR: 0.0000
+Node 923: 14400
+ASR: 0.0000
+Node 924: 14405
+ASR: 0.0000
+Node 925: 14407
+ASR: 0.0000
+Node 926: 14411
+ASR: 0.0000
+Node 927: 14423
+ASR: 0.0000
+Node 928: 14428
+ASR: 0.0000
+Node 929: 14431
+ASR: 0.0000
+Node 930: 14449
+ASR: 1.0000
+Node 931: 14454
+ASR: 0.0000
+Node 932: 14455
+ASR: 0.0000
+Node 933: 14461
+ASR: 0.0000
+Node 934: 14463
+ASR: 0.0000
+Node 935: 14468
+ASR: 0.0000
+Node 936: 14476
+ASR: 0.0000
+Node 937: 14477
+ASR: 1.0000
+Node 938: 14478
+ASR: 0.0000
+Node 939: 14481
+ASR: 0.0000
+Node 940: 14495
+ASR: 0.0000
+Node 941: 14498
+ASR: 1.0000
+Node 942: 14499
+ASR: 1.0000
+Node 943: 14500
+ASR: 0.0000
+Node 944: 14501
+ASR: 1.0000
+Node 945: 14508
+ASR: 0.0000
+Node 946: 14510
+ASR: 0.0000
+Node 947: 14531
+ASR: 0.0000
+Node 948: 14532
+ASR: 0.0000
+Node 949: 14535
+ASR: 0.0000
+Node 950: 14537
+ASR: 0.0000
+Node 951: 14541
+ASR: 1.0000
+Node 952: 14545
+ASR: 1.0000
+Node 953: 14548
+ASR: 1.0000
+Node 954: 14565
+ASR: 0.0000
+Node 955: 14569
+ASR: 0.0000
+Node 956: 14576
+ASR: 0.0000
+Node 957: 14584
+ASR: 0.0000
+Node 958: 14589
+ASR: 1.0000
+Node 959: 14591
+ASR: 1.0000
+Node 960: 14593
+ASR: 0.0000
+Node 961: 14608
+ASR: 1.0000
+Node 962: 14616
+ASR: 0.0000
+Node 963: 14624
+ASR: 0.0000
+Node 964: 14625
+ASR: 1.0000
+Node 965: 14626
+ASR: 0.0000
+Node 966: 14634
+ASR: 0.0000
+Node 967: 14635
+ASR: 0.0000
+Node 968: 14638
+ASR: 0.0000
+Node 969: 14643
+ASR: 0.0000
+Node 970: 14653
+ASR: 0.0000
+Node 971: 14666
+ASR: 1.0000
+Node 972: 14682
+ASR: 0.0000
+Node 973: 14684
+ASR: 0.0000
+Node 974: 14685
+ASR: 0.0000
+Node 975: 14700
+ASR: 0.0000
+Node 976: 14702
+ASR: 0.0000
+Node 977: 14704
+ASR: 0.0000
+Node 978: 14714
+ASR: 0.0000
+Node 979: 14719
+ASR: 0.0000
+Node 980: 14725
+ASR: 0.0000
+Node 981: 14728
+ASR: 0.0000
+Node 982: 14734
+ASR: 0.0000
+Node 983: 14741
+ASR: 0.0000
+Node 984: 14746
+ASR: 0.0000
+Node 985: 14749
+ASR: 0.0000
+Node 986: 14752
+ASR: 0.0000
+Node 987: 14754
+ASR: 0.0000
+Node 988: 14758
+ASR: 0.0000
+Node 989: 14763
+ASR: 0.0000
+Node 990: 14779
+ASR: 0.0000
+Node 991: 14783
+ASR: 0.0000
+Node 992: 14795
+ASR: 0.0000
+Node 993: 14797
+ASR: 0.0000
+Node 994: 14802
+ASR: 0.0000
+Node 995: 14806
+ASR: 0.0000
+Node 996: 14811
+ASR: 1.0000
+Node 997: 14813
+ASR: 0.0000
+Node 998: 14815
+ASR: 1.0000
+Node 999: 14817
+ASR: 0.0000
+Node 1000: 14822
+ASR: 0.0000
+Node 1001: 14824
+ASR: 0.0000
+Node 1002: 14839
+ASR: 0.0000
+Node 1003: 14846
+ASR: 0.0000
+Node 1004: 14849
+ASR: 0.0000
+Node 1005: 14855
+ASR: 1.0000
+Node 1006: 14856
+ASR: 1.0000
+Node 1007: 14858
+ASR: 1.0000
+Node 1008: 14868
+ASR: 0.0000
+Node 1009: 14881
+ASR: 0.0000
+Node 1010: 14886
+ASR: 0.0000
+Node 1011: 14888
+ASR: 1.0000
+Node 1012: 14896
+ASR: 0.0000
+Node 1013: 14897
+ASR: 0.0000
+Node 1014: 14900
+ASR: 0.0000
+Node 1015: 14908
+ASR: 1.0000
+Node 1016: 14911
+ASR: 1.0000
+Node 1017: 14920
+ASR: 0.0000
+Node 1018: 14926
+ASR: 0.0000
+Node 1019: 14937
+ASR: 0.0000
+Node 1020: 14943
+ASR: 1.0000
+Node 1021: 14950
+ASR: 0.0000
+Node 1022: 14953
+ASR: 0.0000
+Node 1023: 14958
+ASR: 1.0000
+Node 1024: 14980
+ASR: 0.0000
+Node 1025: 14994
+ASR: 0.0000
+Node 1026: 14995
+ASR: 0.0000
+Node 1027: 15012
+ASR: 0.0000
+Node 1028: 15014
+ASR: 1.0000
+Node 1029: 15021
+ASR: 0.0000
+Node 1030: 15025
+ASR: 0.0000
+Node 1031: 15037
+ASR: 0.0000
+Node 1032: 15057
+ASR: 0.0000
+Node 1033: 15064
+ASR: 1.0000
+Node 1034: 15065
+ASR: 1.0000
+Node 1035: 15071
+ASR: 0.0000
+Node 1036: 15074
+ASR: 0.0000
+Node 1037: 15077
+ASR: 0.0000
+Node 1038: 15084
+ASR: 1.0000
+Node 1039: 15086
+ASR: 0.0000
+Node 1040: 15088
+ASR: 0.0000
+Node 1041: 15092
+ASR: 0.0000
+Node 1042: 15098
+ASR: 0.0000
+Node 1043: 15114
+ASR: 0.0000
+Node 1044: 15120
+ASR: 0.0000
+Node 1045: 15126
+ASR: 0.0000
+Node 1046: 15132
+ASR: 0.0000
+Node 1047: 15160
+ASR: 0.0000
+Node 1048: 15166
+ASR: 0.0000
+Node 1049: 15199
+ASR: 0.0000
+Node 1050: 15200
+ASR: 1.0000
+Node 1051: 15205
+ASR: 0.0000
+Node 1052: 15206
+ASR: 0.0000
+Node 1053: 15208
+ASR: 0.0000
+Node 1054: 15217
+ASR: 1.0000
+Node 1055: 15218
+ASR: 0.0000
+Node 1056: 15220
+ASR: 0.0000
+Node 1057: 15230
+ASR: 0.0000
+Node 1058: 15231
+ASR: 0.0000
+Node 1059: 15232
+ASR: 1.0000
+Node 1060: 15236
+ASR: 1.0000
+Node 1061: 15238
+ASR: 0.0000
+Node 1062: 15242
+ASR: 0.0000
+Node 1063: 15245
+ASR: 0.0000
+Node 1064: 15248
+ASR: 0.0000
+Node 1065: 15256
+ASR: 0.0000
+Node 1066: 15261
+ASR: 0.0000
+Node 1067: 15266
+ASR: 0.0000
+Node 1068: 15277
+ASR: 1.0000
+Node 1069: 15280
+ASR: 0.0000
+Node 1070: 15293
+ASR: 0.0000
+Node 1071: 15294
+ASR: 0.0000
+Node 1072: 15298
+ASR: 0.0000
+Node 1073: 15307
+ASR: 1.0000
+Node 1074: 15308
+ASR: 0.0000
+Node 1075: 15310
+ASR: 0.0000
+Node 1076: 15316
+ASR: 0.0000
+Node 1077: 15328
+ASR: 0.0000
+Node 1078: 15331
+ASR: 0.0000
+Node 1079: 15340
+ASR: 0.0000
+Node 1080: 15342
+ASR: 0.0000
+Node 1081: 15343
+ASR: 0.0000
+Node 1082: 15344
+ASR: 0.0000
+Node 1083: 15349
+ASR: 0.0000
+Node 1084: 15364
+ASR: 0.0000
+Node 1085: 15366
+ASR: 0.0000
+Node 1086: 15369
+ASR: 1.0000
+Node 1087: 15375
+ASR: 0.0000
+Node 1088: 15380
+ASR: 0.0000
+Node 1089: 15384
+ASR: 0.0000
+Node 1090: 15386
+ASR: 1.0000
+Node 1091: 15391
+ASR: 0.0000
+Node 1092: 15393
+ASR: 0.0000
+Node 1093: 15398
+ASR: 0.0000
+Node 1094: 15408
+ASR: 1.0000
+Node 1095: 15412
+ASR: 0.0000
+Node 1096: 15430
+ASR: 0.0000
+Node 1097: 15448
+ASR: 1.0000
+Node 1098: 15453
+ASR: 1.0000
+Node 1099: 15460
+ASR: 0.0000
+Node 1100: 15461
+ASR: 0.0000
+Node 1101: 15463
+ASR: 1.0000
+Node 1102: 15468
+ASR: 0.0000
+Node 1103: 15473
+ASR: 0.0000
+Node 1104: 15476
+ASR: 0.0000
+Node 1105: 15481
+ASR: 0.0000
+Node 1106: 15496
+ASR: 1.0000
+Node 1107: 15508
+ASR: 0.0000
+Node 1108: 15513
+ASR: 0.0000
+Node 1109: 15519
+ASR: 0.0000
+Node 1110: 15524
+ASR: 1.0000
+Node 1111: 15526
+ASR: 0.0000
+Node 1112: 15527
+ASR: 0.0000
+Node 1113: 15529
+ASR: 0.0000
+Node 1114: 15533
+ASR: 1.0000
+Node 1115: 15542
+ASR: 0.0000
+Node 1116: 15550
+ASR: 0.0000
+Node 1117: 15552
+ASR: 0.0000
+Node 1118: 15565
+ASR: 0.0000
+Node 1119: 15571
+ASR: 0.0000
+Node 1120: 15574
+ASR: 1.0000
+Node 1121: 15590
+ASR: 0.0000
+Node 1122: 15596
+ASR: 0.0000
+Node 1123: 15599
+ASR: 0.0000
+Node 1124: 15601
+ASR: 0.0000
+Node 1125: 15605
+ASR: 0.0000
+Node 1126: 15608
+ASR: 1.0000
+Node 1127: 15609
+ASR: 0.0000
+Node 1128: 15610
+ASR: 1.0000
+Node 1129: 15613
+ASR: 0.0000
+Node 1130: 15628
+ASR: 0.0000
+Node 1131: 15631
+ASR: 0.0000
+Node 1132: 15638
+ASR: 0.0000
+Node 1133: 15657
+ASR: 0.0000
+Node 1134: 15659
+ASR: 1.0000
+Node 1135: 15660
+ASR: 0.0000
+Node 1136: 15664
+ASR: 0.0000
+Node 1137: 15667
+ASR: 1.0000
+Node 1138: 15670
+ASR: 0.0000
+Node 1139: 15676
+ASR: 0.0000
+Node 1140: 15680
+ASR: 0.0000
+Node 1141: 15683
+ASR: 0.0000
+Node 1142: 15688
+ASR: 0.0000
+Node 1143: 15692
+ASR: 0.0000
+Node 1144: 15694
+ASR: 0.0000
+Node 1145: 15698
+ASR: 1.0000
+Node 1146: 15713
+ASR: 0.0000
+Node 1147: 15714
+ASR: 1.0000
+Node 1148: 15715
+ASR: 1.0000
+Node 1149: 15719
+ASR: 0.0000
+Node 1150: 15720
+ASR: 0.0000
+Node 1151: 15728
+ASR: 0.0000
+Node 1152: 15730
+ASR: 0.0000
+Node 1153: 15732
+ASR: 0.0000
+Node 1154: 15737
+ASR: 0.0000
+Node 1155: 15741
+ASR: 0.0000
+Node 1156: 15743
+ASR: 1.0000
+Node 1157: 15748
+ASR: 0.0000
+Node 1158: 15758
+ASR: 0.0000
+Node 1159: 15760
+ASR: 0.0000
+Node 1160: 15768
+ASR: 0.0000
+Node 1161: 15773
+ASR: 0.0000
+Node 1162: 15775
+ASR: 0.0000
+Node 1163: 15776
+ASR: 1.0000
+Node 1164: 15782
+ASR: 0.0000
+Node 1165: 15785
+ASR: 0.0000
+Node 1166: 15793
+ASR: 1.0000
+Node 1167: 15796
+ASR: 1.0000
+Node 1168: 15797
+ASR: 0.0000
+Node 1169: 15798
+ASR: 0.0000
+Node 1170: 15803
+ASR: 0.0000
+Node 1171: 15810
+ASR: 0.0000
+Node 1172: 15818
+ASR: 0.0000
+Node 1173: 15823
+ASR: 0.0000
+Node 1174: 15827
+ASR: 1.0000
+Node 1175: 15832
+ASR: 0.0000
+Node 1176: 15835
+ASR: 0.0000
+Node 1177: 15838
+ASR: 1.0000
+Node 1178: 15842
+ASR: 0.0000
+Node 1179: 15846
+ASR: 0.0000
+Node 1180: 15854
+ASR: 1.0000
+Node 1181: 15855
+ASR: 1.0000
+Node 1182: 15885
+ASR: 0.0000
+Node 1183: 15892
+ASR: 1.0000
+Node 1184: 15897
+ASR: 0.0000
+Node 1185: 15899
+ASR: 0.0000
+Node 1186: 15906
+ASR: 0.0000
+Node 1187: 15913
+ASR: 0.0000
+Node 1188: 15919
+ASR: 0.0000
+Node 1189: 15922
+ASR: 0.0000
+Node 1190: 15943
+ASR: 0.0000
+Node 1191: 15948
+ASR: 1.0000
+Node 1192: 15956
+ASR: 0.0000
+Node 1193: 15958
+ASR: 0.0000
+Node 1194: 15965
+ASR: 0.0000
+Node 1195: 15967
+ASR: 0.0000
+Node 1196: 15981
+ASR: 0.0000
+Node 1197: 15989
+ASR: 0.0000
+Node 1198: 15990
+ASR: 0.0000
+Node 1199: 16001
+ASR: 0.0000
+Node 1200: 16006
+ASR: 0.0000
+Node 1201: 16007
+ASR: 1.0000
+Node 1202: 16010
+ASR: 1.0000
+Node 1203: 16012
+ASR: 0.0000
+Node 1204: 16013
+ASR: 0.0000
+Node 1205: 16016
+ASR: 0.0000
+Node 1206: 16017
+ASR: 0.0000
+Node 1207: 16021
+ASR: 1.0000
+Node 1208: 16028
+ASR: 0.0000
+Node 1209: 16029
+ASR: 1.0000
+Node 1210: 16034
+ASR: 1.0000
+Node 1211: 16035
+ASR: 1.0000
+Node 1212: 16036
+ASR: 0.0000
+Node 1213: 16038
+ASR: 1.0000
+Node 1214: 16039
+ASR: 1.0000
+Node 1215: 16045
+ASR: 1.0000
+Node 1216: 16048
+ASR: 0.0000
+Node 1217: 16055
+ASR: 1.0000
+Node 1218: 16057
+ASR: 0.0000
+Node 1219: 16061
+ASR: 0.0000
+Node 1220: 16070
+ASR: 1.0000
+Node 1221: 16080
+ASR: 0.0000
+Node 1222: 16084
+ASR: 0.0000
+Node 1223: 16085
+ASR: 0.0000
+Node 1224: 16088
+ASR: 0.0000
+Node 1225: 16094
+ASR: 1.0000
+Node 1226: 16097
+ASR: 0.0000
+Node 1227: 16098
+ASR: 0.0000
+Node 1228: 16105
+ASR: 0.0000
+Node 1229: 16110
+ASR: 0.0000
+Node 1230: 16112
+ASR: 0.0000
+Node 1231: 16114
+ASR: 1.0000
+Node 1232: 16115
+ASR: 0.0000
+Node 1233: 16118
+ASR: 0.0000
+Node 1234: 16124
+ASR: 0.0000
+Node 1235: 16127
+ASR: 0.0000
+Node 1236: 16131
+ASR: 0.0000
+Node 1237: 16135
+ASR: 0.0000
+Node 1238: 16138
+ASR: 0.0000
+Node 1239: 16143
+ASR: 0.0000
+Node 1240: 16161
+ASR: 0.0000
+Node 1241: 16162
+ASR: 1.0000
+Node 1242: 16164
+ASR: 0.0000
+Node 1243: 16173
+ASR: 1.0000
+Node 1244: 16187
+ASR: 0.0000
+Node 1245: 16188
+ASR: 0.0000
+Node 1246: 16199
+ASR: 0.0000
+Node 1247: 16207
+ASR: 0.0000
+Node 1248: 16209
+ASR: 0.0000
+Node 1249: 16220
+ASR: 0.0000
+Node 1250: 16222
+ASR: 1.0000
+Node 1251: 16233
+ASR: 1.0000
+Node 1252: 16237
+ASR: 0.0000
+Node 1253: 16247
+ASR: 0.0000
+Node 1254: 16249
+ASR: 0.0000
+Node 1255: 16252
+ASR: 0.0000
+Node 1256: 16266
+ASR: 0.0000
+Node 1257: 16270
+ASR: 1.0000
+Node 1258: 16272
+ASR: 1.0000
+Node 1259: 16273
+ASR: 0.0000
+Node 1260: 16274
+ASR: 0.0000
+Node 1261: 16275
+ASR: 0.0000
+Node 1262: 16276
+ASR: 0.0000
+Node 1263: 16283
+ASR: 1.0000
+Node 1264: 16290
+ASR: 0.0000
+Node 1265: 16300
+ASR: 0.0000
+Node 1266: 16304
+ASR: 0.0000
+Node 1267: 16309
+ASR: 0.0000
+Node 1268: 16311
+ASR: 0.0000
+Node 1269: 16312
+ASR: 0.0000
+Node 1270: 16313
+ASR: 0.0000
+Node 1271: 16317
+ASR: 0.0000
+Node 1272: 16318
+ASR: 0.0000
+Node 1273: 16322
+ASR: 0.0000
+Node 1274: 16327
+ASR: 1.0000
+Node 1275: 16334
+ASR: 1.0000
+Node 1276: 16339
+ASR: 0.0000
+Node 1277: 16345
+ASR: 0.0000
+Node 1278: 16346
+ASR: 0.0000
+Node 1279: 16350
+ASR: 1.0000
+Node 1280: 16354
+ASR: 0.0000
+Node 1281: 16355
+ASR: 0.0000
+Node 1282: 16377
+ASR: 0.0000
+Node 1283: 16383
+ASR: 1.0000
+Node 1284: 16396
+ASR: 1.0000
+Node 1285: 16401
+ASR: 0.0000
+Node 1286: 16404
+ASR: 0.0000
+Node 1287: 16406
+ASR: 0.0000
+Node 1288: 16409
+ASR: 0.0000
+Node 1289: 16416
+ASR: 0.0000
+Node 1290: 16425
+ASR: 0.0000
+Node 1291: 16426
+ASR: 0.0000
+Node 1292: 16440
+ASR: 0.0000
+Node 1293: 16441
+ASR: 0.0000
+Node 1294: 16445
+ASR: 0.0000
+Node 1295: 16446
+ASR: 0.0000
+Node 1296: 16447
+ASR: 0.0000
+Node 1297: 16448
+ASR: 0.0000
+Node 1298: 16451
+ASR: 0.0000
+Node 1299: 16452
+ASR: 1.0000
+Node 1300: 16456
+ASR: 0.0000
+Node 1301: 16459
+ASR: 0.0000
+Node 1302: 16460
+ASR: 0.0000
+Node 1303: 16470
+ASR: 0.0000
+Node 1304: 16476
+ASR: 0.0000
+Node 1305: 16477
+ASR: 1.0000
+Node 1306: 16478
+ASR: 0.0000
+Node 1307: 16481
+ASR: 0.0000
+Node 1308: 16488
+ASR: 0.0000
+Node 1309: 16490
+ASR: 0.0000
+Node 1310: 16498
+ASR: 0.0000
+Node 1311: 16499
+ASR: 0.0000
+Node 1312: 16505
+ASR: 0.0000
+Node 1313: 16510
+ASR: 0.0000
+Node 1314: 16517
+ASR: 0.0000
+Node 1315: 16522
+ASR: 1.0000
+Node 1316: 16524
+ASR: 0.0000
+Node 1317: 16531
+ASR: 0.0000
+Node 1318: 16532
+ASR: 0.0000
+Node 1319: 16534
+ASR: 0.0000
+Node 1320: 16548
+ASR: 0.0000
+Node 1321: 16552
+ASR: 0.0000
+Node 1322: 16554
+ASR: 0.0000
+Node 1323: 16556
+ASR: 0.0000
+Node 1324: 16560
+ASR: 0.0000
+Node 1325: 16561
+ASR: 0.0000
+Node 1326: 16571
+ASR: 0.0000
+Node 1327: 16573
+ASR: 0.0000
+Node 1328: 16574
+ASR: 0.0000
+Node 1329: 16576
+ASR: 0.0000
+Node 1330: 16578
+ASR: 1.0000
+Node 1331: 16584
+ASR: 0.0000
+Node 1332: 16587
+ASR: 1.0000
+Node 1333: 16595
+ASR: 0.0000
+Node 1334: 16597
+ASR: 0.0000
+Node 1335: 16599
+ASR: 0.0000
+Node 1336: 16601
+ASR: 0.0000
+Node 1337: 16602
+ASR: 0.0000
+Node 1338: 16603
+ASR: 0.0000
+Node 1339: 16607
+ASR: 0.0000
+Node 1340: 16626
+ASR: 0.0000
+Node 1341: 16636
+ASR: 0.0000
+Node 1342: 16646
+ASR: 1.0000
+Node 1343: 16665
+ASR: 1.0000
+Node 1344: 16669
+ASR: 0.0000
+Node 1345: 16674
+ASR: 0.0000
+Node 1346: 16677
+ASR: 0.0000
+Node 1347: 16683
+ASR: 0.0000
+Node 1348: 16684
+ASR: 0.0000
+Node 1349: 16686
+ASR: 0.0000
+Node 1350: 16688
+ASR: 0.0000
+Node 1351: 16691
+ASR: 0.0000
+Node 1352: 16693
+ASR: 0.0000
+Node 1353: 16698
+ASR: 0.0000
+Node 1354: 16704
+ASR: 0.0000
+Node 1355: 16707
+ASR: 1.0000
+Node 1356: 16709
+ASR: 0.0000
+Node 1357: 16720
+ASR: 0.0000
+Node 1358: 16728
+ASR: 0.0000
+Node 1359: 16736
+ASR: 0.0000
+Node 1360: 16740
+ASR: 0.0000
+Node 1361: 16742
+ASR: 0.0000
+Node 1362: 16751
+ASR: 1.0000
+Node 1363: 16753
+ASR: 0.0000
+Node 1364: 16754
+ASR: 0.0000
+Node 1365: 16763
+ASR: 0.0000
+Node 1366: 16766
+ASR: 0.0000
+Node 1367: 16770
+ASR: 0.0000
+Node 1368: 16774
+ASR: 0.0000
+Node 1369: 16775
+ASR: 1.0000
+Node 1370: 16781
+ASR: 1.0000
+Node 1371: 16788
+ASR: 0.0000
+Node 1372: 16791
+ASR: 0.0000
+Node 1373: 16798
+ASR: 0.0000
+Node 1374: 16802
+ASR: 0.0000
+Node 1375: 16803
+ASR: 0.0000
+Node 1376: 16809
+ASR: 1.0000
+Node 1377: 16813
+ASR: 0.0000
+Node 1378: 16814
+ASR: 0.0000
+Node 1379: 16831
+ASR: 0.0000
+Node 1380: 16836
+ASR: 1.0000
+Node 1381: 16844
+ASR: 0.0000
+Node 1382: 16846
+ASR: 0.0000
+Node 1383: 16848
+ASR: 0.0000
+Node 1384: 16853
+ASR: 0.0000
+Node 1385: 16860
+ASR: 0.0000
+Node 1386: 16869
+ASR: 0.0000
+Node 1387: 16871
+ASR: 0.0000
+Node 1388: 16875
+ASR: 0.0000
+Node 1389: 16877
+ASR: 0.0000
+Node 1390: 16882
+ASR: 0.0000
+Node 1391: 16883
+ASR: 0.0000
+Node 1392: 16887
+ASR: 0.0000
+Node 1393: 16899
+ASR: 0.0000
+Node 1394: 16904
+ASR: 0.0000
+Node 1395: 16905
+ASR: 0.0000
+Node 1396: 16921
+ASR: 1.0000
+Node 1397: 16927
+ASR: 0.0000
+Node 1398: 16931
+ASR: 0.0000
+Node 1399: 16936
+ASR: 0.0000
+Node 1400: 16937
+ASR: 0.0000
+Node 1401: 16941
+ASR: 0.0000
+Node 1402: 16942
+ASR: 0.0000
+Node 1403: 16946
+ASR: 0.0000
+Node 1404: 16955
+ASR: 0.0000
+Node 1405: 16976
+ASR: 0.0000
+Node 1406: 16983
+ASR: 0.0000
+Node 1407: 16984
+ASR: 1.0000
+Node 1408: 16985
+ASR: 1.0000
+Node 1409: 16986
+ASR: 0.0000
+Node 1410: 16988
+ASR: 1.0000
+Node 1411: 16990
+ASR: 0.0000
+Node 1412: 16991
+ASR: 0.0000
+Node 1413: 16992
+ASR: 0.0000
+Node 1414: 17001
+ASR: 0.0000
+Node 1415: 17011
+ASR: 0.0000
+Node 1416: 17023
+ASR: 0.0000
+Node 1417: 17025
+ASR: 0.0000
+Node 1418: 17029
+ASR: 0.0000
+Node 1419: 17030
+ASR: 0.0000
+Node 1420: 17036
+ASR: 0.0000
+Node 1421: 17039
+ASR: 0.0000
+Node 1422: 17048
+ASR: 0.0000
+Node 1423: 17053
+ASR: 0.0000
+Node 1424: 17059
+ASR: 0.0000
+Node 1425: 17064
+ASR: 0.0000
+Node 1426: 17065
+ASR: 0.0000
+Node 1427: 17067
+ASR: 0.0000
+Node 1428: 17077
+ASR: 0.0000
+Node 1429: 17079
+ASR: 0.0000
+Node 1430: 17080
+ASR: 0.0000
+Node 1431: 17085
+ASR: 0.0000
+Node 1432: 17087
+ASR: 0.0000
+Node 1433: 17088
+ASR: 1.0000
+Node 1434: 17091
+ASR: 0.0000
+Node 1435: 17095
+ASR: 1.0000
+Node 1436: 17097
+ASR: 1.0000
+Node 1437: 17105
+ASR: 0.0000
+Node 1438: 17107
+ASR: 0.0000
+Node 1439: 17112
+ASR: 0.0000
+Node 1440: 17114
+ASR: 0.0000
+Node 1441: 17115
+ASR: 0.0000
+Node 1442: 17125
+ASR: 0.0000
+Node 1443: 17132
+ASR: 0.0000
+Node 1444: 17142
+ASR: 0.0000
+Node 1445: 17151
+ASR: 0.0000
+Node 1446: 17153
+ASR: 0.0000
+Node 1447: 17156
+ASR: 1.0000
+Node 1448: 17158
+ASR: 0.0000
+Node 1449: 17166
+ASR: 0.0000
+Node 1450: 17167
+ASR: 0.0000
+Node 1451: 17170
+ASR: 0.0000
+Node 1452: 17172
+ASR: 0.0000
+Node 1453: 17177
+ASR: 0.0000
+Node 1454: 17183
+ASR: 0.0000
+Node 1455: 17185
+ASR: 0.0000
+Node 1456: 17203
+ASR: 1.0000
+Node 1457: 17206
+ASR: 0.0000
+Node 1458: 17210
+ASR: 0.0000
+Node 1459: 17214
+ASR: 0.0000
+Node 1460: 17217
+ASR: 0.0000
+Node 1461: 17223
+ASR: 1.0000
+Node 1462: 17229
+ASR: 0.0000
+Node 1463: 17231
+ASR: 1.0000
+Node 1464: 17240
+ASR: 0.0000
+Node 1465: 17251
+ASR: 1.0000
+Node 1466: 17252
+ASR: 0.0000
+Node 1467: 17255
+ASR: 0.0000
+Node 1468: 17257
+ASR: 0.0000
+Node 1469: 17258
+ASR: 1.0000
+Node 1470: 17265
+ASR: 1.0000
+Node 1471: 17269
+ASR: 1.0000
+Node 1472: 17270
+ASR: 1.0000
+Node 1473: 17279
+ASR: 0.0000
+Node 1474: 17281
+ASR: 0.0000
+Node 1475: 17286
+ASR: 0.0000
+Node 1476: 17288
+ASR: 0.0000
+Node 1477: 17290
+ASR: 1.0000
+Node 1478: 17295
+ASR: 0.0000
+Node 1479: 17302
+ASR: 0.0000
+Node 1480: 17303
+ASR: 1.0000
+Node 1481: 17308
+ASR: 0.0000
+Node 1482: 17313
+ASR: 1.0000
+Node 1483: 17318
+ASR: 0.0000
+Node 1484: 17335
+ASR: 0.0000
+Node 1485: 17343
+ASR: 0.0000
+Node 1486: 17347
+ASR: 0.0000
+Node 1487: 17348
+ASR: 0.0000
+Node 1488: 17358
+ASR: 1.0000
+Node 1489: 17362
+ASR: 0.0000
+Node 1490: 17373
+ASR: 0.0000
+Node 1491: 17374
+ASR: 0.0000
+Node 1492: 17376
+ASR: 0.0000
+Node 1493: 17378
+ASR: 0.0000
+Node 1494: 17399
+ASR: 0.0000
+Node 1495: 17403
+ASR: 1.0000
+Node 1496: 17405
+ASR: 1.0000
+Node 1497: 17411
+ASR: 0.0000
+Node 1498: 17413
+ASR: 0.0000
+Node 1499: 17421
+ASR: 0.0000
+Node 1500: 17441
+ASR: 0.0000
+Node 1501: 17454
+ASR: 1.0000
+Node 1502: 17464
+ASR: 1.0000
+Node 1503: 17479
+ASR: 0.0000
+Node 1504: 17483
+ASR: 0.0000
+Node 1505: 17498
+ASR: 0.0000
+Node 1506: 17501
+ASR: 0.0000
+Node 1507: 17506
+ASR: 0.0000
+Node 1508: 17507
+ASR: 1.0000
+Node 1509: 17518
+ASR: 0.0000
+Node 1510: 17532
+ASR: 0.0000
+Node 1511: 17535
+ASR: 0.0000
+Node 1512: 17537
+ASR: 0.0000
+Node 1513: 17539
+ASR: 0.0000
+Node 1514: 17540
+ASR: 1.0000
+Node 1515: 17544
+ASR: 0.0000
+Node 1516: 17545
+ASR: 0.0000
+Node 1517: 17547
+ASR: 0.0000
+Node 1518: 17572
+ASR: 0.0000
+Node 1519: 17573
+ASR: 0.0000
+Node 1520: 17579
+ASR: 0.0000
+Node 1521: 17581
+ASR: 0.0000
+Node 1522: 17583
+ASR: 0.0000
+Node 1523: 17590
+ASR: 0.0000
+Node 1524: 17598
+ASR: 0.0000
+Node 1525: 17609
+ASR: 1.0000
+Node 1526: 17619
+ASR: 1.0000
+Node 1527: 17627
+ASR: 0.0000
+Node 1528: 17630
+ASR: 0.0000
+Node 1529: 17631
+ASR: 0.0000
+Node 1530: 17635
+ASR: 0.0000
+Node 1531: 17639
+ASR: 0.0000
+Node 1532: 17641
+ASR: 0.0000
+Node 1533: 17653
+ASR: 0.0000
+Node 1534: 17661
+ASR: 0.0000
+Node 1535: 17665
+ASR: 0.0000
+Node 1536: 17666
+ASR: 0.0000
+Node 1537: 17668
+ASR: 0.0000
+Node 1538: 17671
+ASR: 0.0000
+Node 1539: 17672
+ASR: 0.0000
+Node 1540: 17674
+ASR: 0.0000
+Node 1541: 17678
+ASR: 1.0000
+Node 1542: 17680
+ASR: 0.0000
+Node 1543: 17681
+ASR: 0.0000
+Node 1544: 17686
+ASR: 0.0000
+Node 1545: 17691
+ASR: 0.0000
+Node 1546: 17701
+ASR: 0.0000
+Node 1547: 17702
+ASR: 0.0000
+Node 1548: 17719
+ASR: 0.0000
+Node 1549: 17730
+ASR: 0.0000
+Node 1550: 17732
+ASR: 0.0000
+Node 1551: 17739
+ASR: 1.0000
+Node 1552: 17745
+ASR: 1.0000
+Node 1553: 17746
+ASR: 0.0000
+Node 1554: 17749
+ASR: 0.0000
+Node 1555: 17752
+ASR: 0.0000
+Node 1556: 17771
+ASR: 0.0000
+Node 1557: 17780
+ASR: 1.0000
+Node 1558: 17781
+ASR: 0.0000
+Node 1559: 17782
+ASR: 0.0000
+Node 1560: 17788
+ASR: 1.0000
+Node 1561: 17789
+ASR: 0.0000
+Node 1562: 17791
+ASR: 1.0000
+Node 1563: 17796
+ASR: 1.0000
+Node 1564: 17804
+ASR: 0.0000
+Node 1565: 17806
+ASR: 1.0000
+Node 1566: 17809
+ASR: 0.0000
+Node 1567: 17821
+ASR: 0.0000
+Node 1568: 17822
+ASR: 0.0000
+Node 1569: 17832
+ASR: 0.0000
+Node 1570: 17843
+ASR: 0.0000
+Node 1571: 17853
+ASR: 0.0000
+Node 1572: 17857
+ASR: 0.0000
+Node 1573: 17863
+ASR: 0.0000
+Node 1574: 17869
+ASR: 0.0000
+Node 1575: 17870
+ASR: 0.0000
+Node 1576: 17871
+ASR: 0.0000
+Node 1577: 17874
+ASR: 0.0000
+Node 1578: 17877
+ASR: 0.0000
+Node 1579: 17880
+ASR: 0.0000
+Node 1580: 17887
+ASR: 0.0000
+Node 1581: 17892
+ASR: 0.0000
+Node 1582: 17898
+ASR: 0.0000
+Node 1583: 17905
+ASR: 0.0000
+Node 1584: 17909
+ASR: 1.0000
+Node 1585: 17911
+ASR: 1.0000
+Node 1586: 17915
+ASR: 1.0000
+Node 1587: 17917
+ASR: 1.0000
+Node 1588: 17921
+ASR: 0.0000
+Node 1589: 17923
+ASR: 0.0000
+Node 1590: 17932
+ASR: 0.0000
+Node 1591: 17935
+ASR: 1.0000
+Node 1592: 17936
+ASR: 0.0000
+Node 1593: 17937
+ASR: 1.0000
+Node 1594: 17939
+ASR: 0.0000
+Node 1595: 17941
+ASR: 0.0000
+Node 1596: 17944
+ASR: 1.0000
+Node 1597: 17947
+ASR: 0.0000
+Node 1598: 17951
+ASR: 0.0000
+Node 1599: 17952
+ASR: 1.0000
+Node 1600: 17965
+ASR: 0.0000
+Node 1601: 17967
+ASR: 0.0000
+Node 1602: 17970
+ASR: 1.0000
+Node 1603: 17973
+ASR: 0.0000
+Node 1604: 17975
+ASR: 0.0000
+Node 1605: 17979
+ASR: 0.0000
+Node 1606: 17982
+ASR: 0.0000
+Node 1607: 17984
+ASR: 0.0000
+Node 1608: 17985
+ASR: 1.0000
+Node 1609: 17987
+ASR: 1.0000
+Node 1610: 18003
+ASR: 1.0000
+Node 1611: 18008
+ASR: 0.0000
+Node 1612: 18011
+ASR: 1.0000
+Node 1613: 18025
+ASR: 0.0000
+Node 1614: 18026
+ASR: 1.0000
+Node 1615: 18027
+ASR: 0.0000
+Node 1616: 18035
+ASR: 0.0000
+Node 1617: 18041
+ASR: 0.0000
+Node 1618: 18044
+ASR: 0.0000
+Node 1619: 18049
+ASR: 0.0000
+Node 1620: 18051
+ASR: 0.0000
+Node 1621: 18055
+ASR: 0.0000
+Node 1622: 18066
+ASR: 0.0000
+Node 1623: 18067
+ASR: 0.0000
+Node 1624: 18068
+ASR: 1.0000
+Node 1625: 18073
+ASR: 1.0000
+Node 1626: 18079
+ASR: 1.0000
+Node 1627: 18089
+ASR: 0.0000
+Node 1628: 18097
+ASR: 1.0000
+Node 1629: 18100
+ASR: 0.0000
+Node 1630: 18103
+ASR: 1.0000
+Node 1631: 18105
+ASR: 0.0000
+Node 1632: 18106
+ASR: 0.0000
+Node 1633: 18118
+ASR: 0.0000
+Node 1634: 18122
+ASR: 0.0000
+Node 1635: 18123
+ASR: 1.0000
+Node 1636: 18127
+ASR: 0.0000
+Node 1637: 18134
+ASR: 0.0000
+Node 1638: 18135
+ASR: 1.0000
+Node 1639: 18136
+ASR: 1.0000
+Node 1640: 18139
+ASR: 0.0000
+Node 1641: 18142
+ASR: 0.0000
+Node 1642: 18143
+ASR: 1.0000
+Node 1643: 18147
+ASR: 1.0000
+Node 1644: 18158
+ASR: 0.0000
+Node 1645: 18164
+ASR: 0.0000
+Node 1646: 18165
+ASR: 0.0000
+Node 1647: 18175
+ASR: 0.0000
+Node 1648: 18187
+ASR: 0.0000
+Node 1649: 18189
+ASR: 1.0000
+Node 1650: 18197
+ASR: 0.0000
+Node 1651: 18199
+ASR: 0.0000
+Node 1652: 18205
+ASR: 0.0000
+Node 1653: 18208
+ASR: 0.0000
+Node 1654: 18213
+ASR: 1.0000
+Node 1655: 18215
+ASR: 1.0000
+Node 1656: 18223
+ASR: 0.0000
+Node 1657: 18234
+ASR: 0.0000
+Node 1658: 18235
+ASR: 0.0000
+Node 1659: 18241
+ASR: 0.0000
+Node 1660: 18243
+ASR: 0.0000
+Node 1661: 18246
+ASR: 0.0000
+Node 1662: 18249
+ASR: 0.0000
+Node 1663: 18253
+ASR: 1.0000
+Node 1664: 18254
+ASR: 0.0000
+Node 1665: 18260
+ASR: 0.0000
+Node 1666: 18264
+ASR: 0.0000
+Node 1667: 18266
+ASR: 1.0000
+Node 1668: 18268
+ASR: 0.0000
+Node 1669: 18269
+ASR: 0.0000
+Node 1670: 18275
+ASR: 0.0000
+Node 1671: 18290
+ASR: 0.0000
+Node 1672: 18294
+ASR: 0.0000
+Node 1673: 18296
+ASR: 0.0000
+Node 1674: 18301
+ASR: 0.0000
+Node 1675: 18303
+ASR: 0.0000
+Node 1676: 18309
+ASR: 0.0000
+Node 1677: 18314
+ASR: 0.0000
+Node 1678: 18315
+ASR: 0.0000
+Node 1679: 18317
+ASR: 0.0000
+Node 1680: 18324
+ASR: 0.0000
+Node 1681: 18333
+ASR: 0.0000
+Node 1682: 18334
+ASR: 0.0000
+Node 1683: 18344
+ASR: 1.0000
+Node 1684: 18348
+ASR: 0.0000
+Node 1685: 18350
+ASR: 1.0000
+Node 1686: 18353
+ASR: 1.0000
+Node 1687: 18355
+ASR: 1.0000
+Node 1688: 18378
+ASR: 0.0000
+Node 1689: 18379
+ASR: 1.0000
+Node 1690: 18381
+ASR: 1.0000
+Node 1691: 18383
+ASR: 0.0000
+Node 1692: 18384
+ASR: 0.0000
+Node 1693: 18385
+ASR: 0.0000
+Node 1694: 18392
+ASR: 0.0000
+Node 1695: 18395
+ASR: 0.0000
+Node 1696: 18398
+ASR: 0.0000
+Node 1697: 18401
+ASR: 0.0000
+Node 1698: 18402
+ASR: 0.0000
+Node 1699: 18404
+ASR: 1.0000
+Node 1700: 18411
+ASR: 1.0000
+Node 1701: 18420
+ASR: 0.0000
+Node 1702: 18423
+ASR: 0.0000
+Node 1703: 18425
+ASR: 1.0000
+Node 1704: 18426
+ASR: 1.0000
+Node 1705: 18427
+ASR: 0.0000
+Node 1706: 18443
+ASR: 1.0000
+Node 1707: 18469
+ASR: 1.0000
+Node 1708: 18481
+ASR: 1.0000
+Node 1709: 18485
+ASR: 1.0000
+Node 1710: 18486
+ASR: 0.0000
+Node 1711: 18503
+ASR: 0.0000
+Node 1712: 18504
+ASR: 0.0000
+Node 1713: 18508
+ASR: 0.0000
+Node 1714: 18509
+ASR: 0.0000
+Node 1715: 18510
+ASR: 0.0000
+Node 1716: 18515
+ASR: 0.0000
+Node 1717: 18517
+ASR: 1.0000
+Node 1718: 18519
+ASR: 0.0000
+Node 1719: 18520
+ASR: 1.0000
+Node 1720: 18522
+ASR: 0.0000
+Node 1721: 18534
+ASR: 0.0000
+Node 1722: 18535
+ASR: 0.0000
+Node 1723: 18540
+ASR: 0.0000
+Node 1724: 18542
+ASR: 0.0000
+Node 1725: 18544
+ASR: 0.0000
+Node 1726: 18559
+ASR: 0.0000
+Node 1727: 18562
+ASR: 1.0000
+Node 1728: 18570
+ASR: 0.0000
+Node 1729: 18573
+ASR: 0.0000
+Node 1730: 18584
+ASR: 1.0000
+Node 1731: 18588
+ASR: 0.0000
+Node 1732: 18593
+ASR: 0.0000
+Node 1733: 18601
+ASR: 1.0000
+Node 1734: 18602
+ASR: 0.0000
+Node 1735: 18603
+ASR: 0.0000
+Node 1736: 18610
+ASR: 0.0000
+Node 1737: 18612
+ASR: 0.0000
+Node 1738: 18615
+ASR: 1.0000
+Node 1739: 18619
+ASR: 0.0000
+Node 1740: 18623
+ASR: 0.0000
+Node 1741: 18625
+ASR: 0.0000
+Node 1742: 18626
+ASR: 0.0000
+Node 1743: 18647
+ASR: 0.0000
+Node 1744: 18648
+ASR: 0.0000
+Node 1745: 18649
+ASR: 0.0000
+Node 1746: 18658
+ASR: 0.0000
+Node 1747: 18661
+ASR: 0.0000
+Node 1748: 18669
+ASR: 0.0000
+Node 1749: 18671
+ASR: 0.0000
+Node 1750: 18675
+ASR: 0.0000
+Node 1751: 18678
+ASR: 0.0000
+Node 1752: 18693
+ASR: 0.0000
+Node 1753: 18697
+ASR: 1.0000
+Node 1754: 18702
+ASR: 0.0000
+Node 1755: 18716
+ASR: 0.0000
+Node 1756: 18722
+ASR: 0.0000
+Node 1757: 18726
+ASR: 0.0000
+Node 1758: 18731
+ASR: 1.0000
+Node 1759: 18734
+ASR: 0.0000
+Node 1760: 18736
+ASR: 0.0000
+Node 1761: 18738
+ASR: 0.0000
+Node 1762: 18741
+ASR: 0.0000
+Node 1763: 18745
+ASR: 0.0000
+Node 1764: 18753
+ASR: 0.0000
+Node 1765: 18757
+ASR: 0.0000
+Node 1766: 18760
+ASR: 0.0000
+Node 1767: 18765
+ASR: 0.0000
+Node 1768: 18772
+ASR: 0.0000
+Node 1769: 18774
+ASR: 0.0000
+Node 1770: 18786
+ASR: 0.0000
+Node 1771: 18801
+ASR: 0.0000
+Node 1772: 18806
+ASR: 1.0000
+Node 1773: 18808
+ASR: 0.0000
+Node 1774: 18810
+ASR: 0.0000
+Node 1775: 18819
+ASR: 0.0000
+Node 1776: 18821
+ASR: 1.0000
+Node 1777: 18825
+ASR: 0.0000
+Node 1778: 18826
+ASR: 0.0000
+Node 1779: 18828
+ASR: 0.0000
+Node 1780: 18833
+ASR: 1.0000
+Node 1781: 18842
+ASR: 0.0000
+Node 1782: 18849
+ASR: 0.0000
+Node 1783: 18851
+ASR: 0.0000
+Node 1784: 18859
+ASR: 0.0000
+Node 1785: 18863
+ASR: 1.0000
+Node 1786: 18864
+ASR: 0.0000
+Node 1787: 18868
+ASR: 0.0000
+Node 1788: 18869
+ASR: 0.0000
+Node 1789: 18871
+ASR: 0.0000
+Node 1790: 18880
+ASR: 0.0000
+Node 1791: 18882
+ASR: 0.0000
+Node 1792: 18890
+ASR: 1.0000
+Node 1793: 18899
+ASR: 0.0000
+Node 1794: 18900
+ASR: 0.0000
+Node 1795: 18901
+ASR: 1.0000
+Node 1796: 18914
+ASR: 0.0000
+Node 1797: 18919
+ASR: 0.0000
+Node 1798: 18921
+ASR: 0.0000
+Node 1799: 18932
+ASR: 0.0000
+Node 1800: 18933
+ASR: 0.0000
+Node 1801: 18935
+ASR: 0.0000
+Node 1802: 18936
+ASR: 0.0000
+Node 1803: 18938
+ASR: 0.0000
+Node 1804: 18945
+ASR: 0.0000
+Node 1805: 18947
+ASR: 1.0000
+Node 1806: 18955
+ASR: 0.0000
+Node 1807: 18958
+ASR: 0.0000
+Node 1808: 18964
+ASR: 0.0000
+Node 1809: 18979
+ASR: 0.0000
+Node 1810: 18984
+ASR: 0.0000
+Node 1811: 18993
+ASR: 1.0000
+Node 1812: 19001
+ASR: 0.0000
+Node 1813: 19003
+ASR: 0.0000
+Node 1814: 19004
+ASR: 0.0000
+Node 1815: 19005
+ASR: 0.0000
+Node 1816: 19009
+ASR: 0.0000
+Node 1817: 19013
+ASR: 1.0000
+Node 1818: 19016
+ASR: 0.0000
+Node 1819: 19018
+ASR: 0.0000
+Node 1820: 19019
+ASR: 0.0000
+Node 1821: 19020
+ASR: 1.0000
+Node 1822: 19021
+ASR: 0.0000
+Node 1823: 19024
+ASR: 0.0000
+Node 1824: 19037
+ASR: 0.0000
+Node 1825: 19044
+ASR: 0.0000
+Node 1826: 19052
+ASR: 1.0000
+Node 1827: 19054
+ASR: 0.0000
+Node 1828: 19057
+ASR: 0.0000
+Node 1829: 19060
+ASR: 0.0000
+Node 1830: 19064
+ASR: 0.0000
+Node 1831: 19065
+ASR: 0.0000
+Node 1832: 19070
+ASR: 0.0000
+Node 1833: 19078
+ASR: 0.0000
+Node 1834: 19080
+ASR: 0.0000
+Node 1835: 19083
+ASR: 0.0000
+Node 1836: 19088
+ASR: 0.0000
+Node 1837: 19096
+ASR: 1.0000
+Node 1838: 19100
+ASR: 0.0000
+Node 1839: 19102
+ASR: 0.0000
+Node 1840: 19108
+ASR: 0.0000
+Node 1841: 19111
+ASR: 0.0000
+Node 1842: 19114
+ASR: 0.0000
+Node 1843: 19116
+ASR: 0.0000
+Node 1844: 19117
+ASR: 1.0000
+Node 1845: 19124
+ASR: 0.0000
+Node 1846: 19127
+ASR: 0.0000
+Node 1847: 19129
+ASR: 0.0000
+Node 1848: 19135
+ASR: 0.0000
+Node 1849: 19138
+ASR: 0.0000
+Node 1850: 19148
+ASR: 0.0000
+Node 1851: 19153
+ASR: 0.0000
+Node 1852: 19160
+ASR: 1.0000
+Node 1853: 19161
+ASR: 1.0000
+Node 1854: 19163
+ASR: 0.0000
+Node 1855: 19164
+ASR: 0.0000
+Node 1856: 19166
+ASR: 0.0000
+Node 1857: 19169
+ASR: 0.0000
+Node 1858: 19170
+ASR: 1.0000
+Node 1859: 19172
+ASR: 0.0000
+Node 1860: 19185
+ASR: 0.0000
+Node 1861: 19186
+ASR: 0.0000
+Node 1862: 19191
+ASR: 0.0000
+Node 1863: 19197
+ASR: 0.0000
+Node 1864: 19201
+ASR: 1.0000
+Node 1865: 19205
+ASR: 0.0000
+Node 1866: 19207
+ASR: 0.0000
+Node 1867: 19212
+ASR: 0.0000
+Node 1868: 19214
+ASR: 0.0000
+Node 1869: 19222
+ASR: 0.0000
+Node 1870: 19226
+ASR: 0.0000
+Node 1871: 19230
+ASR: 0.0000
+Node 1872: 19237
+ASR: 0.0000
+Node 1873: 19241
+ASR: 1.0000
+Node 1874: 19247
+ASR: 0.0000
+Node 1875: 19248
+ASR: 0.0000
+Node 1876: 19251
+ASR: 0.0000
+Node 1877: 19254
+ASR: 1.0000
+Node 1878: 19256
+ASR: 1.0000
+Node 1879: 19262
+ASR: 0.0000
+Node 1880: 19263
+ASR: 1.0000
+Node 1881: 19268
+ASR: 0.0000
+Node 1882: 19269
+ASR: 0.0000
+Node 1883: 19276
+ASR: 0.0000
+Node 1884: 19279
+ASR: 1.0000
+Node 1885: 19280
+ASR: 0.0000
+Node 1886: 19281
+ASR: 0.0000
+Node 1887: 19284
+ASR: 0.0000
+Node 1888: 19287
+ASR: 0.0000
+Node 1889: 19290
+ASR: 0.0000
+Node 1890: 19293
+ASR: 0.0000
+Node 1891: 19299
+ASR: 0.0000
+Node 1892: 19302
+ASR: 0.0000
+Node 1893: 19303
+ASR: 0.0000
+Node 1894: 19306
+ASR: 0.0000
+Node 1895: 19310
+ASR: 0.0000
+Node 1896: 19311
+ASR: 0.0000
+Node 1897: 19314
+ASR: 0.0000
+Node 1898: 19318
+ASR: 0.0000
+Node 1899: 19321
+ASR: 0.0000
+Node 1900: 19323
+ASR: 0.0000
+Node 1901: 19327
+ASR: 1.0000
+Node 1902: 19331
+ASR: 0.0000
+Node 1903: 19332
+ASR: 0.0000
+Node 1904: 19338
+ASR: 0.0000
+Node 1905: 19342
+ASR: 0.0000
+Node 1906: 19360
+ASR: 0.0000
+Node 1907: 19372
+ASR: 0.0000
+Node 1908: 19375
+ASR: 1.0000
+Node 1909: 19381
+ASR: 0.0000
+Node 1910: 19382
+ASR: 0.0000
+Node 1911: 19387
+ASR: 0.0000
+Node 1912: 19392
+ASR: 0.0000
+Node 1913: 19396
+ASR: 1.0000
+Node 1914: 19400
+ASR: 0.0000
+Node 1915: 19403
+ASR: 0.0000
+Node 1916: 19407
+ASR: 0.0000
+Node 1917: 19409
+ASR: 1.0000
+Node 1918: 19413
+ASR: 0.0000
+Node 1919: 19417
+ASR: 0.0000
+Node 1920: 19421
+ASR: 0.0000
+Node 1921: 19430
+ASR: 0.0000
+Node 1922: 19431
+ASR: 0.0000
+Node 1923: 19436
+ASR: 0.0000
+Node 1924: 19437
+ASR: 0.0000
+Node 1925: 19447
+ASR: 0.0000
+Node 1926: 19451
+ASR: 0.0000
+Node 1927: 19454
+ASR: 0.0000
+Node 1928: 19458
+ASR: 0.0000
+Node 1929: 19482
+ASR: 0.0000
+Node 1930: 19493
+ASR: 0.0000
+Node 1931: 19504
+ASR: 0.0000
+Node 1932: 19506
+ASR: 0.0000
+Node 1933: 19507
+ASR: 1.0000
+Node 1934: 19508
+ASR: 1.0000
+Node 1935: 19513
+ASR: 1.0000
+Node 1936: 19521
+ASR: 0.0000
+Node 1937: 19525
+ASR: 0.0000
+Node 1938: 19527
+ASR: 0.0000
+Node 1939: 19533
+ASR: 0.0000
+Node 1940: 19536
+ASR: 0.0000
+Node 1941: 19537
+ASR: 0.0000
+Node 1942: 19542
+ASR: 0.0000
+Node 1943: 19556
+ASR: 0.0000
+Node 1944: 19567
+ASR: 1.0000
+Node 1945: 19573
+ASR: 0.0000
+Node 1946: 19584
+ASR: 0.0000
+Node 1947: 19590
+ASR: 0.0000
+Node 1948: 19591
+ASR: 0.0000
+Node 1949: 19592
+ASR: 0.0000
+Node 1950: 19599
+ASR: 0.0000
+Node 1951: 19618
+ASR: 1.0000
+Node 1952: 19625
+ASR: 0.0000
+Node 1953: 19637
+ASR: 1.0000
+Node 1954: 19640
+ASR: 0.0000
+Node 1955: 19641
+ASR: 0.0000
+Node 1956: 19642
+ASR: 0.0000
+Node 1957: 19643
+ASR: 0.0000
+Node 1958: 19649
+ASR: 0.0000
+Node 1959: 19653
+ASR: 0.0000
+Node 1960: 19658
+ASR: 0.0000
+Node 1961: 19662
+ASR: 0.0000
+Node 1962: 19664
+ASR: 0.0000
+Node 1963: 19665
+ASR: 1.0000
+Node 1964: 19680
+ASR: 0.0000
+Node 1965: 19681
+ASR: 0.0000
+Node 1966: 19686
+ASR: 0.0000
+Node 1967: 19688
+ASR: 1.0000
+Node 1968: 19689
+ASR: 0.0000
+Node 1969: 19690
+ASR: 0.0000
+Node 1970: 19697
+ASR: 0.0000
+Node 1971: 19702
+ASR: 0.0000
+Overall ASR: 0.2049
