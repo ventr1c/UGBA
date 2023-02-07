@@ -45,7 +45,7 @@ scipy==1.7.3
 scikit-learn==1.1.1
 scikit-learn-extra==0.2.0
 ```
-The packages can be installed by directly run the commands in `install.sh` by
+The packages can be installed by directly run the commands in [`install.sh`](https://github.com/ventr1c/UGBA/blob/main/install.sh) by
 ```
 bash install.sh
 ```
