@@ -8,7 +8,7 @@ An official PyTorch implementation of "Unnoticeable Backdoor Attack on Graph Neu
   - [2. Requirements](#2-requirements)
   - [3. UGBA](#3-ugba)
     - [Abstract](#abstract)
-    - [Reproduce the Results](#reproduc-the-results)
+    - [Reproduce the Results](#reproduce-the-results)
   - [4. Compared Methods (to test)](#4-compared-methods-to-test)
     - [Compared with Graph Backdoor Attack Methods](#compared-with-graph-backdoor-attack-methods)
       - [SBA-Gen](#sba-gen)
