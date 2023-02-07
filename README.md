@@ -65,7 +65,7 @@ To get the results of Baselines, you can run the bash file:
 bash script\train_baseline.sh
 ```
 To see the reproduce experimental results, please check the logs in [`./logs`](https://github.com/ventr1c/UGBA/tree/main/logs)
-## 4. Compared Methods
+## 4. Compared Methods (to test)
 ### Compared with Graph Backdoor Attack Methods
 #### SBA-Samp
 From Xi, Zhaohan, et al. "Backdoor Attacks to Graph Neural Networks" [[paper](https://arxiv.org/abs/2006.11165), [code](https://github.com/zaixizhang/graphbackdoor)].
