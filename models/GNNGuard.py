@@ -5,7 +5,7 @@ import torch.optim as optim
 from torch.nn.parameter import Parameter
 from copy import deepcopy
 # from torch_geometric.nn import GCNConv
-from models.GNNGuard.gcn_conv import GCNConv
+from models._GNNGuard.gcn_conv import GCNConv
 import utils
 
 
