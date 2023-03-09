@@ -182,98 +182,107 @@ print("precent of left attach nodes: {:.3f}"\
     .format(len(set(bkd_tn_nodes.tolist()) & set(idx_attach.tolist()))/len(idx_attach)))
 
 
-rs = np.random.RandomState(args.seed)
-seeds = rs.randint(1000,size=5)
-# seeds = [args.seed]
-overall_asr = 0
-overall_ca = 0
-for seed in seeds:
-    args.seed = seed
-    # np.random.seed(seed)
-    # torch.manual_seed(seed)
-    # torch.cuda.manual_seed(seed)
-    np.random.seed(args.seed)
-    torch.manual_seed(args.seed)
-    torch.cuda.manual_seed(args.seed)
-    print(args)
-    #%%
-    test_model = model_construct(args,args.test_model,data,device).to(device) 
-    test_model.fit(poison_x, poison_edge_index, poison_edge_weights, poison_labels, bkd_tn_nodes, idx_val,train_iters=args.epochs,verbose=False)
+models = ['GCN','GAT', 'GraphSage']
+total_overall_asr = 0
+total_overall_ca = 0
+for test_model in models:
+    args.test_model = test_model
+    rs = np.random.RandomState(args.seed)
+    seeds = rs.randint(1000,size=5)
+    # seeds = [args.seed]
+    overall_asr = 0
+    overall_ca = 0
+    for seed in seeds:
+        args.seed = seed
+        # np.random.seed(seed)
+        # torch.manual_seed(seed)
+        # torch.cuda.manual_seed(seed)
+        np.random.seed(args.seed)
+        torch.manual_seed(args.seed)
+        torch.cuda.manual_seed(args.seed)
+        print(args)
+        #%%
+        test_model = model_construct(args,args.test_model,data,device).to(device) 
+        test_model.fit(poison_x, poison_edge_index, poison_edge_weights, poison_labels, bkd_tn_nodes, idx_val,train_iters=args.epochs,verbose=False)
 
-    output = test_model(poison_x,poison_edge_index,poison_edge_weights)
-    train_attach_rate = (output.argmax(dim=1)[idx_attach]==args.target_class).float().mean()
-    print("target class rate on Vs: {:.4f}".format(train_attach_rate))
-    #%%
-    induct_edge_index = torch.cat([poison_edge_index,mask_edge_index],dim=1)
-    induct_edge_weights = torch.cat([poison_edge_weights,torch.ones([mask_edge_index.shape[1]],dtype=torch.float,device=device)])
-    clean_acc = test_model.test(poison_x,induct_edge_index,induct_edge_weights,data.y,idx_clean_test)
+        output = test_model(poison_x,poison_edge_index,poison_edge_weights)
+        train_attach_rate = (output.argmax(dim=1)[idx_attach]==args.target_class).float().mean()
+        print("target class rate on Vs: {:.4f}".format(train_attach_rate))
+        #%%
+        induct_edge_index = torch.cat([poison_edge_index,mask_edge_index],dim=1)
+        induct_edge_weights = torch.cat([poison_edge_weights,torch.ones([mask_edge_index.shape[1]],dtype=torch.float,device=device)])
+        clean_acc = test_model.test(poison_x,induct_edge_index,induct_edge_weights,data.y,idx_clean_test)
 
-    print("accuracy on clean test nodes: {:.4f}".format(clean_acc))
+        print("accuracy on clean test nodes: {:.4f}".format(clean_acc))
 
 
-    if(args.evaluate_mode == '1by1'):
-        from torch_geometric.utils  import k_hop_subgraph
-        overall_induct_edge_index, overall_induct_edge_weights = induct_edge_index.clone(),induct_edge_weights.clone()
-        asr = 0
-        flip_asr = 0
-        flip_idx_atk = idx_atk[(data.y[idx_atk] != args.target_class).nonzero().flatten()]
-        for i, idx in enumerate(idx_atk):
-            idx=int(idx)
-            sub_induct_nodeset, sub_induct_edge_index, sub_mapping, sub_edge_mask  = k_hop_subgraph(node_idx = [idx], num_hops = 2, edge_index = overall_induct_edge_index, relabel_nodes=True) # sub_mapping means the index of [idx] in sub)nodeset
-            ori_node_idx = sub_induct_nodeset[sub_mapping]
-            relabeled_node_idx = sub_mapping
-            sub_induct_edge_weights = torch.ones([sub_induct_edge_index.shape[1]]).to(device)
-            with torch.no_grad():
-                # inject trigger on attack test nodes (idx_atk)'''
-                induct_x, induct_edge_index,induct_edge_weights = model.inject_trigger(relabeled_node_idx,poison_x[sub_induct_nodeset],sub_induct_edge_index,sub_induct_edge_weights,device)
-                induct_x, induct_edge_index,induct_edge_weights = induct_x.clone().detach(), induct_edge_index.clone().detach(),induct_edge_weights.clone().detach()
-                # # do pruning in test datas'''
-                if(args.defense_mode == 'prune' or args.defense_mode == 'isolate'):
-                    induct_edge_index,induct_edge_weights = prune_unrelated_edge(args,induct_edge_index,induct_edge_weights,induct_x,device,False)
-                # attack evaluation
-                output = test_model(induct_x,induct_edge_index,induct_edge_weights)
-                train_attach_rate = (output.argmax(dim=1)[relabeled_node_idx]==args.target_class).float().mean()
-                asr += train_attach_rate
-                if(data.y[idx] != args.target_class):
-                    flip_asr += train_attach_rate
-                induct_x, induct_edge_index,induct_edge_weights = induct_x.cpu(), induct_edge_index.cpu(),induct_edge_weights.cpu()
-                output = output.cpu()
-        asr = asr/(idx_atk.shape[0])
-        flip_asr = flip_asr/(flip_idx_atk.shape[0])
-        print("Overall ASR: {:.4f}".format(asr))
-        print("Flip ASR: {:.4f}/{} nodes".format(flip_asr,flip_idx_atk.shape[0]))
-    elif(args.evaluate_mode == 'overall'):
-        # %% inject trigger on attack test nodes (idx_atk)'''
-        induct_x, induct_edge_index,induct_edge_weights = model.inject_trigger(idx_atk,poison_x,induct_edge_index,induct_edge_weights,device)
-        induct_x, induct_edge_index,induct_edge_weights = induct_x.clone().detach(), induct_edge_index.clone().detach(),induct_edge_weights.clone().detach()
-        # do pruning in test datas'''
-        if(args.defense_mode == 'prune' or args.defense_mode == 'isolate'):
-            induct_edge_index,induct_edge_weights = prune_unrelated_edge(args,induct_edge_index,induct_edge_weights,induct_x,device)
-        # attack evaluation
-        output = test_model(induct_x,induct_edge_index,induct_edge_weights)
-        train_attach_rate = (output.argmax(dim=1)[idx_atk]==args.target_class).float().mean()
-        print("ASR: {:.4f}".format(train_attach_rate))
-        asr = train_attach_rate
-        flip_idx_atk = idx_atk[(data.y[idx_atk] != args.target_class).nonzero().flatten()]
-        flip_asr = (output.argmax(dim=1)[flip_idx_atk]==args.target_class).float().mean()
-        print("Flip ASR: {:.4f}/{} nodes".format(flip_asr,flip_idx_atk.shape[0]))
-        ca = test_model.test(induct_x,induct_edge_index,induct_edge_weights,data.y,idx_clean_test)
-        print("CA: {:.4f}".format(ca))
+        if(args.evaluate_mode == '1by1'):
+            from torch_geometric.utils  import k_hop_subgraph
+            overall_induct_edge_index, overall_induct_edge_weights = induct_edge_index.clone(),induct_edge_weights.clone()
+            asr = 0
+            flip_asr = 0
+            flip_idx_atk = idx_atk[(data.y[idx_atk] != args.target_class).nonzero().flatten()]
+            for i, idx in enumerate(idx_atk):
+                idx=int(idx)
+                sub_induct_nodeset, sub_induct_edge_index, sub_mapping, sub_edge_mask  = k_hop_subgraph(node_idx = [idx], num_hops = 2, edge_index = overall_induct_edge_index, relabel_nodes=True) # sub_mapping means the index of [idx] in sub)nodeset
+                ori_node_idx = sub_induct_nodeset[sub_mapping]
+                relabeled_node_idx = sub_mapping
+                sub_induct_edge_weights = torch.ones([sub_induct_edge_index.shape[1]]).to(device)
+                with torch.no_grad():
+                    # inject trigger on attack test nodes (idx_atk)'''
+                    induct_x, induct_edge_index,induct_edge_weights = model.inject_trigger(relabeled_node_idx,poison_x[sub_induct_nodeset],sub_induct_edge_index,sub_induct_edge_weights,device)
+                    induct_x, induct_edge_index,induct_edge_weights = induct_x.clone().detach(), induct_edge_index.clone().detach(),induct_edge_weights.clone().detach()
+                    # # do pruning in test datas'''
+                    if(args.defense_mode == 'prune' or args.defense_mode == 'isolate'):
+                        induct_edge_index,induct_edge_weights = prune_unrelated_edge(args,induct_edge_index,induct_edge_weights,induct_x,device,False)
+                    # attack evaluation
+                    output = test_model(induct_x,induct_edge_index,induct_edge_weights)
+                    train_attach_rate = (output.argmax(dim=1)[relabeled_node_idx]==args.target_class).float().mean()
+                    asr += train_attach_rate
+                    if(data.y[idx] != args.target_class):
+                        flip_asr += train_attach_rate
+                    induct_x, induct_edge_index,induct_edge_weights = induct_x.cpu(), induct_edge_index.cpu(),induct_edge_weights.cpu()
+                    output = output.cpu()
+            asr = asr/(idx_atk.shape[0])
+            flip_asr = flip_asr/(flip_idx_atk.shape[0])
+            print("Overall ASR: {:.4f}".format(asr))
+            print("Flip ASR: {:.4f}/{} nodes".format(flip_asr,flip_idx_atk.shape[0]))
+        elif(args.evaluate_mode == 'overall'):
+            # %% inject trigger on attack test nodes (idx_atk)'''
+            induct_x, induct_edge_index,induct_edge_weights = model.inject_trigger(idx_atk,poison_x,induct_edge_index,induct_edge_weights,device)
+            induct_x, induct_edge_index,induct_edge_weights = induct_x.clone().detach(), induct_edge_index.clone().detach(),induct_edge_weights.clone().detach()
+            # do pruning in test datas'''
+            if(args.defense_mode == 'prune' or args.defense_mode == 'isolate'):
+                induct_edge_index,induct_edge_weights = prune_unrelated_edge(args,induct_edge_index,induct_edge_weights,induct_x,device)
+            # attack evaluation
+            output = test_model(induct_x,induct_edge_index,induct_edge_weights)
+            train_attach_rate = (output.argmax(dim=1)[idx_atk]==args.target_class).float().mean()
+            print("ASR: {:.4f}".format(train_attach_rate))
+            asr = train_attach_rate
+            flip_idx_atk = idx_atk[(data.y[idx_atk] != args.target_class).nonzero().flatten()]
+            flip_asr = (output.argmax(dim=1)[flip_idx_atk]==args.target_class).float().mean()
+            print("Flip ASR: {:.4f}/{} nodes".format(flip_asr,flip_idx_atk.shape[0]))
+            ca = test_model.test(induct_x,induct_edge_index,induct_edge_weights,data.y,idx_clean_test)
+            print("CA: {:.4f}".format(ca))
 
-        induct_x, induct_edge_index,induct_edge_weights = induct_x.cpu(), induct_edge_index.cpu(),induct_edge_weights.cpu()
-        output = output.cpu()
+            induct_x, induct_edge_index,induct_edge_weights = induct_x.cpu(), induct_edge_index.cpu(),induct_edge_weights.cpu()
+            output = output.cpu()
 
-    overall_asr += asr
-    overall_ca += clean_acc
+        overall_asr += asr
+        overall_ca += clean_acc
 
-    test_model = test_model.cpu()
-    
-overall_asr = overall_asr/len(seeds)
-overall_ca = overall_ca/len(seeds)
-print("Overall ASR: {:.4f} ({} model, Seed: {})".format(overall_asr, args.test_model, args.seed))
-print("Overall Clean Accuracy: {:.4f}".format(overall_ca))
+        test_model = test_model.cpu()
+        
+    overall_asr = overall_asr/len(seeds)
+    overall_ca = overall_ca/len(seeds)
+    print("Overall ASR: {:.4f} ({} model, Seed: {})".format(overall_asr, args.test_model, args.seed))
+    print("Overall Clean Accuracy: {:.4f}".format(overall_ca))
 
-total_overall_asr += overall_asr
-total_overall_ca += overall_ca
-test_model.to(torch.device('cpu'))
-torch.cuda.empty_cache()
+    total_overall_asr += overall_asr
+    total_overall_ca += overall_ca
+    test_model.to(torch.device('cpu'))
+    torch.cuda.empty_cache()
+total_overall_asr = total_overall_asr/len(models)
+total_overall_ca = total_overall_ca/len(models)
+print("Total Overall ASR: {:.4f} ".format(total_overall_asr))
+print("Total Clean Accuracy: {:.4f}".format(total_overall_ca))
