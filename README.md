@@ -48,9 +48,6 @@ bash install.sh
 
 ## 3. Proposed
 
-### Abstract
-Graph Neural Networks (GNNs) have achieved promising results in various tasks such as node classification and graph classification. Recent studies find that GNNs are vulnerable to adversarial attacks. However, effective backdoor attacks on graphs are still an open problem. In particular, backdoor attack poisons the graph by attaching triggers and the target class label to a set of nodes in the training graph. The backdoored GNNs trained on the poisoned graph will then be misled to predict test nodes to target class once attached with triggers. Though there are some initial efforts in graph backdoor attacks, our empirical analysis shows that they may require a large attack budget for effective backdoor attacks and the injected triggers can be easily detected and pruned. Therefore, in this paper, we study a novel problem of unnoticeable graph backdoor attacks with limited attack budget. To fully utilize the attack budget, we propose to deliberately select the nodes to inject triggers and target class labels in the poisoning phase. An adaptive trigger generator is deployed to obtain effective triggers that are difficult to be noticed. Extensive experiments on real-world datasets against various defense strategies demonstrate the effectiveness of our proposed method in conducting effective unnoticeable backdoor attacks.
-
 ### Reproduce the Results
 The hyper-parameters settings for the datasets are included in [`train_UGBA.sh`](https://github.com/ventr1c/UGBA/blob/main/script/train_UGBA.sh) To reproduce the performance reported in the paper, you can run the bash file:
 ```
