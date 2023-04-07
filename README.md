@@ -1,5 +1,5 @@
 # UGBA: Unnoticeable Backdoor Attack on Graph Neural Networks
-<! An official PyTorch implementation of "Unnoticeable Backdoor Attack on Graph Neural Networks" (WWW 2023). [[paper]](https://arxiv.org/abs/2303.01263) -- -->
+An official PyTorch implementation of "Unnoticeable Backdoor Attack on Graph Neural Networks" (WWW 2023). [[paper]](https://arxiv.org/abs/2303.01263)
 
 ## Content
 - [Unnoticeable Backdoor Attack on Graph Neural Networks](#unnoticeable-backdoor-attack-on-graph-neural-networks)
