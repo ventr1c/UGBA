@@ -77,7 +77,7 @@ To see the reproduce experimental results, please check the logs in [`./logs`](h
 ## 4. Compared Methods (to test)
 ### Compared with Graph Backdoor Attack Methods
 #### SBA-Samp
-From Xi, Zhaohan, et al. "Backdoor Attacks to Graph Neural Networks" [[paper](https://arxiv.org/abs/2006.11165), [code](https://github.com/zaixizhang/graphbackdoor)].
+From Zhang, Zaixi, et al. "Backdoor Attacks to Graph Neural Networks" [[paper](https://arxiv.org/abs/2006.11165), [code](https://github.com/zaixizhang/graphbackdoor)].
 #### SBA-Gen
 This is a variant of SBA-Samp, which uses generated features for trigger nodes. Features are from a Gaussian distribution whose mean and variance is computed from real nodes.
 #### GTA
