@@ -85,8 +85,8 @@ From Xi, Zhaohan, et al. "Graph Backdoor" [[paper](https://arxiv.org/abs/2006.11
 ### Compared with Graph Injection Evasion Attack Methods
 #### TDGIA
 From Zou, Xu, et al. "TDGIA: Effective Injection Attacks on Graph Neural Networks." [[paper](https://arxiv.org/abs/2106.06663), [code](https://github.com/THUDM/tdgia)].
-#### AGIA
-From Chen, Yongqiang, et al. "Understanding and Improving Graph Injection Attack by Promoting Unnoticeability" [[paper](https://arxiv.org/abs/2106.06663), [code](https://github.com/LFhase/GIA-HAO/blob/master/attacks/agia.py)].
+#### AGIA 
+From Chen, Yongqiang, et al. "Understanding and Improving Graph Injection Attack by Promoting Unnoticeability" [[paper](https://arxiv.org/abs/2202.08057), [code](https://github.com/LFhase/GIA-HAO/blob/master/attacks/agia.py)].
 ### Comparing with Defense Methods
 #### Robust GCN
 From Zhu, Dingyuan, et al. "Robust graph convolutional networks against adversarial attacks" [[paper](https://dl.acm.org/doi/10.1145/3292500.3330851), [code](https://github.com/ZW-ZHANG/RobustGCN)].
