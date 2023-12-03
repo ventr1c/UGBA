@@ -11,7 +11,7 @@ import argparse
 import numpy as np
 import torch
 
-from torch_geometric.datasets import Planetoid,Reddit2,Flickr,PPI
+from torch_geometric.datasets import Planetoid,Reddit2,Flickr
 
 
 # from torch_geometric.loader import DataLoader
@@ -27,9 +27,9 @@ parser.add_argument('--no-cuda', action='store_true', default=False,
 parser.add_argument('--seed', type=int, default=10, help='Random seed.')
 parser.add_argument('--model', type=str, default='GCN', help='model',
                     choices=['GCN','GAT','GraphSage','GIN'])
-parser.add_argument('--dataset', type=str, default='ogbn-arxiv', 
+parser.add_argument('--dataset', type=str, default='Cora', 
                     help='Dataset',
-                    choices=['Cora','Citeseer','Pubmed','PPI','Flickr','ogbn-arxiv','Reddit','Reddit2','Yelp'])
+                    choices=['Cora','Pubmed','Flickr','ogbn-arxiv'])
 parser.add_argument('--train_lr', type=float, default=0.01,
                     help='Initial learning rate.')
 parser.add_argument('--weight_decay', type=float, default=5e-4,
@@ -48,11 +48,11 @@ parser.add_argument('--lr', type=float, default=0.01,
                     help='Initial learning rate.')
 parser.add_argument('--trigger_size', type=int, default=3,
                     help='tirgger_size')
-parser.add_argument('--use_vs_number', action='store_true', default=False,
+parser.add_argument('--use_vs_number', action='store_true', default=True,
                     help="if use detailed number to decide Vs")
 parser.add_argument('--vs_ratio', type=float, default=0,
                     help="ratio of poisoning nodes relative to the full graph")
-parser.add_argument('--vs_number', type=int, default=0,
+parser.add_argument('--vs_number', type=int, default=40,
                     help="number of poisoning nodes relative to the full graph")
 # defense setting
 parser.add_argument('--defense_mode', type=str, default="prune",
@@ -102,9 +102,6 @@ if(args.dataset == 'Cora' or args.dataset == 'Citeseer' or args.dataset == 'Pubm
 elif(args.dataset == 'Flickr'):
     dataset = Flickr(root='./data/Flickr/', \
                     transform=transform)
-elif(args.dataset == 'Reddit2'):
-    dataset = Reddit2(root='./data/Reddit2/', \
-                    transform=transform)
 elif(args.dataset == 'ogbn-arxiv'):
     from ogb.nodeproppred import PygNodePropPredDataset
     # Download and process data at './dataset/ogbg_molhiv/'
@@ -148,6 +145,7 @@ if(args.use_vs_number):
 else:
     size = int((len(data.test_mask)-data.test_mask.sum())*args.vs_ratio)
 print("#Attach Nodes:{}".format(size))
+assert size>0, 'The number of selected trigger nodes must be larger than 0!'
 # here is randomly select poison nodes from unlabeled nodes
 if(args.selection_method == 'none'):
     idx_attach = hs.obtain_attach_nodes(args,unlabeled_idx,size)

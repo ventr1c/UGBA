@@ -81,14 +81,6 @@ def obtain_attach_nodes_by_cluster_degree_all(args,edge_index,y_pred,cluster_cen
 
     distances = np.array(distances)
     print(y_pred)
-    # label_list = np.unique(labels.cpu())
-    # label_list = np.unique(y_pred)
-    # labels_dict = {}
-    # for i in label_list:
-    #     # labels_dict[i] = np.where(labels.cpu()==i)[0]
-    #     labels_dict[i] = np.where(y_pred==i)[0]
-    #     # filter out labeled nodes
-    #     labels_dict[i] = np.array(list(set(node_idxs) & set(labels_dict[i])))
     nontarget_nodes = np.where(y_pred!=args.target_class)[0]
 
     non_target_node_idxs = np.array(list(set(nontarget_nodes) & set(node_idxs)))
@@ -100,7 +92,6 @@ def obtain_attach_nodes_by_cluster_degree_all(args,edge_index,y_pred,cluster_cen
 
     dis_score = candiadate_distances + dis_weight * candiadate_degrees
     candidate_nid_index = np.argsort(dis_score)
-    # print(candidate_nid_index,node_idxs)
     sorted_node_idex = np.array(node_idxs[candidate_nid_index])
     selected_nodes = sorted_node_idex
     return selected_nodes
@@ -198,7 +189,6 @@ def cluster_degree_selection(args,data,idx_train,idx_val,idx_clean_test,unlabele
         cluster_centers = kmedoids.cluster_centers_
         y_pred = kmedoids.predict(encoder_x.cpu().numpy())
     else:
-        # _, cluster_centers = kmeans(X=encoder_x[seen_node_idx], num_clusters=nclass, distance='euclidean', device=device)
         kmeans = KMeans(n_clusters=nclass,random_state=1)
         kmeans.fit(encoder_x[seen_node_idx].detach().cpu().numpy())
         cluster_centers = kmeans.cluster_centers_

@@ -4,7 +4,6 @@ from models.GAT import GAT
 from models.SAGE import GraphSage
 from models.GCN_Encoder import GCN_Encoder
 from models.GNNGuard import GNNGuard
-from models.MedianGCN import MedianGCN
 from models.RobustGCN import RobustGCN
 
 def model_construct(args,model_name,data,device):
@@ -61,14 +60,6 @@ def model_construct(args,model_name,data,device):
                     lr=args.train_lr,\
                     weight_decay=args.weight_decay,\
                     use_ln=use_ln,\
-                    device=device)
-    elif(model_name == 'MedianGCN'):
-        model = MedianGCN(nfeat=data.x.shape[1],\
-                    nhid=args.hidden,\
-                    nclass= int(data.y.max()+1),\
-                    dropout=args.dropout,\
-                    lr=args.train_lr,\
-                    weight_decay=args.weight_decay,\
                     device=device)
     elif(model_name == 'RobustGCN'):
         model = RobustGCN(nfeat=data.x.shape[1],\

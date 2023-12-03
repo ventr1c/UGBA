@@ -4,21 +4,17 @@
 # In[1]: 
 
 
-from ast import arg
 import time
 import argparse
 import numpy as np
 import torch
-from models.GCN import GCN
-from models.GCN_Encoder import GCN_Encoder
-from torch_geometric.datasets import Planetoid, WebKB, WikipediaNetwork,Reddit,Reddit2,Flickr,Yelp,PPI
-from torch_geometric.utils import to_dense_adj,dense_to_sparse
+from torch_geometric.datasets import Planetoid,Reddit2,Flickr,PPI
+from torch_geometric.utils import dense_to_sparse
 
 from ogb.nodeproppred import PygNodePropPredDataset
 # from torch_geometric.loader import DataLoader
-from help_funcs import prune_unrelated_edge,prune_unrelated_edge_isolated,select_target_nodes
-import help_funcs
-import scipy.sparse as sp
+from help_funcs import prune_unrelated_edge,prune_unrelated_edge_isolated
+
 
 # Training settings
 parser = argparse.ArgumentParser()
@@ -180,7 +176,7 @@ benign_model = benign_model.cpu()
 # In[9]:
 from sklearn_extra import cluster
 from models.backdoor import Backdoor    #, defend_baseline_construct
-from heuristic_selection import obtain_attach_nodes, obtain_attach_nodes_by_cluster_degree, obtain_attach_nodes_by_cluster_gpu,obtain_attach_nodes_by_influential,obtain_attach_nodes_by_cluster,cluster_distance_selection,cluster_degree_selection
+from heuristic_selection import obtain_attach_nodes,cluster_distance_selection,cluster_degree_selection
 
 from kmeans_pytorch import kmeans, kmeans_predict
 
@@ -190,9 +186,6 @@ size = int((len(data.test_mask)-data.test_mask.sum())*args.vs_ratio)
 # here is randomly select poison nodes from unlabeled nodes
 if(args.selection_method == 'none'):
     idx_attach = obtain_attach_nodes(args,unlabeled_idx,size)
-elif(args.selection_method == 'loss' or args.selection_method == 'conf'):
-    idx_attach = obtain_attach_nodes_by_influential(args,benign_model,unlabeled_idx.cpu().tolist(),data.x,train_edge_index,None,data.y,device,size,selected_way=args.selection_method)
-    idx_attach = torch.LongTensor(idx_attach).to(device)
 elif(args.selection_method == 'cluster'):
     idx_attach = cluster_distance_selection(args,data,idx_train,idx_val,idx_clean_test,unlabeled_idx,train_edge_index,size,device)
     idx_attach = torch.LongTensor(idx_attach).to(device)
